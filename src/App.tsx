@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
+import { css } from '@emotion/react'
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
     >
       factory
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
