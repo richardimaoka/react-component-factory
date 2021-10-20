@@ -42,30 +42,60 @@ const ProgressBar = ({ currentPage, pages }: ProgressBarProps) => (
   </div>
 )
 
-const MainContainer = () => (
-  <main>
-    <div
+interface PageTitleProps {
+  title: string
+}
+
+const PageTitle = ({ title }: PageTitleProps) => (
+  <div
+    css={css`
+      padding: 4px;
+    `}
+  >
+    <h2
       css={css`
-        margin-left: auto;
-        margin-right: auto;
-        max-width: 768px;
-        border: solid 1px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        color: #0a0a0a;
       `}
     >
-      <ProgressBar
-        currentPage={3}
-        pages={[
-          { page: 1 },
-          { page: 2 },
-          { page: 3 },
-          { page: 4 },
-          { page: 5 },
-          { page: 6 },
-        ]}
-      />
-    </div>
-  </main>
+      {title}
+    </h2>
+  </div>
 )
+
+const PageElements = () => (
+  <div>
+    <PageTitle title="概要:cypressはフロントエンドend-to-endテストの代表格、WSLで動かしてみよう！" />
+  </div>
+)
+
+const MainContainer = () => {
+  const pages = [
+    { page: 1 },
+    { page: 2 },
+    { page: 3 },
+    { page: 4 },
+    { page: 5 },
+    { page: 6 },
+  ]
+
+  return (
+    <main>
+      <div
+        css={css`
+          margin-left: auto;
+          margin-right: auto;
+          max-width: 768px;
+          border: solid 1px;
+        `}
+      >
+        <ProgressBar currentPage={3} pages={pages} />
+        <PageElements />
+      </div>
+    </main>
+  )
+}
 
 const App = (): JSX.Element => <MainContainer />
 
