@@ -43,8 +43,8 @@ const HeaderContainer = ({ title }: { title: string }) => (
   </header>
 )
 
-function App() {
-  return <HeaderContainer title={'CypressをWSL2上で動かすために必要な作業'} />
-}
+const App = (): JSX.Element => (
+  <HeaderContainer title="CypressをWSL2上で動かすために必要な作業" />
+)
 
 export default App
