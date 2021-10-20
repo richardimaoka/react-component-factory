@@ -1,50 +1,55 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 
-const HeaderIcon = () => (
+const ProgressBar = () => (
   <div
     css={css`
-      padding-right: 10px;
+      display: flex;
+
+      div:first-child {
+        margin-left: 0px;
+      }
+
+      div:last-child {
+        margin-right: 0px;
+      }
+
+      div:nth-child(2) {
+        background-color: #3edf33;
+      }
     `}
   >
-    <div
-      css={css`
-        background-color: #77c4ff;
-        width: 30px;
-        height: 30px;
-      `}
-    ></div>
+    {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
+      <div
+        key={num}
+        css={css`
+          flex-grow: 1;
+          background-color: #dfdfdf;
+          margin-left: 5px;
+          margin-right: 5px;
+        `}
+      >
+        {num}
+      </div>
+    ))}
   </div>
 )
 
-const HeaderTitle = ({ title }: { title: string }) => (
-  <h1
-    css={css`
-      margin: 0px;
-      font-size: 1.5em;
-    `}
-  >
-    {title}
-  </h1>
-)
-
-const HeaderContainer = ({ title }: { title: string }) => (
-  <header>
+const MainContainer = () => (
+  <main>
     <div
       css={css`
-        display: flex;
-        padding: 8px;
-        border-bottom: solid 1px #707070;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 768px;
+        border: solid 1px;
       `}
     >
-      <HeaderIcon />
-      <HeaderTitle title={title} />
+      <ProgressBar />
     </div>
-  </header>
+  </main>
 )
 
-const App = (): JSX.Element => (
-  <HeaderContainer title="CypressをWSL2上で動かすために必要な作業" />
-)
+const App = (): JSX.Element => <MainContainer />
 
 export default App
