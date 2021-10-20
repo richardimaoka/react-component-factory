@@ -1,36 +1,43 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 
-const ProgressBar = () => (
+interface Page {
+  page: number
+}
+interface ProgressBarProps {
+  currentPage: number
+  pages: Page[]
+}
+
+const ProgressBar = ({ currentPage, pages }: ProgressBarProps) => (
   <div
     css={css`
       display: flex;
 
-      div:first-child {
+      div:first-of-type {
         margin-left: 0px;
       }
 
-      div:last-child {
+      div:last-of-type {
         margin-right: 0px;
       }
 
-      div:nth-child(2) {
+      div:nth-of-type(${currentPage}) {
         background-color: #3edf33;
       }
     `}
   >
-    {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
+    {pages.map((page) => (
       <div
-        key={num}
+        key={page.page}
         css={css`
           flex-grow: 1;
+          height: 20px;
           background-color: #dfdfdf;
           margin-left: 5px;
           margin-right: 5px;
         `}
-      >
-        {num}
-      </div>
+      ></div>
     ))}
   </div>
 )
@@ -45,7 +52,17 @@ const MainContainer = () => (
         border: solid 1px;
       `}
     >
-      <ProgressBar />
+      <ProgressBar
+        currentPage={3}
+        pages={[
+          { page: 1 },
+          { page: 2 },
+          { page: 3 },
+          { page: 4 },
+          { page: 5 },
+          { page: 6 },
+        ]}
+      />
     </div>
   </main>
 )
