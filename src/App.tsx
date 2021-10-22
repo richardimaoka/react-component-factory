@@ -111,6 +111,50 @@ const PageElements = () => (
   </div>
 )
 
+const NextPageButton = () => (
+  <div
+    css={css`
+      width: 60px;
+      height: 60px;
+      background-color: rgb(29, 161, 242);
+      border-radius: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    `}
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 40 40"
+      height="40px"
+      width="40px"
+      css={css`
+        fill: white;
+      `}
+    >
+      <path d="M13.06,39.36a4.8,4.8,0,0,1-3.48-8.11L20.31,20,9.59,8.76a4.8,4.8,0,1,1,6.93-6.64L30.41,16.64a4.8,4.8,0,0,1,0,6.62L16.54,37.87A4.8,4.8,0,0,1,13.06,39.36Z" />
+    </svg>
+  </div>
+)
+
+const NextPageBar = () => (
+  <div
+    css={css`
+      background: black;
+      width: 60px;
+      margin-left: 10px;
+    `}
+  >
+    <div
+      css={css`
+        position: fixed;
+        top: 50%;
+      `}
+    >
+      <NextPageButton />
+    </div>
+  </div>
+)
 const MainContainer = () => {
   const pages = [
     { page: 1 },
@@ -125,14 +169,21 @@ const MainContainer = () => {
     <main>
       <div
         css={css`
-          margin-left: auto;
-          margin-right: auto;
-          max-width: 768px;
-          border: solid 1px;
+          display: flex;
+          justify-content: center;
         `}
       >
-        <ProgressBar currentPage={3} pages={pages} />
-        <PageElements />
+        <div
+          css={css`
+            max-width: 768px;
+            min-height: calc(100vh-0px);
+            border: solid 1px;
+          `}
+        >
+          <ProgressBar currentPage={3} pages={pages} />
+          <PageElements />
+        </div>
+        <NextPageBar />
       </div>
     </main>
   )
