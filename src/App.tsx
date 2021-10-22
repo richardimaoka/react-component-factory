@@ -176,7 +176,7 @@ const MainContainer = () => {
         <div
           css={css`
             max-width: 768px;
-            min-height: calc(100vh-0px);
+            min-height: calc(100vh - 10px);
             border: solid 1px;
           `}
         >
