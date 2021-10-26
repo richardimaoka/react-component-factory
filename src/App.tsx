@@ -14,7 +14,7 @@ const image5base64 =
 
 interface ImageProps {
   src: string
-  fit: 'fit2width' | 'fit2height'
+  fit: 'fit2width' | 'fit2height' | 'originalsize'
 }
 
 export const Image = ({ src }: ImageProps) => <img src={src} alt="" />
@@ -34,7 +34,7 @@ export const CarouselItem = () => (
       background-color: black;
     `}
   >
-    <Image src={image4base64} />
+    <Image src={image3base64} fit={'originalsize'} />
   </div>
 )
 
