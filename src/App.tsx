@@ -80,6 +80,24 @@ export const CarouselControlRightButton = () => (
   </div>
 )
 
+export const CarouselDescription = () => (
+  <div
+    css={css`
+      padding: 8px;
+      border: solid 1px #414141;
+    `}
+  >
+    <p
+      css={css`
+        margin: 0px;
+      `}
+    >
+      本記事では上記2択のうち、よりリスクの少ない「許可されているアプリの一覧にアプリを追加する」に従います。それではWindowsのスタートメニューからWindows
+      Defender ファイアウォールを立ち上げます。
+    </p>
+  </div>
+)
+
 export const CarouselControlBar = () => (
   <div
     css={css`
@@ -98,10 +116,21 @@ export const CarouselControlBar = () => (
   </div>
 )
 
-export const Carousel = () => (
+export const CarouselContent = () => (
   <div>
     <CarouselItem />
+  </div>
+)
+
+export const Carousel = () => (
+  <div
+    css={css`
+      width: 640px;
+    `}
+  >
+    <CarouselContent />
     <CarouselControlBar />
+    <CarouselDescription />
   </div>
 )
 
