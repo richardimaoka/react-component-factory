@@ -38,9 +38,67 @@ export const CarouselItem = () => (
   </div>
 )
 
+export const CarouselControlLeftButton = () => (
+  <div
+    css={css`
+      width: 30px;
+      height: 30px;
+    `}
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="30px"
+      height="30px"
+      viewBox="0 0 40 40"
+      css={css`
+        fill: rgb(29, 161, 242);
+      `}
+    >
+      <polygon points="2.23 20.09 19.11 10.34 36 0.59 36 20.09 36 39.59 19.11 29.84 2.23 20.09" />
+    </svg>
+  </div>
+)
+
+export const CarouselControlRightButton = () => (
+  <div
+    css={css`
+      width: 30px;
+      height: 30px;
+    `}
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="30px"
+      height="30px"
+      viewBox="0 0 40 40"
+      css={css`
+        fill: rgb(29, 161, 242);
+      `}
+    >
+      <polygon points="38.28 20.09 21.39 29.84 4.51 39.59 4.51 20.09 4.51 0.59 21.39 10.34 38.28 20.09" />
+    </svg>
+  </div>
+)
+
+export const CarouselControlBar = () => (
+  <div
+    css={css`
+      background-color: #414141;
+      height: 30px;
+      padding: 8px;
+      display: flex;
+      justify-content: space-between;
+    `}
+  >
+    <CarouselControlLeftButton />
+    <CarouselControlRightButton />
+  </div>
+)
+
 export const Carousel = () => (
   <div>
     <CarouselItem />
+    <CarouselControlBar />
   </div>
 )
 
