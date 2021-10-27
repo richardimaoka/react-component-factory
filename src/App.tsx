@@ -26,15 +26,21 @@ interface CarouselItemProps {
 export const CarouselItem = () => (
   <div
     css={css`
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 640px;
-      height: 360px;
+      flex-shrink: 0;
       background-color: black;
     `}
   >
-    <Image src={image3base64} fit={'originalsize'} />
+    <div
+      css={css`
+        display: flex;
+        justify-content: center;
+        width: 640px;
+        height: 360px;
+        align-items: center;
+      `}
+    >
+      <Image src={image3base64} fit={'originalsize'} />
+    </div>
   </div>
 )
 
@@ -117,7 +123,15 @@ export const CarouselControlBar = () => (
 )
 
 export const CarouselContent = () => (
-  <div>
+  <div
+    css={css`
+      display: flex;
+      overflow-x: auto;
+    `}
+  >
+    <CarouselItem />
+    <CarouselItem />
+    <CarouselItem />
     <CarouselItem />
   </div>
 )
@@ -125,18 +139,12 @@ export const CarouselContent = () => (
 export const Carousel = () => (
   <div
     css={css`
-      display: flex;
+      width: 640px;
     `}
   >
-    <div
-      css={css`
-        width: 640px;
-      `}
-    >
-      <CarouselContent />
-      <CarouselControlBar />
-      <CarouselDescription />
-    </div>
+    <CarouselContent />
+    <CarouselControlBar />
+    <CarouselDescription />
   </div>
 )
 
