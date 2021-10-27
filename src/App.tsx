@@ -123,7 +123,16 @@ export const CarouselControlBar = () => (
   </div>
 )
 
-export const CarouselContent = () => (
+interface Item {
+  id: string
+  src: string
+}
+
+interface CarouselContentProps {
+  items: Item[]
+}
+
+export const CarouselContent = ({ items }: CarouselContentProps) => (
   <div
     css={css`
       display: flex;
@@ -131,24 +140,32 @@ export const CarouselContent = () => (
       scroll-snap-type: x mandatory;
     `}
   >
-    <CarouselItem src={image1base64} />
-    <CarouselItem src={image2base64} />
-    <CarouselItem src={image3base64} />
-    <CarouselItem src={image3base64} />
+    {items.map((item) => (
+      <CarouselItem key={item.id} src={item.src} />
+    ))}
   </div>
 )
 
-export const Carousel = () => (
-  <div
-    css={css`
-      width: 640px;
-    `}
-  >
-    <CarouselContent />
-    <CarouselControlBar />
-    <CarouselDescription />
-  </div>
-)
+export const Carousel = () => {
+  const items = [
+    { id: '1', src: image1base64 },
+    { id: '2', src: image2base64 },
+    { id: '3', src: image3base64 },
+    { id: '4', src: image3base64 },
+  ]
+
+  return (
+    <div
+      css={css`
+        width: 640px;
+      `}
+    >
+      <CarouselContent items={items} />
+      <CarouselControlBar />
+      <CarouselDescription />
+    </div>
+  )
+}
 
 export const MainContainer = () => {
   return (
