@@ -23,10 +23,11 @@ interface CarouselItemProps {
   src: string
 }
 
-export const CarouselItem = () => (
+export const CarouselItem = ({ src }: CarouselItemProps) => (
   <div
     css={css`
       flex-shrink: 0;
+      scroll-snap-align: start;
       background-color: black;
     `}
   >
@@ -39,7 +40,7 @@ export const CarouselItem = () => (
         align-items: center;
       `}
     >
-      <Image src={image3base64} fit={'originalsize'} />
+      <Image src={src} fit={'originalsize'} />
     </div>
   </div>
 )
@@ -127,12 +128,13 @@ export const CarouselContent = () => (
     css={css`
       display: flex;
       overflow-x: auto;
+      scroll-snap-type: x mandatory;
     `}
   >
-    <CarouselItem />
-    <CarouselItem />
-    <CarouselItem />
-    <CarouselItem />
+    <CarouselItem src={image1base64} />
+    <CarouselItem src={image2base64} />
+    <CarouselItem src={image3base64} />
+    <CarouselItem src={image3base64} />
   </div>
 )
 
