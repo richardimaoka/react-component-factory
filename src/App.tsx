@@ -125,12 +125,18 @@ export const CarouselContent = () => (
 export const Carousel = () => (
   <div
     css={css`
-      width: 640px;
+      display: flex;
     `}
   >
-    <CarouselContent />
-    <CarouselControlBar />
-    <CarouselDescription />
+    <div
+      css={css`
+        width: 640px;
+      `}
+    >
+      <CarouselContent />
+      <CarouselControlBar />
+      <CarouselDescription />
+    </div>
   </div>
 )
 
