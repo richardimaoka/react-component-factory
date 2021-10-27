@@ -51,7 +51,7 @@ export const CarouselControlLeftButton = () => (
       height="30px"
       viewBox="0 0 40 40"
       css={css`
-        fill: rgb(29, 161, 242);
+        fill: rgb(255, 255, 255);
       `}
     >
       <polygon points="2.23 20.09 19.11 10.34 36 0.59 36 20.09 36 39.59 19.11 29.84 2.23 20.09" />
@@ -72,7 +72,7 @@ export const CarouselControlRightButton = () => (
       height="30px"
       viewBox="0 0 40 40"
       css={css`
-        fill: rgb(29, 161, 242);
+        fill: rgb(255, 255, 255);
       `}
     >
       <polygon points="38.28 20.09 21.39 29.84 4.51 39.59 4.51 20.09 4.51 0.59 21.39 10.34 38.28 20.09" />
@@ -85,7 +85,10 @@ export const CarouselControlBar = () => (
     css={css`
       background-color: #414141;
       height: 30px;
-      padding: 8px;
+      padding-top: 4px;
+      padding-bottom: 4px;
+      padding-left: 8px;
+      padding-right: 8px;
       display: flex;
       justify-content: space-between;
     `}
