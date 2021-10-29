@@ -5,9 +5,10 @@ import Prism from 'prismjs'
 
 interface FileTabProps {
   filename: string
+  select: boolean
 }
 
-export const FileTab = ({ filename }: FileTabProps) => (
+export const FileTab = ({ filename, select }: FileTabProps) => (
   <div
     css={css`
       display: flex;
@@ -16,6 +17,7 @@ export const FileTab = ({ filename }: FileTabProps) => (
     <div
       css={css`
         border-top-right-radius: 8px;
+        border-bottom: solid ${select ? 2 : 0}px #2d2d2d;
         padding-top: 4px;
         padding-bottom: 6px;
         padding-right: 8px;
@@ -42,10 +44,15 @@ export const FileNameTabBar = ({
     <div
       css={css`
         display: flex;
+        align-items: flex-start;
       `}
     >
       {files.map((file, index) => (
-        <FileTab key={index} filename={files[selectFileIndex].filename} />
+        <FileTab
+          key={index}
+          filename={files[index].filename}
+          select={index == selectFileIndex}
+        />
       ))}
     </div>
   )
