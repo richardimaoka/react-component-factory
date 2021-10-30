@@ -12,14 +12,29 @@ import {
 } from '@apollo/client'
 
 const typeDefs = gql`
+  type Query {
+    fileSet: FileSet
+  }
+
   type File {
     filename: String
     filecontent: String
   }
 
-  type Files {
+  type FileSet {
     files: [File]
     selectFileIndex: Int
+  }
+`
+
+const GET_FILESET = gql`
+  query {
+    fileSet {
+      files {
+        filename
+        filecontent
+      }
+    }
   }
 `
 
@@ -210,28 +225,45 @@ const fileContentPackageJson = `{
 }
 `
 
-export const MainContainer = () => {
-  return (
-    <main>
-      <div
-        css={css`
-          display: flex;
-          justify-content: center;
-          width: 768px;
-        `}
-      >
-        <FileViewer
-          files={[
-            { filename: 'main.js', filecontent: fileContentMainJs },
-            { filename: 'package.json', filecontent: fileContentPackageJson },
-          ]}
-          selectFileIndex={0}
-        />
-      </div>
-    </main>
-  )
+export const MainContainer = (): JSX.Element => {
+  const { loading, error, data } = useQuery(GET_FILESET)
+
+  // if (loading) {
+  //   return <div>{'Loading...'}</div>
+  // } else
+  if (error) {
+    return <div>{`Error! ${error.message}`}</div>
+  } else {
+    console.log(data)
+    return (
+      <main>
+        <div
+          css={css`
+            display: flex;
+            justify-content: center;
+            width: 768px;
+          `}
+        >
+          <FileViewer
+            files={[
+              { filename: 'main.js', filecontent: fileContentMainJs },
+              {
+                filename: 'package.json',
+                filecontent: fileContentPackageJson,
+              },
+            ]}
+            selectFileIndex={0}
+          />
+        </div>
+      </main>
+    )
+  }
 }
 
-const App = (): JSX.Element => <MainContainer />
+const App = (): JSX.Element => (
+  <ApolloProvider client={client}>
+    <MainContainer />
+  </ApolloProvider>
+)
 
 export default App
