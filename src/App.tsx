@@ -142,6 +142,75 @@ const fileContentPackageJson = `{
 }
 `
 
+interface DecoratableTextChunkProps {
+  text: string
+  highlight: boolean
+  bold: boolean
+  hyperlinked: boolean
+  hyperlinkUrl: string
+  strikeout: boolean
+}
+
+export const DecoratableTextChunk = ({
+  text,
+  highlight,
+  bold,
+  hyperlinked,
+  hyperlinkUrl,
+  strikeout,
+}: DecoratableTextChunkProps): JSX.Element => {
+  const cssProperties = css`
+    background-color: ${highlight ? '#E6FF01' : 'transparent'};
+    font-weight: ${bold ? 'bold' : 'normal'};
+    text-decoration: ${strikeout ? 'line-through' : 'no'};
+  `
+  if (hyperlinked) {
+    return (
+      <span css={cssProperties}>
+        <a href={hyperlinkUrl}>{text}</a>
+      </span>
+    )
+  } else {
+    return <span css={cssProperties}>{text}</span>
+  }
+}
+
+interface ParagraphProps {
+  chunks: DecoratableTextChunkProps[]
+}
+
+export const Paragraph = ({ chunks }: ParagraphProps): JSX.Element => {
+  return (
+    <div
+      css={css`
+        padding: 4px;
+      `}
+    >
+      <p
+        css={css`
+          color: #0a0a0a;
+        `}
+      >
+        {chunks.map((chunk, index) => (
+          <DecoratableTextChunk
+            key={index}
+            text={chunk.text}
+            highlight={chunk.highlight}
+            bold={chunk.bold}
+            hyperlinked={chunk.hyperlinked}
+            hyperlinkUrl={chunk.hyperlinkUrl}
+            strikeout={chunk.strikeout}
+          />
+        ))}
+      </p>
+    </div>
+  )
+}
+
+const ptext = `Linux VM の作成は、Azure portal、Azure CLI、または Azure PowerShell で行うことができます。
+Azure で始めるときの最も簡単な方法は、ポータルを使用することです。
+そうすれば、作成の間に、必要な情報が順番に示され、ヒントとヘルプ メッセージが提供されます。`
+
 export const MainContainer = (): JSX.Element => {
   const { /*loading,*/ error, data } = useQuery(GET_FILESET)
 
@@ -158,7 +227,20 @@ export const MainContainer = (): JSX.Element => {
           css={css`
             width: 768px;
           `}
-        ></div>
+        >
+          <Paragraph
+            chunks={[
+              {
+                text: 'jeeey',
+                highlight: true,
+                bold: true,
+                hyperlinked: false,
+                hyperlinkUrl: 'https://google.com',
+                strikeout: false,
+              },
+            ]}
+          />
+        </div>
       </main>
     )
   }
