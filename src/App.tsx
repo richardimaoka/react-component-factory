@@ -269,19 +269,16 @@ export const FileIcon = (): JSX.Element => {
   return (
     <div>
       <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="20px"
-        height="20px"
+        width="24px"
+        height="24px"
         css={css`
           fill: rgb(83, 100, 113);
         `}
+        xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 40 40"
       >
-        <g>
-          <rect x="-6" y="-64" width="50" height="108" />
-        </g>
-        <g>
-          <g>
+        <g id="レイヤー_1" data-name="レイヤー 1">
+          <g id="g1676">
             <path
               id="rect1662"
               d="M9.43,1.5a4,4,0,0,0-4,4V34.54a4,4,0,0,0,4,4H30.57a4,4,0,0,0,4-4V9.43a1.33,1.33,0,0,0-.39-.94l-6.61-6.6a1.31,1.31,0,0,0-.93-.39Zm0,2.64H24v4a4,4,0,0,0,4,4h4V34.54a1.29,1.29,0,0,1-1.32,1.32H9.43a1.29,1.29,0,0,1-1.32-1.32V5.46A1.29,1.29,0,0,1,9.43,4.14Zm17.18.55,4.74,4.74H27.93a1.29,1.29,0,0,1-1.32-1.32Z"
@@ -298,8 +295,8 @@ export const DirectoryIcon = (): JSX.Element => {
     <div>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="20px"
-        height="20px"
+        width="24px"
+        height="24px"
         css={css`
           fill: rgb(83, 100, 113);
         `}
@@ -314,6 +311,24 @@ export const DirectoryIcon = (): JSX.Element => {
           </g>
         </g>
       </svg>
+    </div>
+  )
+}
+
+interface FileNodeProps {
+  filename: string
+}
+
+export const FileNode = ({ filename }: FileNodeProps): JSX.Element => {
+  return (
+    <div
+      css={css`
+        padding: 4px;
+        display: flex;
+      `}
+    >
+      <FileIcon />
+      <div>{filename}</div>
     </div>
   )
 }
@@ -337,7 +352,7 @@ export const FileTree = ({ filenames }: FileTreeProps): JSX.Element => (
             color: #ccc;
           `}
         >
-          {filename}
+          <FileNode filename={filename} />
         </div>
       )
     })}
