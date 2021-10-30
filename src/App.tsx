@@ -11,8 +11,23 @@ import {
   gql,
 } from '@apollo/client'
 
+const typeDefs = gql`
+  type File {
+    filename: String
+    filecontent: String
+  }
+
+  type Files {
+    files: [File]
+    selectFileIndex: Int
+  }
+`
+
 const client = new ApolloClient({
   cache: new InMemoryCache(),
+  // typePolicies: {
+  // }
+  typeDefs,
 })
 
 interface FileTabProps {
