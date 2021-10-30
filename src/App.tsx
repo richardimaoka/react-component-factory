@@ -50,7 +50,7 @@ interface FileTabProps {
   select: boolean
 }
 
-export const FileTab = ({ filename, select }: FileTabProps) => (
+export const FileTab = ({ filename, select }: FileTabProps): JSX.Element => (
   <div
     css={css`
       display: flex;
@@ -81,7 +81,7 @@ interface FileNameTabBarProps {
 export const FileNameTabBar = ({
   files,
   selectFileIndex,
-}: FileNameTabBarProps) => {
+}: FileNameTabBarProps): JSX.Element => {
   return (
     <div
       css={css`
@@ -104,7 +104,7 @@ interface FileContentProps {
   filecontent: string
 }
 
-export const FileContent = ({ filecontent }: FileContentProps) => {
+export const FileContent = ({ filecontent }: FileContentProps): JSX.Element => {
   const codeElement = useRef<HTMLElement>(null)
   useEffect(() => {
     if (codeElement.current) {
@@ -137,7 +137,10 @@ interface FileViewerProps {
   selectFileIndex: number
 }
 
-export const FileViewer = ({ files, selectFileIndex }: FileViewerProps) => {
+export const FileViewer = ({
+  files,
+  selectFileIndex,
+}: FileViewerProps): JSX.Element => {
   return (
     <div>
       <FileNameTabBar files={files} selectFileIndex={selectFileIndex} />
@@ -226,7 +229,7 @@ const fileContentPackageJson = `{
 `
 
 export const MainContainer = (): JSX.Element => {
-  const { loading, error, data } = useQuery(GET_FILESET)
+  const { /*loading,*/ error, data } = useQuery(GET_FILESET)
 
   // if (loading) {
   //   return <div>{'Loading...'}</div>
