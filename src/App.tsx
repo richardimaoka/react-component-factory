@@ -3,6 +3,18 @@ import { css } from '@emotion/react'
 import { useEffect, useRef } from 'react'
 import Prism from 'prismjs'
 
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  useQuery,
+  gql,
+} from '@apollo/client'
+
+const client = new ApolloClient({
+  cache: new InMemoryCache(),
+})
+
 interface FileTabProps {
   filename: string
   select: boolean
