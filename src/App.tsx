@@ -279,8 +279,6 @@ export const MainContainer = (): JSX.Element => {
       <main>
         <div
           css={css`
-            display: flex;
-            justify-content: center;
             width: 768px;
           `}
         >
