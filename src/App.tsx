@@ -9,6 +9,7 @@ import {
   ApolloProvider,
   useQuery,
   gql,
+  makeVar,
 } from '@apollo/client'
 
 const typeDefs = gql`
@@ -34,44 +35,79 @@ const GET_FILESET = gql`
         filename
         filecontent
       }
+      selectFileIndex
     }
   }
 `
 
+const selectIndex = makeVar(0)
+
 const client = new ApolloClient({
-  cache: new InMemoryCache(),
-  // typePolicies: {
-  // }
+  cache: new InMemoryCache({
+    typePolicies: {
+      Query: {
+        fields: {
+          fileSet: {
+            read() {
+              console.log("typePolicies - fileSet's read is called")
+              return {
+                files: [],
+                selectFileIndex: selectIndex(),
+              }
+            },
+          },
+        },
+      },
+    },
+  }),
   typeDefs,
 })
 
 interface FileTabProps {
   filename: string
-  select: boolean
+  fileIndex: number
+  selectedFileIndex: number
 }
 
-export const FileTab = ({ filename, select }: FileTabProps): JSX.Element => (
-  <div
-    css={css`
-      display: flex;
-    `}
-  >
+export const FileTab = ({
+  filename,
+  fileIndex,
+  selectedFileIndex,
+}: FileTabProps): JSX.Element => {
+  const isThisFileSelected = fileIndex === selectedFileIndex
+  if (isThisFileSelected) {
+    console.log(`${filename} is selected`)
+  }
+
+  return (
     <div
       css={css`
-        border-top-right-radius: 8px;
-        border-bottom: solid ${select ? 2 : 0}px #2d2d2d;
-        padding-top: 4px;
-        padding-bottom: 6px;
-        padding-right: 8px;
-        padding-left: 8px;
-        background-color: #2d2d2d;
-        color: #ccc;
+        display: flex;
       `}
+      onClick={() => {
+        console.log(`clicked ${filename} (${fileIndex})`)
+        console.log(`before ${selectIndex()}`)
+        selectIndex(fileIndex)
+        console.log(`AFTER ${selectIndex()}`)
+      }}
     >
-      {filename}
+      <div
+        css={css`
+          border-top-right-radius: 8px;
+          border-bottom: solid ${isThisFileSelected ? 2 : 0}px #2d2d2d;
+          padding-top: 4px;
+          padding-bottom: 6px;
+          padding-right: 8px;
+          padding-left: 8px;
+          background-color: #2d2d2d;
+          color: #ccc;
+        `}
+      >
+        {filename}
+      </div>
     </div>
-  </div>
-)
+  )
+}
 
 interface FileNameTabBarProps {
   files: File[]
@@ -93,7 +129,8 @@ export const FileNameTabBar = ({
         <FileTab
           key={index}
           filename={files[index].filename}
-          select={index == selectFileIndex}
+          fileIndex={index}
+          selectedFileIndex={selectFileIndex}
         />
       ))}
     </div>
@@ -255,7 +292,7 @@ export const MainContainer = (): JSX.Element => {
                 filecontent: fileContentPackageJson,
               },
             ]}
-            selectFileIndex={0}
+            selectFileIndex={data.fileSet.selectFileIndex}
           />
         </div>
       </main>
