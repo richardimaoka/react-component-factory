@@ -264,7 +264,7 @@ export const MainContainer = (): JSX.Element => {
       <main>
         <div
           css={css`
-            width: 768px;
+            width: 750px;
           `}
         >
           <Action
