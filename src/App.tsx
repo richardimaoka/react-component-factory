@@ -190,6 +190,7 @@ export const Paragraph = ({ chunks }: ParagraphProps): JSX.Element => {
         css={css`
           color: #0a0a0a;
         `}
+        contentEditable={true}
       >
         {chunks.map((chunk, index) => (
           <DecoratableTextChunk
@@ -231,7 +232,7 @@ export const MainContainer = (): JSX.Element => {
           <Paragraph
             chunks={[
               {
-                text: 'jeeey',
+                text: ptext,
                 highlight: true,
                 bold: true,
                 hyperlinked: false,
