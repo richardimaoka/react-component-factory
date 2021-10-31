@@ -183,12 +183,13 @@ export const Paragraph = ({ chunks }: ParagraphProps): JSX.Element => {
   return (
     <div
       css={css`
-        padding: 4px;
+        padding: 8px;
       `}
     >
       <p
         css={css`
           color: #0a0a0a;
+          margin: 0px;
         `}
         contentEditable={true}
       >
@@ -204,6 +205,43 @@ export const Paragraph = ({ chunks }: ParagraphProps): JSX.Element => {
           />
         ))}
       </p>
+    </div>
+  )
+}
+
+export const ActionLabel = (): JSX.Element => {
+  return (
+    <div
+      css={css`
+        padding: 4px 8px;
+        background-color: #eecf33;
+      `}
+    >
+      Action
+    </div>
+  )
+}
+interface ActionProps {
+  chunks: DecoratableTextChunkProps[]
+}
+
+export const Action = ({ chunks }: ActionProps): JSX.Element => {
+  return (
+    <div>
+      <div
+        css={css`
+          display: flex;
+        `}
+      >
+        <ActionLabel />
+      </div>
+      <div
+        css={css`
+          border: solid 1px #eecf33;
+        `}
+      >
+        <Paragraph chunks={chunks} />
+      </div>
     </div>
   )
 }
@@ -229,12 +267,12 @@ export const MainContainer = (): JSX.Element => {
             width: 768px;
           `}
         >
-          <Paragraph
+          <Action
             chunks={[
               {
                 text: ptext,
-                highlight: true,
-                bold: true,
+                highlight: false,
+                bold: false,
                 hyperlinked: false,
                 hyperlinkUrl: 'https://google.com',
                 strikeout: false,
