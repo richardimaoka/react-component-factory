@@ -7,7 +7,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "generate": "graphql-codegen --config codegen.yml --watch src/**/*.tsx"
+    "generate": "graphql-codegen --config codegen.yml --watch src/**/*.tsx --watch ../server/schema.sql --watch ../server/index.ts"
   },
   "eslintConfig": {
     "extends": [

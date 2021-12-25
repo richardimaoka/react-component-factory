@@ -5,7 +5,7 @@ import React from 'react'
 
 const query = gql`
   query gettt {
-    tutorial(authorId: "a", tutorialId: "b") {
+    tutorial {
       __typename
     }
   }

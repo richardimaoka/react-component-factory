@@ -13,9 +13,6 @@ export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
   [SubKey in K]: Maybe<T[SubKey]>
 }
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
-export type RequireFields<T, K extends keyof T> = {
-  [X in Exclude<keyof T, K>]?: T[X]
-} & { [P in K]-?: NonNullable<T[P]> }
 const defaultOptions = {}
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
@@ -127,12 +124,8 @@ export type Progress = {
 
 export type Query = {
   __typename?: 'Query'
+  author: Maybe<Author>
   tutorial: Maybe<Tutorial>
-}
-
-export type QueryTutorialArgs = {
-  authorId: Scalars['String']
-  tutorialId: Scalars['String']
 }
 
 export type TextChunk = {
@@ -200,7 +193,7 @@ export type GetttQuery = {
 
 export const GetttDocument = gql`
   query gettt {
-    tutorial(authorId: "a", tutorialId: "b") {
+    tutorial {
       __typename
     }
   }
@@ -675,12 +668,8 @@ export type QueryResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']
 > = ResolversObject<{
-  tutorial: Resolver<
-    Maybe<ResolversTypes['Tutorial']>,
-    ParentType,
-    ContextType,
-    RequireFields<QueryTutorialArgs, 'authorId' | 'tutorialId'>
-  >
+  author: Resolver<Maybe<ResolversTypes['Author']>, ParentType, ContextType>
+  tutorial: Resolver<Maybe<ResolversTypes['Tutorial']>, ParentType, ContextType>
 }>
 
 export type TextChunkResolvers<

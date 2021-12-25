@@ -1,5 +1,6 @@
 type Query {
-  tutorial(authorId: String!, tutorialId: String!): Tutorial
+  tutorial: Tutorial
+  author: Author
 }
 
 type Author {
