@@ -30,7 +30,7 @@ export const ActionStatementComponent = ({
   statement,
 }: {
   statement: string
-}) => (
+}): JSX.Element => (
   <div
     css={css`
       display: inline-block;
@@ -40,6 +40,19 @@ export const ActionStatementComponent = ({
     `}
   >
     {statement}
+  </div>
+)
+
+export const ActionStackComponent = (): JSX.Element => (
+  <div
+    css={css`
+      display: inline-block;
+      padding: 8px;
+      width: 100%;
+      border: solid 1px #eecf33;
+    `}
+  >
+    a
   </div>
 )
 
@@ -62,6 +75,7 @@ export const MainContainer = (): JSX.Element => {
             <ActionStatementComponent
               statement={'以下のコマンドを実行してください。'}
             />
+            <ActionStackComponent />
           </div>
         </div>
       </div>
