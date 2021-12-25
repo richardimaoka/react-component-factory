@@ -10,6 +10,38 @@ const query = gql`
     }
   }
 `
+export const ActionLabelComponent = (): JSX.Element => {
+  return (
+    <div>
+      <div
+        css={css`
+          display: inline-block;
+          padding: 4px 8px;
+          background-color: #eecf33;
+        `}
+      >
+        Action
+      </div>
+    </div>
+  )
+}
+
+export const ActionStatementComponent = ({
+  statement,
+}: {
+  statement: string
+}) => (
+  <div
+    css={css`
+      display: inline-block;
+      padding: 8px;
+      width: 100%;
+      border: solid 1px #eecf33;
+    `}
+  >
+    {statement}
+  </div>
+)
 
 export const MainContainer = (): JSX.Element => {
   return (
@@ -24,7 +56,14 @@ export const MainContainer = (): JSX.Element => {
           css={css`
             width: 768px;
           `}
-        ></div>
+        >
+          <div>
+            <ActionLabelComponent />
+            <ActionStatementComponent
+              statement={'以下のコマンドを実行してください。'}
+            />
+          </div>
+        </div>
       </div>
     </main>
   )
