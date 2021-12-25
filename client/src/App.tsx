@@ -1,6 +1,15 @@
 /** @jsxImportSource @emotion/react */
+import { gql } from '@apollo/client'
 import { css } from '@emotion/react'
 import React from 'react'
+
+const query = gql`
+  query gettt {
+    tutorial(authorId: "a", tutorialId: "b") {
+      __typename
+    }
+  }
+`
 
 export type TextChunkComponentFragment = {
   __typename?: 'TextChunk'
