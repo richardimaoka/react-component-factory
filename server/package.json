@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "server": "ts-node-dev --watch schema.gql,data.json --respawn index.ts"
+    "start": "ts-node-dev --watch schema.gql,data.json --respawn index.ts"
   },
   "author": "",
   "license": "ISC",
