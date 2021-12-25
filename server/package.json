@@ -1,0 +1,19 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "server": "ts-node-dev --respawn index.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.5.4"
+  },
+  "dependencies": {
+    "apollo-server": "^3.5.0",
+    "graphql": "^15.8.0"
+  }
+}
