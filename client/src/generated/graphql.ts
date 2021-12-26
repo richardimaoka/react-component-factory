@@ -303,6 +303,11 @@ export type CommandComponentFragment = {
   command: string | null | undefined
 }
 
+export type CommandComponent2Fragment = {
+  __typename?: 'Command'
+  command: string | null | undefined
+}
+
 export type ParagraphComponentFragment = {
   __typename?: 'Paragraph'
   chunks:
@@ -379,6 +384,11 @@ export const ActionComponentFragmentDoc = gql`
   }
   ${ActionInstructionComponentFragmentDoc}
   ${ActionStackComponentFragmentDoc}
+`
+export const CommandComponent2FragmentDoc = gql`
+  fragment CommandComponent2 on Command {
+    command
+  }
 `
 export const MainDocument = gql`
   query Main {
