@@ -11,7 +11,11 @@ const resolvers = {
     action: async () => {
       try {
         const dataString = await fs.promises.readFile("data.json", "utf-8");
+        console.log("data.json------------");
+        console.log(dataString);
         const jsObject = JSON.parse(dataString);
+        console.log("JSON.parse()------------");
+        console.log(jsObject);
         return jsObject;
       } catch (err) {
         console.log(err);
