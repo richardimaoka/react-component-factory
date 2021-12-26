@@ -16,9 +16,7 @@ export const ActionInstructionComponent = ({
     <ActionLabel />
     <div
       css={css`
-        display: inline-block;
         padding: 8px;
-        width: 100%;
         border: solid 1px #eecf33;
       `}
     >

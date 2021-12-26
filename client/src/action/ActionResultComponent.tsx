@@ -18,9 +18,7 @@ export const ActionResultComponent = ({
       <ActionResultLabel />
       <div
         css={css`
-          display: inline-block;
           padding: 8px;
-          width: 100%;
           border: solid 1px #b2b2b2;
         `}
       >

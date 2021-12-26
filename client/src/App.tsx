@@ -39,7 +39,8 @@ export const MainContainer = (): JSX.Element => {
         >
           <div
             css={css`
-              width: 768px;
+              width: 752px;
+              padding: 8px;
             `}
           >
             <ActionComponent fragment={data.action} />

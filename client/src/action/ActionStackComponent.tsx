@@ -13,9 +13,7 @@ export const ActionStackComponent = ({
 }: ActionStackComponentProps): JSX.Element => (
   <div
     css={css`
-      display: inline-block;
       padding: 8px;
-      width: 100%;
       border-left: solid 1px #eecf33;
       border-right: solid 1px #eecf33;
       border-bottom: solid 1px #eecf33;

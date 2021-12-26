@@ -15,7 +15,8 @@
       "text": "mkdir /your/project/path"
     },
     {
-      "__typename": "Command"
+      "__typename": "Command",
+      "text": "cd /your/project/path"
     },
     {
       "__typename": "Command",
