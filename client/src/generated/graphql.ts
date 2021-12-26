@@ -214,22 +214,28 @@ export type ParagraphComponentFragment = {
     | undefined
 }
 
-export type ActionStatementComonentFragment = {
-  __typename?: 'Paragraph'
-  chunks:
-    | Array<
-        | {
-            __typename?: 'TextChunk'
-            text: string | null | undefined
-            highlight: boolean | null | undefined
-            bold: boolean | null | undefined
-            hyperlinkUrl: string | null | undefined
-            strikeout: boolean | null | undefined
-            inlineCode: boolean | null | undefined
-          }
-        | null
-        | undefined
-      >
+export type ActionInstructionComponentFragment = {
+  __typename?: 'Action'
+  instruction:
+    | {
+        __typename?: 'Paragraph'
+        chunks:
+          | Array<
+              | {
+                  __typename?: 'TextChunk'
+                  text: string | null | undefined
+                  highlight: boolean | null | undefined
+                  bold: boolean | null | undefined
+                  hyperlinkUrl: string | null | undefined
+                  strikeout: boolean | null | undefined
+                  inlineCode: boolean | null | undefined
+                }
+              | null
+              | undefined
+            >
+          | null
+          | undefined
+      }
     | null
     | undefined
 }
@@ -304,14 +310,6 @@ export const TextChunkComponentFragmentDoc = gql`
     inlineCode
   }
 `
-export const ActionStatementComonentFragmentDoc = gql`
-  fragment ActionStatementComonent on Paragraph {
-    chunks {
-      ...TextChunkComponent
-    }
-  }
-  ${TextChunkComponentFragmentDoc}
-`
 export const ParagraphComponentFragmentDoc = gql`
   fragment ParagraphComponent on Paragraph {
     chunks {
@@ -320,13 +318,19 @@ export const ParagraphComponentFragmentDoc = gql`
   }
   ${TextChunkComponentFragmentDoc}
 `
-export const ActionComponentFragmentDoc = gql`
-  fragment ActionComponent on Action {
+export const ActionInstructionComponentFragmentDoc = gql`
+  fragment ActionInstructionComponent on Action {
     instruction {
       ...ParagraphComponent
     }
   }
   ${ParagraphComponentFragmentDoc}
+`
+export const ActionComponentFragmentDoc = gql`
+  fragment ActionComponent on Action {
+    ...ActionInstructionComponent
+  }
+  ${ActionInstructionComponentFragmentDoc}
 `
 export const MainDocument = gql`
   query Main {

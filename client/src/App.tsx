@@ -8,6 +8,7 @@ import {
 import { css } from '@emotion/react'
 import {
   ActionComponentFragment,
+  ActionInstructionComponentFragment,
   ParagraphComponentFragment,
   TextChunkComponentFragment,
   useMainQuery,
@@ -53,7 +54,7 @@ export const TextChunkComponent = ({
   }
 }
 
-TextChunkComponent.fragments = gql`
+TextChunkComponent.fragment = gql`
   fragment TextChunkComponent on TextChunk {
     text
     highlight
@@ -90,14 +91,14 @@ export const ParagraphComponent = ({
   }
 }
 
-ParagraphComponent.fragments = gql`
+ParagraphComponent.fragment = gql`
   fragment ParagraphComponent on Paragraph {
     chunks {
       ...TextChunkComponent
     }
   }
 
-  ${TextChunkComponent.fragments}
+  ${TextChunkComponent.fragment}
 `
 
 export const ActionLabelComponent = (): JSX.Element => {
@@ -117,7 +118,7 @@ export const ActionLabelComponent = (): JSX.Element => {
 }
 
 interface ActionInstructionComponentProps {
-  fragment: ParagraphComponentFragment
+  fragment: ActionInstructionComponentFragment
 }
 
 export const ActionInstructionComponent = ({
@@ -131,18 +132,22 @@ export const ActionInstructionComponent = ({
       border: solid 1px #eecf33;
     `}
   >
-    <ParagraphComponent fragment={fragment} />
+    {fragment.instruction ? (
+      <ParagraphComponent fragment={fragment.instruction} />
+    ) : (
+      <></>
+    )}
   </div>
 )
 
 ActionInstructionComponent.fragment = gql`
-  fragment ActionStatementComonent on Paragraph {
-    chunks {
-      ...TextChunkComponent
+  fragment ActionInstructionComponent on Action {
+    instruction {
+      ...ParagraphComponent
     }
   }
 
-  ${TextChunkComponent.fragments}
+  ${ParagraphComponent.fragment}
 `
 
 interface ActionComponentProps {
@@ -156,7 +161,7 @@ export const ActionComponent = ({
     <div>
       <ActionLabelComponent />
       {fragment.instruction ? (
-        <ActionInstructionComponent fragment={fragment.instruction} />
+        <ActionInstructionComponent fragment={fragment} />
       ) : (
         <></>
       )}
@@ -167,12 +172,10 @@ export const ActionComponent = ({
 
 ActionComponent.fragment = gql`
   fragment ActionComponent on Action {
-    instruction {
-      ...ParagraphComponent
-    }
+    ...ActionInstructionComponent
   }
 
-  ${ParagraphComponent.fragments}
+  ${ActionInstructionComponent.fragment}
 `
 
 export const ActionStackComponent = (): JSX.Element => (
