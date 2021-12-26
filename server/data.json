@@ -1,6 +1,6 @@
 {
   "__typename": "Action",
-  "statement": {
+  "instruction": {
     "__typename": "Paragraph",
     "chunks": [
       {
