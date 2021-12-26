@@ -16,22 +16,7 @@ import {
 } from './generated/graphql'
 import { ParagraphComponent } from './ParagraphComponent'
 import { CommandComponent } from './CommandComponent'
-
-export const ActionLabelComponent = (): JSX.Element => {
-  return (
-    <div>
-      <div
-        css={css`
-          display: inline-block;
-          padding: 4px 8px;
-          background-color: #eecf33;
-        `}
-      >
-        Action
-      </div>
-    </div>
-  )
-}
+import { ActionLabelComponent } from './ActionLabelComponent'
 
 interface ActionInstructionComponentProps {
   fragment: ActionInstructionComponentFragment
