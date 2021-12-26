@@ -4,8 +4,7 @@
     "__typename": "Paragraph",
     "chunks": [
       {
-        "__typename": "TextChunk",
-        "text": "以下のコマンドを実行してください"
+        "__typename": "TextChunk"
       }
     ]
   },

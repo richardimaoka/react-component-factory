@@ -14,7 +14,11 @@ export const ActionResultComponent = ({
   fragment,
 }: ActionResultComponentProps): JSX.Element => {
   return (
-    <div>
+    <div
+      css={css`
+        margin-top: 10px;
+      `}
+    >
       <ActionResultLabel />
       <div
         css={css`
