@@ -8,5 +8,19 @@
         "text": "以下のコマンドを実行してください"
       }
     ]
-  }
+  },
+  "details": [
+    {
+      "__typename": "Command",
+      "command": "mkdir /your/project/path"
+    },
+    {
+      "__typename": "Command",
+      "command": "cd /your/project/path"
+    },
+    {
+      "__typename": "Command",
+      "command": "npm install cypress --save-dev"
+    }
+  ]
 }

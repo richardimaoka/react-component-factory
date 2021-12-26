@@ -10,9 +10,12 @@ import { css } from '@emotion/react'
 import {
   ActionComponentFragment,
   ActionInstructionComponentFragment,
+  ActionStackComponentFragment,
+  Command,
   useMainQuery,
 } from './generated/graphql'
 import { ParagraphComponent } from './ParagraphComponent'
+import { CommandComponent } from './CommandComponent'
 
 export const ActionLabelComponent = (): JSX.Element => {
   return (
@@ -63,6 +66,41 @@ ActionInstructionComponent.fragment = gql`
   ${ParagraphComponent.fragment}
 `
 
+interface ActionStackComponentProps {
+  fragment: ActionStackComponentFragment
+}
+
+export const ActionStackComponent = ({
+  fragment,
+}: ActionStackComponentProps): JSX.Element => (
+  <div
+    css={css`
+      display: inline-block;
+      padding: 8px;
+      width: 100%;
+      border-left: solid 1px #eecf33;
+      border-right: solid 1px #eecf33;
+      border-bottom: solid 1px #eecf33;
+    `}
+  >
+    {fragment.details
+      ? fragment.details.map((command, index) =>
+          command ? <CommandComponent key={index} fragment={command} /> : <></>
+        )
+      : ''}
+  </div>
+)
+
+ActionStackComponent.fragment = gql`
+  fragment ActionStackComponent on Action {
+    details {
+      ...CommandComponent
+    }
+  }
+
+  ${CommandComponent.fragment}
+`
+
 interface ActionComponentProps {
   fragment: ActionComponentFragment
 }
@@ -78,7 +116,7 @@ export const ActionComponent = ({
       ) : (
         <></>
       )}
-      <ActionStackComponent />
+      <ActionStackComponent fragment={fragment} />
     </div>
   )
 }
@@ -86,25 +124,11 @@ export const ActionComponent = ({
 ActionComponent.fragment = gql`
   fragment ActionComponent on Action {
     ...ActionInstructionComponent
+    ...ActionStackComponent
   }
 
   ${ActionInstructionComponent.fragment}
 `
-
-export const ActionStackComponent = (): JSX.Element => (
-  <div
-    css={css`
-      display: inline-block;
-      padding: 8px;
-      width: 100%;
-      border-left: solid 1px #eecf33;
-      border-right: solid 1px #eecf33;
-      border-bottom: solid 1px #eecf33;
-    `}
-  >
-    a
-  </div>
-)
 
 gql`
   query Main {

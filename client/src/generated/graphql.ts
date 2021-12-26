@@ -210,6 +210,18 @@ export type ActionInstructionComponentFragment = {
     | undefined
 }
 
+export type ActionStackComponentFragment = {
+  __typename?: 'Action'
+  details:
+    | Array<
+        | { __typename?: 'Command'; command: string | null | undefined }
+        | null
+        | undefined
+      >
+    | null
+    | undefined
+}
+
 export type ActionComponentFragment = {
   __typename?: 'Action'
   instruction:
@@ -232,6 +244,14 @@ export type ActionComponentFragment = {
           | null
           | undefined
       }
+    | null
+    | undefined
+  details:
+    | Array<
+        | { __typename?: 'Command'; command: string | null | undefined }
+        | null
+        | undefined
+      >
     | null
     | undefined
 }
@@ -265,9 +285,22 @@ export type MainQuery = {
             }
           | null
           | undefined
+        details:
+          | Array<
+              | { __typename?: 'Command'; command: string | null | undefined }
+              | null
+              | undefined
+            >
+          | null
+          | undefined
       }
     | null
     | undefined
+}
+
+export type CommandComponentFragment = {
+  __typename?: 'Command'
+  command: string | null | undefined
 }
 
 export type ParagraphComponentFragment = {
@@ -326,11 +359,26 @@ export const ActionInstructionComponentFragmentDoc = gql`
   }
   ${ParagraphComponentFragmentDoc}
 `
+export const CommandComponentFragmentDoc = gql`
+  fragment CommandComponent on Command {
+    command
+  }
+`
+export const ActionStackComponentFragmentDoc = gql`
+  fragment ActionStackComponent on Action {
+    details {
+      ...CommandComponent
+    }
+  }
+  ${CommandComponentFragmentDoc}
+`
 export const ActionComponentFragmentDoc = gql`
   fragment ActionComponent on Action {
     ...ActionInstructionComponent
+    ...ActionStackComponent
   }
   ${ActionInstructionComponentFragmentDoc}
+  ${ActionStackComponentFragmentDoc}
 `
 export const MainDocument = gql`
   query Main {
