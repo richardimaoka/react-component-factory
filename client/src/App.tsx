@@ -9,6 +9,7 @@ import {
 import { css } from '@emotion/react'
 import { useMainQuery } from './generated/graphql'
 import { ActionComponent } from './ActionComponent'
+import { ActionResultLabel } from './ActionResultLabel'
 
 gql`
   query Main {
@@ -43,6 +44,7 @@ export const MainContainer = (): JSX.Element => {
             `}
           >
             <ActionComponent fragment={data.action} />
+            <ActionResultLabel />
           </div>
         </div>
       </main>
