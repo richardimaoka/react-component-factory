@@ -184,6 +184,40 @@ export enum VideoPlatform {
   Youtube = 'YOUTUBE',
 }
 
+export type ActionComponentFragment = {
+  __typename?: 'Action'
+  instruction:
+    | {
+        __typename?: 'Paragraph'
+        chunks:
+          | Array<
+              | {
+                  __typename?: 'TextChunk'
+                  text: string | null | undefined
+                  highlight: boolean | null | undefined
+                  bold: boolean | null | undefined
+                  hyperlinkUrl: string | null | undefined
+                  strikeout: boolean | null | undefined
+                  inlineCode: boolean | null | undefined
+                }
+              | null
+              | undefined
+            >
+          | null
+          | undefined
+      }
+    | null
+    | undefined
+  details:
+    | Array<
+        | { __typename?: 'Command'; command: string | null | undefined }
+        | null
+        | undefined
+      >
+    | null
+    | undefined
+}
+
 export type ActionInstructionComponentFragment = {
   __typename?: 'Action'
   instruction:
@@ -212,40 +246,6 @@ export type ActionInstructionComponentFragment = {
 
 export type ActionStackComponentFragment = {
   __typename?: 'Action'
-  details:
-    | Array<
-        | { __typename?: 'Command'; command: string | null | undefined }
-        | null
-        | undefined
-      >
-    | null
-    | undefined
-}
-
-export type ActionComponentFragment = {
-  __typename?: 'Action'
-  instruction:
-    | {
-        __typename?: 'Paragraph'
-        chunks:
-          | Array<
-              | {
-                  __typename?: 'TextChunk'
-                  text: string | null | undefined
-                  highlight: boolean | null | undefined
-                  bold: boolean | null | undefined
-                  hyperlinkUrl: string | null | undefined
-                  strikeout: boolean | null | undefined
-                  inlineCode: boolean | null | undefined
-                }
-              | null
-              | undefined
-            >
-          | null
-          | undefined
-      }
-    | null
-    | undefined
   details:
     | Array<
         | { __typename?: 'Command'; command: string | null | undefined }
