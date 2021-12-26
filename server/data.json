@@ -5,7 +5,7 @@
     "chunks": [
       {
         "__typename": "TextChunk",
-        "text": ""
+        "text": "以下のコマンドを実行してください"
       }
     ]
   }

@@ -8,10 +8,97 @@ import {
 import { css } from '@emotion/react'
 import {
   ActionComponentFragment,
-  ActionStatementComonentFragment,
-  Paragraph,
+  ParagraphComponentFragment,
+  TextChunkComponentFragment,
   useMainQuery,
 } from './generated/graphql'
+
+export interface TextChunkProps {
+  fragment: TextChunkComponentFragment
+}
+
+const InnerComponent = ({ fragment }: TextChunkProps): JSX.Element => {
+  const cssProperties = css`
+    background-color: ${fragment.highlight ? '#E6FF01' : 'transparent'};
+    font-weight: ${fragment.bold ? 'bold' : 'normal'};
+    text-decoration: ${fragment.strikeout ? 'line-through' : 'no'};
+  `
+  console.log('InnerComponent aaa', fragment.text)
+
+  return fragment.inlineCode ? (
+    <code
+      css={css`
+        background-color: #252525;
+        color: white;
+      `}
+    >
+      {fragment.text}
+    </code>
+  ) : (
+    <span css={cssProperties}>{fragment.text}</span>
+  )
+}
+
+export const TextChunkComponent = ({
+  fragment,
+}: TextChunkProps): JSX.Element => {
+  if (fragment.hyperlinkUrl) {
+    return (
+      <a href={fragment.hyperlinkUrl}>
+        <InnerComponent fragment={fragment} />
+      </a>
+    )
+  } else {
+    return <InnerComponent fragment={fragment} />
+  }
+}
+
+TextChunkComponent.fragments = gql`
+  fragment TextChunkComponent on TextChunk {
+    text
+    highlight
+    bold
+    hyperlinkUrl
+    strikeout
+    inlineCode
+  }
+`
+
+interface ParagraphProps {
+  fragment: ParagraphComponentFragment
+}
+
+export const ParagraphComponent = ({
+  fragment,
+}: ParagraphProps): JSX.Element => {
+  if (!fragment.chunks) {
+    return <></>
+  } else {
+    return (
+      <p
+        css={css`
+          color: #0a0a0a;
+          margin: 0px;
+        `}
+        contentEditable={false}
+      >
+        {fragment.chunks.map((chunk, index) =>
+          chunk ? <TextChunkComponent key={index} fragment={chunk} /> : <></>
+        )}
+      </p>
+    )
+  }
+}
+
+ParagraphComponent.fragments = gql`
+  fragment ParagraphComponent on Paragraph {
+    chunks {
+      ...TextChunkComponent
+    }
+  }
+
+  ${TextChunkComponent.fragments}
+`
 
 export const ActionLabelComponent = (): JSX.Element => {
   return (
@@ -29,13 +116,13 @@ export const ActionLabelComponent = (): JSX.Element => {
   )
 }
 
-interface ActionStatementComponentProps {
-  fragment: ActionStatementComonentFragment
+interface ActionInstructionComponentProps {
+  fragment: ParagraphComponentFragment
 }
 
-export const ActionStatementComponent = ({
+export const ActionInstructionComponent = ({
   fragment,
-}: ActionStatementComponentProps): JSX.Element => (
+}: ActionInstructionComponentProps): JSX.Element => (
   <div
     css={css`
       display: inline-block;
@@ -44,16 +131,18 @@ export const ActionStatementComponent = ({
       border: solid 1px #eecf33;
     `}
   >
-    {fragment.chunks}
+    <ParagraphComponent fragment={fragment} />
   </div>
 )
 
-ActionStatementComponent.fragment = gql`
+ActionInstructionComponent.fragment = gql`
   fragment ActionStatementComonent on Paragraph {
     chunks {
-      text
+      ...TextChunkComponent
     }
   }
+
+  ${TextChunkComponent.fragments}
 `
 
 interface ActionComponentProps {
@@ -65,12 +154,12 @@ export const ActionComponent = ({
 }: ActionComponentProps): JSX.Element => {
   return (
     <div>
+      <ActionLabelComponent />
       {fragment.instruction ? (
-        <ActionStatementComponent fragment={fragment.instruction} />
+        <ActionInstructionComponent fragment={fragment.instruction} />
       ) : (
         <></>
       )}
-      <ActionLabelComponent />
       <ActionStackComponent />
     </div>
   )
@@ -79,11 +168,11 @@ export const ActionComponent = ({
 ActionComponent.fragment = gql`
   fragment ActionComponent on Action {
     instruction {
-      chunks {
-        text
-      }
+      ...ParagraphComponent
     }
   }
+
+  ${ParagraphComponent.fragments}
 `
 
 export const ActionStackComponent = (): JSX.Element => (

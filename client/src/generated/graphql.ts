@@ -184,11 +184,49 @@ export enum VideoPlatform {
   Youtube = 'YOUTUBE',
 }
 
+export type TextChunkComponentFragment = {
+  __typename?: 'TextChunk'
+  text: string | null | undefined
+  highlight: boolean | null | undefined
+  bold: boolean | null | undefined
+  hyperlinkUrl: string | null | undefined
+  strikeout: boolean | null | undefined
+  inlineCode: boolean | null | undefined
+}
+
+export type ParagraphComponentFragment = {
+  __typename?: 'Paragraph'
+  chunks:
+    | Array<
+        | {
+            __typename?: 'TextChunk'
+            text: string | null | undefined
+            highlight: boolean | null | undefined
+            bold: boolean | null | undefined
+            hyperlinkUrl: string | null | undefined
+            strikeout: boolean | null | undefined
+            inlineCode: boolean | null | undefined
+          }
+        | null
+        | undefined
+      >
+    | null
+    | undefined
+}
+
 export type ActionStatementComonentFragment = {
   __typename?: 'Paragraph'
   chunks:
     | Array<
-        | { __typename?: 'TextChunk'; text: string | null | undefined }
+        | {
+            __typename?: 'TextChunk'
+            text: string | null | undefined
+            highlight: boolean | null | undefined
+            bold: boolean | null | undefined
+            hyperlinkUrl: string | null | undefined
+            strikeout: boolean | null | undefined
+            inlineCode: boolean | null | undefined
+          }
         | null
         | undefined
       >
@@ -203,7 +241,15 @@ export type ActionComponentFragment = {
         __typename?: 'Paragraph'
         chunks:
           | Array<
-              | { __typename?: 'TextChunk'; text: string | null | undefined }
+              | {
+                  __typename?: 'TextChunk'
+                  text: string | null | undefined
+                  highlight: boolean | null | undefined
+                  bold: boolean | null | undefined
+                  hyperlinkUrl: string | null | undefined
+                  strikeout: boolean | null | undefined
+                  inlineCode: boolean | null | undefined
+                }
               | null
               | undefined
             >
@@ -229,6 +275,11 @@ export type MainQuery = {
                     | {
                         __typename?: 'TextChunk'
                         text: string | null | undefined
+                        highlight: boolean | null | undefined
+                        bold: boolean | null | undefined
+                        hyperlinkUrl: string | null | undefined
+                        strikeout: boolean | null | undefined
+                        inlineCode: boolean | null | undefined
                       }
                     | null
                     | undefined
@@ -243,21 +294,39 @@ export type MainQuery = {
     | undefined
 }
 
+export const TextChunkComponentFragmentDoc = gql`
+  fragment TextChunkComponent on TextChunk {
+    text
+    highlight
+    bold
+    hyperlinkUrl
+    strikeout
+    inlineCode
+  }
+`
 export const ActionStatementComonentFragmentDoc = gql`
   fragment ActionStatementComonent on Paragraph {
     chunks {
-      text
+      ...TextChunkComponent
     }
   }
+  ${TextChunkComponentFragmentDoc}
+`
+export const ParagraphComponentFragmentDoc = gql`
+  fragment ParagraphComponent on Paragraph {
+    chunks {
+      ...TextChunkComponent
+    }
+  }
+  ${TextChunkComponentFragmentDoc}
 `
 export const ActionComponentFragmentDoc = gql`
   fragment ActionComponent on Action {
     instruction {
-      chunks {
-        text
-      }
+      ...ParagraphComponent
     }
   }
+  ${ParagraphComponentFragmentDoc}
 `
 export const MainDocument = gql`
   query Main {
