@@ -30,7 +30,7 @@
   "results": [
     {
       "__typename": "CommandOuput",
-      "text": ""
+      "text": "This is the output"
     }
   ]
 }

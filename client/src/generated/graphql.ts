@@ -27,6 +27,7 @@ export type Action = {
   __typename?: 'Action'
   details: Maybe<Array<Maybe<Command>>>
   instruction: Maybe<Paragraph>
+  results: Maybe<Array<Maybe<CommandOutput>>>
 }
 
 export type Author = {
@@ -36,6 +37,11 @@ export type Author = {
 
 export type Command = {
   __typename?: 'Command'
+  text: Maybe<Scalars['String']>
+}
+
+export type CommandOutput = {
+  __typename?: 'CommandOutput'
   text: Maybe<Scalars['String']>
 }
 
@@ -71,11 +77,6 @@ export type Note = {
   body: Maybe<Scalars['String']>
 }
 
-export type Output = {
-  __typename?: 'Output'
-  text: Maybe<Scalars['String']>
-}
-
 export type Page = {
   __typename?: 'Page'
   id: Maybe<Scalars['ID']>
@@ -90,10 +91,10 @@ export type Page = {
 export type PageElement =
   | Action
   | Command
+  | CommandOutput
   | Foldable
   | Image
   | ImageGroup
-  | Output
   | Paragraph
   | Video
 
@@ -105,9 +106,9 @@ export type Paragraph = {
 export type PlainElement =
   | Action
   | Command
+  | CommandOutput
   | Image
   | ImageGroup
-  | Output
   | Paragraph
   | Video
 
@@ -210,6 +211,14 @@ export type ActionComponentFragment = {
       >
     | null
     | undefined
+  results:
+    | Array<
+        | { __typename?: 'CommandOutput'; text: string | null | undefined }
+        | null
+        | undefined
+      >
+    | null
+    | undefined
 }
 
 export type ActionInstructionComponentFragment = {
@@ -234,6 +243,18 @@ export type ActionInstructionComponentFragment = {
           | null
           | undefined
       }
+    | null
+    | undefined
+}
+
+export type ActionResultComponentFragment = {
+  __typename?: 'Action'
+  results:
+    | Array<
+        | { __typename?: 'CommandOutput'; text: string | null | undefined }
+        | null
+        | undefined
+      >
     | null
     | undefined
 }
@@ -282,6 +303,17 @@ export type MainQuery = {
         details:
           | Array<
               | { __typename?: 'Command'; text: string | null | undefined }
+              | null
+              | undefined
+            >
+          | null
+          | undefined
+        results:
+          | Array<
+              | {
+                  __typename?: 'CommandOutput'
+                  text: string | null | undefined
+                }
               | null
               | undefined
             >
@@ -371,13 +403,22 @@ export const ActionStackComponentFragmentDoc = gql`
   }
   ${CommandComponentFragmentDoc}
 `
+export const ActionResultComponentFragmentDoc = gql`
+  fragment ActionResultComponent on Action {
+    results {
+      text
+    }
+  }
+`
 export const ActionComponentFragmentDoc = gql`
   fragment ActionComponent on Action {
     ...ActionInstructionComponent
     ...ActionStackComponent
+    ...ActionResultComponent
   }
   ${ActionInstructionComponentFragmentDoc}
   ${ActionStackComponentFragmentDoc}
+  ${ActionResultComponentFragmentDoc}
 `
 export const CommandComponent2FragmentDoc = gql`
   fragment CommandComponent2 on Command {
@@ -540,6 +581,7 @@ export type ResolversTypes = ResolversObject<{
   Author: ResolverTypeWrapper<Author>
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>
   Command: ResolverTypeWrapper<Command>
+  CommandOutput: ResolverTypeWrapper<CommandOutput>
   DecorateTextChunksInput: ResolverTypeWrapper<DecorateTextChunksInput>
   DirectoryStructure: ResolverTypeWrapper<DirectoryStructure>
   Foldable: ResolverTypeWrapper<
@@ -552,7 +594,6 @@ export type ResolversTypes = ResolversObject<{
   ImageGroup: ResolverTypeWrapper<ImageGroup>
   Int: ResolverTypeWrapper<Scalars['Int']>
   Note: ResolverTypeWrapper<Note>
-  Output: ResolverTypeWrapper<Output>
   Page: ResolverTypeWrapper<
     Omit<Page, 'pageElements'> & {
       pageElements: Maybe<Array<Maybe<ResolversTypes['PageElement']>>>
@@ -561,19 +602,19 @@ export type ResolversTypes = ResolversObject<{
   PageElement:
     | ResolversTypes['Action']
     | ResolversTypes['Command']
+    | ResolversTypes['CommandOutput']
     | ResolversTypes['Foldable']
     | ResolversTypes['Image']
     | ResolversTypes['ImageGroup']
-    | ResolversTypes['Output']
     | ResolversTypes['Paragraph']
     | ResolversTypes['Video']
   Paragraph: ResolverTypeWrapper<Paragraph>
   PlainElement:
     | ResolversTypes['Action']
     | ResolversTypes['Command']
+    | ResolversTypes['CommandOutput']
     | ResolversTypes['Image']
     | ResolversTypes['ImageGroup']
-    | ResolversTypes['Output']
     | ResolversTypes['Paragraph']
     | ResolversTypes['Video']
   Progress: ResolverTypeWrapper<Progress>
@@ -601,6 +642,7 @@ export type ResolversParentTypes = ResolversObject<{
   Author: Author
   Boolean: Scalars['Boolean']
   Command: Command
+  CommandOutput: CommandOutput
   DecorateTextChunksInput: DecorateTextChunksInput
   DirectoryStructure: DirectoryStructure
   Foldable: Omit<Foldable, 'elements'> & {
@@ -611,26 +653,25 @@ export type ResolversParentTypes = ResolversObject<{
   ImageGroup: ImageGroup
   Int: Scalars['Int']
   Note: Note
-  Output: Output
   Page: Omit<Page, 'pageElements'> & {
     pageElements: Maybe<Array<Maybe<ResolversParentTypes['PageElement']>>>
   }
   PageElement:
     | ResolversParentTypes['Action']
     | ResolversParentTypes['Command']
+    | ResolversParentTypes['CommandOutput']
     | ResolversParentTypes['Foldable']
     | ResolversParentTypes['Image']
     | ResolversParentTypes['ImageGroup']
-    | ResolversParentTypes['Output']
     | ResolversParentTypes['Paragraph']
     | ResolversParentTypes['Video']
   Paragraph: Paragraph
   PlainElement:
     | ResolversParentTypes['Action']
     | ResolversParentTypes['Command']
+    | ResolversParentTypes['CommandOutput']
     | ResolversParentTypes['Image']
     | ResolversParentTypes['ImageGroup']
-    | ResolversParentTypes['Output']
     | ResolversParentTypes['Paragraph']
     | ResolversParentTypes['Video']
   Progress: Progress
@@ -663,6 +704,11 @@ export type ActionResolvers<
     ParentType,
     ContextType
   >
+  results: Resolver<
+    Maybe<Array<Maybe<ResolversTypes['CommandOutput']>>>,
+    ParentType,
+    ContextType
+  >
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }>
 
@@ -677,6 +723,14 @@ export type AuthorResolvers<
 export type CommandResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['Command'] = ResolversParentTypes['Command']
+> = ResolversObject<{
+  text: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
+}>
+
+export type CommandOutputResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['CommandOutput'] = ResolversParentTypes['CommandOutput']
 > = ResolversObject<{
   text: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
@@ -752,14 +806,6 @@ export type NoteResolvers<
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }>
 
-export type OutputResolvers<
-  ContextType = any,
-  ParentType extends ResolversParentTypes['Output'] = ResolversParentTypes['Output']
-> = ResolversObject<{
-  text: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
-}>
-
 export type PageResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['Page'] = ResolversParentTypes['Page']
@@ -793,10 +839,10 @@ export type PageElementResolvers<
   __resolveType: TypeResolveFn<
     | 'Action'
     | 'Command'
+    | 'CommandOutput'
     | 'Foldable'
     | 'Image'
     | 'ImageGroup'
-    | 'Output'
     | 'Paragraph'
     | 'Video',
     ParentType,
@@ -823,9 +869,9 @@ export type PlainElementResolvers<
   __resolveType: TypeResolveFn<
     | 'Action'
     | 'Command'
+    | 'CommandOutput'
     | 'Image'
     | 'ImageGroup'
-    | 'Output'
     | 'Paragraph'
     | 'Video',
     ParentType,
@@ -965,13 +1011,13 @@ export type Resolvers<ContextType = any> = ResolversObject<{
   Action: ActionResolvers<ContextType>
   Author: AuthorResolvers<ContextType>
   Command: CommandResolvers<ContextType>
+  CommandOutput: CommandOutputResolvers<ContextType>
   DecorateTextChunksInput: DecorateTextChunksInputResolvers<ContextType>
   DirectoryStructure: DirectoryStructureResolvers<ContextType>
   Foldable: FoldableResolvers<ContextType>
   Image: ImageResolvers<ContextType>
   ImageGroup: ImageGroupResolvers<ContextType>
   Note: NoteResolvers<ContextType>
-  Output: OutputResolvers<ContextType>
   Page: PageResolvers<ContextType>
   PageElement: PageElementResolvers<ContextType>
   Paragraph: ParagraphResolvers<ContextType>

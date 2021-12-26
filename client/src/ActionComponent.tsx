@@ -5,6 +5,7 @@ import { ActionInstructionComponent } from './ActionInstructionComponent'
 import { ActionLabel } from './ActionLabel'
 import { ActionStackComponent } from './ActionStackComponent'
 import { ActionComponentFragment } from './generated/graphql'
+import { ActionResultComponent } from './ActionResultComponent'
 
 interface ActionComponentProps {
   fragment: ActionComponentFragment
@@ -30,7 +31,9 @@ ActionComponent.fragment = gql`
   fragment ActionComponent on Action {
     ...ActionInstructionComponent
     ...ActionStackComponent
+    ...ActionResultComponent
   }
 
   ${ActionInstructionComponent.fragment}
+  ${ActionResultComponent.fragment}
 `
