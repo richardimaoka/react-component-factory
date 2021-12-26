@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { gql } from '@apollo/client'
 import { css } from '@emotion/react'
-import { ActionInstructionComponentFragment } from './generated/graphql'
+import { ActionInstructionComponentFragment } from '../generated/graphql'
 import { ActionLabel } from './ActionLabel'
-import { ParagraphComponent } from './ParagraphComponent'
+import { ParagraphComponent } from '../ParagraphComponent'
 
 interface ActionInstructionComponentProps {
   fragment: ActionInstructionComponentFragment

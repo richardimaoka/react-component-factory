@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { gql } from '@apollo/client'
 import { css } from '@emotion/react'
-import { ActionStackComponentFragment } from './generated/graphql'
-import { CommandComponent } from './CommandComponent'
+import { ActionStackComponentFragment } from '../generated/graphql'
+import { CommandComponent } from '../CommandComponent'
 
 interface ActionStackComponentProps {
   fragment: ActionStackComponentFragment

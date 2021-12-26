@@ -179,98 +179,6 @@ export enum VideoPlatform {
   Youtube = 'YOUTUBE',
 }
 
-export type ActionComponentFragment = {
-  __typename?: 'Action'
-  instruction:
-    | {
-        __typename?: 'Paragraph'
-        chunks:
-          | Array<
-              | {
-                  __typename?: 'TextChunk'
-                  text: string | null | undefined
-                  highlight: boolean | null | undefined
-                  bold: boolean | null | undefined
-                  hyperlinkUrl: string | null | undefined
-                  strikeout: boolean | null | undefined
-                  inlineCode: boolean | null | undefined
-                }
-              | null
-              | undefined
-            >
-          | null
-          | undefined
-      }
-    | null
-    | undefined
-  details:
-    | Array<
-        | { __typename?: 'Command'; text: string | null | undefined }
-        | null
-        | undefined
-      >
-    | null
-    | undefined
-  results:
-    | Array<
-        | { __typename?: 'CommandOutput'; text: string | null | undefined }
-        | null
-        | undefined
-      >
-    | null
-    | undefined
-}
-
-export type ActionInstructionComponentFragment = {
-  __typename?: 'Action'
-  instruction:
-    | {
-        __typename?: 'Paragraph'
-        chunks:
-          | Array<
-              | {
-                  __typename?: 'TextChunk'
-                  text: string | null | undefined
-                  highlight: boolean | null | undefined
-                  bold: boolean | null | undefined
-                  hyperlinkUrl: string | null | undefined
-                  strikeout: boolean | null | undefined
-                  inlineCode: boolean | null | undefined
-                }
-              | null
-              | undefined
-            >
-          | null
-          | undefined
-      }
-    | null
-    | undefined
-}
-
-export type ActionResultComponentFragment = {
-  __typename?: 'Action'
-  results:
-    | Array<
-        | { __typename?: 'CommandOutput'; text: string | null | undefined }
-        | null
-        | undefined
-      >
-    | null
-    | undefined
-}
-
-export type ActionStackComponentFragment = {
-  __typename?: 'Action'
-  details:
-    | Array<
-        | { __typename?: 'Command'; text: string | null | undefined }
-        | null
-        | undefined
-      >
-    | null
-    | undefined
-}
-
 export type MainQueryVariables = Exact<{ [key: string]: never }>
 
 export type MainQuery = {
@@ -369,6 +277,103 @@ export type TextChunkComponentFragment = {
   inlineCode: boolean | null | undefined
 }
 
+export type ActionComponentFragment = {
+  __typename?: 'Action'
+  instruction:
+    | {
+        __typename?: 'Paragraph'
+        chunks:
+          | Array<
+              | {
+                  __typename?: 'TextChunk'
+                  text: string | null | undefined
+                  highlight: boolean | null | undefined
+                  bold: boolean | null | undefined
+                  hyperlinkUrl: string | null | undefined
+                  strikeout: boolean | null | undefined
+                  inlineCode: boolean | null | undefined
+                }
+              | null
+              | undefined
+            >
+          | null
+          | undefined
+      }
+    | null
+    | undefined
+  details:
+    | Array<
+        | { __typename?: 'Command'; text: string | null | undefined }
+        | null
+        | undefined
+      >
+    | null
+    | undefined
+  results:
+    | Array<
+        | { __typename?: 'CommandOutput'; text: string | null | undefined }
+        | null
+        | undefined
+      >
+    | null
+    | undefined
+}
+
+export type ActionInstructionComponentFragment = {
+  __typename?: 'Action'
+  instruction:
+    | {
+        __typename?: 'Paragraph'
+        chunks:
+          | Array<
+              | {
+                  __typename?: 'TextChunk'
+                  text: string | null | undefined
+                  highlight: boolean | null | undefined
+                  bold: boolean | null | undefined
+                  hyperlinkUrl: string | null | undefined
+                  strikeout: boolean | null | undefined
+                  inlineCode: boolean | null | undefined
+                }
+              | null
+              | undefined
+            >
+          | null
+          | undefined
+      }
+    | null
+    | undefined
+}
+
+export type ActionResultComponentFragment = {
+  __typename?: 'Action'
+  results:
+    | Array<
+        | { __typename?: 'CommandOutput'; text: string | null | undefined }
+        | null
+        | undefined
+      >
+    | null
+    | undefined
+}
+
+export type ActionStackComponentFragment = {
+  __typename?: 'Action'
+  details:
+    | Array<
+        | { __typename?: 'Command'; text: string | null | undefined }
+        | null
+        | undefined
+      >
+    | null
+    | undefined
+}
+
+export const CommandComponent2FragmentDoc = gql`
+  fragment CommandComponent2 on Command {
+    text
+  }
+`
 export const TextChunkComponentFragmentDoc = gql`
   fragment TextChunkComponent on TextChunk {
     text
@@ -430,11 +435,6 @@ export const ActionComponentFragmentDoc = gql`
   ${ActionInstructionComponentFragmentDoc}
   ${ActionStackComponentFragmentDoc}
   ${ActionResultComponentFragmentDoc}
-`
-export const CommandComponent2FragmentDoc = gql`
-  fragment CommandComponent2 on Command {
-    text
-  }
 `
 export const MainDocument = gql`
   query Main {

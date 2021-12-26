@@ -8,7 +8,7 @@ import {
 } from '@apollo/client'
 import { css } from '@emotion/react'
 import { useMainQuery } from './generated/graphql'
-import { ActionComponent } from './ActionComponent'
+import { ActionComponent } from './action/ActionComponent'
 
 gql`
   query Main {

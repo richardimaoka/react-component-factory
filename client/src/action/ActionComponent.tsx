@@ -3,7 +3,7 @@
 import { gql } from '@apollo/client'
 import { ActionInstructionComponent } from './ActionInstructionComponent'
 import { ActionStackComponent } from './ActionStackComponent'
-import { ActionComponentFragment } from './generated/graphql'
+import { ActionComponentFragment } from '../generated/graphql'
 import { ActionResultComponent } from './ActionResultComponent'
 
 interface ActionComponentProps {

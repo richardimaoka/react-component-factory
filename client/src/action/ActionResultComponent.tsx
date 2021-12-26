@@ -3,8 +3,8 @@
 import { gql } from '@apollo/client'
 import { css } from '@emotion/react'
 import { ActionResultLabel } from './ActionResultLabel'
-import { CommandOutputComponent } from './CommandOutputComponent'
-import { ActionResultComponentFragment } from './generated/graphql'
+import { CommandOutputComponent } from '../CommandOutputComponent'
+import { ActionResultComponentFragment } from '../generated/graphql'
 
 interface ActionResultComponentProps {
   fragment: ActionResultComponentFragment

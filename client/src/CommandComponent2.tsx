@@ -19,7 +19,7 @@ export const CommandComponent2 = ({
       `}
     >
       <pre>
-        <code>{fragment.command}</code>
+        <code>{fragment.text}</code>
       </pre>
     </div>
   )
