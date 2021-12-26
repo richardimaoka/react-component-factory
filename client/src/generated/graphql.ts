@@ -232,36 +232,6 @@ export type MainQuery = {
     | undefined
 }
 
-export type ParagraphComponentFragment = {
-  __typename?: 'Paragraph'
-  chunks:
-    | Array<
-        | {
-            __typename?: 'TextChunk'
-            text: string | null | undefined
-            highlight: boolean | null | undefined
-            bold: boolean | null | undefined
-            hyperlinkUrl: string | null | undefined
-            strikeout: boolean | null | undefined
-            inlineCode: boolean | null | undefined
-          }
-        | null
-        | undefined
-      >
-    | null
-    | undefined
-}
-
-export type TextChunkComponentFragment = {
-  __typename?: 'TextChunk'
-  text: string | null | undefined
-  highlight: boolean | null | undefined
-  bold: boolean | null | undefined
-  hyperlinkUrl: string | null | undefined
-  strikeout: boolean | null | undefined
-  inlineCode: boolean | null | undefined
-}
-
 export type ActionComponentFragment = {
   __typename?: 'Action'
   instruction:
@@ -367,6 +337,36 @@ export type CommandComponent2Fragment = {
 export type CommandOutputComponentFragment = {
   __typename?: 'CommandOutput'
   text: string | null | undefined
+}
+
+export type ParagraphComponentFragment = {
+  __typename?: 'Paragraph'
+  chunks:
+    | Array<
+        | {
+            __typename?: 'TextChunk'
+            text: string | null | undefined
+            highlight: boolean | null | undefined
+            bold: boolean | null | undefined
+            hyperlinkUrl: string | null | undefined
+            strikeout: boolean | null | undefined
+            inlineCode: boolean | null | undefined
+          }
+        | null
+        | undefined
+      >
+    | null
+    | undefined
+}
+
+export type TextChunkComponentFragment = {
+  __typename?: 'TextChunk'
+  text: string | null | undefined
+  highlight: boolean | null | undefined
+  bold: boolean | null | undefined
+  hyperlinkUrl: string | null | undefined
+  strikeout: boolean | null | undefined
+  inlineCode: boolean | null | undefined
 }
 
 export const TextChunkComponentFragmentDoc = gql`
