@@ -17,12 +17,9 @@ export const ActionComponent = ({
   return (
     <div>
       <ActionLabel />
-      {fragment.instruction ? (
-        <ActionInstructionComponent fragment={fragment} />
-      ) : (
-        <></>
-      )}
+      <ActionInstructionComponent fragment={fragment} />
       <ActionStackComponent fragment={fragment} />
+      <ActionResultComponent fragment={fragment} />
     </div>
   )
 }

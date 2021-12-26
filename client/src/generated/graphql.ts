@@ -334,6 +334,11 @@ export type CommandComponent2Fragment = {
   text: string | null | undefined
 }
 
+export type CommandOutputComponentFragment = {
+  __typename?: 'CommandOutput'
+  text: string | null | undefined
+}
+
 export type ParagraphComponentFragment = {
   __typename?: 'Paragraph'
   chunks:
@@ -403,12 +408,18 @@ export const ActionStackComponentFragmentDoc = gql`
   }
   ${CommandComponentFragmentDoc}
 `
+export const CommandOutputComponentFragmentDoc = gql`
+  fragment CommandOutputComponent on CommandOutput {
+    text
+  }
+`
 export const ActionResultComponentFragmentDoc = gql`
   fragment ActionResultComponent on Action {
     results {
-      text
+      ...CommandOutputComponent
     }
   }
+  ${CommandOutputComponentFragmentDoc}
 `
 export const ActionComponentFragmentDoc = gql`
   fragment ActionComponent on Action {
