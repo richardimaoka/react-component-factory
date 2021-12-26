@@ -232,21 +232,6 @@ export type MainQuery = {
     | undefined
 }
 
-export type CommandComponentFragment = {
-  __typename?: 'Command'
-  text: string | null | undefined
-}
-
-export type CommandComponent2Fragment = {
-  __typename?: 'Command'
-  text: string | null | undefined
-}
-
-export type CommandOutputComponentFragment = {
-  __typename?: 'CommandOutput'
-  text: string | null | undefined
-}
-
 export type ParagraphComponentFragment = {
   __typename?: 'Paragraph'
   chunks:
@@ -369,11 +354,21 @@ export type ActionStackComponentFragment = {
     | undefined
 }
 
-export const CommandComponent2FragmentDoc = gql`
-  fragment CommandComponent2 on Command {
-    text
-  }
-`
+export type CommandComponentFragment = {
+  __typename?: 'Command'
+  text: string | null | undefined
+}
+
+export type CommandComponent2Fragment = {
+  __typename?: 'Command'
+  text: string | null | undefined
+}
+
+export type CommandOutputComponentFragment = {
+  __typename?: 'CommandOutput'
+  text: string | null | undefined
+}
+
 export const TextChunkComponentFragmentDoc = gql`
   fragment TextChunkComponent on TextChunk {
     text
@@ -435,6 +430,11 @@ export const ActionComponentFragmentDoc = gql`
   ${ActionInstructionComponentFragmentDoc}
   ${ActionStackComponentFragmentDoc}
   ${ActionResultComponentFragmentDoc}
+`
+export const CommandComponent2FragmentDoc = gql`
+  fragment CommandComponent2 on Command {
+    text
+  }
 `
 export const MainDocument = gql`
   query Main {

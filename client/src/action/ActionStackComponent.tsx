@@ -2,7 +2,7 @@
 import { gql } from '@apollo/client'
 import { css } from '@emotion/react'
 import { ActionStackComponentFragment } from '../generated/graphql'
-import { CommandComponent } from '../CommandComponent'
+import { CommandComponent } from '../command/CommandComponent'
 
 interface ActionStackComponentProps {
   fragment: ActionStackComponentFragment
