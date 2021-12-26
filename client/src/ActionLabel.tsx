@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 
-export const ActionLabelComponent = (): JSX.Element => {
+export const ActionLabel = (): JSX.Element => {
   return (
     <div>
       <div

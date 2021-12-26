@@ -2,7 +2,7 @@
 
 import { gql } from '@apollo/client'
 import { ActionInstructionComponent } from './ActionInstructionComponent'
-import { ActionLabelComponent } from './ActionLabelComponent'
+import { ActionLabel } from './ActionLabel'
 import { ActionStackComponent } from './ActionStackComponent'
 import { ActionComponentFragment } from './generated/graphql'
 
@@ -15,7 +15,7 @@ export const ActionComponent = ({
 }: ActionComponentProps): JSX.Element => {
   return (
     <div>
-      <ActionLabelComponent />
+      <ActionLabel />
       {fragment.instruction ? (
         <ActionInstructionComponent fragment={fragment} />
       ) : (
