@@ -13,7 +13,7 @@ export const CommandComponent = ({
   return (
     <div
       css={css`
-        padding: 8px;
+        padding: 4px 8px;
         background-color: #2d2d2d;
         color: #ffffff;
       `}

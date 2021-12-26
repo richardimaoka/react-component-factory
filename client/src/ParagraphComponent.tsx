@@ -15,23 +15,17 @@ export const ParagraphComponent = ({
     return <></>
   } else {
     return (
-      <div
+      <p
         css={css`
-          padding: 8px;
+          color: #0a0a0a;
+          margin: 0px;
         `}
+        contentEditable={false}
       >
-        <p
-          css={css`
-            color: #0a0a0a;
-            margin: 0px;
-          `}
-          contentEditable={false}
-        >
-          {fragment.chunks.map((chunk, index) =>
-            chunk ? <TextChunkComponent key={index} fragment={chunk} /> : <></>
-          )}
-        </p>
-      </div>
+        {fragment.chunks.map((chunk, index) =>
+          chunk ? <TextChunkComponent key={index} fragment={chunk} /> : <></>
+        )}
+      </p>
     )
   }
 }
