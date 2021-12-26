@@ -124,8 +124,7 @@ export type Progress = {
 
 export type Query = {
   __typename?: 'Query'
-  author: Maybe<Author>
-  tutorial: Maybe<Tutorial>
+  action: Maybe<Action>
 }
 
 export type TextChunk = {
@@ -184,60 +183,107 @@ export enum VideoPlatform {
   Youtube = 'YOUTUBE',
 }
 
-export type GetttQueryVariables = Exact<{ [key: string]: never }>
-
-export type GetttQuery = {
-  __typename?: 'Query'
-  tutorial: { __typename: 'Tutorial' } | null | undefined
+export type ActionStatementComponentFragment = {
+  __typename?: 'Action'
+  paragraph:
+    | {
+        __typename?: 'Paragraph'
+        chunks:
+          | Array<
+              | { __typename?: 'TextChunk'; text: string | null | undefined }
+              | null
+              | undefined
+            >
+          | null
+          | undefined
+      }
+    | null
+    | undefined
 }
 
-export const GetttDocument = gql`
-  query gettt {
-    tutorial {
-      __typename
+export type MainQueryVariables = Exact<{ [key: string]: never }>
+
+export type MainQuery = {
+  __typename?: 'Query'
+  action:
+    | {
+        __typename?: 'Action'
+        paragraph:
+          | {
+              __typename?: 'Paragraph'
+              chunks:
+                | Array<
+                    | {
+                        __typename?: 'TextChunk'
+                        text: string | null | undefined
+                      }
+                    | null
+                    | undefined
+                  >
+                | null
+                | undefined
+            }
+          | null
+          | undefined
+      }
+    | null
+    | undefined
+}
+
+export const ActionStatementComponentFragmentDoc = gql`
+  fragment actionStatementComponent on Action {
+    paragraph {
+      chunks {
+        text
+      }
+    }
+  }
+`
+export const MainDocument = gql`
+  query Main {
+    action {
+      paragraph {
+        chunks {
+          text
+        }
+      }
     }
   }
 `
 
 /**
- * __useGetttQuery__
+ * __useMainQuery__
  *
- * To run a query within a React component, call `useGetttQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetttQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useMainQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMainQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useGetttQuery({
+ * const { data, loading, error } = useMainQuery({
  *   variables: {
  *   },
  * });
  */
-export function useGetttQuery(
-  baseOptions?: Apollo.QueryHookOptions<GetttQuery, GetttQueryVariables>
+export function useMainQuery(
+  baseOptions?: Apollo.QueryHookOptions<MainQuery, MainQueryVariables>
 ) {
   const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useQuery<GetttQuery, GetttQueryVariables>(
-    GetttDocument,
+  return Apollo.useQuery<MainQuery, MainQueryVariables>(MainDocument, options)
+}
+export function useMainLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<MainQuery, MainQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<MainQuery, MainQueryVariables>(
+    MainDocument,
     options
   )
 }
-export function useGetttLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<GetttQuery, GetttQueryVariables>
-) {
-  const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useLazyQuery<GetttQuery, GetttQueryVariables>(
-    GetttDocument,
-    options
-  )
-}
-export type GetttQueryHookResult = ReturnType<typeof useGetttQuery>
-export type GetttLazyQueryHookResult = ReturnType<typeof useGetttLazyQuery>
-export type GetttQueryResult = Apollo.QueryResult<
-  GetttQuery,
-  GetttQueryVariables
->
+export type MainQueryHookResult = ReturnType<typeof useMainQuery>
+export type MainLazyQueryHookResult = ReturnType<typeof useMainLazyQuery>
+export type MainQueryResult = Apollo.QueryResult<MainQuery, MainQueryVariables>
 export type WithIndex<TObject> = TObject & Record<string, any>
 export type ResolversObject<TObject> = WithIndex<TObject>
 
@@ -668,8 +714,7 @@ export type QueryResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']
 > = ResolversObject<{
-  author: Resolver<Maybe<ResolversTypes['Author']>, ParentType, ContextType>
-  tutorial: Resolver<Maybe<ResolversTypes['Tutorial']>, ParentType, ContextType>
+  action: Resolver<Maybe<ResolversTypes['Action']>, ParentType, ContextType>
 }>
 
 export type TextChunkResolvers<

@@ -8,7 +8,7 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    tutorial: async () => {
+    action: async () => {
       try {
         const dataString = await fs.promises.readFile("data.json", "utf-8");
         const jsObject = JSON.parse(dataString);

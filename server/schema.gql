@@ -1,6 +1,5 @@
 type Query {
-  tutorial: Tutorial
-  author: Author
+  action: Action
 }
 
 type Author {
