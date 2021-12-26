@@ -25,7 +25,8 @@ export type Scalars = {
 
 export type Action = {
   __typename?: 'Action'
-  paragraph: Maybe<Paragraph>
+  details: Maybe<Array<Maybe<Command>>>
+  instruction: Maybe<Paragraph>
 }
 
 export type Author = {
@@ -183,9 +184,21 @@ export enum VideoPlatform {
   Youtube = 'YOUTUBE',
 }
 
-export type ActionStatementComponentFragment = {
+export type ActionStatementComonentFragment = {
+  __typename?: 'Paragraph'
+  chunks:
+    | Array<
+        | { __typename?: 'TextChunk'; text: string | null | undefined }
+        | null
+        | undefined
+      >
+    | null
+    | undefined
+}
+
+export type ActionComponentFragment = {
   __typename?: 'Action'
-  paragraph:
+  instruction:
     | {
         __typename?: 'Paragraph'
         chunks:
@@ -208,7 +221,7 @@ export type MainQuery = {
   action:
     | {
         __typename?: 'Action'
-        paragraph:
+        instruction:
           | {
               __typename?: 'Paragraph'
               chunks:
@@ -230,9 +243,16 @@ export type MainQuery = {
     | undefined
 }
 
-export const ActionStatementComponentFragmentDoc = gql`
-  fragment actionStatementComponent on Action {
-    paragraph {
+export const ActionStatementComonentFragmentDoc = gql`
+  fragment ActionStatementComonent on Paragraph {
+    chunks {
+      text
+    }
+  }
+`
+export const ActionComponentFragmentDoc = gql`
+  fragment ActionComponent on Action {
+    instruction {
       chunks {
         text
       }
@@ -242,13 +262,10 @@ export const ActionStatementComponentFragmentDoc = gql`
 export const MainDocument = gql`
   query Main {
     action {
-      paragraph {
-        chunks {
-          text
-        }
-      }
+      ...ActionComponent
     }
   }
+  ${ActionComponentFragmentDoc}
 `
 
 /**
@@ -513,7 +530,12 @@ export type ActionResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['Action'] = ResolversParentTypes['Action']
 > = ResolversObject<{
-  paragraph: Resolver<
+  details: Resolver<
+    Maybe<Array<Maybe<ResolversTypes['Command']>>>,
+    ParentType,
+    ContextType
+  >
+  instruction: Resolver<
     Maybe<ResolversTypes['Paragraph']>,
     ParentType,
     ContextType

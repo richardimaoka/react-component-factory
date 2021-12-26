@@ -7,7 +7,9 @@ import {
 } from '@apollo/client'
 import { css } from '@emotion/react'
 import {
-  ActionStatementComponentFragment,
+  ActionComponentFragment,
+  ActionStatementComonentFragment,
+  Paragraph,
   useMainQuery,
 } from './generated/graphql'
 
@@ -28,7 +30,7 @@ export const ActionLabelComponent = (): JSX.Element => {
 }
 
 interface ActionStatementComponentProps {
-  fragment: ActionStatementComponentFragment
+  fragment: ActionStatementComonentFragment
 }
 
 export const ActionStatementComponent = ({
@@ -42,13 +44,41 @@ export const ActionStatementComponent = ({
       border: solid 1px #eecf33;
     `}
   >
-    {fragment.paragraph?.chunks}
+    {fragment.chunks}
   </div>
 )
 
 ActionStatementComponent.fragment = gql`
-  fragment actionStatementComponent on Action {
-    paragraph {
+  fragment ActionStatementComonent on Paragraph {
+    chunks {
+      text
+    }
+  }
+`
+
+interface ActionComponentProps {
+  fragment: ActionComponentFragment
+}
+
+export const ActionComponent = ({
+  fragment,
+}: ActionComponentProps): JSX.Element => {
+  return (
+    <div>
+      {fragment.instruction ? (
+        <ActionStatementComponent fragment={fragment.instruction} />
+      ) : (
+        <></>
+      )}
+      <ActionLabelComponent />
+      <ActionStackComponent />
+    </div>
+  )
+}
+
+ActionComponent.fragment = gql`
+  fragment ActionComponent on Action {
+    instruction {
       chunks {
         text
       }
@@ -74,13 +104,10 @@ export const ActionStackComponent = (): JSX.Element => (
 gql`
   query Main {
     action {
-      paragraph {
-        chunks {
-          text
-        }
-      }
+      ...ActionComponent
     }
   }
+  ${ActionComponent.fragment}
 `
 
 export const MainContainer = (): JSX.Element => {
@@ -93,8 +120,7 @@ export const MainContainer = (): JSX.Element => {
   } else if (!data) {
     return <div>{`GraphQL Error! returned data is undefined or null`}</div>
   } else {
-    data.action
-    return (
+    return data.action ? (
       <main>
         <div
           css={css`
@@ -107,13 +133,12 @@ export const MainContainer = (): JSX.Element => {
               width: 768px;
             `}
           >
-            <div>
-              <ActionLabelComponent />
-              <ActionStackComponent />
-            </div>
+            <ActionComponent fragment={data.action} />
           </div>
         </div>
       </main>
+    ) : (
+      <></>
     )
   }
 }

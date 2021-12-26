@@ -1,4 +1,12 @@
 {
-  "a": 1,
-  "b": 2
+  "__typename": "Action",
+  "statement": {
+    "__typename": "Paragraph",
+    "chunks": [
+      {
+        "__typename": "TextChunk",
+        "text": ""
+      }
+    ]
+  }
 }
