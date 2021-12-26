@@ -27,6 +27,6 @@ export const CommandComponent2 = ({
 
 CommandComponent2.fragment = gql`
   fragment CommandComponent2 on Command {
-    command
+    text
   }
 `

@@ -62,8 +62,12 @@ type Image {
   caption: String
 }
 
+type Command {
+  text: String
+}
+
 type Output {
-  body: String
+  text: String
 }
 
 type Progress {
@@ -94,15 +98,6 @@ type Foldable {
   elements: [PlainElement]
 }
 
-type Command {
-  command: String
-}
-
-type CommandAndOutput {
-  command: String
-  output: String
-}
-
 type DirectoryStructure {
   contents: [String]
 }
@@ -110,6 +105,7 @@ type DirectoryStructure {
 type Note {
   body: String
 }
+
 type TextChunkModifyOperation {
   bold: Boolean
   highlight: Boolean

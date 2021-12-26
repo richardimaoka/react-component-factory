@@ -12,15 +12,25 @@
   "details": [
     {
       "__typename": "Command",
-      "command": "mkdir /your/project/path"
+      "text": "mkdir /your/project/path"
     },
     {
       "__typename": "Command",
-      "command": "cd /your/project/path"
+      "text": "cd /your/project/path"
     },
     {
       "__typename": "Command",
-      "command": "npm install cypress --save-dev"
+      "text": "npm --init"
+    },
+    {
+      "__typename": "Command",
+      "text": "npm install cypress --save-dev"
+    }
+  ],
+  "results": [
+    {
+      "__typename": "CommandOuput",
+      "text": ""
     }
   ]
 }

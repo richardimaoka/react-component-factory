@@ -36,13 +36,7 @@ export type Author = {
 
 export type Command = {
   __typename?: 'Command'
-  command: Maybe<Scalars['String']>
-}
-
-export type CommandAndOutput = {
-  __typename?: 'CommandAndOutput'
-  command: Maybe<Scalars['String']>
-  output: Maybe<Scalars['String']>
+  text: Maybe<Scalars['String']>
 }
 
 export type DecorateTextChunksInput = {
@@ -79,7 +73,7 @@ export type Note = {
 
 export type Output = {
   __typename?: 'Output'
-  body: Maybe<Scalars['String']>
+  text: Maybe<Scalars['String']>
 }
 
 export type Page = {
@@ -210,7 +204,7 @@ export type ActionComponentFragment = {
     | undefined
   details:
     | Array<
-        | { __typename?: 'Command'; command: string | null | undefined }
+        | { __typename?: 'Command'; text: string | null | undefined }
         | null
         | undefined
       >
@@ -248,7 +242,7 @@ export type ActionStackComponentFragment = {
   __typename?: 'Action'
   details:
     | Array<
-        | { __typename?: 'Command'; command: string | null | undefined }
+        | { __typename?: 'Command'; text: string | null | undefined }
         | null
         | undefined
       >
@@ -287,7 +281,7 @@ export type MainQuery = {
           | undefined
         details:
           | Array<
-              | { __typename?: 'Command'; command: string | null | undefined }
+              | { __typename?: 'Command'; text: string | null | undefined }
               | null
               | undefined
             >
@@ -300,12 +294,12 @@ export type MainQuery = {
 
 export type CommandComponentFragment = {
   __typename?: 'Command'
-  command: string | null | undefined
+  text: string | null | undefined
 }
 
 export type CommandComponent2Fragment = {
   __typename?: 'Command'
-  command: string | null | undefined
+  text: string | null | undefined
 }
 
 export type ParagraphComponentFragment = {
@@ -366,7 +360,7 @@ export const ActionInstructionComponentFragmentDoc = gql`
 `
 export const CommandComponentFragmentDoc = gql`
   fragment CommandComponent on Command {
-    command
+    text
   }
 `
 export const ActionStackComponentFragmentDoc = gql`
@@ -387,7 +381,7 @@ export const ActionComponentFragmentDoc = gql`
 `
 export const CommandComponent2FragmentDoc = gql`
   fragment CommandComponent2 on Command {
-    command
+    text
   }
 `
 export const MainDocument = gql`
@@ -546,7 +540,6 @@ export type ResolversTypes = ResolversObject<{
   Author: ResolverTypeWrapper<Author>
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>
   Command: ResolverTypeWrapper<Command>
-  CommandAndOutput: ResolverTypeWrapper<CommandAndOutput>
   DecorateTextChunksInput: ResolverTypeWrapper<DecorateTextChunksInput>
   DirectoryStructure: ResolverTypeWrapper<DirectoryStructure>
   Foldable: ResolverTypeWrapper<
@@ -608,7 +601,6 @@ export type ResolversParentTypes = ResolversObject<{
   Author: Author
   Boolean: Scalars['Boolean']
   Command: Command
-  CommandAndOutput: CommandAndOutput
   DecorateTextChunksInput: DecorateTextChunksInput
   DirectoryStructure: DirectoryStructure
   Foldable: Omit<Foldable, 'elements'> & {
@@ -686,16 +678,7 @@ export type CommandResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['Command'] = ResolversParentTypes['Command']
 > = ResolversObject<{
-  command: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
-}>
-
-export type CommandAndOutputResolvers<
-  ContextType = any,
-  ParentType extends ResolversParentTypes['CommandAndOutput'] = ResolversParentTypes['CommandAndOutput']
-> = ResolversObject<{
-  command: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  output: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
+  text: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }>
 
@@ -773,7 +756,7 @@ export type OutputResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['Output'] = ResolversParentTypes['Output']
 > = ResolversObject<{
-  body: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
+  text: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }>
 
@@ -982,7 +965,6 @@ export type Resolvers<ContextType = any> = ResolversObject<{
   Action: ActionResolvers<ContextType>
   Author: AuthorResolvers<ContextType>
   Command: CommandResolvers<ContextType>
-  CommandAndOutput: CommandAndOutputResolvers<ContextType>
   DecorateTextChunksInput: DecorateTextChunksInputResolvers<ContextType>
   DirectoryStructure: DirectoryStructureResolvers<ContextType>
   Foldable: FoldableResolvers<ContextType>

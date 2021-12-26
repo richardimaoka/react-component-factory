@@ -24,7 +24,7 @@ export const CommandComponent = ({
           margin: 0px;
         `}
       >
-        <code>{fragment.command}</code>
+        <code>{fragment.text}</code>
       </pre>
       <button
         css={css`
@@ -44,6 +44,6 @@ export const CommandComponent = ({
 
 CommandComponent.fragment = gql`
   fragment CommandComponent on Command {
-    command
+    text
   }
 `
