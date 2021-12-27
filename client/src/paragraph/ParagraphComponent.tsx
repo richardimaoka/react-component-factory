@@ -2,24 +2,44 @@
 import { gql } from '@apollo/client'
 import { css } from '@emotion/react'
 import { ParagraphComponentFragment } from '../generated/graphql'
-import { TextChunkComponent } from './TextChunkComponent'
+import { isEmptyTextChunk, TextChunkComponent } from './TextChunkComponent'
 
 interface ParagraphProps {
   fragment: ParagraphComponentFragment
 }
 
+export const createParagraph = (text: string): ParagraphComponentFragment => {
+  return {
+    __typename: 'Paragraph',
+    chunks: [
+      {
+        __typename: 'TextChunk',
+        text: text,
+      },
+    ],
+  }
+}
+
 export const isEmptyParagraph = (
   fragment: ParagraphComponentFragment
-): boolean =>
-  !fragment.chunks ||
-  fragment.chunks
-    .map((chunk) => (chunk && chunk.text ? chunk.text.length : 0))
-    .reduce((agg, curr) => agg + curr) === 0
+): boolean => {
+  if (!fragment.chunks) {
+    return false
+  } else {
+    const isAnyChunkContentful = fragment.chunks
+      .map(isEmptyTextChunk)
+      .includes(false) //see if any `isEmptyTextChunk == false`
+
+    const isEveryChunkEmpty = !isAnyChunkContentful
+
+    return isEveryChunkEmpty
+  }
+}
 
 export const ParagraphComponent = ({
   fragment,
 }: ParagraphProps): JSX.Element => {
-  if (!fragment.chunks) {
+  if (!fragment.chunks || isEmptyParagraph(fragment)) {
     return <></>
   } else {
     return (

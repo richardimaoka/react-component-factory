@@ -9,7 +9,6 @@ generates:
       - 'typescript-react-apollo'
       - 'typescript-resolvers'
     config:
-      avoidOptionals: true
       useIndexSignature: true
 hooks:
   afterOneFileWrite:

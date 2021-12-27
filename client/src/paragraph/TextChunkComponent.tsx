@@ -3,8 +3,18 @@ import { css } from '@emotion/react'
 import { gql } from '@apollo/client'
 import { TextChunkComponentFragment } from '../generated/graphql'
 
-export interface TextChunkProps {
+interface TextChunkProps {
   fragment: TextChunkComponentFragment
+}
+
+export const isEmptyTextChunk = (
+  fragment: TextChunkComponentFragment | null | undefined
+): boolean => {
+  if (!fragment) {
+    return false
+  } else {
+    return !fragment.text || fragment.text.length == 0
+  }
 }
 
 const InnerComponent = ({ fragment }: TextChunkProps): JSX.Element => {

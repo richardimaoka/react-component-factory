@@ -8,24 +8,40 @@ interface ActionStackComponentProps {
   fragment: ActionStackComponentFragment
 }
 
+export const isEmptyActionStack = (
+  fragment: ActionStackComponentFragment
+): boolean => {
+  return !fragment.details // || further checks
+}
+
 export const ActionStackComponent = ({
   fragment,
-}: ActionStackComponentProps): JSX.Element => (
-  <div
-    css={css`
-      padding: 8px;
-      border-left: solid 1px #eecf33;
-      border-right: solid 1px #eecf33;
-      border-bottom: solid 1px #eecf33;
-    `}
-  >
-    {fragment.details
-      ? fragment.details.map((command, index) =>
-          command ? <CommandComponent key={index} fragment={command} /> : <></>
-        )
-      : ''}
-  </div>
-)
+}: ActionStackComponentProps): JSX.Element => {
+  if (!fragment.details || isEmptyActionStack(fragment)) {
+    return <></>
+  } else {
+    return (
+      <div
+        css={css`
+          padding: 8px;
+          border-left: solid 1px #eecf33;
+          border-right: solid 1px #eecf33;
+          border-bottom: solid 1px #eecf33;
+        `}
+      >
+        {fragment.details
+          ? fragment.details.map((command, index) =>
+              command ? (
+                <CommandComponent key={index} fragment={command} />
+              ) : (
+                <></>
+              )
+            )
+          : ''}
+      </div>
+    )
+  }
+}
 
 ActionStackComponent.fragment = gql`
   fragment ActionStackComponent on Action {

@@ -3,57 +3,48 @@ import { gql } from '@apollo/client'
 import { css } from '@emotion/react'
 import {
   ActionInstructionComponentFragment,
-  ActionInstructionComponentFragmentDoc,
+  ParagraphComponentFragment,
 } from '../generated/graphql'
-import { ActionLabel } from './ActionLabel'
 import {
-  ParagraphComponent,
+  createParagraph,
   isEmptyParagraph,
+  ParagraphComponent,
 } from '../paragraph/ParagraphComponent'
+import { ActionLabel } from './ActionLabel'
 
 interface ActionInstructionComponentProps {
   fragment: ActionInstructionComponentFragment
 }
 
-export const isEmptyActionInstruction = (
-  fragment: ActionInstructionComponentFragment
-): boolean => {
-  return !fragment.instruction || isEmptyParagraph(fragment.instruction)
-}
+const InnerComponent = ({
+  fragment,
+}: {
+  fragment: ParagraphComponentFragment
+}): JSX.Element => (
+  <div>
+    <ActionLabel />
+    <div
+      css={css`
+        padding: 8px;
+        border: solid 1px #eecf33;
+      `}
+    >
+      <ParagraphComponent fragment={fragment} />
+    </div>
+  </div>
+)
 
 export const ActionInstructionComponent = ({
   fragment,
 }: ActionInstructionComponentProps): JSX.Element => {
-  if (isEmptyActionInstruction(fragment)) {
+  if (!fragment.instruction || isEmptyParagraph(fragment.instruction)) {
     return (
-      <div>
-        <ActionLabel />
-        <div
-          // Just the bottom line adjacent to the next (below) component
-          css={css`
-            border-bottom: solid 1px #eecf33;
-          `}
-        />
-      </div>
+      <InnerComponent
+        fragment={createParagraph('エラー: アクションの指示文がありません')}
+      />
     )
   } else {
-    return (
-      <div>
-        <ActionLabel />
-        <div
-          css={css`
-            padding: 8px;
-            border: solid 1px #eecf33;
-          `}
-        >
-          {fragment.instruction ? (
-            <ParagraphComponent fragment={fragment.instruction} />
-          ) : (
-            <></>
-          )}
-        </div>
-      </div>
-    )
+    return <InnerComponent fragment={fragment.instruction} />
   }
 }
 
