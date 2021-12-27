@@ -490,7 +490,7 @@ export type CarouselComponentFragment = {
     | undefined
 }
 
-export type CarouselContentFragment = {
+export type CarouselContentComponentFragment = {
   __typename?: 'CarouselImage'
   images?:
     | Array<
@@ -669,8 +669,8 @@ export const CarouselItemFragmentDoc = gql`
   }
   ${CarouselImageFragmentDoc}
 `
-export const CarouselContentFragmentDoc = gql`
-  fragment CarouselContent on CarouselImage {
+export const CarouselContentComponentFragmentDoc = gql`
+  fragment CarouselContentComponent on CarouselImage {
     images {
       ...CarouselItem
     }
@@ -679,9 +679,9 @@ export const CarouselContentFragmentDoc = gql`
 `
 export const CarouselComponentFragmentDoc = gql`
   fragment CarouselComponent on CarouselImage {
-    ...CarouselContent
+    ...CarouselContentComponent
   }
-  ${CarouselContentFragmentDoc}
+  ${CarouselContentComponentFragmentDoc}
 `
 export const CommandComponent2FragmentDoc = gql`
   fragment CommandComponent2 on Command {

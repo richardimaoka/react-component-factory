@@ -1,12 +1,25 @@
 {
-  "__typename": "Action",
-  "instruction": {
-    "__typename": "Paragraph",
-    "chunks": [
-      {
-        "__typename": "TextChunk",
-        "text": "次の手順にしたがってnpmで現在入手可能な最新バージョンを確認してください"
-      }
-    ]
-  }
+  "__typename": "CarouselImage",
+  "images": [
+    {
+      "__typename": "Image",
+      "url": "https://res.cloudinary.com/richardimaoka/image/upload/v1640637728/carousel/1_drirhh.png",
+      "caption": "1st picture"
+    },
+    {
+      "__typename": "Image",
+      "url": "https://res.cloudinary.com/richardimaoka/image/upload/v1640637728/carousel/2_u8pzdm.png",
+      "caption": "2nd picture"
+    },
+    {
+      "__typename": "Image",
+      "url": "https://res.cloudinary.com/richardimaoka/image/upload/v1640637728/carousel/3_taktbm.png",
+      "caption": "3rd picture"
+    },
+    {
+      "__typename": "Image",
+      "url": "https://res.cloudinary.com/richardimaoka/image/upload/v1640637728/carousel/4_mnahrc.png",
+      "caption": "4th picture"
+    }
+  ]
 }
