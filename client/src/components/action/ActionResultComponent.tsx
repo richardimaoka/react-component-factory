@@ -2,47 +2,57 @@
 
 import { gql } from '@apollo/client'
 import { css } from '@emotion/react'
-import { ActionResultLabel } from './ActionResultLabel'
-import { CommandOutputComponent } from '../command/CommandOutputComponent'
 import { ActionResultComponentFragment } from '../../lib/generated/graphql'
+import { CommandComponent } from '../command/CommandComponent'
+import { CommandOutputComponent } from '../command/CommandOutputComponent'
+import { ParagraphComponent } from '../paragraph/ParagraphComponent'
+import {
+  isEmptyPlainElement,
+  PlainElementComponent,
+} from '../PlainElementComponent'
 
 interface ActionResultComponentProps {
   fragment: ActionResultComponentFragment
 }
 
-export const isEmptyActionResult = (
+export const isEmptyActionResults = (
   fragment: ActionResultComponentFragment
 ): boolean => {
-  return !fragment.results // || fragment.results. ... further checks
+  if (!fragment.results) {
+    return true
+  } else {
+    const isAnyElementContentful = fragment.results
+      .map(isEmptyPlainElement)
+      .includes(false) //see if any `isEmptyTextChunk == false`
+
+    const isEveryElementEmpty = !isAnyElementContentful
+
+    return isEveryElementEmpty
+  }
 }
 
 export const ActionResultComponent = ({
   fragment,
 }: ActionResultComponentProps): JSX.Element => {
-  if (!fragment.results) {
+  if (!fragment.results || isEmptyActionResults(fragment)) {
     return <></>
   } else {
     return (
       <div
         css={css`
-          margin-top: 10px;
+          padding: 8px;
+          border-left: solid 1px #eecf33;
+          border-right: solid 1px #eecf33;
+          border-bottom: solid 1px #eecf33;
         `}
       >
-        <ActionResultLabel />
-        <div
-          css={css`
-            padding: 8px;
-            border: solid 1px #b2b2b2;
-          `}
-        >
-          {fragment.results.map((resultCommand, index) =>
-            resultCommand ? (
-              <CommandOutputComponent key={index} fragment={resultCommand} />
-            ) : (
-              <></>
-            )
-          )}
-        </div>
+        {fragment.results.map((element, index) =>
+          element ? (
+            <PlainElementComponent key={index} fragment={element} />
+          ) : (
+            <></>
+          )
+        )}
       </div>
     )
   }
@@ -51,8 +61,19 @@ export const ActionResultComponent = ({
 ActionResultComponent.fragment = gql`
   fragment ActionResultComponent on Action {
     results {
-      ...CommandOutputComponent
+      ... on Paragraph {
+        ...ParagraphComponent
+      }
+      ... on Command {
+        ...CommandComponent
+      }
+      ... on CommandOutput {
+        ...CommandOutputComponent
+      }
     }
   }
+
+  ${ParagraphComponent.fragment}
+  ${CommandComponent.fragment}
   ${CommandOutputComponent.fragment}
 `

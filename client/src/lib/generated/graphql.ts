@@ -27,7 +27,7 @@ export type Action = {
   __typename?: 'Action'
   details?: Maybe<Array<Maybe<PlainElement>>>
   instruction?: Maybe<Paragraph>
-  results?: Maybe<Array<Maybe<CommandOutput>>>
+  results?: Maybe<Array<Maybe<PlainElement>>>
 }
 
 export type Author = {
@@ -108,7 +108,7 @@ export type Paragraph = {
 }
 
 /** PlainElement does not allow nesting itself */
-export type PlainElement = Command | Paragraph
+export type PlainElement = Command | CommandOutput | Paragraph
 
 export type Progress = {
   __typename?: 'Progress'
@@ -209,6 +209,7 @@ export type MainQuery = {
         details?:
           | Array<
               | { __typename?: 'Command'; text?: string | null | undefined }
+              | { __typename?: 'CommandOutput' }
               | {
                   __typename?: 'Paragraph'
                   chunks?:
@@ -235,9 +236,29 @@ export type MainQuery = {
           | undefined
         results?:
           | Array<
+              | { __typename?: 'Command'; text?: string | null | undefined }
               | {
                   __typename?: 'CommandOutput'
                   text?: string | null | undefined
+                }
+              | {
+                  __typename?: 'Paragraph'
+                  chunks?:
+                    | Array<
+                        | {
+                            __typename?: 'TextChunk'
+                            text?: string | null | undefined
+                            highlight?: boolean | null | undefined
+                            bold?: boolean | null | undefined
+                            hyperlinkUrl?: string | null | undefined
+                            strikeout?: boolean | null | undefined
+                            inlineCode?: boolean | null | undefined
+                          }
+                        | null
+                        | undefined
+                      >
+                    | null
+                    | undefined
                 }
               | null
               | undefined
@@ -251,6 +272,11 @@ export type MainQuery = {
 
 type PlainElementComponent_Command_Fragment = {
   __typename?: 'Command'
+  text?: string | null | undefined
+}
+
+type PlainElementComponent_CommandOutput_Fragment = {
+  __typename?: 'CommandOutput'
   text?: string | null | undefined
 }
 
@@ -276,6 +302,7 @@ type PlainElementComponent_Paragraph_Fragment = {
 
 export type PlainElementComponentFragment =
   | PlainElementComponent_Command_Fragment
+  | PlainElementComponent_CommandOutput_Fragment
   | PlainElementComponent_Paragraph_Fragment
 
 export type ActionComponentFragment = {
@@ -305,6 +332,7 @@ export type ActionComponentFragment = {
   details?:
     | Array<
         | { __typename?: 'Command'; text?: string | null | undefined }
+        | { __typename?: 'CommandOutput' }
         | {
             __typename?: 'Paragraph'
             chunks?:
@@ -331,7 +359,27 @@ export type ActionComponentFragment = {
     | undefined
   results?:
     | Array<
+        | { __typename?: 'Command'; text?: string | null | undefined }
         | { __typename?: 'CommandOutput'; text?: string | null | undefined }
+        | {
+            __typename?: 'Paragraph'
+            chunks?:
+              | Array<
+                  | {
+                      __typename?: 'TextChunk'
+                      text?: string | null | undefined
+                      highlight?: boolean | null | undefined
+                      bold?: boolean | null | undefined
+                      hyperlinkUrl?: string | null | undefined
+                      strikeout?: boolean | null | undefined
+                      inlineCode?: boolean | null | undefined
+                    }
+                  | null
+                  | undefined
+                >
+              | null
+              | undefined
+          }
         | null
         | undefined
       >
@@ -344,6 +392,7 @@ export type ActionDetailsComponentFragment = {
   details?:
     | Array<
         | { __typename?: 'Command'; text?: string | null | undefined }
+        | { __typename?: 'CommandOutput' }
         | {
             __typename?: 'Paragraph'
             chunks?:
@@ -400,7 +449,27 @@ export type ActionResultComponentFragment = {
   __typename?: 'Action'
   results?:
     | Array<
+        | { __typename?: 'Command'; text?: string | null | undefined }
         | { __typename?: 'CommandOutput'; text?: string | null | undefined }
+        | {
+            __typename?: 'Paragraph'
+            chunks?:
+              | Array<
+                  | {
+                      __typename?: 'TextChunk'
+                      text?: string | null | undefined
+                      highlight?: boolean | null | undefined
+                      bold?: boolean | null | undefined
+                      hyperlinkUrl?: string | null | undefined
+                      strikeout?: boolean | null | undefined
+                      inlineCode?: boolean | null | undefined
+                    }
+                  | null
+                  | undefined
+                >
+              | null
+              | undefined
+          }
         | null
         | undefined
       >
@@ -483,6 +552,11 @@ export const CommandComponentFragmentDoc = gql`
     text
   }
 `
+export const CommandOutputComponentFragmentDoc = gql`
+  fragment CommandOutputComponent on CommandOutput {
+    text
+  }
+`
 export const PlainElementComponentFragmentDoc = gql`
   fragment PlainElementComponent on PlainElement {
     ... on Paragraph {
@@ -491,9 +565,13 @@ export const PlainElementComponentFragmentDoc = gql`
     ... on Command {
       ...CommandComponent
     }
+    ... on CommandOutput {
+      ...CommandOutputComponent
+    }
   }
   ${ParagraphComponentFragmentDoc}
   ${CommandComponentFragmentDoc}
+  ${CommandOutputComponentFragmentDoc}
 `
 export const ActionInstructionComponentFragmentDoc = gql`
   fragment ActionInstructionComponent on Action {
@@ -517,17 +595,22 @@ export const ActionDetailsComponentFragmentDoc = gql`
   ${ParagraphComponentFragmentDoc}
   ${CommandComponentFragmentDoc}
 `
-export const CommandOutputComponentFragmentDoc = gql`
-  fragment CommandOutputComponent on CommandOutput {
-    text
-  }
-`
 export const ActionResultComponentFragmentDoc = gql`
   fragment ActionResultComponent on Action {
     results {
-      ...CommandOutputComponent
+      ... on Paragraph {
+        ...ParagraphComponent
+      }
+      ... on Command {
+        ...CommandComponent
+      }
+      ... on CommandOutput {
+        ...CommandOutputComponent
+      }
     }
   }
+  ${ParagraphComponentFragmentDoc}
+  ${CommandComponentFragmentDoc}
   ${CommandOutputComponentFragmentDoc}
 `
 export const ActionComponentFragmentDoc = gql`
@@ -705,8 +788,9 @@ export type DirectiveResolverFn<
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = ResolversObject<{
   Action: ResolverTypeWrapper<
-    Omit<Action, 'details'> & {
+    Omit<Action, 'details' | 'results'> & {
       details?: Maybe<Array<Maybe<ResolversTypes['PlainElement']>>>
+      results?: Maybe<Array<Maybe<ResolversTypes['PlainElement']>>>
     }
   >
   Author: ResolverTypeWrapper<Author>
@@ -740,7 +824,10 @@ export type ResolversTypes = ResolversObject<{
     | ResolversTypes['Paragraph']
     | ResolversTypes['Video']
   Paragraph: ResolverTypeWrapper<Paragraph>
-  PlainElement: ResolversTypes['Command'] | ResolversTypes['Paragraph']
+  PlainElement:
+    | ResolversTypes['Command']
+    | ResolversTypes['CommandOutput']
+    | ResolversTypes['Paragraph']
   Progress: ResolverTypeWrapper<Progress>
   Query: ResolverTypeWrapper<{}>
   String: ResolverTypeWrapper<Scalars['String']>
@@ -762,8 +849,9 @@ export type ResolversTypes = ResolversObject<{
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = ResolversObject<{
-  Action: Omit<Action, 'details'> & {
+  Action: Omit<Action, 'details' | 'results'> & {
     details?: Maybe<Array<Maybe<ResolversParentTypes['PlainElement']>>>
+    results?: Maybe<Array<Maybe<ResolversParentTypes['PlainElement']>>>
   }
   Author: Author
   Boolean: Scalars['Boolean']
@@ -794,6 +882,7 @@ export type ResolversParentTypes = ResolversObject<{
   Paragraph: Paragraph
   PlainElement:
     | ResolversParentTypes['Command']
+    | ResolversParentTypes['CommandOutput']
     | ResolversParentTypes['Paragraph']
   Progress: Progress
   Query: {}
@@ -826,7 +915,7 @@ export type ActionResolvers<
     ContextType
   >
   results?: Resolver<
-    Maybe<Array<Maybe<ResolversTypes['CommandOutput']>>>,
+    Maybe<Array<Maybe<ResolversTypes['PlainElement']>>>,
     ParentType,
     ContextType
   >
@@ -991,7 +1080,11 @@ export type PlainElementResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['PlainElement'] = ResolversParentTypes['PlainElement']
 > = ResolversObject<{
-  __resolveType: TypeResolveFn<'Command' | 'Paragraph', ParentType, ContextType>
+  __resolveType: TypeResolveFn<
+    'Command' | 'CommandOutput' | 'Paragraph',
+    ParentType,
+    ContextType
+  >
 }>
 
 export type ProgressResolvers<

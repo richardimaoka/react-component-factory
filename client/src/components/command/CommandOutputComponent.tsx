@@ -7,6 +7,12 @@ interface CommandOutputComponentProps {
   fragment: CommandOutputComponentFragment
 }
 
+export const isEmptyCommandOutput = (
+  fragment: CommandOutputComponentFragment
+): boolean => {
+  return !fragment.text || fragment.text.length === 0
+}
+
 export const CommandOutputComponent = ({
   fragment,
 }: CommandOutputComponentProps): JSX.Element => {

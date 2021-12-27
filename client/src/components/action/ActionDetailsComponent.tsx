@@ -31,8 +31,6 @@ export const isEmptyActionDetails = (
 export const ActionDetailsComponent = ({
   fragment,
 }: ActionDetailsComponentProps): JSX.Element => {
-  console.log(fragment)
-
   if (!fragment.details || isEmptyActionDetails(fragment)) {
     return <></>
   } else {

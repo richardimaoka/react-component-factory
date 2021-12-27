@@ -4,42 +4,30 @@
     "__typename": "Paragraph",
     "chunks": [
       {
-        "__typename": "TextChunk"
+        "__typename": "TextChunk",
+        "text": "以下のコマンドを実行してください"
       }
     ]
   },
-
   "details": [
     {
       "__typename": "Command",
-      "text": "mkdir /your/project/path"
-    },
-    {
-      "__typename": "Command",
-      "text": "cd /your/project/path"
-    },
+      "text": "> npm --version"
+    }
+  ],
+  "results": [
     {
       "__typename": "Paragraph",
       "chunks": [
         {
           "__typename": "TextChunk",
-          "text": "次にこれらのコマンドを実行してください"
+          "text": "以下のように数字でバージョンが表示されます"
         }
       ]
     },
     {
-      "__typename": "Command",
-      "text": "npm --init"
-    },
-    {
-      "__typename": "Command",
-      "text": "npm install cypress --save-dev"
-    }
-  ],
-  "results": [
-    {
-      "__typename": "CommandOuput",
-      "text": "This is the output This is the output This is the output This is the output This is the output This is the output This is the output This is the output This is the output This is the output\nThis is the output This is the output This is the output This is the output This is the output"
+      "__typename": "CommandOutput",
+      "text": "8.0.1"
     }
   ]
 }

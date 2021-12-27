@@ -4,6 +4,10 @@ import { PlainElementComponentFragment } from '../lib/generated/graphql'
 import { switchExhaustivenessCheck } from '../switchExhaustivenessCheck'
 import { CommandComponent, isEmptyCommand } from './command/CommandComponent'
 import {
+  CommandOutputComponent,
+  isEmptyCommandOutput,
+} from './command/CommandOutputComponent'
+import {
   isEmptyParagraph,
   ParagraphComponent,
 } from './paragraph/ParagraphComponent'
@@ -22,6 +26,8 @@ export const isEmptyPlainElement = (
     switch (typename) {
       case 'Command':
         return isEmptyCommand(fragment)
+      case 'CommandOutput':
+        return isEmptyCommandOutput(fragment)
       case 'Paragraph':
         return isEmptyParagraph(fragment)
       default:
@@ -39,10 +45,10 @@ export const PlainElementComponent = ({
     const typename = fragment.__typename
     switch (typename) {
       case 'Command':
-        console.log('rendering command')
         return <CommandComponent fragment={fragment} />
+      case 'CommandOutput':
+        return <CommandOutputComponent fragment={fragment} />
       case 'Paragraph':
-        console.log('rendering paragraph')
         return <ParagraphComponent fragment={fragment} />
       default:
         return switchExhaustivenessCheck(typename)
@@ -58,8 +64,12 @@ PlainElementComponent.fragment = gql`
     ... on Command {
       ...CommandComponent
     }
+    ... on CommandOutput {
+      ...CommandOutputComponent
+    }
   }
 
   ${ParagraphComponent.fragment}
   ${CommandComponent.fragment}
+  ${CommandOutputComponent.fragment}
 `
