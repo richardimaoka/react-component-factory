@@ -5,6 +5,7 @@ import { CarouselContentComponent } from './CarouselContentComponent'
 import { CarouselControlBar } from './CarouselControlBar'
 import { CarouselDescriptionComponent } from './CarouselDescriptionComponent'
 import { CarouselComponentFragment } from '../../lib/generated/graphql'
+import { useState } from 'react'
 
 export interface CarouselComponentProps {
   fragment: CarouselComponentFragment
@@ -13,7 +14,12 @@ export interface CarouselComponentProps {
 export const CarouselComponent = ({
   fragment,
 }: CarouselComponentProps): JSX.Element => {
-  console.log('kuzinsi')
+  //   const [currentItemNum, setCurrentItemNum] = useState(0)
+  //     const itemsLength = fragment.images.
+  // const gotoNextSlide = () => {
+
+  //   }
+
   return (
     <div
       css={css`
