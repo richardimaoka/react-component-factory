@@ -24,6 +24,7 @@ export const CarouselComponent = ({
     <div
       css={css`
         width: 640px;
+        height: 360px;
       `}
     >
       <CarouselContentComponent fragment={fragment} />

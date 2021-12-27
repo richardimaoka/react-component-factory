@@ -70,7 +70,9 @@ export type Image = {
   __typename?: 'Image'
   alt?: Maybe<Scalars['String']>
   caption?: Maybe<Scalars['String']>
+  height?: Maybe<Scalars['Int']>
   url?: Maybe<Scalars['String']>
+  width?: Maybe<Scalars['Int']>
 }
 
 export type Note = {
@@ -192,6 +194,8 @@ export type MainQuery = {
                   __typename?: 'Image'
                   url?: string | null | undefined
                   alt?: string | null | undefined
+                  width?: number | null | undefined
+                  height?: number | null | undefined
                 }
               | null
               | undefined
@@ -418,6 +422,8 @@ export type CarouselComponentFragment = {
             __typename?: 'Image'
             url?: string | null | undefined
             alt?: string | null | undefined
+            width?: number | null | undefined
+            height?: number | null | undefined
           }
         | null
         | undefined
@@ -434,6 +440,8 @@ export type CarouselContentComponentFragment = {
             __typename?: 'Image'
             url?: string | null | undefined
             alt?: string | null | undefined
+            width?: number | null | undefined
+            height?: number | null | undefined
           }
         | null
         | undefined
@@ -446,6 +454,8 @@ export type CarouselItemComponentFragment = {
   __typename?: 'Image'
   url?: string | null | undefined
   alt?: string | null | undefined
+  width?: number | null | undefined
+  height?: number | null | undefined
 }
 
 export type CommandComponentFragment = {
@@ -598,6 +608,8 @@ export const CarouselItemComponentFragmentDoc = gql`
   fragment CarouselItemComponent on Image {
     url
     alt
+    width
+    height
   }
 `
 export const CarouselContentComponentFragmentDoc = gql`
@@ -996,7 +1008,9 @@ export type ImageResolvers<
 > = ResolversObject<{
   alt?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   caption?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
+  height?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>
   url?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
+  width?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }>
 

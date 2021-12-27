@@ -65,6 +65,8 @@ type Image {
   url: String
   alt: String
   caption: String
+  width: Int
+  height: Int
 }
 
 type Command {
