@@ -13,7 +13,7 @@ export const isEmptyVideo = (fragment: VideoComponentFragment): boolean => {
 export const VideoComponent = ({
   fragment,
 }: VideoComponentProps): JSX.Element => {
-  if (isEmptyVideo(fragment)) {
+  if (!fragment.url || !fragment.platform || isEmptyVideo(fragment)) {
     return <></>
   } else {
     return (

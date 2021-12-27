@@ -86,7 +86,7 @@ type Paragraph {
 
 type Action {
   instruction: Paragraph
-  details: [Command]
+  details: [PlainElement]
   results: [CommandOutput]
 }
 

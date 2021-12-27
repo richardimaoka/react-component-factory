@@ -25,7 +25,7 @@ export type Scalars = {
 
 export type Action = {
   __typename?: 'Action'
-  details?: Maybe<Array<Maybe<Command>>>
+  details?: Maybe<Array<Maybe<PlainElement>>>
   instruction?: Maybe<Paragraph>
   results?: Maybe<Array<Maybe<CommandOutput>>>
 }
@@ -209,6 +209,7 @@ export type MainQuery = {
         details?:
           | Array<
               | { __typename?: 'Command'; text?: string | null | undefined }
+              | { __typename?: 'Paragraph' }
               | null
               | undefined
             >
@@ -286,6 +287,7 @@ export type ActionComponentFragment = {
   details?:
     | Array<
         | { __typename?: 'Command'; text?: string | null | undefined }
+        | { __typename?: 'Paragraph' }
         | null
         | undefined
       >
@@ -344,6 +346,7 @@ export type ActionStackComponentFragment = {
   details?:
     | Array<
         | { __typename?: 'Command'; text?: string | null | undefined }
+        | { __typename?: 'Paragraph' }
         | null
         | undefined
       >
@@ -641,7 +644,11 @@ export type DirectiveResolverFn<
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = ResolversObject<{
-  Action: ResolverTypeWrapper<Action>
+  Action: ResolverTypeWrapper<
+    Omit<Action, 'details'> & {
+      details?: Maybe<Array<Maybe<ResolversTypes['PlainElement']>>>
+    }
+  >
   Author: ResolverTypeWrapper<Author>
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>
   Command: ResolverTypeWrapper<Command>
@@ -695,7 +702,9 @@ export type ResolversTypes = ResolversObject<{
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = ResolversObject<{
-  Action: Action
+  Action: Omit<Action, 'details'> & {
+    details?: Maybe<Array<Maybe<ResolversParentTypes['PlainElement']>>>
+  }
   Author: Author
   Boolean: Scalars['Boolean']
   Command: Command
@@ -747,7 +756,7 @@ export type ActionResolvers<
   ParentType extends ResolversParentTypes['Action'] = ResolversParentTypes['Action']
 > = ResolversObject<{
   details?: Resolver<
-    Maybe<Array<Maybe<ResolversTypes['Command']>>>,
+    Maybe<Array<Maybe<ResolversTypes['PlainElement']>>>,
     ParentType,
     ContextType
   >

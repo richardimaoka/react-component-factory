@@ -3,6 +3,7 @@ import { gql } from '@apollo/client'
 import { css } from '@emotion/react'
 import { ActionStackComponentFragment } from '../../lib/generated/graphql'
 import { CommandComponent } from '../command/CommandComponent'
+import { PlainElementComponent } from '../PlainElementComponent'
 
 interface ActionStackComponentProps {
   fragment: ActionStackComponentFragment
@@ -30,7 +31,11 @@ export const ActionStackComponent = ({
         `}
       >
         {fragment.details.map((command, index) =>
-          command ? <CommandComponent key={index} fragment={command} /> : <></>
+          command ? (
+            <PlainElementComponent key={index} fragment={command} />
+          ) : (
+            <></>
+          )
         )}
       </div>
     )

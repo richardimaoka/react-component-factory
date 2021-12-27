@@ -15,28 +15,36 @@ interface PlainElementComponentProps {
 export const isEmptyPlainElement = (
   fragment: PlainElementComponentFragment
 ): boolean => {
-  const typename = fragment.__typename
-  switch (typename) {
-    case 'Command':
-      return isEmptyCommand(fragment)
-    case 'Paragraph':
-      return isEmptyParagraph(fragment)
-    default:
-      return switchExhaustivenessCheck(typename)
+  if (!fragment.__typename) {
+    return false
+  } else {
+    const typename = fragment.__typename
+    switch (typename) {
+      case 'Command':
+        return isEmptyCommand(fragment)
+      case 'Paragraph':
+        return isEmptyParagraph(fragment)
+      default:
+        return switchExhaustivenessCheck(typename)
+    }
   }
 }
 
 export const PlainElementComponent = ({
   fragment,
 }: PlainElementComponentProps): JSX.Element => {
-  const typename = fragment.__typename
-  switch (typename) {
-    case 'Command':
-      return <CommandComponent fragment={fragment} />
-    case 'Paragraph':
-      return <ParagraphComponent fragment={fragment} />
-    default:
-      return switchExhaustivenessCheck(typename)
+  if (!fragment.__typename) {
+    return <></>
+  } else {
+    const typename = fragment.__typename
+    switch (typename) {
+      case 'Command':
+        return <CommandComponent fragment={fragment} />
+      case 'Paragraph':
+        return <ParagraphComponent fragment={fragment} />
+      default:
+        return switchExhaustivenessCheck(typename)
+    }
   }
 }
 
