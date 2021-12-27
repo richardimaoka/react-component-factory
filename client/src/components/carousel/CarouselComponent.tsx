@@ -3,7 +3,7 @@ import { gql } from '@apollo/client'
 import { css } from '@emotion/react'
 import { CarouselContentComponent } from './CarouselContentComponent'
 import { CarouselControlBar } from './CarouselControlBar'
-import { CarouselDescription } from './CarouselDescriptionComponent'
+import { CarouselDescriptionComponent } from './CarouselDescriptionComponent'
 import { CarouselComponentFragment } from '../lib/generated/graphql'
 
 export interface CarouselComponentProps {
@@ -21,7 +21,7 @@ export const CarouselComponent = ({
     >
       <CarouselContentComponent fragment={fragment} />
       <CarouselControlBar />
-      <CarouselDescription />
+      <CarouselDescriptionComponent />
     </div>
   )
 }

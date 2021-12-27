@@ -482,7 +482,11 @@ export type CarouselComponentFragment = {
   __typename?: 'CarouselImage'
   images?:
     | Array<
-        | { __typename?: 'Image'; url?: string | null | undefined }
+        | {
+            __typename?: 'Image'
+            url?: string | null | undefined
+            caption?: string | null | undefined
+          }
         | null
         | undefined
       >
@@ -494,7 +498,11 @@ export type CarouselContentComponentFragment = {
   __typename?: 'CarouselImage'
   images?:
     | Array<
-        | { __typename?: 'Image'; url?: string | null | undefined }
+        | {
+            __typename?: 'Image'
+            url?: string | null | undefined
+            caption?: string | null | undefined
+          }
         | null
         | undefined
       >
@@ -502,14 +510,10 @@ export type CarouselContentComponentFragment = {
     | undefined
 }
 
-export type CarouselImageFragment = {
+export type CarouselItemComponentFragment = {
   __typename?: 'Image'
   url?: string | null | undefined
-}
-
-export type CarouselItemFragment = {
-  __typename?: 'Image'
-  url?: string | null | undefined
+  caption?: string | null | undefined
 }
 
 export type CommandComponentFragment = {
@@ -658,24 +662,19 @@ export const ActionComponentFragmentDoc = gql`
   ${ActionDetailsComponentFragmentDoc}
   ${ActionResultComponentFragmentDoc}
 `
-export const CarouselImageFragmentDoc = gql`
-  fragment CarouselImage on Image {
+export const CarouselItemComponentFragmentDoc = gql`
+  fragment CarouselItemComponent on Image {
     url
+    caption
   }
-`
-export const CarouselItemFragmentDoc = gql`
-  fragment CarouselItem on Image {
-    ...CarouselImage
-  }
-  ${CarouselImageFragmentDoc}
 `
 export const CarouselContentComponentFragmentDoc = gql`
   fragment CarouselContentComponent on CarouselImage {
     images {
-      ...CarouselItem
+      ...CarouselItemComponent
     }
   }
-  ${CarouselItemFragmentDoc}
+  ${CarouselItemComponentFragmentDoc}
 `
 export const CarouselComponentFragmentDoc = gql`
   fragment CarouselComponent on CarouselImage {

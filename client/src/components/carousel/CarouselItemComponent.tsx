@@ -1,14 +1,15 @@
 /** @jsxImportSource @emotion/react */
-import { gql } from "@apollo/client";
-import { css } from "@emotion/react";
-import { CarouselImage } from "./CarouselImageComponent";
-import { CarouselItemFragment } from "../lib/generated/graphql";
+import { gql } from '@apollo/client'
+import { css } from '@emotion/react'
+import { CarouselItemComponentFragment } from '../../lib/generated/graphql'
 
-interface CarouselItemProps {
-  fragment: CarouselItemFragment;
+interface CarouselItemComponentProps {
+  fragment: CarouselItemComponentFragment
 }
 
-export const CarouselItem = ({ fragment }: CarouselItemProps): JSX.Element => (
+export const CarouselItemComponent = ({
+  fragment,
+}: CarouselItemComponentProps): JSX.Element => (
   <div
     css={css`
       flex-shrink: 0;
@@ -25,14 +26,14 @@ export const CarouselItem = ({ fragment }: CarouselItemProps): JSX.Element => (
         align-items: center;
       `}
     >
-      <CarouselImage fragment={fragment} />
+      <img src={fragment.url} alt={fragment.caption} />
     </div>
   </div>
-);
+)
 
-CarouselItem.fragments = gql`
-  fragment CarouselItem on Image {
-    ...CarouselImage
+CarouselItemComponent.fragment = gql`
+  fragment CarouselItemComponent on Image {
+    url
+    caption
   }
-  ${CarouselImage.fragments}
-`;
+`

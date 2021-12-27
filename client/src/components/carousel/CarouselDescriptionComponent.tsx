@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
+import { css } from '@emotion/react'
 
-export const CarouselDescription = (): JSX.Element => (
+export const CarouselDescriptionComponent = (): JSX.Element => (
   <div
     css={css`
       padding: 8px;
@@ -17,4 +17,4 @@ export const CarouselDescription = (): JSX.Element => (
       Defender ファイアウォールを立ち上げます。
     </p>
   </div>
-);
+)
