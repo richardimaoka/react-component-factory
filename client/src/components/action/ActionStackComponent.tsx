@@ -29,15 +29,9 @@ export const ActionStackComponent = ({
           border-bottom: solid 1px #eecf33;
         `}
       >
-        {fragment.details
-          ? fragment.details.map((command, index) =>
-              command ? (
-                <CommandComponent key={index} fragment={command} />
-              ) : (
-                <></>
-              )
-            )
-          : ''}
+        {fragment.details.map((command, index) =>
+          command ? <CommandComponent key={index} fragment={command} /> : <></>
+        )}
       </div>
     )
   }
