@@ -88,6 +88,10 @@ export type Page = {
   title?: Maybe<Scalars['String']>
 }
 
+/**
+ * PageElement === PlainElement | Action | Foldable
+ * Action and Foldable allow nesting, but only one level of nesting.
+ */
 export type PageElement =
   | Action
   | Command
@@ -103,6 +107,7 @@ export type Paragraph = {
   chunks?: Maybe<Array<Maybe<TextChunk>>>
 }
 
+/** PlainElement does not allow nesting itself */
 export type PlainElement =
   | Action
   | Command

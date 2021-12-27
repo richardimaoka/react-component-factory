@@ -7,7 +7,7 @@ import {
   InMemoryCache,
 } from '@apollo/client'
 import { css } from '@emotion/react'
-import { useMainQuery } from './generated/graphql'
+import { useMainQuery } from '../lib/generated/graphql'
 import { ActionComponent } from './action/ActionComponent'
 
 gql`

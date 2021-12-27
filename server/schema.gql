@@ -23,16 +23,9 @@ type Page {
   pageElements: [PageElement]
 }
 
-union PageElement =
-    Paragraph
-  | Command
-  | CommandOutput
-  | Video
-  | Action
-  | ImageGroup
-  | Image
-  | Foldable
-
+"""
+PlainElement does not allow nesting itself
+"""
 union PlainElement =
     Paragraph
   | Command
@@ -41,6 +34,20 @@ union PlainElement =
   | Action
   | ImageGroup
   | Image
+
+"""
+PageElement === PlainElement | Action | Foldable
+Action and Foldable allow nesting, but only one level of nesting.
+"""
+union PageElement =
+    Paragraph
+  | Command
+  | CommandOutput
+  | Video
+  | ImageGroup
+  | Image
+  | Action
+  | Foldable
 
 enum VideoPlatform {
   YOUTUBE

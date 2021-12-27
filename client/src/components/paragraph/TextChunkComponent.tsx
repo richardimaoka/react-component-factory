@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { gql } from '@apollo/client'
-import { TextChunkComponentFragment } from '../generated/graphql'
+import { TextChunkComponentFragment } from '../../lib/generated/graphql'
 
 interface TextChunkProps {
   fragment: TextChunkComponentFragment

@@ -4,7 +4,7 @@ import { css } from '@emotion/react'
 import {
   ActionInstructionComponentFragment,
   ParagraphComponentFragment,
-} from '../generated/graphql'
+} from '../../lib/generated/graphql'
 import {
   createParagraph,
   isEmptyParagraph,
