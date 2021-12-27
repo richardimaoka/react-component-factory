@@ -1,7 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { gql } from '@apollo/client'
 import { css } from '@emotion/react'
-import { ActionInstructionComponentFragment } from '../generated/graphql'
+import {
+  ActionInstructionComponentFragment,
+  ActionInstructionComponentFragmentDoc,
+} from '../generated/graphql'
 import { ActionLabel } from './ActionLabel'
 import {
   ParagraphComponent,
@@ -12,10 +15,16 @@ interface ActionInstructionComponentProps {
   fragment: ActionInstructionComponentFragment
 }
 
+export const isEmptyActionInstruction = (
+  fragment: ActionInstructionComponentFragment
+): boolean => {
+  return !fragment.instruction || isEmptyParagraph(fragment.instruction)
+}
+
 export const ActionInstructionComponent = ({
   fragment,
 }: ActionInstructionComponentProps): JSX.Element => {
-  if (!fragment.instruction || isEmptyParagraph(fragment.instruction)) {
+  if (isEmptyActionInstruction(fragment)) {
     return (
       <div>
         <ActionLabel />
