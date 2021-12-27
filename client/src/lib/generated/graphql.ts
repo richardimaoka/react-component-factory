@@ -68,6 +68,7 @@ export type Foldable = {
 
 export type Image = {
   __typename?: 'Image'
+  alt?: Maybe<Scalars['String']>
   caption?: Maybe<Scalars['String']>
   url?: Maybe<Scalars['String']>
 }
@@ -182,84 +183,15 @@ export type MainQueryVariables = Exact<{ [key: string]: never }>
 
 export type MainQuery = {
   __typename?: 'Query'
-  action?:
+  carousel?:
     | {
-        __typename?: 'Action'
-        instruction?:
-          | {
-              __typename?: 'Paragraph'
-              chunks?:
-                | Array<
-                    | {
-                        __typename?: 'TextChunk'
-                        text?: string | null | undefined
-                        highlight?: boolean | null | undefined
-                        bold?: boolean | null | undefined
-                        hyperlinkUrl?: string | null | undefined
-                        strikeout?: boolean | null | undefined
-                        inlineCode?: boolean | null | undefined
-                      }
-                    | null
-                    | undefined
-                  >
-                | null
-                | undefined
-            }
-          | null
-          | undefined
-        details?:
+        __typename?: 'CarouselImage'
+        images?:
           | Array<
-              | { __typename?: 'Command'; text?: string | null | undefined }
-              | { __typename?: 'CommandOutput' }
               | {
-                  __typename?: 'Paragraph'
-                  chunks?:
-                    | Array<
-                        | {
-                            __typename?: 'TextChunk'
-                            text?: string | null | undefined
-                            highlight?: boolean | null | undefined
-                            bold?: boolean | null | undefined
-                            hyperlinkUrl?: string | null | undefined
-                            strikeout?: boolean | null | undefined
-                            inlineCode?: boolean | null | undefined
-                          }
-                        | null
-                        | undefined
-                      >
-                    | null
-                    | undefined
-                }
-              | null
-              | undefined
-            >
-          | null
-          | undefined
-        results?:
-          | Array<
-              | { __typename?: 'Command'; text?: string | null | undefined }
-              | {
-                  __typename?: 'CommandOutput'
-                  text?: string | null | undefined
-                }
-              | {
-                  __typename?: 'Paragraph'
-                  chunks?:
-                    | Array<
-                        | {
-                            __typename?: 'TextChunk'
-                            text?: string | null | undefined
-                            highlight?: boolean | null | undefined
-                            bold?: boolean | null | undefined
-                            hyperlinkUrl?: string | null | undefined
-                            strikeout?: boolean | null | undefined
-                            inlineCode?: boolean | null | undefined
-                          }
-                        | null
-                        | undefined
-                      >
-                    | null
-                    | undefined
+                  __typename?: 'Image'
+                  url?: string | null | undefined
+                  alt?: string | null | undefined
                 }
               | null
               | undefined
@@ -485,7 +417,7 @@ export type CarouselComponentFragment = {
         | {
             __typename?: 'Image'
             url?: string | null | undefined
-            caption?: string | null | undefined
+            alt?: string | null | undefined
           }
         | null
         | undefined
@@ -501,7 +433,7 @@ export type CarouselContentComponentFragment = {
         | {
             __typename?: 'Image'
             url?: string | null | undefined
-            caption?: string | null | undefined
+            alt?: string | null | undefined
           }
         | null
         | undefined
@@ -513,7 +445,7 @@ export type CarouselContentComponentFragment = {
 export type CarouselItemComponentFragment = {
   __typename?: 'Image'
   url?: string | null | undefined
-  caption?: string | null | undefined
+  alt?: string | null | undefined
 }
 
 export type CommandComponentFragment = {
@@ -665,7 +597,7 @@ export const ActionComponentFragmentDoc = gql`
 export const CarouselItemComponentFragmentDoc = gql`
   fragment CarouselItemComponent on Image {
     url
-    caption
+    alt
   }
 `
 export const CarouselContentComponentFragmentDoc = gql`
@@ -696,11 +628,11 @@ export const VideoComponentFragmentDoc = gql`
 `
 export const MainDocument = gql`
   query Main {
-    action {
-      ...ActionComponent
+    carousel {
+      ...CarouselComponent
     }
   }
-  ${ActionComponentFragmentDoc}
+  ${CarouselComponentFragmentDoc}
 `
 
 /**
@@ -1062,6 +994,7 @@ export type ImageResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['Image'] = ResolversParentTypes['Image']
 > = ResolversObject<{
+  alt?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   caption?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   url?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>

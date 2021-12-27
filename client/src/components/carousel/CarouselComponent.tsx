@@ -4,7 +4,7 @@ import { css } from '@emotion/react'
 import { CarouselContentComponent } from './CarouselContentComponent'
 import { CarouselControlBar } from './CarouselControlBar'
 import { CarouselDescriptionComponent } from './CarouselDescriptionComponent'
-import { CarouselComponentFragment } from '../lib/generated/graphql'
+import { CarouselComponentFragment } from '../../lib/generated/graphql'
 
 export interface CarouselComponentProps {
   fragment: CarouselComponentFragment
@@ -13,6 +13,7 @@ export interface CarouselComponentProps {
 export const CarouselComponent = ({
   fragment,
 }: CarouselComponentProps): JSX.Element => {
+  console.log('kuzinsi')
   return (
     <div
       css={css`
@@ -26,9 +27,9 @@ export const CarouselComponent = ({
   )
 }
 
-CarouselComponent.fragments = gql`
+CarouselComponent.fragment = gql`
   fragment CarouselComponent on CarouselImage {
     ...CarouselContentComponent
   }
-  ${CarouselContentComponent.fragments}
+  ${CarouselContentComponent.fragment}
 `

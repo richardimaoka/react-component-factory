@@ -63,6 +63,7 @@ type CarouselImage {
 
 type Image {
   url: String
+  alt: String
   caption: String
 }
 

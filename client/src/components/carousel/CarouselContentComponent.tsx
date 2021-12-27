@@ -28,7 +28,7 @@ export const CarouselContentComponent = ({
   )
 }
 
-CarouselContentComponent.fragments = gql`
+CarouselContentComponent.fragment = gql`
   fragment CarouselContentComponent on CarouselImage {
     images {
       ...CarouselItemComponent
