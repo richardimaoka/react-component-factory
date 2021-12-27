@@ -3,7 +3,10 @@ import { gql } from '@apollo/client'
 import { css } from '@emotion/react'
 import { ActionInstructionComponentFragment } from '../generated/graphql'
 import { ActionLabel } from './ActionLabel'
-import { ParagraphComponent } from '../paragraph/ParagraphComponent'
+import {
+  ParagraphComponent,
+  isEmptyParagraph,
+} from '../paragraph/ParagraphComponent'
 
 interface ActionInstructionComponentProps {
   fragment: ActionInstructionComponentFragment
@@ -12,19 +15,12 @@ interface ActionInstructionComponentProps {
 export const ActionInstructionComponent = ({
   fragment,
 }: ActionInstructionComponentProps): JSX.Element => {
-  if (
-    //if instruction is empty
-    !fragment.instruction ||
-    !fragment.instruction.chunks ||
-    //if instruction is array of empty chunks
-    fragment.instruction.chunks
-      .map((chunk) => (chunk && chunk.text ? chunk.text.length : 0))
-      .reduce((agg, curr) => agg + curr) === 0
-  ) {
+  if (!fragment.instruction || isEmptyParagraph(fragment.instruction)) {
     return (
       <div>
         <ActionLabel />
         <div
+          // Just the bottom line adjacent to the next (below) component
           css={css`
             border-bottom: solid 1px #eecf33;
           `}

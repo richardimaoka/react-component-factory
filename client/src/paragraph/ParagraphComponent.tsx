@@ -8,6 +8,14 @@ interface ParagraphProps {
   fragment: ParagraphComponentFragment
 }
 
+export const isEmptyParagraph = (
+  fragment: ParagraphComponentFragment
+): boolean =>
+  !fragment.chunks ||
+  fragment.chunks
+    .map((chunk) => (chunk && chunk.text ? chunk.text.length : 0))
+    .reduce((agg, curr) => agg + curr) === 0
+
 export const ParagraphComponent = ({
   fragment,
 }: ParagraphProps): JSX.Element => {
