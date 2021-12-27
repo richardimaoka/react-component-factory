@@ -7,10 +7,14 @@ interface CommandComponentProps {
   fragment: CommandComponentFragment
 }
 
+export const isEmptyCommand = (fragment: CommandComponentFragment): boolean => {
+  return !fragment.text || fragment.text.length === 0
+}
+
 export const CommandComponent = ({
   fragment,
 }: CommandComponentProps): JSX.Element => {
-  if (!fragment.text || fragment.text.length === 0) {
+  if (!fragment.text || isEmptyCommand(fragment)) {
     return <></>
   } else {
     return (
