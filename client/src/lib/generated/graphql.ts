@@ -396,6 +396,13 @@ export type TextChunkComponentFragment = {
   inlineCode?: boolean | null | undefined
 }
 
+export type VideoComponentFragment = {
+  __typename?: 'Video'
+  platform?: VideoPlatform | null | undefined
+  url?: string | null | undefined
+  caption?: string | null | undefined
+}
+
 export const TextChunkComponentFragmentDoc = gql`
   fragment TextChunkComponent on TextChunk {
     text
@@ -473,6 +480,13 @@ export const ActionComponentFragmentDoc = gql`
 export const CommandComponent2FragmentDoc = gql`
   fragment CommandComponent2 on Command {
     text
+  }
+`
+export const VideoComponentFragmentDoc = gql`
+  fragment VideoComponent on Video {
+    platform
+    url
+    caption
   }
 `
 export const MainDocument = gql`
