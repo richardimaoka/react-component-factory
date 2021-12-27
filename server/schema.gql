@@ -26,14 +26,12 @@ type Page {
 """
 PlainElement does not allow nesting itself
 """
-union PlainElement =
-    Paragraph
-  | Command
-  | CommandOutput
-  | Video
-  | Action
-  | ImageGroup
-  | Image
+union PlainElement = Paragraph | Command
+# | CommandOutput
+# | Video
+# | Action
+# | ImageGroup
+# | Image
 
 """
 PageElement === PlainElement | Action | Foldable

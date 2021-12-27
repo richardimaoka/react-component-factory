@@ -108,14 +108,7 @@ export type Paragraph = {
 }
 
 /** PlainElement does not allow nesting itself */
-export type PlainElement =
-  | Action
-  | Command
-  | CommandOutput
-  | Image
-  | ImageGroup
-  | Paragraph
-  | Video
+export type PlainElement = Command | Paragraph
 
 export type Progress = {
   __typename?: 'Progress'
@@ -236,6 +229,35 @@ export type MainQuery = {
     | null
     | undefined
 }
+
+type PlainElementComponent_Command_Fragment = {
+  __typename?: 'Command'
+  text?: string | null | undefined
+}
+
+type PlainElementComponent_Paragraph_Fragment = {
+  __typename?: 'Paragraph'
+  chunks?:
+    | Array<
+        | {
+            __typename?: 'TextChunk'
+            text?: string | null | undefined
+            highlight?: boolean | null | undefined
+            bold?: boolean | null | undefined
+            hyperlinkUrl?: string | null | undefined
+            strikeout?: boolean | null | undefined
+            inlineCode?: boolean | null | undefined
+          }
+        | null
+        | undefined
+      >
+    | null
+    | undefined
+}
+
+export type PlainElementComponentFragment =
+  | PlainElementComponent_Command_Fragment
+  | PlainElementComponent_Paragraph_Fragment
 
 export type ActionComponentFragment = {
   __typename?: 'Action'
@@ -392,6 +414,23 @@ export const ParagraphComponentFragmentDoc = gql`
   }
   ${TextChunkComponentFragmentDoc}
 `
+export const CommandComponentFragmentDoc = gql`
+  fragment CommandComponent on Command {
+    text
+  }
+`
+export const PlainElementComponentFragmentDoc = gql`
+  fragment PlainElementComponent on PlainElement {
+    ... on Paragraph {
+      ...ParagraphComponent
+    }
+    ... on Command {
+      ...CommandComponent
+    }
+  }
+  ${ParagraphComponentFragmentDoc}
+  ${CommandComponentFragmentDoc}
+`
 export const ActionInstructionComponentFragmentDoc = gql`
   fragment ActionInstructionComponent on Action {
     instruction {
@@ -399,11 +438,6 @@ export const ActionInstructionComponentFragmentDoc = gql`
     }
   }
   ${ParagraphComponentFragmentDoc}
-`
-export const CommandComponentFragmentDoc = gql`
-  fragment CommandComponent on Command {
-    text
-  }
 `
 export const ActionStackComponentFragmentDoc = gql`
   fragment ActionStackComponent on Action {
@@ -625,14 +659,7 @@ export type ResolversTypes = ResolversObject<{
     | ResolversTypes['Paragraph']
     | ResolversTypes['Video']
   Paragraph: ResolverTypeWrapper<Paragraph>
-  PlainElement:
-    | ResolversTypes['Action']
-    | ResolversTypes['Command']
-    | ResolversTypes['CommandOutput']
-    | ResolversTypes['Image']
-    | ResolversTypes['ImageGroup']
-    | ResolversTypes['Paragraph']
-    | ResolversTypes['Video']
+  PlainElement: ResolversTypes['Command'] | ResolversTypes['Paragraph']
   Progress: ResolverTypeWrapper<Progress>
   Query: ResolverTypeWrapper<{}>
   String: ResolverTypeWrapper<Scalars['String']>
@@ -683,13 +710,8 @@ export type ResolversParentTypes = ResolversObject<{
     | ResolversParentTypes['Video']
   Paragraph: Paragraph
   PlainElement:
-    | ResolversParentTypes['Action']
     | ResolversParentTypes['Command']
-    | ResolversParentTypes['CommandOutput']
-    | ResolversParentTypes['Image']
-    | ResolversParentTypes['ImageGroup']
     | ResolversParentTypes['Paragraph']
-    | ResolversParentTypes['Video']
   Progress: Progress
   Query: {}
   String: Scalars['String']
@@ -886,17 +908,7 @@ export type PlainElementResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['PlainElement'] = ResolversParentTypes['PlainElement']
 > = ResolversObject<{
-  __resolveType: TypeResolveFn<
-    | 'Action'
-    | 'Command'
-    | 'CommandOutput'
-    | 'Image'
-    | 'ImageGroup'
-    | 'Paragraph'
-    | 'Video',
-    ParentType,
-    ContextType
-  >
+  __resolveType: TypeResolveFn<'Command' | 'Paragraph', ParentType, ContextType>
 }>
 
 export type ProgressResolvers<
