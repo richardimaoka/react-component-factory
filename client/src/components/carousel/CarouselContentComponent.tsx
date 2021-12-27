@@ -1,11 +1,11 @@
 /** @jsxImportSource @emotion/react */
-import { gql } from "@apollo/client";
-import { css } from "@emotion/react";
-import { CarouselItem } from "./CarouselItemComponent";
-import { CarouselContentFragment } from "../lib/generated/graphql";
+import { gql } from '@apollo/client'
+import { css } from '@emotion/react'
+import { CarouselItem } from './CarouselItemComponent'
+import { CarouselContentFragment } from '../lib/generated/graphql'
 
 interface CarouselContentProps {
-  fragment: CarouselContentFragment;
+  fragment: CarouselContentFragment
 }
 
 export const CarouselContent = ({
@@ -25,14 +25,14 @@ export const CarouselContent = ({
     </div>
   ) : (
     <></>
-  );
-};
+  )
+}
 
 CarouselContent.fragments = gql`
-  fragment CarouselContent on ImageGroup {
+  fragment CarouselContent on CarouselImage {
     images {
       ...CarouselItem
     }
   }
   ${CarouselItem.fragments}
-`;
+`

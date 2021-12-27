@@ -1,5 +1,6 @@
 type Query {
   action: Action
+  carousel: CarouselImage
 }
 
 type Author {
@@ -28,7 +29,7 @@ PlainElement does not allow nesting itself
 """
 union PlainElement = Paragraph | Command | CommandOutput
 # | Video
-# | ImageGroup
+# | CarouselImage
 # | Image
 
 """
@@ -40,7 +41,7 @@ union PageElement =
   | Command
   | CommandOutput
   | Video
-  | ImageGroup
+  | CarouselImage
   | Image
   | Action
   | Foldable
@@ -56,7 +57,7 @@ type Video {
   caption: String
 }
 
-type ImageGroup {
+type CarouselImage {
   images: [Image]
 }
 

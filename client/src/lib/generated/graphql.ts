@@ -35,6 +35,11 @@ export type Author = {
   id?: Maybe<Scalars['ID']>
 }
 
+export type CarouselImage = {
+  __typename?: 'CarouselImage'
+  images?: Maybe<Array<Maybe<Image>>>
+}
+
 export type Command = {
   __typename?: 'Command'
   text?: Maybe<Scalars['String']>
@@ -67,11 +72,6 @@ export type Image = {
   url?: Maybe<Scalars['String']>
 }
 
-export type ImageGroup = {
-  __typename?: 'ImageGroup'
-  images?: Maybe<Array<Maybe<Image>>>
-}
-
 export type Note = {
   __typename?: 'Note'
   body?: Maybe<Scalars['String']>
@@ -94,11 +94,11 @@ export type Page = {
  */
 export type PageElement =
   | Action
+  | CarouselImage
   | Command
   | CommandOutput
   | Foldable
   | Image
-  | ImageGroup
   | Paragraph
   | Video
 
@@ -119,6 +119,7 @@ export type Progress = {
 export type Query = {
   __typename?: 'Query'
   action?: Maybe<Action>
+  carousel?: Maybe<CarouselImage>
 }
 
 export type TextChunk = {
@@ -478,7 +479,7 @@ export type ActionResultComponentFragment = {
 }
 
 export type CarouselComponentFragment = {
-  __typename?: 'ImageGroup'
+  __typename?: 'CarouselImage'
   images?:
     | Array<
         | { __typename?: 'Image'; url?: string | null | undefined }
@@ -490,7 +491,7 @@ export type CarouselComponentFragment = {
 }
 
 export type CarouselContentFragment = {
-  __typename?: 'ImageGroup'
+  __typename?: 'CarouselImage'
   images?:
     | Array<
         | { __typename?: 'Image'; url?: string | null | undefined }
@@ -669,7 +670,7 @@ export const CarouselItemFragmentDoc = gql`
   ${CarouselImageFragmentDoc}
 `
 export const CarouselContentFragmentDoc = gql`
-  fragment CarouselContent on ImageGroup {
+  fragment CarouselContent on CarouselImage {
     images {
       ...CarouselItem
     }
@@ -677,7 +678,7 @@ export const CarouselContentFragmentDoc = gql`
   ${CarouselItemFragmentDoc}
 `
 export const CarouselComponentFragmentDoc = gql`
-  fragment CarouselComponent on ImageGroup {
+  fragment CarouselComponent on CarouselImage {
     ...CarouselContent
   }
   ${CarouselContentFragmentDoc}
@@ -854,6 +855,7 @@ export type ResolversTypes = ResolversObject<{
   >
   Author: ResolverTypeWrapper<Author>
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>
+  CarouselImage: ResolverTypeWrapper<CarouselImage>
   Command: ResolverTypeWrapper<Command>
   CommandOutput: ResolverTypeWrapper<CommandOutput>
   DecorateTextChunksInput: ResolverTypeWrapper<DecorateTextChunksInput>
@@ -865,7 +867,6 @@ export type ResolversTypes = ResolversObject<{
   >
   ID: ResolverTypeWrapper<Scalars['ID']>
   Image: ResolverTypeWrapper<Image>
-  ImageGroup: ResolverTypeWrapper<ImageGroup>
   Int: ResolverTypeWrapper<Scalars['Int']>
   Note: ResolverTypeWrapper<Note>
   Page: ResolverTypeWrapper<
@@ -875,11 +876,11 @@ export type ResolversTypes = ResolversObject<{
   >
   PageElement:
     | ResolversTypes['Action']
+    | ResolversTypes['CarouselImage']
     | ResolversTypes['Command']
     | ResolversTypes['CommandOutput']
     | ResolversTypes['Foldable']
     | ResolversTypes['Image']
-    | ResolversTypes['ImageGroup']
     | ResolversTypes['Paragraph']
     | ResolversTypes['Video']
   Paragraph: ResolverTypeWrapper<Paragraph>
@@ -914,6 +915,7 @@ export type ResolversParentTypes = ResolversObject<{
   }
   Author: Author
   Boolean: Scalars['Boolean']
+  CarouselImage: CarouselImage
   Command: Command
   CommandOutput: CommandOutput
   DecorateTextChunksInput: DecorateTextChunksInput
@@ -923,7 +925,6 @@ export type ResolversParentTypes = ResolversObject<{
   }
   ID: Scalars['ID']
   Image: Image
-  ImageGroup: ImageGroup
   Int: Scalars['Int']
   Note: Note
   Page: Omit<Page, 'pageElements'> & {
@@ -931,11 +932,11 @@ export type ResolversParentTypes = ResolversObject<{
   }
   PageElement:
     | ResolversParentTypes['Action']
+    | ResolversParentTypes['CarouselImage']
     | ResolversParentTypes['Command']
     | ResolversParentTypes['CommandOutput']
     | ResolversParentTypes['Foldable']
     | ResolversParentTypes['Image']
-    | ResolversParentTypes['ImageGroup']
     | ResolversParentTypes['Paragraph']
     | ResolversParentTypes['Video']
   Paragraph: Paragraph
@@ -986,6 +987,18 @@ export type AuthorResolvers<
   ParentType extends ResolversParentTypes['Author'] = ResolversParentTypes['Author']
 > = ResolversObject<{
   id?: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
+}>
+
+export type CarouselImageResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['CarouselImage'] = ResolversParentTypes['CarouselImage']
+> = ResolversObject<{
+  images?: Resolver<
+    Maybe<Array<Maybe<ResolversTypes['Image']>>>,
+    ParentType,
+    ContextType
+  >
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }>
 
@@ -1055,18 +1068,6 @@ export type ImageResolvers<
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }>
 
-export type ImageGroupResolvers<
-  ContextType = any,
-  ParentType extends ResolversParentTypes['ImageGroup'] = ResolversParentTypes['ImageGroup']
-> = ResolversObject<{
-  images?: Resolver<
-    Maybe<Array<Maybe<ResolversTypes['Image']>>>,
-    ParentType,
-    ContextType
-  >
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
-}>
-
 export type NoteResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['Note'] = ResolversParentTypes['Note']
@@ -1111,11 +1112,11 @@ export type PageElementResolvers<
 > = ResolversObject<{
   __resolveType: TypeResolveFn<
     | 'Action'
+    | 'CarouselImage'
     | 'Command'
     | 'CommandOutput'
     | 'Foldable'
     | 'Image'
-    | 'ImageGroup'
     | 'Paragraph'
     | 'Video',
     ParentType,
@@ -1164,6 +1165,11 @@ export type QueryResolvers<
   ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']
 > = ResolversObject<{
   action?: Resolver<Maybe<ResolversTypes['Action']>, ParentType, ContextType>
+  carousel?: Resolver<
+    Maybe<ResolversTypes['CarouselImage']>,
+    ParentType,
+    ContextType
+  >
 }>
 
 export type TextChunkResolvers<
@@ -1293,13 +1299,13 @@ export type VideoResolvers<
 export type Resolvers<ContextType = any> = ResolversObject<{
   Action?: ActionResolvers<ContextType>
   Author?: AuthorResolvers<ContextType>
+  CarouselImage?: CarouselImageResolvers<ContextType>
   Command?: CommandResolvers<ContextType>
   CommandOutput?: CommandOutputResolvers<ContextType>
   DecorateTextChunksInput?: DecorateTextChunksInputResolvers<ContextType>
   DirectoryStructure?: DirectoryStructureResolvers<ContextType>
   Foldable?: FoldableResolvers<ContextType>
   Image?: ImageResolvers<ContextType>
-  ImageGroup?: ImageGroupResolvers<ContextType>
   Note?: NoteResolvers<ContextType>
   Page?: PageResolvers<ContextType>
   PageElement?: PageElementResolvers<ContextType>
