@@ -2,13 +2,13 @@
 import { gql } from '@apollo/client'
 import { css } from '@emotion/react'
 import { CarouselItem } from './CarouselItemComponent'
-import { CarouselContentFragment } from '../lib/generated/graphql'
+import { CarouselContentFragment } from '../../lib/generated/graphql'
 
 interface CarouselContentProps {
   fragment: CarouselContentFragment
 }
 
-export const CarouselContent = ({
+export const CarouselContentComponent = ({
   fragment,
 }: CarouselContentProps): JSX.Element => {
   return fragment.images ? (
@@ -28,8 +28,8 @@ export const CarouselContent = ({
   )
 }
 
-CarouselContent.fragments = gql`
-  fragment CarouselContent on CarouselImage {
+CarouselContentComponent.fragments = gql`
+  fragment CarouselContentComponent on CarouselImage {
     images {
       ...CarouselItem
     }
