@@ -3,22 +3,37 @@ import { gql } from '@apollo/client'
 import { css } from '@emotion/react'
 import { ActionStackComponentFragment } from '../../lib/generated/graphql'
 import { CommandComponent } from '../command/CommandComponent'
-import { PlainElementComponent } from '../PlainElementComponent'
+import { ParagraphComponent } from '../paragraph/ParagraphComponent'
+import {
+  isEmptyPlainElement,
+  PlainElementComponent,
+} from '../PlainElementComponent'
 
 interface ActionStackComponentProps {
   fragment: ActionStackComponentFragment
 }
 
-export const isEmptyActionStack = (
+export const isEmptyActionDetails = (
   fragment: ActionStackComponentFragment
 ): boolean => {
-  return !fragment.details // || further checks
-}
+  if (!fragment.details) {
+    return true
+  } else {
+    const isAnyElementContentful = fragment.details
+      .map(isEmptyPlainElement)
+      .includes(false) //see if any `isEmptyTextChunk == false`
 
-export const ActionStackComponent = ({
+    const isEveryChunkEmpty = !isAnyElementContentful
+
+    return isEveryChunkEmpty
+  }
+}
+export const ActionDetailsComponent = ({
   fragment,
 }: ActionStackComponentProps): JSX.Element => {
-  if (!fragment.details || isEmptyActionStack(fragment)) {
+  console.log(fragment)
+
+  if (!fragment.details || isEmptyActionDetails(fragment)) {
     return <></>
   } else {
     return (
@@ -42,12 +57,18 @@ export const ActionStackComponent = ({
   }
 }
 
-ActionStackComponent.fragment = gql`
+ActionDetailsComponent.fragment = gql`
   fragment ActionStackComponent on Action {
     details {
-      ...CommandComponent
+      ... on Paragraph {
+        ...ParagraphComponent
+      }
+      ... on Command {
+        ...CommandComponent
+      }
     }
   }
 
+  ${ParagraphComponent.fragment}
   ${CommandComponent.fragment}
 `

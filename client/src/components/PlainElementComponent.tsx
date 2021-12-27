@@ -13,9 +13,9 @@ interface PlainElementComponentProps {
 }
 
 export const isEmptyPlainElement = (
-  fragment: PlainElementComponentFragment
+  fragment: PlainElementComponentFragment | null | undefined
 ): boolean => {
-  if (!fragment.__typename) {
+  if (!fragment || !fragment.__typename) {
     return false
   } else {
     const typename = fragment.__typename
@@ -33,14 +33,18 @@ export const isEmptyPlainElement = (
 export const PlainElementComponent = ({
   fragment,
 }: PlainElementComponentProps): JSX.Element => {
-  if (!fragment.__typename) {
+  if (!fragment.__typename || isEmptyPlainElement(fragment)) {
     return <></>
   } else {
     const typename = fragment.__typename
+    console.log('typename in switch:', typename)
+
     switch (typename) {
       case 'Command':
+        console.log('rendering command')
         return <CommandComponent fragment={fragment} />
       case 'Paragraph':
+        console.log('rendering paragraph')
         return <ParagraphComponent fragment={fragment} />
       default:
         return switchExhaustivenessCheck(typename)
@@ -54,7 +58,7 @@ PlainElementComponent.fragment = gql`
       ...ParagraphComponent
     }
     ... on Command {
-      ...CommandComponent
+      text
     }
   }
 

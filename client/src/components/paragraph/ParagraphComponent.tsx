@@ -24,7 +24,7 @@ export const isEmptyParagraph = (
   fragment: ParagraphComponentFragment
 ): boolean => {
   if (!fragment.chunks) {
-    return false
+    return true
   } else {
     const isAnyChunkContentful = fragment.chunks
       .map(isEmptyTextChunk)

@@ -2,7 +2,7 @@
 
 import { gql } from '@apollo/client'
 import { ActionInstructionComponent } from './ActionInstructionComponent'
-import { ActionStackComponent } from './ActionStackComponent'
+import { ActionDetailsComponent } from './ActionDetailsComponent'
 import { ActionComponentFragment } from '../../lib/generated/graphql'
 import { ActionResultComponent } from './ActionResultComponent'
 
@@ -16,7 +16,7 @@ export const ActionComponent = ({
   return (
     <div>
       <ActionInstructionComponent fragment={fragment} />
-      <ActionStackComponent fragment={fragment} />
+      <ActionDetailsComponent fragment={fragment} />
       <ActionResultComponent fragment={fragment} />
     </div>
   )

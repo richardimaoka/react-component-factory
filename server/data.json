@@ -8,6 +8,7 @@
       }
     ]
   },
+
   "details": [
     {
       "__typename": "Command",
@@ -16,6 +17,15 @@
     {
       "__typename": "Command",
       "text": "cd /your/project/path"
+    },
+    {
+      "__typename": "Paragraph",
+      "chunks": [
+        {
+          "__typename": "TextChunk",
+          "text": "次にこれらのコマンドを実行してください"
+        }
+      ]
     },
     {
       "__typename": "Command",

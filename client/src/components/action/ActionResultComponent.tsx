@@ -35,9 +35,9 @@ export const ActionResultComponent = ({
             border: solid 1px #b2b2b2;
           `}
         >
-          {fragment.results.map((resultCommand) =>
+          {fragment.results.map((resultCommand, index) =>
             resultCommand ? (
-              <CommandOutputComponent fragment={resultCommand} />
+              <CommandOutputComponent key={index} fragment={resultCommand} />
             ) : (
               <></>
             )

@@ -209,7 +209,25 @@ export type MainQuery = {
         details?:
           | Array<
               | { __typename?: 'Command'; text?: string | null | undefined }
-              | { __typename?: 'Paragraph' }
+              | {
+                  __typename?: 'Paragraph'
+                  chunks?:
+                    | Array<
+                        | {
+                            __typename?: 'TextChunk'
+                            text?: string | null | undefined
+                            highlight?: boolean | null | undefined
+                            bold?: boolean | null | undefined
+                            hyperlinkUrl?: string | null | undefined
+                            strikeout?: boolean | null | undefined
+                            inlineCode?: boolean | null | undefined
+                          }
+                        | null
+                        | undefined
+                      >
+                    | null
+                    | undefined
+                }
               | null
               | undefined
             >
@@ -287,7 +305,25 @@ export type ActionComponentFragment = {
   details?:
     | Array<
         | { __typename?: 'Command'; text?: string | null | undefined }
-        | { __typename?: 'Paragraph' }
+        | {
+            __typename?: 'Paragraph'
+            chunks?:
+              | Array<
+                  | {
+                      __typename?: 'TextChunk'
+                      text?: string | null | undefined
+                      highlight?: boolean | null | undefined
+                      bold?: boolean | null | undefined
+                      hyperlinkUrl?: string | null | undefined
+                      strikeout?: boolean | null | undefined
+                      inlineCode?: boolean | null | undefined
+                    }
+                  | null
+                  | undefined
+                >
+              | null
+              | undefined
+          }
         | null
         | undefined
       >
@@ -296,6 +332,37 @@ export type ActionComponentFragment = {
   results?:
     | Array<
         | { __typename?: 'CommandOutput'; text?: string | null | undefined }
+        | null
+        | undefined
+      >
+    | null
+    | undefined
+}
+
+export type ActionStackComponentFragment = {
+  __typename?: 'Action'
+  details?:
+    | Array<
+        | { __typename?: 'Command'; text?: string | null | undefined }
+        | {
+            __typename?: 'Paragraph'
+            chunks?:
+              | Array<
+                  | {
+                      __typename?: 'TextChunk'
+                      text?: string | null | undefined
+                      highlight?: boolean | null | undefined
+                      bold?: boolean | null | undefined
+                      hyperlinkUrl?: string | null | undefined
+                      strikeout?: boolean | null | undefined
+                      inlineCode?: boolean | null | undefined
+                    }
+                  | null
+                  | undefined
+                >
+              | null
+              | undefined
+          }
         | null
         | undefined
       >
@@ -334,19 +401,6 @@ export type ActionResultComponentFragment = {
   results?:
     | Array<
         | { __typename?: 'CommandOutput'; text?: string | null | undefined }
-        | null
-        | undefined
-      >
-    | null
-    | undefined
-}
-
-export type ActionStackComponentFragment = {
-  __typename?: 'Action'
-  details?:
-    | Array<
-        | { __typename?: 'Command'; text?: string | null | undefined }
-        | { __typename?: 'Paragraph' }
         | null
         | undefined
       >
@@ -424,22 +478,16 @@ export const ParagraphComponentFragmentDoc = gql`
   }
   ${TextChunkComponentFragmentDoc}
 `
-export const CommandComponentFragmentDoc = gql`
-  fragment CommandComponent on Command {
-    text
-  }
-`
 export const PlainElementComponentFragmentDoc = gql`
   fragment PlainElementComponent on PlainElement {
     ... on Paragraph {
       ...ParagraphComponent
     }
     ... on Command {
-      ...CommandComponent
+      text
     }
   }
   ${ParagraphComponentFragmentDoc}
-  ${CommandComponentFragmentDoc}
 `
 export const ActionInstructionComponentFragmentDoc = gql`
   fragment ActionInstructionComponent on Action {
@@ -449,12 +497,23 @@ export const ActionInstructionComponentFragmentDoc = gql`
   }
   ${ParagraphComponentFragmentDoc}
 `
+export const CommandComponentFragmentDoc = gql`
+  fragment CommandComponent on Command {
+    text
+  }
+`
 export const ActionStackComponentFragmentDoc = gql`
   fragment ActionStackComponent on Action {
     details {
-      ...CommandComponent
+      ... on Paragraph {
+        ...ParagraphComponent
+      }
+      ... on Command {
+        ...CommandComponent
+      }
     }
   }
+  ${ParagraphComponentFragmentDoc}
   ${CommandComponentFragmentDoc}
 `
 export const CommandOutputComponentFragmentDoc = gql`
