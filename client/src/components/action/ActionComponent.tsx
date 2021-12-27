@@ -25,10 +25,11 @@ export const ActionComponent = ({
 ActionComponent.fragment = gql`
   fragment ActionComponent on Action {
     ...ActionInstructionComponent
-    ...ActionStackComponent
+    ...ActionDetailsComponent
     ...ActionResultComponent
   }
 
   ${ActionInstructionComponent.fragment}
+  ${ActionDetailsComponent.fragment}
   ${ActionResultComponent.fragment}
 `

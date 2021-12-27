@@ -37,8 +37,6 @@ export const PlainElementComponent = ({
     return <></>
   } else {
     const typename = fragment.__typename
-    console.log('typename in switch:', typename)
-
     switch (typename) {
       case 'Command':
         console.log('rendering command')
@@ -58,7 +56,7 @@ PlainElementComponent.fragment = gql`
       ...ParagraphComponent
     }
     ... on Command {
-      text
+      ...CommandComponent
     }
   }
 

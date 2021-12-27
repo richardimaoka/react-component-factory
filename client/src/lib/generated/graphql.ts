@@ -339,7 +339,7 @@ export type ActionComponentFragment = {
     | undefined
 }
 
-export type ActionStackComponentFragment = {
+export type ActionDetailsComponentFragment = {
   __typename?: 'Action'
   details?:
     | Array<
@@ -478,16 +478,22 @@ export const ParagraphComponentFragmentDoc = gql`
   }
   ${TextChunkComponentFragmentDoc}
 `
+export const CommandComponentFragmentDoc = gql`
+  fragment CommandComponent on Command {
+    text
+  }
+`
 export const PlainElementComponentFragmentDoc = gql`
   fragment PlainElementComponent on PlainElement {
     ... on Paragraph {
       ...ParagraphComponent
     }
     ... on Command {
-      text
+      ...CommandComponent
     }
   }
   ${ParagraphComponentFragmentDoc}
+  ${CommandComponentFragmentDoc}
 `
 export const ActionInstructionComponentFragmentDoc = gql`
   fragment ActionInstructionComponent on Action {
@@ -497,13 +503,8 @@ export const ActionInstructionComponentFragmentDoc = gql`
   }
   ${ParagraphComponentFragmentDoc}
 `
-export const CommandComponentFragmentDoc = gql`
-  fragment CommandComponent on Command {
-    text
-  }
-`
-export const ActionStackComponentFragmentDoc = gql`
-  fragment ActionStackComponent on Action {
+export const ActionDetailsComponentFragmentDoc = gql`
+  fragment ActionDetailsComponent on Action {
     details {
       ... on Paragraph {
         ...ParagraphComponent
@@ -532,11 +533,11 @@ export const ActionResultComponentFragmentDoc = gql`
 export const ActionComponentFragmentDoc = gql`
   fragment ActionComponent on Action {
     ...ActionInstructionComponent
-    ...ActionStackComponent
+    ...ActionDetailsComponent
     ...ActionResultComponent
   }
   ${ActionInstructionComponentFragmentDoc}
-  ${ActionStackComponentFragmentDoc}
+  ${ActionDetailsComponentFragmentDoc}
   ${ActionResultComponentFragmentDoc}
 `
 export const CommandComponent2FragmentDoc = gql`

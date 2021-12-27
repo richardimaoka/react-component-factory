@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { gql } from '@apollo/client'
 import { css } from '@emotion/react'
-import { ActionStackComponentFragment } from '../../lib/generated/graphql'
+import { ActionDetailsComponentFragment } from '../../lib/generated/graphql'
 import { CommandComponent } from '../command/CommandComponent'
 import { ParagraphComponent } from '../paragraph/ParagraphComponent'
 import {
@@ -9,12 +9,12 @@ import {
   PlainElementComponent,
 } from '../PlainElementComponent'
 
-interface ActionStackComponentProps {
-  fragment: ActionStackComponentFragment
+interface ActionDetailsComponentProps {
+  fragment: ActionDetailsComponentFragment
 }
 
 export const isEmptyActionDetails = (
-  fragment: ActionStackComponentFragment
+  fragment: ActionDetailsComponentFragment
 ): boolean => {
   if (!fragment.details) {
     return true
@@ -30,7 +30,7 @@ export const isEmptyActionDetails = (
 }
 export const ActionDetailsComponent = ({
   fragment,
-}: ActionStackComponentProps): JSX.Element => {
+}: ActionDetailsComponentProps): JSX.Element => {
   console.log(fragment)
 
   if (!fragment.details || isEmptyActionDetails(fragment)) {
@@ -58,7 +58,7 @@ export const ActionDetailsComponent = ({
 }
 
 ActionDetailsComponent.fragment = gql`
-  fragment ActionStackComponent on Action {
+  fragment ActionDetailsComponent on Action {
     details {
       ... on Paragraph {
         ...ParagraphComponent
