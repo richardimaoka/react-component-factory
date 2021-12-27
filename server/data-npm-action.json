@@ -1,0 +1,33 @@
+{
+  "__typename": "Action",
+  "instruction": {
+    "__typename": "Paragraph",
+    "chunks": [
+      {
+        "__typename": "TextChunk",
+        "text": "以下のコマンドを実行してください"
+      }
+    ]
+  },
+  "details": [
+    {
+      "__typename": "Command",
+      "text": "> npm --version"
+    }
+  ],
+  "results": [
+    {
+      "__typename": "Paragraph",
+      "chunks": [
+        {
+          "__typename": "TextChunk",
+          "text": "以下のように数字でバージョンが表示されます"
+        }
+      ]
+    },
+    {
+      "__typename": "CommandOutput",
+      "text": "8.0.1"
+    }
+  ]
+}

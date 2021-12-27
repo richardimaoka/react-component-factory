@@ -5,29 +5,8 @@
     "chunks": [
       {
         "__typename": "TextChunk",
-        "text": "以下のコマンドを実行してください"
+        "text": "次の手順にしたがってnpmで現在入手可能な最新バージョンを確認してください"
       }
     ]
-  },
-  "details": [
-    {
-      "__typename": "Command",
-      "text": "> npm --version"
-    }
-  ],
-  "results": [
-    {
-      "__typename": "Paragraph",
-      "chunks": [
-        {
-          "__typename": "TextChunk",
-          "text": "以下のように数字でバージョンが表示されます"
-        }
-      ]
-    },
-    {
-      "__typename": "CommandOutput",
-      "text": "8.0.1"
-    }
-  ]
+  }
 }
