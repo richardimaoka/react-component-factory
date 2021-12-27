@@ -477,6 +477,40 @@ export type ActionResultComponentFragment = {
     | undefined
 }
 
+export type CarouselComponentFragment = {
+  __typename?: 'ImageGroup'
+  images?:
+    | Array<
+        | { __typename?: 'Image'; url?: string | null | undefined }
+        | null
+        | undefined
+      >
+    | null
+    | undefined
+}
+
+export type CarouselContentFragment = {
+  __typename?: 'ImageGroup'
+  images?:
+    | Array<
+        | { __typename?: 'Image'; url?: string | null | undefined }
+        | null
+        | undefined
+      >
+    | null
+    | undefined
+}
+
+export type CarouselImageFragment = {
+  __typename?: 'Image'
+  url?: string | null | undefined
+}
+
+export type CarouselItemFragment = {
+  __typename?: 'Image'
+  url?: string | null | undefined
+}
+
 export type CommandComponentFragment = {
   __typename?: 'Command'
   text?: string | null | undefined
@@ -622,6 +656,31 @@ export const ActionComponentFragmentDoc = gql`
   ${ActionInstructionComponentFragmentDoc}
   ${ActionDetailsComponentFragmentDoc}
   ${ActionResultComponentFragmentDoc}
+`
+export const CarouselImageFragmentDoc = gql`
+  fragment CarouselImage on Image {
+    url
+  }
+`
+export const CarouselItemFragmentDoc = gql`
+  fragment CarouselItem on Image {
+    ...CarouselImage
+  }
+  ${CarouselImageFragmentDoc}
+`
+export const CarouselContentFragmentDoc = gql`
+  fragment CarouselContent on ImageGroup {
+    images {
+      ...CarouselItem
+    }
+  }
+  ${CarouselItemFragmentDoc}
+`
+export const CarouselComponentFragmentDoc = gql`
+  fragment CarouselComponent on ImageGroup {
+    ...CarouselContent
+  }
+  ${CarouselContentFragmentDoc}
 `
 export const CommandComponent2FragmentDoc = gql`
   fragment CommandComponent2 on Command {
