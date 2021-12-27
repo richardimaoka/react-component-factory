@@ -1,17 +1,20 @@
 /** @jsxImportSource @emotion/react */
-import { gql } from "@apollo/client";
-import { css } from "@emotion/react";
-import { VideoComponentFragment } from "../lib/generated/graphql";
+import { gql } from '@apollo/client'
+import { css } from '@emotion/react'
+import { VideoComponentFragment } from '../lib/generated/graphql'
 
 export interface VideoComponentProps {
-  fragment: VideoComponentFragment;
+  fragment: VideoComponentFragment
+}
+export const isEmptyVideo = (fragment: VideoComponentFragment): boolean => {
+  return !fragment.url || !fragment.platform
 }
 
 export const VideoComponent = ({
   fragment,
 }: VideoComponentProps): JSX.Element => {
-  if (!fragment.url || !fragment.platform) {
-    return <></>;
+  if (isEmptyVideo(fragment)) {
+    return <></>
   } else {
     return (
       <div>
@@ -33,9 +36,9 @@ export const VideoComponent = ({
         </div>
         <div>{fragment.caption}</div>
       </div>
-    );
+    )
   }
-};
+}
 
 VideoComponent.fragments = gql`
   fragment VideoComponent on Video {
@@ -43,4 +46,4 @@ VideoComponent.fragments = gql`
     url
     caption
   }
-`;
+`
