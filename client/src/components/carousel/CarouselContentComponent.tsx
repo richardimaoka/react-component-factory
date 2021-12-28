@@ -6,9 +6,11 @@ import {
   CarouselItemComponent,
   isContentfulCarouselItem,
 } from './CarouselItemComponent'
+import { CarouselTransition } from './interfaces'
 
 interface CarouselContentProps {
   fragment: CarouselContentComponentFragment
+  transition: CarouselTransition
 }
 
 export const numContentfulCarouselItems = (
@@ -25,6 +27,7 @@ export const numContentfulCarouselItems = (
 
 export const CarouselContentComponent = ({
   fragment,
+  transition,
 }: CarouselContentProps): JSX.Element => {
   return fragment.images ? (
     <div
@@ -32,10 +35,19 @@ export const CarouselContentComponent = ({
         display: flex;
         overflow-x: auto;
         scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
       `}
     >
       {fragment.images.map((image, index) =>
-        image ? <CarouselItemComponent key={index} fragment={image} /> : <></>
+        image ? (
+          <CarouselItemComponent
+            key={index}
+            index={index + 1}
+            fragment={image}
+          />
+        ) : (
+          <></>
+        )
       )}
     </div>
   ) : (

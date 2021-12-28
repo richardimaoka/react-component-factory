@@ -7,6 +7,7 @@ import failedImg from './failed.png'
 import backgroundImg from './background.png'
 interface CarouselItemComponentProps {
   fragment: CarouselItemComponentFragment
+  index: number
 }
 
 export const isContentfulCarouselItem = (
@@ -38,18 +39,20 @@ interface InnerComponentProps {
   url: string
   alt: string
   direction: 'horizontal' | 'vertical'
+  index: number
 }
 
 const InnerComponent = ({
   url,
   alt,
   direction,
+  index,
 }: InnerComponentProps): JSX.Element => {
   switch (direction) {
     case 'horizontal':
-      return <img width="640" src={url} alt={alt} />
+      return <img id={`${index}`} width="640" src={url} alt={alt} />
     case 'vertical':
-      return <img height="360" src={url} alt={alt} />
+      return <img id={`${index}`} height="360" src={url} alt={alt} />
     default:
       return switchExhaustivenessCheck(direction)
   }
@@ -57,6 +60,7 @@ const InnerComponent = ({
 
 export const CarouselItemComponent = ({
   fragment,
+  index,
 }: CarouselItemComponentProps): JSX.Element => {
   return (
     <div
@@ -81,9 +85,10 @@ export const CarouselItemComponent = ({
             url={fragment.url}
             alt={fragment.alt ? fragment.alt : ''}
             direction={calculateDirection(fragment)}
+            index={index}
           />
         ) : (
-          <img src={failedImg} alt="failed to load img"></img>
+          <img id={`${index}`} src={failedImg} alt="failed to load img"></img>
         )}
       </div>
     </div>
