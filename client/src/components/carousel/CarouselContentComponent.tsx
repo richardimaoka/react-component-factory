@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { gql } from '@apollo/client'
 import { css } from '@emotion/react'
+import { useEffect, useRef } from 'react'
 import { CarouselContentComponentFragment } from '../../lib/generated/graphql'
 import {
   CarouselItemComponent,
@@ -29,30 +30,44 @@ export const CarouselContentComponent = ({
   fragment,
   transition,
 }: CarouselContentProps): JSX.Element => {
-  return fragment.images ? (
-    <div
-      css={css`
-        display: flex;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        scroll-behavior: smooth;
-      `}
-    >
-      {fragment.images.map((image, index) =>
-        image ? (
-          <CarouselItemComponent
-            key={index}
-            index={index + 1}
-            fragment={image}
-          />
-        ) : (
-          <></>
-        )
-      )}
-    </div>
-  ) : (
-    <></>
-  )
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    console.log('printing out ref: ', ref.current)
+    console.log(ref.current?.scrollLeft)
+    if (ref.current) {
+      ref.current.scrollLeft = 1600
+    }
+    console.log(ref.current?.scrollLeft)
+  })
+
+  if (!fragment.images) {
+    return <></>
+  } else {
+    return (
+      <div
+        css={css`
+          display: flex;
+          overflow-x: auto;
+          scroll-snap-type: x mandatory;
+          scroll-behavior: smooth;
+        `}
+        ref={ref}
+      >
+        {fragment.images.map((image, index) =>
+          image ? (
+            <CarouselItemComponent
+              key={index}
+              index={index + 1}
+              fragment={image}
+            />
+          ) : (
+            <></>
+          )
+        )}
+      </div>
+    )
+  }
 }
 
 CarouselContentComponent.fragment = gql`

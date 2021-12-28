@@ -23,15 +23,7 @@ const calculateDirection = (
     return 'horizontal' //default is horizontal
   } else {
     const ratio = fragment.width / fragment.height
-    const threashold = 16.0 / 9.0
-    if (ratio >= threashold) {
-      console.log(ratio, 'horizontal', fragment)
-      return 'horizontal'
-    } else {
-      console.log(ratio, 'vertical', fragment)
-
-      return 'vertical'
-    }
+    return ratio >= 16.0 / 9.0 ? 'horizontal' : 'vertical'
   }
 }
 
@@ -50,9 +42,9 @@ const InnerComponent = ({
 }: InnerComponentProps): JSX.Element => {
   switch (direction) {
     case 'horizontal':
-      return <img id={`${index}`} width="640" src={url} alt={alt} />
+      return <img id={`${index}`} width="640px" src={url} alt={alt} />
     case 'vertical':
-      return <img id={`${index}`} height="360" src={url} alt={alt} />
+      return <img id={`${index}`} height="360px" src={url} alt={alt} />
     default:
       return switchExhaustivenessCheck(direction)
   }
