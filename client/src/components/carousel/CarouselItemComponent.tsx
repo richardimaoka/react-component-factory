@@ -3,8 +3,8 @@ import { gql } from '@apollo/client'
 import { css } from '@emotion/react'
 import { CarouselItemComponentFragment } from '../../lib/generated/graphql'
 import { switchExhaustivenessCheck } from '../../switchExhaustivenessCheck'
-import failedImg from './failed.png'
-import backgroundImg from './background.png'
+import failedImg from './images/failed.png'
+import backgroundImg from './images/background.png'
 interface CarouselItemComponentProps {
   fragment: CarouselItemComponentFragment
   index: number
