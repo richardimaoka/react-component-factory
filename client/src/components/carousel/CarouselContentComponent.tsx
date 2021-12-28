@@ -1,11 +1,26 @@
 /** @jsxImportSource @emotion/react */
 import { gql } from '@apollo/client'
 import { css } from '@emotion/react'
-import { CarouselItemComponent } from './CarouselItemComponent'
 import { CarouselContentComponentFragment } from '../../lib/generated/graphql'
+import {
+  CarouselItemComponent,
+  isContentfulCarouselItem,
+} from './CarouselItemComponent'
 
 interface CarouselContentProps {
   fragment: CarouselContentComponentFragment
+}
+
+export const numContentfulCarouselItems = (
+  fragment: CarouselContentComponentFragment
+): number => {
+  if (!fragment.images) {
+    return 0
+  } else {
+    return fragment.images.filter((img) =>
+      img ? isContentfulCarouselItem(img) : false
+    ).length
+  }
 }
 
 export const CarouselContentComponent = ({
