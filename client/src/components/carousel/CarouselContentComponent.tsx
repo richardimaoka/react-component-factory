@@ -20,9 +20,8 @@ export const numContentfulCarouselItems = (
   if (!fragment.images) {
     return 0
   } else {
-    return fragment.images.filter((img) =>
-      img ? isContentfulCarouselItem(img) : false
-    ).length
+    return fragment.images.filter((img) => img && isContentfulCarouselItem(img))
+      .length
   }
 }
 
@@ -33,12 +32,9 @@ export const CarouselContentComponent = ({
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    console.log('printing out ref: ', ref.current)
-    console.log(ref.current?.scrollLeft)
     if (ref.current) {
       ref.current.scrollLeft = CarouselItemWidth * transition.to
     }
-    console.log(ref.current?.scrollLeft)
   })
 
   if (!fragment.images) {
@@ -48,7 +44,7 @@ export const CarouselContentComponent = ({
       <div
         css={css`
           display: flex;
-          overflow-x: auto;
+          overflow-x: hidden;
           scroll-snap-type: x mandatory;
           scroll-behavior: smooth;
         `}

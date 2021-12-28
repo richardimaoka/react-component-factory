@@ -10,10 +10,16 @@ interface CarouselItemComponentProps {
   fragment: CarouselItemComponentFragment
 }
 
-export const isContentfulCarouselItem = (
+export const isEmptyCarouselItem = (
   fragment: CarouselItemComponentFragment
 ): boolean => {
   return !fragment.url
+}
+
+export const isContentfulCarouselItem = (
+  fragment: CarouselItemComponentFragment
+): boolean => {
+  return !isEmptyCarouselItem(fragment)
 }
 
 const calculateDirection = (

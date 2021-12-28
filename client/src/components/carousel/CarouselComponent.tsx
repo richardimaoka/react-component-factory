@@ -21,11 +21,31 @@ export interface CarouselComponentProps {
 export const CarouselComponent = ({
   fragment,
 }: CarouselComponentProps): JSX.Element => {
+  //currentItem is zero start
   const [currentTransition, setTransition] = useState<CarouselTransition>({
-    to: 2,
+    to: 0,
   })
 
-  // const gotoNextSlide = () => {}
+  const gotoNextItem = () => {
+    console.log(
+      'gotoNextItem called ',
+      numContentfulCarouselItems(fragment),
+      ' ',
+      currentTransition.to + 1
+    )
+    const numItems = numContentfulCarouselItems(fragment)
+    const nextItem = currentTransition.to + 1
+    if (nextItem < numItems) {
+      setTransition({ to: nextItem })
+    }
+  }
+
+  const gotoPrevItem = () => {
+    const prevItem = currentTransition.to - 1
+    if (0 <= prevItem) {
+      setTransition({ to: prevItem })
+    }
+  }
 
   return (
     <div
@@ -38,7 +58,10 @@ export const CarouselComponent = ({
         fragment={fragment}
         transition={currentTransition}
       />
-      <CarouselControlBar />
+      <CarouselControlBar
+        prevButtonCallback={gotoPrevItem}
+        nextButtonCallback={gotoNextItem}
+      />
       <CarouselDescriptionComponent />
     </div>
   )
