@@ -64,8 +64,8 @@ export const CarouselItemComponent = ({
           display: flex;
           justify-content: center;
           align-items: center;
-          width: ${CarouselItemWidth};
-          height: ${CarouselItemHeight};
+          width: ${CarouselItemWidth}px;
+          height: ${CarouselItemHeight}px;
           background-image: url(${backgroundImg});
         `}
       >

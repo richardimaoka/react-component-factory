@@ -1,7 +1,6 @@
-export const CarouselItemWidth = '640px'
-export const CarouselItemHeight = '360px'
+export const CarouselItemWidth = 640
+export const CarouselItemHeight = 360
 
 export interface CarouselTransition {
-  from: number
-  to: number
+  to: number //item index, starting from zero
 }

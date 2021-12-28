@@ -7,7 +7,7 @@ import {
   CarouselItemComponent,
   isContentfulCarouselItem,
 } from './CarouselItemComponent'
-import { CarouselTransition } from './definitions'
+import { CarouselItemWidth, CarouselTransition } from './definitions'
 
 interface CarouselContentProps {
   fragment: CarouselContentComponentFragment
@@ -36,7 +36,7 @@ export const CarouselContentComponent = ({
     console.log('printing out ref: ', ref.current)
     console.log(ref.current?.scrollLeft)
     if (ref.current) {
-      ref.current.scrollLeft = 1600
+      ref.current.scrollLeft = CarouselItemWidth * transition.to
     }
     console.log(ref.current?.scrollLeft)
   })

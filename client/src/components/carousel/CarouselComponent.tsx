@@ -22,8 +22,7 @@ export const CarouselComponent = ({
   fragment,
 }: CarouselComponentProps): JSX.Element => {
   const [currentTransition, setTransition] = useState<CarouselTransition>({
-    from: 0,
-    to: 0,
+    to: 2,
   })
 
   // const gotoNextSlide = () => {}
@@ -31,8 +30,8 @@ export const CarouselComponent = ({
   return (
     <div
       css={css`
-        width: ${CarouselItemWidth};
-        height: ${CarouselItemHeight};
+        width: ${CarouselItemWidth}px;
+        height: ${CarouselItemHeight}px;
       `}
     >
       <CarouselContentComponent
