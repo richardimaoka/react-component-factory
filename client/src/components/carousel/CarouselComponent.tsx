@@ -2,9 +2,9 @@
 import { gql } from '@apollo/client'
 import { css } from '@emotion/react'
 import {
-  CarouselContentComponent,
+  CarouselScrollComponent,
   numContentfulCarouselItems,
-} from './CarouselContentComponent'
+} from './CarouselScrollComponent'
 import { CarouselControlBar } from './CarouselControlBar'
 import { CarouselDescriptionComponent } from './CarouselDescriptionComponent'
 import { CarouselComponentFragment } from '../../lib/generated/graphql'
@@ -54,7 +54,7 @@ export const CarouselComponent = ({
         height: ${CarouselItemHeight}px;
       `}
     >
-      <CarouselContentComponent
+      <CarouselScrollComponent
         fragment={fragment}
         transition={currentTransition}
       />
@@ -69,7 +69,7 @@ export const CarouselComponent = ({
 
 CarouselComponent.fragment = gql`
   fragment CarouselComponent on CarouselImage {
-    ...CarouselContentComponent
+    ...CarouselScrollComponent
   }
-  ${CarouselContentComponent.fragment}
+  ${CarouselScrollComponent.fragment}
 `
