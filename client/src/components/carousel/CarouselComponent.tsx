@@ -9,7 +9,11 @@ import { CarouselControlBar } from './CarouselControlBar'
 import { CarouselDescriptionComponent } from './CarouselDescriptionComponent'
 import { CarouselComponentFragment } from '../../lib/generated/graphql'
 import { useState } from 'react'
-import { CarouselTransition } from './interfaces'
+import {
+  CarouselItemHeight,
+  CarouselItemWidth,
+  CarouselTransition,
+} from './definitions'
 export interface CarouselComponentProps {
   fragment: CarouselComponentFragment
 }
@@ -27,8 +31,8 @@ export const CarouselComponent = ({
   return (
     <div
       css={css`
-        width: 640px;
-        height: 360px;
+        width: ${CarouselItemWidth};
+        height: ${CarouselItemHeight};
       `}
     >
       <CarouselContentComponent

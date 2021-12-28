@@ -7,7 +7,7 @@ import {
   CarouselItemComponent,
   isContentfulCarouselItem,
 } from './CarouselItemComponent'
-import { CarouselTransition } from './interfaces'
+import { CarouselTransition } from './definitions'
 
 interface CarouselContentProps {
   fragment: CarouselContentComponentFragment
@@ -55,15 +55,7 @@ export const CarouselContentComponent = ({
         ref={ref}
       >
         {fragment.images.map((image, index) =>
-          image ? (
-            <CarouselItemComponent
-              key={index}
-              index={index + 1}
-              fragment={image}
-            />
-          ) : (
-            <></>
-          )
+          image ? <CarouselItemComponent key={index} fragment={image} /> : <></>
         )}
       </div>
     )
