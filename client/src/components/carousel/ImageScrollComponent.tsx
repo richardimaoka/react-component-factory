@@ -2,7 +2,10 @@
 import { gql } from '@apollo/client'
 import { css } from '@emotion/react'
 import { useEffect, useRef } from 'react'
-import { ImageScrollComponentFragment } from '../../lib/generated/graphql'
+import {
+  Image,
+  ImageScrollComponentFragment,
+} from '../../lib/generated/graphql'
 import { ImageItemComponent, isContentfulImageItem } from './ImageItemComponent'
 import { ImageItemWidth, CarouselTransition } from './definitions'
 
@@ -34,7 +37,7 @@ export const ImageScrollComponent = ({
     }
   })
 
-  if (!fragment.images) {
+  if (!fragment.images || numContentfulImageItems(fragment) == 0) {
     return <></>
   } else {
     return (

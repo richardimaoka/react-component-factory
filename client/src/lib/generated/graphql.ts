@@ -438,7 +438,14 @@ export type DescriptionComponentFragment = {
   __typename?: 'CarouselImage'
   images?:
     | Array<
-        | { __typename?: 'Image'; caption?: string | null | undefined }
+        | {
+            __typename?: 'Image'
+            caption?: string | null | undefined
+            url?: string | null | undefined
+            alt?: string | null | undefined
+            width?: number | null | undefined
+            height?: number | null | undefined
+          }
         | null
         | undefined
       >
@@ -638,8 +645,10 @@ export const DescriptionComponentFragmentDoc = gql`
   fragment DescriptionComponent on CarouselImage {
     images {
       caption
+      ...ImageItemComponent
     }
   }
+  ${ImageItemComponentFragmentDoc}
 `
 export const CarouselComponentFragmentDoc = gql`
   fragment CarouselComponent on CarouselImage {
