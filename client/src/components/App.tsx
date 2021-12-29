@@ -8,7 +8,7 @@ import {
 } from '@apollo/client'
 import { css } from '@emotion/react'
 import { useMainQuery } from '../lib/generated/graphql'
-import { VideoComponent } from '../video/VideoComponent'
+import { VideoComponent } from './video/VideoComponent'
 
 gql`
   query Main {
