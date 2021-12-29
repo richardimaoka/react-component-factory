@@ -1,17 +1,17 @@
 /** @jsxImportSource @emotion/react */
 import { gql } from '@apollo/client'
 import { css } from '@emotion/react'
-import { CarouselDescriptionComponentFragment } from '../../lib/generated/graphql'
+import { DescriptionComponentFragment } from '../../lib/generated/graphql'
 import { CarouselTransition } from './definitions'
 
-interface CarouselDescriptionComponentProps {
-  fragment: CarouselDescriptionComponentFragment
+interface DescriptionComponentProps {
+  fragment: DescriptionComponentFragment
   transition: CarouselTransition
 }
 
-export const CarouselDescriptionComponent = ({
+export const DescriptionComponent = ({
   fragment,
-}: CarouselDescriptionComponentProps): JSX.Element => (
+}: DescriptionComponentProps): JSX.Element => (
   <div
     css={css`
       padding: 8px;
@@ -29,8 +29,8 @@ export const CarouselDescriptionComponent = ({
   </div>
 )
 
-CarouselDescriptionComponent.fragment = gql`
-  fragment CarouselDescriptionComponent on CarouselImage {
+DescriptionComponent.fragment = gql`
+  fragment DescriptionComponent on CarouselImage {
     images {
       caption
     }

@@ -4,7 +4,7 @@ import { css } from '@emotion/react'
 import { useState } from 'react'
 import { CarouselComponentFragment } from '../../lib/generated/graphql'
 import { CarouselControlBar } from './CarouselControlBar'
-import { CarouselDescriptionComponent } from './CarouselDescriptionComponent'
+import { DescriptionComponent } from './DescriptionComponent'
 import {
   CarouselScrollComponent,
   numContentfulCarouselItems,
@@ -56,7 +56,7 @@ export const CarouselComponent = ({
         prevButtonCallback={gotoPrevItem}
         nextButtonCallback={gotoNextItem}
       />
-      <CarouselDescriptionComponent
+      <DescriptionComponent
         fragment={fragment}
         transition={currentTransition}
       />
@@ -67,8 +67,8 @@ export const CarouselComponent = ({
 CarouselComponent.fragment = gql`
   fragment CarouselComponent on CarouselImage {
     ...CarouselScrollComponent
-    ...CarouselDescriptionComponent
+    ...DescriptionComponent
   }
   ${CarouselScrollComponent.fragment}
-  ${CarouselDescriptionComponent.fragment}
+  ${DescriptionComponent.fragment}
 `
