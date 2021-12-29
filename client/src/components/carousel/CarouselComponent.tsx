@@ -9,7 +9,7 @@ import {
   ImageItemHeight,
   ImageItemWidth,
 } from './definitions'
-import { DescriptionComponent } from './DescriptionComponent'
+import { DescriptionComponent } from './CarouselDescriptionComponent'
 import { ImageScrollComponent, numImageItems } from './ImageScrollComponent'
 export interface CarouselComponentProps {
   fragment: CarouselComponentFragment
