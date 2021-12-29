@@ -2,7 +2,7 @@
 import { gql } from '@apollo/client'
 import { css } from '@emotion/react'
 import { useEffect, useRef } from 'react'
-import { DescriptionComponentFragment } from '../../lib/generated/graphql'
+import { CarouselDescriptionComponentFragment } from '../../lib/generated/graphql'
 import { CarouselTransition, ImageItemWidth } from './definitions'
 import { ImageItemComponent } from './ImageItemComponent'
 import { numImageItems } from './ImageScrollComponent'
@@ -30,22 +30,22 @@ const InnerComponent = ({ caption }: InnerComponentProps): JSX.Element => (
   </div>
 )
 
-interface DescriptionComponentProps {
-  fragment: DescriptionComponentFragment
+interface CarouselDescriptionComponentProps {
+  fragment: CarouselDescriptionComponentFragment
   transition: CarouselTransition
 }
 
-export const DescriptionComponent = ({
+export const CarouselDescriptionComponent = ({
   fragment,
   transition,
-}: DescriptionComponentProps): JSX.Element => {
+}: CarouselDescriptionComponentProps): JSX.Element => {
   const ref = useRef<HTMLDivElement>(null)
   useEffect(() => {
     if (ref.current) {
       ref.current.scrollLeft = ImageItemWidth * transition.to
     }
   })
-  console.log('numContentfulImageItems: ', numImageItems(fragment))
+
   if (!fragment.images || numImageItems(fragment) === 0) {
     return <></>
   } else {
@@ -69,8 +69,8 @@ export const DescriptionComponent = ({
   }
 }
 
-DescriptionComponent.fragment = gql`
-  fragment DescriptionComponent on CarouselImage {
+CarouselDescriptionComponent.fragment = gql`
+  fragment CarouselDescriptionComponent on CarouselImage {
     images {
       caption
       ...ImageItemComponent

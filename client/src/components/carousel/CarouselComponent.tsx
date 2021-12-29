@@ -9,7 +9,7 @@ import {
   ImageItemHeight,
   ImageItemWidth,
 } from './definitions'
-import { DescriptionComponent } from './CarouselDescriptionComponent'
+import { CarouselDescriptionComponent } from './CarouselDescriptionComponent'
 import { ImageScrollComponent, numImageItems } from './ImageScrollComponent'
 export interface CarouselComponentProps {
   fragment: CarouselComponentFragment
@@ -53,7 +53,7 @@ export const CarouselComponent = ({
         prevButtonGrayOut={currentTransition.to === 0}
         nextButtonGrayOut={currentTransition.to === numItems - 1}
       />
-      <DescriptionComponent
+      <CarouselDescriptionComponent
         fragment={fragment}
         transition={currentTransition}
       />
@@ -64,8 +64,8 @@ export const CarouselComponent = ({
 CarouselComponent.fragment = gql`
   fragment CarouselComponent on CarouselImage {
     ...ImageScrollComponent
-    ...DescriptionComponent
+    ...CarouselDescriptionComponent
   }
   ${ImageScrollComponent.fragment}
-  ${DescriptionComponent.fragment}
+  ${CarouselDescriptionComponent.fragment}
 `
