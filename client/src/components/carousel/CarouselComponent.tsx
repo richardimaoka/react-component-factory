@@ -1,14 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import { gql } from '@apollo/client'
 import { css } from '@emotion/react'
+import { useState } from 'react'
+import { CarouselComponentFragment } from '../../lib/generated/graphql'
+import { CarouselControlBar } from './CarouselControlBar'
+import { CarouselDescriptionComponent } from './CarouselDescriptionComponent'
 import {
   CarouselScrollComponent,
   numContentfulCarouselItems,
 } from './CarouselScrollComponent'
-import { CarouselControlBar } from './CarouselControlBar'
-import { CarouselDescriptionComponent } from './CarouselDescriptionComponent'
-import { CarouselComponentFragment } from '../../lib/generated/graphql'
-import { useState } from 'react'
 import {
   CarouselItemHeight,
   CarouselItemWidth,
@@ -27,12 +27,6 @@ export const CarouselComponent = ({
   })
 
   const gotoNextItem = () => {
-    console.log(
-      'gotoNextItem called ',
-      numContentfulCarouselItems(fragment),
-      ' ',
-      currentTransition.to + 1
-    )
     const numItems = numContentfulCarouselItems(fragment)
     const nextItem = currentTransition.to + 1
     if (nextItem < numItems) {
@@ -62,7 +56,10 @@ export const CarouselComponent = ({
         prevButtonCallback={gotoPrevItem}
         nextButtonCallback={gotoNextItem}
       />
-      <CarouselDescriptionComponent />
+      <CarouselDescriptionComponent
+        fragment={fragment}
+        transition={currentTransition}
+      />
     </div>
   )
 }
@@ -70,6 +67,8 @@ export const CarouselComponent = ({
 CarouselComponent.fragment = gql`
   fragment CarouselComponent on CarouselImage {
     ...CarouselScrollComponent
+    ...CarouselDescriptionComponent
   }
   ${CarouselScrollComponent.fragment}
+  ${CarouselDescriptionComponent.fragment}
 `

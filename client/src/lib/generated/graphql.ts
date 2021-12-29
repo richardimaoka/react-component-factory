@@ -192,6 +192,7 @@ export type MainQuery = {
           | Array<
               | {
                   __typename?: 'Image'
+                  caption?: string | null | undefined
                   url?: string | null | undefined
                   alt?: string | null | undefined
                   width?: number | null | undefined
@@ -420,11 +421,24 @@ export type CarouselComponentFragment = {
     | Array<
         | {
             __typename?: 'Image'
+            caption?: string | null | undefined
             url?: string | null | undefined
             alt?: string | null | undefined
             width?: number | null | undefined
             height?: number | null | undefined
           }
+        | null
+        | undefined
+      >
+    | null
+    | undefined
+}
+
+export type CarouselDescriptionComponentFragment = {
+  __typename?: 'CarouselImage'
+  images?:
+    | Array<
+        | { __typename?: 'Image'; caption?: string | null | undefined }
         | null
         | undefined
       >
@@ -620,11 +634,20 @@ export const CarouselScrollComponentFragmentDoc = gql`
   }
   ${CarouselItemComponentFragmentDoc}
 `
+export const CarouselDescriptionComponentFragmentDoc = gql`
+  fragment CarouselDescriptionComponent on CarouselImage {
+    images {
+      caption
+    }
+  }
+`
 export const CarouselComponentFragmentDoc = gql`
   fragment CarouselComponent on CarouselImage {
     ...CarouselScrollComponent
+    ...CarouselDescriptionComponent
   }
   ${CarouselScrollComponentFragmentDoc}
+  ${CarouselDescriptionComponentFragmentDoc}
 `
 export const CommandComponent2FragmentDoc = gql`
   fragment CommandComponent2 on Command {
