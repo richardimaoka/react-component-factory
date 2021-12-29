@@ -6,9 +6,9 @@ import { CarouselComponentFragment } from '../../lib/generated/graphql'
 import { CarouselControlBar } from './CarouselControlBar'
 import { DescriptionComponent } from './DescriptionComponent'
 import {
-  CarouselScrollComponent,
+  ImageScrollComponent,
   numContentfulCarouselItems,
-} from './CarouselScrollComponent'
+} from './ImageScrollComponent'
 import {
   CarouselItemHeight,
   CarouselItemWidth,
@@ -48,7 +48,7 @@ export const CarouselComponent = ({
         height: ${CarouselItemHeight}px;
       `}
     >
-      <CarouselScrollComponent
+      <ImageScrollComponent
         fragment={fragment}
         transition={currentTransition}
       />
@@ -66,9 +66,9 @@ export const CarouselComponent = ({
 
 CarouselComponent.fragment = gql`
   fragment CarouselComponent on CarouselImage {
-    ...CarouselScrollComponent
+    ...ImageScrollComponent
     ...DescriptionComponent
   }
-  ${CarouselScrollComponent.fragment}
+  ${ImageScrollComponent.fragment}
   ${DescriptionComponent.fragment}
 `

@@ -442,7 +442,19 @@ export type CarouselItemComponentFragment = {
   height?: number | null | undefined
 }
 
-export type CarouselScrollComponentFragment = {
+export type DescriptionComponentFragment = {
+  __typename?: 'CarouselImage'
+  images?:
+    | Array<
+        | { __typename?: 'Image'; caption?: string | null | undefined }
+        | null
+        | undefined
+      >
+    | null
+    | undefined
+}
+
+export type ImageScrollComponentFragment = {
   __typename?: 'CarouselImage'
   images?:
     | Array<
@@ -453,18 +465,6 @@ export type CarouselScrollComponentFragment = {
             width?: number | null | undefined
             height?: number | null | undefined
           }
-        | null
-        | undefined
-      >
-    | null
-    | undefined
-}
-
-export type DescriptionComponentFragment = {
-  __typename?: 'CarouselImage'
-  images?:
-    | Array<
-        | { __typename?: 'Image'; caption?: string | null | undefined }
         | null
         | undefined
       >
@@ -626,8 +626,8 @@ export const CarouselItemComponentFragmentDoc = gql`
     height
   }
 `
-export const CarouselScrollComponentFragmentDoc = gql`
-  fragment CarouselScrollComponent on CarouselImage {
+export const ImageScrollComponentFragmentDoc = gql`
+  fragment ImageScrollComponent on CarouselImage {
     images {
       ...CarouselItemComponent
     }
@@ -643,10 +643,10 @@ export const DescriptionComponentFragmentDoc = gql`
 `
 export const CarouselComponentFragmentDoc = gql`
   fragment CarouselComponent on CarouselImage {
-    ...CarouselScrollComponent
+    ...ImageScrollComponent
     ...DescriptionComponent
   }
-  ${CarouselScrollComponentFragmentDoc}
+  ${ImageScrollComponentFragmentDoc}
   ${DescriptionComponentFragmentDoc}
 `
 export const CommandComponent2FragmentDoc = gql`
