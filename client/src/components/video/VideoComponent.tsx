@@ -6,72 +6,9 @@ import {
   VideoPlatform,
 } from '../../lib/generated/graphql'
 import { switchExhaustivenessCheck } from '../../switchExhaustivenessCheck'
-
-const VideoWidth = 640
-const VideoHeight = 360
-
-interface YoutubeFrameProps {
-  url: string
-}
-
-export const YoutubeFrame = ({ url }: YoutubeFrameProps): JSX.Element => {
-  return (
-    <iframe
-      src={url}
-      width={VideoWidth}
-      height={VideoHeight}
-      frameBorder="0"
-      allow="autoplay; fullscreen; picture-in-picture"
-      allowFullScreen
-    />
-  )
-}
-
-interface VimeoFrameProps {
-  url: string
-}
-
-export const VimeoFrame = ({ url }: VimeoFrameProps): JSX.Element => {
-  return (
-    <iframe
-      src={url}
-      width={VideoWidth}
-      height={VideoHeight}
-      frameBorder="0"
-      allow="autoplay; fullscreen; picture-in-picture"
-      allowFullScreen
-    ></iframe>
-  )
-}
-
-interface DescriptionProps {
-  caption: string | null | undefined
-}
-
-export const Description = ({ caption }: DescriptionProps): JSX.Element => {
-  if (!caption) {
-    return <></>
-  } else {
-    return (
-      <div
-        css={css`
-          border: solid 1px #414141;
-          width: ${VideoWidth - 2}px; /*- 2px for borders*/
-          background-color: white;
-        `}
-      >
-        <p
-          css={css`
-            padding: 4px 8px;
-            margin: 0px;
-          `}
-        >
-          {caption}
-        </p>
-      </div>
-    )
-  }
-}
+import { VideoWidth } from './definitions'
+import { VimeoFrame, YoutubeFrame } from './EmbedComponent'
+import { VideoDescriptionComponent } from './VideoDescriptionComponent'
 
 export interface VideoComponentProps {
   fragment: VideoComponentFragment
@@ -80,6 +17,7 @@ export interface VideoComponentProps {
 export const isEmptyVideo = (fragment: VideoComponentFragment): boolean => {
   return !fragment.url || !fragment.platform
 }
+
 const InnerComponent = ({ fragment }: VideoComponentProps): JSX.Element => {
   // below if check should be in line with isEmptyVideo
   if (!fragment.url || !fragment.platform) {
@@ -108,7 +46,7 @@ export const VideoComponent = ({
       `}
     >
       <InnerComponent fragment={fragment} />
-      <Description caption={fragment.caption} />
+      <VideoDescriptionComponent caption={fragment.caption} />
     </div>
   )
 }
