@@ -185,18 +185,87 @@ export type MainQueryVariables = Exact<{ [key: string]: never }>
 
 export type MainQuery = {
   __typename?: 'Query'
-  carousel?:
+  action?:
     | {
-        __typename?: 'CarouselImage'
-        images?:
+        __typename?: 'Action'
+        instruction?:
+          | {
+              __typename?: 'Paragraph'
+              chunks?:
+                | Array<
+                    | {
+                        __typename?: 'TextChunk'
+                        text?: string | null | undefined
+                        highlight?: boolean | null | undefined
+                        bold?: boolean | null | undefined
+                        hyperlinkUrl?: string | null | undefined
+                        strikeout?: boolean | null | undefined
+                        inlineCode?: boolean | null | undefined
+                      }
+                    | null
+                    | undefined
+                  >
+                | null
+                | undefined
+            }
+          | null
+          | undefined
+        details?:
           | Array<
+              | { __typename?: 'Command'; text?: string | null | undefined }
               | {
-                  __typename?: 'Image'
-                  caption?: string | null | undefined
-                  url?: string | null | undefined
-                  alt?: string | null | undefined
-                  width?: number | null | undefined
-                  height?: number | null | undefined
+                  __typename?: 'CommandOutput'
+                  text?: string | null | undefined
+                }
+              | {
+                  __typename?: 'Paragraph'
+                  chunks?:
+                    | Array<
+                        | {
+                            __typename?: 'TextChunk'
+                            text?: string | null | undefined
+                            highlight?: boolean | null | undefined
+                            bold?: boolean | null | undefined
+                            hyperlinkUrl?: string | null | undefined
+                            strikeout?: boolean | null | undefined
+                            inlineCode?: boolean | null | undefined
+                          }
+                        | null
+                        | undefined
+                      >
+                    | null
+                    | undefined
+                }
+              | null
+              | undefined
+            >
+          | null
+          | undefined
+        results?:
+          | Array<
+              | { __typename?: 'Command'; text?: string | null | undefined }
+              | {
+                  __typename?: 'CommandOutput'
+                  text?: string | null | undefined
+                }
+              | {
+                  __typename?: 'Paragraph'
+                  chunks?:
+                    | Array<
+                        | {
+                            __typename?: 'TextChunk'
+                            text?: string | null | undefined
+                            highlight?: boolean | null | undefined
+                            bold?: boolean | null | undefined
+                            hyperlinkUrl?: string | null | undefined
+                            strikeout?: boolean | null | undefined
+                            inlineCode?: boolean | null | undefined
+                          }
+                        | null
+                        | undefined
+                      >
+                    | null
+                    | undefined
                 }
               | null
               | undefined
@@ -270,7 +339,7 @@ export type ActionComponentFragment = {
   details?:
     | Array<
         | { __typename?: 'Command'; text?: string | null | undefined }
-        | { __typename?: 'CommandOutput' }
+        | { __typename?: 'CommandOutput'; text?: string | null | undefined }
         | {
             __typename?: 'Paragraph'
             chunks?:
@@ -330,7 +399,7 @@ export type ActionDetailsComponentFragment = {
   details?:
     | Array<
         | { __typename?: 'Command'; text?: string | null | undefined }
-        | { __typename?: 'CommandOutput' }
+        | { __typename?: 'CommandOutput'; text?: string | null | undefined }
         | {
             __typename?: 'Paragraph'
             chunks?:
@@ -592,10 +661,14 @@ export const ActionDetailsComponentFragmentDoc = gql`
       ... on Command {
         ...CommandComponent
       }
+      ... on CommandOutput {
+        ...CommandOutputComponent
+      }
     }
   }
   ${ParagraphComponentFragmentDoc}
   ${CommandComponentFragmentDoc}
+  ${CommandOutputComponentFragmentDoc}
 `
 export const ActionResultComponentFragmentDoc = gql`
   fragment ActionResultComponent on Action {
@@ -672,11 +745,11 @@ export const VideoComponentFragmentDoc = gql`
 `
 export const MainDocument = gql`
   query Main {
-    carousel {
-      ...CarouselComponent
+    action {
+      ...ActionComponent
     }
   }
-  ${CarouselComponentFragmentDoc}
+  ${ActionComponentFragmentDoc}
 `
 
 /**

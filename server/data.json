@@ -1,40 +1,45 @@
 {
-  "__typename": "CarouselImage",
-  "images": [
+  "__typename": "Action",
+  "instruction": {
+    "__typename": "Paragraph",
+    "chunks": [
+      {
+        "__typename": "TextChunk"
+      }
+    ]
+  },
+
+  "details": [
     {
-      "__typename": "Image",
-      "url": "https://res.cloudinary.com/richardimaoka/image/upload/v1640637728/carousel/1_drirhh.png",
-      "caption": "1st picture. There must be very long long loooong long long long description",
-      "width": 640,
-      "height": 360
-    },
-    null,
-    {
-      "__typename": "Image",
-      "caption": "2nd picture. There must be very long long loooong long long long description",
-      "width": 640,
-      "height": 360
-    },
-    {
-      "__typename": "Image",
-      "url": "https://res.cloudinary.com/richardimaoka/image/upload/v1640637728/carousel/3_taktbm.png",
-      "caption": "3rd picture. There must be very long long loooong long long long description. There must be very long long loooong long long long description.There must be very long long loooong long long long description. There must be very long long loooong long long long description.",
-      "width": 640,
-      "height": 360
+      "__typename": "Command",
+      "text": "mkdir /your/project/path"
     },
     {
-      "__typename": "Image",
-      "url": "https://res.cloudinary.com/richardimaoka/image/upload/v1640637728/carousel/4_mnahrc.png",
-      "caption": "4th picture",
-      "width": 640,
-      "height": 360
+      "__typename": "Command",
+      "text": "cd /your/project/path"
     },
     {
-      "__typename": "Image",
-      "url": "https://res.cloudinary.com/richardimaoka/image/upload/v1640645059/carousel/5_lxnoc7.png",
-      "caption": "5th picture",
-      "width": 400,
-      "height": 700
+      "__typename": "Paragraph",
+      "chunks": [
+        {
+          "__typename": "TextChunk",
+          "text": "次にこれらのコマンドを実行してください"
+        }
+      ]
+    },
+    {
+      "__typename": "Command",
+      "text": "npm --init"
+    },
+    {
+      "__typename": "Command",
+      "text": "npm install cypress --save-dev"
+    }
+  ],
+  "results": [
+    {
+      "__typename": "CommandOutput",
+      "text": "This is the output This is the output This is the output This is the output This is the output This is the output This is the output This is the output This is the output This is the output\nThis is the output This is the output This is the output This is the output This is the output"
     }
   ]
 }

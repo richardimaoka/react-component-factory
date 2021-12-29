@@ -38,7 +38,7 @@
   ],
   "results": [
     {
-      "__typename": "CommandOuput",
+      "__typename": "CommandOutput",
       "text": "This is the output This is the output This is the output This is the output This is the output This is the output This is the output This is the output This is the output This is the output\nThis is the output This is the output This is the output This is the output This is the output"
     }
   ]

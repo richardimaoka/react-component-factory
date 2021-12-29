@@ -3,6 +3,7 @@ import { gql } from '@apollo/client'
 import { css } from '@emotion/react'
 import { ActionDetailsComponentFragment } from '../../lib/generated/graphql'
 import { CommandComponent } from '../command/CommandComponent'
+import { CommandOutputComponent } from '../command/CommandOutputComponent'
 import { ParagraphComponent } from '../paragraph/ParagraphComponent'
 import {
   isEmptyPlainElement,
@@ -64,9 +65,13 @@ ActionDetailsComponent.fragment = gql`
       ... on Command {
         ...CommandComponent
       }
+      ... on CommandOutput {
+        ...CommandOutputComponent
+      }
     }
   }
 
   ${ParagraphComponent.fragment}
   ${CommandComponent.fragment}
+  ${CommandOutputComponent.fragment}
 `
