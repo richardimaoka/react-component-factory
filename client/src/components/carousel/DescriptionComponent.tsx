@@ -12,16 +12,22 @@ interface InnerComponentProps {
 }
 
 const InnerComponent = ({ caption }: InnerComponentProps): JSX.Element => (
-  <p
+  <div
     css={css`
       flex-shrink: 0;
       scroll-snap-align: start;
-      margin: 0px;
       width: ${ImageItemWidth}px;
     `}
   >
-    {caption}
-  </p>
+    <p
+      css={css`
+        margin: 0px;
+        padding: 4px 8px;
+      `}
+    >
+      {caption}
+    </p>
+  </div>
 )
 
 interface DescriptionComponentProps {
