@@ -1,29 +1,29 @@
 /** @jsxImportSource @emotion/react */
 import { gql } from '@apollo/client'
 import { css } from '@emotion/react'
-import { CarouselItemComponentFragment } from '../../lib/generated/graphql'
+import { ImageItemComponentFragment } from '../../lib/generated/graphql'
 import { switchExhaustivenessCheck } from '../../switchExhaustivenessCheck'
-import failedImg from './images/failed.png'
+import { ImageItemHeight, ImageItemWidth } from './definitions'
 import backgroundImg from './images/background.png'
-import { CarouselItemHeight, CarouselItemWidth } from './definitions'
-interface CarouselItemComponentProps {
-  fragment: CarouselItemComponentFragment
+import failedImg from './images/failed.png'
+interface ImageItemComponentProps {
+  fragment: ImageItemComponentFragment
 }
 
-export const isEmptyCarouselItem = (
-  fragment: CarouselItemComponentFragment
+export const isEmptyImageItem = (
+  fragment: ImageItemComponentFragment
 ): boolean => {
   return !fragment.url
 }
 
-export const isContentfulCarouselItem = (
-  fragment: CarouselItemComponentFragment
+export const isContentfulImageItem = (
+  fragment: ImageItemComponentFragment
 ): boolean => {
-  return !isEmptyCarouselItem(fragment)
+  return !isEmptyImageItem(fragment)
 }
 
 const calculateDirection = (
-  fragment: CarouselItemComponentFragment
+  fragment: ImageItemComponentFragment
 ): 'horizontal' | 'vertical' => {
   if (!fragment.width || !fragment.height) {
     return 'horizontal' //default is horizontal
@@ -46,17 +46,17 @@ const InnerComponent = ({
 }: InnerComponentProps): JSX.Element => {
   switch (direction) {
     case 'horizontal':
-      return <img width={CarouselItemWidth} src={url} alt={alt} />
+      return <img width={ImageItemWidth} src={url} alt={alt} />
     case 'vertical':
-      return <img height={CarouselItemHeight} src={url} alt={alt} />
+      return <img height={ImageItemHeight} src={url} alt={alt} />
     default:
       return switchExhaustivenessCheck(direction)
   }
 }
 
-export const CarouselItemComponent = ({
+export const ImageItemComponent = ({
   fragment,
-}: CarouselItemComponentProps): JSX.Element => {
+}: ImageItemComponentProps): JSX.Element => {
   return (
     <div
       css={css`
@@ -70,8 +70,8 @@ export const CarouselItemComponent = ({
           display: flex;
           justify-content: center;
           align-items: center;
-          width: ${CarouselItemWidth}px;
-          height: ${CarouselItemHeight}px;
+          width: ${ImageItemWidth}px;
+          height: ${ImageItemHeight}px;
           background-image: url(${backgroundImg});
         `}
       >
@@ -89,8 +89,8 @@ export const CarouselItemComponent = ({
   )
 }
 
-CarouselItemComponent.fragment = gql`
-  fragment CarouselItemComponent on Image {
+ImageItemComponent.fragment = gql`
+  fragment ImageItemComponent on Image {
     url
     alt
     width

@@ -7,11 +7,11 @@ import { CarouselControlBar } from './CarouselControlBar'
 import { DescriptionComponent } from './DescriptionComponent'
 import {
   ImageScrollComponent,
-  numContentfulCarouselItems,
+  numContentfulImageItems,
 } from './ImageScrollComponent'
 import {
-  CarouselItemHeight,
-  CarouselItemWidth,
+  ImageItemHeight,
+  ImageItemWidth,
   CarouselTransition,
 } from './definitions'
 export interface CarouselComponentProps {
@@ -27,7 +27,7 @@ export const CarouselComponent = ({
   })
 
   const gotoNextItem = () => {
-    const numItems = numContentfulCarouselItems(fragment)
+    const numItems = numContentfulImageItems(fragment)
     const nextItem = currentTransition.to + 1
     if (nextItem < numItems) {
       setTransition({ to: nextItem })
@@ -44,8 +44,8 @@ export const CarouselComponent = ({
   return (
     <div
       css={css`
-        width: ${CarouselItemWidth}px;
-        height: ${CarouselItemHeight}px;
+        width: ${ImageItemWidth}px;
+        height: ${ImageItemHeight}px;
       `}
     >
       <ImageScrollComponent

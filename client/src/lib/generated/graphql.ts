@@ -434,14 +434,6 @@ export type CarouselComponentFragment = {
     | undefined
 }
 
-export type CarouselItemComponentFragment = {
-  __typename?: 'Image'
-  url?: string | null | undefined
-  alt?: string | null | undefined
-  width?: number | null | undefined
-  height?: number | null | undefined
-}
-
 export type DescriptionComponentFragment = {
   __typename?: 'CarouselImage'
   images?:
@@ -452,6 +444,14 @@ export type DescriptionComponentFragment = {
       >
     | null
     | undefined
+}
+
+export type ImageItemComponentFragment = {
+  __typename?: 'Image'
+  url?: string | null | undefined
+  alt?: string | null | undefined
+  width?: number | null | undefined
+  height?: number | null | undefined
 }
 
 export type ImageScrollComponentFragment = {
@@ -618,8 +618,8 @@ export const ActionComponentFragmentDoc = gql`
   ${ActionDetailsComponentFragmentDoc}
   ${ActionResultComponentFragmentDoc}
 `
-export const CarouselItemComponentFragmentDoc = gql`
-  fragment CarouselItemComponent on Image {
+export const ImageItemComponentFragmentDoc = gql`
+  fragment ImageItemComponent on Image {
     url
     alt
     width
@@ -629,10 +629,10 @@ export const CarouselItemComponentFragmentDoc = gql`
 export const ImageScrollComponentFragmentDoc = gql`
   fragment ImageScrollComponent on CarouselImage {
     images {
-      ...CarouselItemComponent
+      ...ImageItemComponent
     }
   }
-  ${CarouselItemComponentFragmentDoc}
+  ${ImageItemComponentFragmentDoc}
 `
 export const DescriptionComponentFragmentDoc = gql`
   fragment DescriptionComponent on CarouselImage {
