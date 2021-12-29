@@ -4,16 +4,13 @@ import { css } from '@emotion/react'
 import { useState } from 'react'
 import { CarouselComponentFragment } from '../../lib/generated/graphql'
 import { ControlBar } from './ControlBar'
-import { DescriptionComponent } from './DescriptionComponent'
 import {
-  ImageScrollComponent,
-  numContentfulImageItems,
-} from './ImageScrollComponent'
-import {
+  CarouselTransition,
   ImageItemHeight,
   ImageItemWidth,
-  CarouselTransition,
 } from './definitions'
+import { DescriptionComponent } from './DescriptionComponent'
+import { ImageScrollComponent, numImageItems } from './ImageScrollComponent'
 export interface CarouselComponentProps {
   fragment: CarouselComponentFragment
 }
@@ -25,16 +22,13 @@ export const CarouselComponent = ({
     //currentTransition is zero start
     to: 0,
   })
-  const numItems = numContentfulImageItems(fragment)
-  console.log('numItems:', numItems)
-  console.log('current transition to:', currentTransition.to)
+  const numItems = numImageItems(fragment)
   const gotoNextItem = () => {
     const nextItem = currentTransition.to + 1
     if (nextItem < numItems) {
       setTransition({ to: nextItem })
     }
   }
-
   const gotoPrevItem = () => {
     const prevItem = currentTransition.to - 1
     if (0 <= prevItem) {

@@ -10,18 +10,6 @@ interface ImageItemComponentProps {
   fragment: ImageItemComponentFragment
 }
 
-export const isEmptyImageItem = (
-  fragment: ImageItemComponentFragment
-): boolean => {
-  return !fragment.url
-}
-
-export const isContentfulImageItem = (
-  fragment: ImageItemComponentFragment
-): boolean => {
-  return !isEmptyImageItem(fragment)
-}
-
 const calculateDirection = (
   fragment: ImageItemComponentFragment
 ): 'horizontal' | 'vertical' => {

@@ -5,7 +5,7 @@ import { useEffect, useRef } from 'react'
 import { DescriptionComponentFragment } from '../../lib/generated/graphql'
 import { CarouselTransition, ImageItemWidth } from './definitions'
 import { ImageItemComponent } from './ImageItemComponent'
-import { numContentfulImageItems } from './ImageScrollComponent'
+import { numImageItems } from './ImageScrollComponent'
 
 interface InnerComponentProps {
   caption: string | null | undefined
@@ -39,8 +39,8 @@ export const DescriptionComponent = ({
       ref.current.scrollLeft = ImageItemWidth * transition.to
     }
   })
-  console.log('numContentfulImageItems: ', numContentfulImageItems(fragment))
-  if (!fragment.images || numContentfulImageItems(fragment) === 0) {
+  console.log('numContentfulImageItems: ', numImageItems(fragment))
+  if (!fragment.images || numImageItems(fragment) === 0) {
     return <></>
   } else {
     return (
