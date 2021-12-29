@@ -4,20 +4,20 @@
     {
       "__typename": "Image",
       "url": "https://res.cloudinary.com/richardimaoka/image/upload/v1640637728/carousel/1_drirhh.png",
-      "caption": "1st picture",
+      "caption": "1st picture. There must be very long long loooong long long long description",
       "width": 640,
       "height": 360
     },
     {
       "__typename": "Image",
-      "caption": "2nd picture",
+      "caption": "2nd picture. There must be very long long loooong long long long description",
       "width": 640,
       "height": 360
     },
     {
       "__typename": "Image",
       "url": "https://res.cloudinary.com/richardimaoka/image/upload/v1640637728/carousel/3_taktbm.png",
-      "caption": "3rd picture",
+      "caption": "3rd picture. There must be very long long loooong long long long description. There must be very long long loooong long long long description.There must be very long long loooong long long long description. There must be very long long loooong long long long description.",
       "width": 640,
       "height": 360
     },

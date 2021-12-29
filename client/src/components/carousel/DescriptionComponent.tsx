@@ -2,7 +2,7 @@
 import { gql } from '@apollo/client'
 import { css } from '@emotion/react'
 import { DescriptionComponentFragment } from '../../lib/generated/graphql'
-import { CarouselTransition } from './definitions'
+import { CarouselTransition, ImageItemWidth } from './definitions'
 import { ImageItemComponent } from './ImageItemComponent'
 import { numContentfulImageItems } from './ImageScrollComponent'
 
@@ -13,7 +13,10 @@ interface InnerComponentProps {
 const InnerComponent = ({ caption }: InnerComponentProps): JSX.Element => (
   <p
     css={css`
+      flex-shrink: 0;
+      scroll-snap-align: start;
       margin: 0px;
+      width: ${ImageItemWidth}px;
     `}
   >
     {caption}
@@ -34,7 +37,11 @@ export const DescriptionComponent = ({
     return (
       <div
         css={css`
-          padding: 8px;
+          display: flex;
+          overflow-x: hidden;
+          scroll-snap-type: x mandatory;
+          scroll-behavior: smooth;
+          /* padding: 8px; */
           border: solid 1px #414141;
         `}
       >
