@@ -25,29 +25,29 @@ export type Scalars = {
 
 export type Action = {
   __typename?: 'Action'
-  details?: Maybe<Array<Maybe<PlainElement>>>
-  instruction?: Maybe<Paragraph>
-  results?: Maybe<Array<Maybe<PlainElement>>>
+  details: Maybe<Array<Maybe<PlainElement>>>
+  instruction: Maybe<Paragraph>
+  results: Maybe<Array<Maybe<PlainElement>>>
 }
 
 export type Author = {
   __typename?: 'Author'
-  id?: Maybe<Scalars['ID']>
+  id: Maybe<Scalars['ID']>
 }
 
 export type CarouselImage = {
   __typename?: 'CarouselImage'
-  images?: Maybe<Array<Maybe<Image>>>
+  images: Maybe<Array<Maybe<Image>>>
 }
 
 export type Command = {
   __typename?: 'Command'
-  text?: Maybe<Scalars['String']>
+  text: Maybe<Scalars['String']>
 }
 
 export type CommandOutput = {
   __typename?: 'CommandOutput'
-  text?: Maybe<Scalars['String']>
+  text: Maybe<Scalars['String']>
 }
 
 export type DecorateTextChunksInput = {
@@ -57,38 +57,38 @@ export type DecorateTextChunksInput = {
 
 export type DirectoryStructure = {
   __typename?: 'DirectoryStructure'
-  contents?: Maybe<Array<Maybe<Scalars['String']>>>
+  contents: Maybe<Array<Maybe<Scalars['String']>>>
 }
 
 export type Foldable = {
   __typename?: 'Foldable'
-  elements?: Maybe<Array<Maybe<PlainElement>>>
-  shortDescription?: Maybe<Scalars['String']>
+  elements: Maybe<Array<Maybe<PlainElement>>>
+  shortDescription: Maybe<Scalars['String']>
 }
 
 export type Image = {
   __typename?: 'Image'
-  alt?: Maybe<Scalars['String']>
-  caption?: Maybe<Scalars['String']>
-  height?: Maybe<Scalars['Int']>
-  url?: Maybe<Scalars['String']>
-  width?: Maybe<Scalars['Int']>
+  alt: Maybe<Scalars['String']>
+  caption: Maybe<Scalars['String']>
+  height: Maybe<Scalars['Int']>
+  url: Maybe<Scalars['String']>
+  width: Maybe<Scalars['Int']>
 }
 
 export type Note = {
   __typename?: 'Note'
-  body?: Maybe<Scalars['String']>
+  body: Maybe<Scalars['String']>
 }
 
 export type Page = {
   __typename?: 'Page'
-  id?: Maybe<Scalars['ID']>
-  nextPageNum?: Maybe<Scalars['String']>
-  pageElements?: Maybe<Array<Maybe<PageElement>>>
-  pageNum?: Maybe<Scalars['String']>
-  prevPageNum?: Maybe<Scalars['String']>
-  progress?: Maybe<Progress>
-  title?: Maybe<Scalars['String']>
+  id: Maybe<Scalars['ID']>
+  nextPageNum: Maybe<Scalars['String']>
+  pageElements: Maybe<Array<Maybe<PageElement>>>
+  pageNum: Maybe<Scalars['String']>
+  prevPageNum: Maybe<Scalars['String']>
+  progress: Maybe<Progress>
+  title: Maybe<Scalars['String']>
 }
 
 /**
@@ -107,7 +107,7 @@ export type PageElement =
 
 export type Paragraph = {
   __typename?: 'Paragraph'
-  chunks?: Maybe<Array<Maybe<TextChunk>>>
+  chunks: Maybe<Array<Maybe<TextChunk>>>
 }
 
 /** PlainElement does not allow nesting itself */
@@ -115,33 +115,33 @@ export type PlainElement = Command | CommandOutput | Paragraph
 
 export type Progress = {
   __typename?: 'Progress'
-  currentPageNum?: Maybe<Scalars['Int']>
-  numPages?: Maybe<Scalars['Int']>
+  currentPageNum: Maybe<Scalars['Int']>
+  numPages: Maybe<Scalars['Int']>
 }
 
 export type Query = {
   __typename?: 'Query'
-  action?: Maybe<Action>
-  carousel?: Maybe<CarouselImage>
+  action: Maybe<Action>
+  carousel: Maybe<CarouselImage>
 }
 
 export type TextChunk = {
   __typename?: 'TextChunk'
-  bold?: Maybe<Scalars['Boolean']>
-  highlight?: Maybe<Scalars['Boolean']>
-  hyperlinkUrl?: Maybe<Scalars['String']>
-  inlineCode?: Maybe<Scalars['Boolean']>
-  strikeout?: Maybe<Scalars['Boolean']>
-  text?: Maybe<Scalars['String']>
+  bold: Maybe<Scalars['Boolean']>
+  highlight: Maybe<Scalars['Boolean']>
+  hyperlinkUrl: Maybe<Scalars['String']>
+  inlineCode: Maybe<Scalars['Boolean']>
+  strikeout: Maybe<Scalars['Boolean']>
+  text: Maybe<Scalars['String']>
 }
 
 export type TextChunkModifyOperation = {
   __typename?: 'TextChunkModifyOperation'
-  bold?: Maybe<Scalars['Boolean']>
-  highlight?: Maybe<Scalars['Boolean']>
-  hyperlinkUrl?: Maybe<Scalars['String']>
-  strikeout?: Maybe<Scalars['Boolean']>
-  text?: Maybe<Scalars['String']>
+  bold: Maybe<Scalars['Boolean']>
+  highlight: Maybe<Scalars['Boolean']>
+  hyperlinkUrl: Maybe<Scalars['String']>
+  strikeout: Maybe<Scalars['Boolean']>
+  text: Maybe<Scalars['String']>
 }
 
 export type TextChunkOperation =
@@ -151,29 +151,29 @@ export type TextChunkOperation =
 export type TextChunkSplitOperation = {
   __typename?: 'TextChunkSplitOperation'
   splitAt: Scalars['Int']
-  splitFirstHalfOperation?: Maybe<TextChunkModifyOperation>
-  splitSecondHalfOperation?: Maybe<TextChunkModifyOperation>
+  splitFirstHalfOperation: Maybe<TextChunkModifyOperation>
+  splitSecondHalfOperation: Maybe<TextChunkModifyOperation>
 }
 
 export type TextChunkWithOperation = {
   __typename?: 'TextChunkWithOperation'
   chunk: TextChunk
-  operation?: Maybe<TextChunkOperation>
+  operation: Maybe<TextChunkOperation>
 }
 
 export type Tutorial = {
   __typename?: 'Tutorial'
-  author?: Maybe<Author>
-  id?: Maybe<Scalars['ID']>
-  pages?: Maybe<Array<Maybe<Page>>>
-  title?: Maybe<Scalars['String']>
+  author: Maybe<Author>
+  id: Maybe<Scalars['ID']>
+  pages: Maybe<Array<Maybe<Page>>>
+  title: Maybe<Scalars['String']>
 }
 
 export type Video = {
   __typename?: 'Video'
-  caption?: Maybe<Scalars['String']>
-  platform?: Maybe<VideoPlatform>
-  url?: Maybe<Scalars['String']>
+  caption: Maybe<Scalars['String']>
+  platform: Maybe<VideoPlatform>
+  url: Maybe<Scalars['String']>
 }
 
 export enum VideoPlatform {
@@ -185,22 +185,22 @@ export type MainQueryVariables = Exact<{ [key: string]: never }>
 
 export type MainQuery = {
   __typename?: 'Query'
-  action?:
+  action:
     | {
         __typename?: 'Action'
-        instruction?:
+        instruction:
           | {
               __typename?: 'Paragraph'
-              chunks?:
+              chunks:
                 | Array<
                     | {
                         __typename?: 'TextChunk'
-                        text?: string | null | undefined
-                        highlight?: boolean | null | undefined
-                        bold?: boolean | null | undefined
-                        hyperlinkUrl?: string | null | undefined
-                        strikeout?: boolean | null | undefined
-                        inlineCode?: boolean | null | undefined
+                        text: string | null | undefined
+                        highlight: boolean | null | undefined
+                        bold: boolean | null | undefined
+                        hyperlinkUrl: string | null | undefined
+                        strikeout: boolean | null | undefined
+                        inlineCode: boolean | null | undefined
                       }
                     | null
                     | undefined
@@ -210,25 +210,25 @@ export type MainQuery = {
             }
           | null
           | undefined
-        details?:
+        details:
           | Array<
-              | { __typename?: 'Command'; text?: string | null | undefined }
+              | { __typename?: 'Command'; text: string | null | undefined }
               | {
                   __typename?: 'CommandOutput'
-                  text?: string | null | undefined
+                  text: string | null | undefined
                 }
               | {
                   __typename?: 'Paragraph'
-                  chunks?:
+                  chunks:
                     | Array<
                         | {
                             __typename?: 'TextChunk'
-                            text?: string | null | undefined
-                            highlight?: boolean | null | undefined
-                            bold?: boolean | null | undefined
-                            hyperlinkUrl?: string | null | undefined
-                            strikeout?: boolean | null | undefined
-                            inlineCode?: boolean | null | undefined
+                            text: string | null | undefined
+                            highlight: boolean | null | undefined
+                            bold: boolean | null | undefined
+                            hyperlinkUrl: string | null | undefined
+                            strikeout: boolean | null | undefined
+                            inlineCode: boolean | null | undefined
                           }
                         | null
                         | undefined
@@ -241,25 +241,25 @@ export type MainQuery = {
             >
           | null
           | undefined
-        results?:
+        results:
           | Array<
-              | { __typename?: 'Command'; text?: string | null | undefined }
+              | { __typename?: 'Command'; text: string | null | undefined }
               | {
                   __typename?: 'CommandOutput'
-                  text?: string | null | undefined
+                  text: string | null | undefined
                 }
               | {
                   __typename?: 'Paragraph'
-                  chunks?:
+                  chunks:
                     | Array<
                         | {
                             __typename?: 'TextChunk'
-                            text?: string | null | undefined
-                            highlight?: boolean | null | undefined
-                            bold?: boolean | null | undefined
-                            hyperlinkUrl?: string | null | undefined
-                            strikeout?: boolean | null | undefined
-                            inlineCode?: boolean | null | undefined
+                            text: string | null | undefined
+                            highlight: boolean | null | undefined
+                            bold: boolean | null | undefined
+                            hyperlinkUrl: string | null | undefined
+                            strikeout: boolean | null | undefined
+                            inlineCode: boolean | null | undefined
                           }
                         | null
                         | undefined
@@ -279,26 +279,26 @@ export type MainQuery = {
 
 type PlainElementComponent_Command_Fragment = {
   __typename?: 'Command'
-  text?: string | null | undefined
+  text: string | null | undefined
 }
 
 type PlainElementComponent_CommandOutput_Fragment = {
   __typename?: 'CommandOutput'
-  text?: string | null | undefined
+  text: string | null | undefined
 }
 
 type PlainElementComponent_Paragraph_Fragment = {
   __typename?: 'Paragraph'
-  chunks?:
+  chunks:
     | Array<
         | {
             __typename?: 'TextChunk'
-            text?: string | null | undefined
-            highlight?: boolean | null | undefined
-            bold?: boolean | null | undefined
-            hyperlinkUrl?: string | null | undefined
-            strikeout?: boolean | null | undefined
-            inlineCode?: boolean | null | undefined
+            text: string | null | undefined
+            highlight: boolean | null | undefined
+            bold: boolean | null | undefined
+            hyperlinkUrl: string | null | undefined
+            strikeout: boolean | null | undefined
+            inlineCode: boolean | null | undefined
           }
         | null
         | undefined
@@ -314,19 +314,19 @@ export type PlainElementComponentFragment =
 
 export type ActionComponentFragment = {
   __typename?: 'Action'
-  instruction?:
+  instruction:
     | {
         __typename?: 'Paragraph'
-        chunks?:
+        chunks:
           | Array<
               | {
                   __typename?: 'TextChunk'
-                  text?: string | null | undefined
-                  highlight?: boolean | null | undefined
-                  bold?: boolean | null | undefined
-                  hyperlinkUrl?: string | null | undefined
-                  strikeout?: boolean | null | undefined
-                  inlineCode?: boolean | null | undefined
+                  text: string | null | undefined
+                  highlight: boolean | null | undefined
+                  bold: boolean | null | undefined
+                  hyperlinkUrl: string | null | undefined
+                  strikeout: boolean | null | undefined
+                  inlineCode: boolean | null | undefined
                 }
               | null
               | undefined
@@ -336,22 +336,22 @@ export type ActionComponentFragment = {
       }
     | null
     | undefined
-  details?:
+  details:
     | Array<
-        | { __typename?: 'Command'; text?: string | null | undefined }
-        | { __typename?: 'CommandOutput'; text?: string | null | undefined }
+        | { __typename?: 'Command'; text: string | null | undefined }
+        | { __typename?: 'CommandOutput'; text: string | null | undefined }
         | {
             __typename?: 'Paragraph'
-            chunks?:
+            chunks:
               | Array<
                   | {
                       __typename?: 'TextChunk'
-                      text?: string | null | undefined
-                      highlight?: boolean | null | undefined
-                      bold?: boolean | null | undefined
-                      hyperlinkUrl?: string | null | undefined
-                      strikeout?: boolean | null | undefined
-                      inlineCode?: boolean | null | undefined
+                      text: string | null | undefined
+                      highlight: boolean | null | undefined
+                      bold: boolean | null | undefined
+                      hyperlinkUrl: string | null | undefined
+                      strikeout: boolean | null | undefined
+                      inlineCode: boolean | null | undefined
                     }
                   | null
                   | undefined
@@ -364,22 +364,22 @@ export type ActionComponentFragment = {
       >
     | null
     | undefined
-  results?:
+  results:
     | Array<
-        | { __typename?: 'Command'; text?: string | null | undefined }
-        | { __typename?: 'CommandOutput'; text?: string | null | undefined }
+        | { __typename?: 'Command'; text: string | null | undefined }
+        | { __typename?: 'CommandOutput'; text: string | null | undefined }
         | {
             __typename?: 'Paragraph'
-            chunks?:
+            chunks:
               | Array<
                   | {
                       __typename?: 'TextChunk'
-                      text?: string | null | undefined
-                      highlight?: boolean | null | undefined
-                      bold?: boolean | null | undefined
-                      hyperlinkUrl?: string | null | undefined
-                      strikeout?: boolean | null | undefined
-                      inlineCode?: boolean | null | undefined
+                      text: string | null | undefined
+                      highlight: boolean | null | undefined
+                      bold: boolean | null | undefined
+                      hyperlinkUrl: string | null | undefined
+                      strikeout: boolean | null | undefined
+                      inlineCode: boolean | null | undefined
                     }
                   | null
                   | undefined
@@ -396,22 +396,22 @@ export type ActionComponentFragment = {
 
 export type ActionDetailsComponentFragment = {
   __typename?: 'Action'
-  details?:
+  details:
     | Array<
-        | { __typename?: 'Command'; text?: string | null | undefined }
-        | { __typename?: 'CommandOutput'; text?: string | null | undefined }
+        | { __typename?: 'Command'; text: string | null | undefined }
+        | { __typename?: 'CommandOutput'; text: string | null | undefined }
         | {
             __typename?: 'Paragraph'
-            chunks?:
+            chunks:
               | Array<
                   | {
                       __typename?: 'TextChunk'
-                      text?: string | null | undefined
-                      highlight?: boolean | null | undefined
-                      bold?: boolean | null | undefined
-                      hyperlinkUrl?: string | null | undefined
-                      strikeout?: boolean | null | undefined
-                      inlineCode?: boolean | null | undefined
+                      text: string | null | undefined
+                      highlight: boolean | null | undefined
+                      bold: boolean | null | undefined
+                      hyperlinkUrl: string | null | undefined
+                      strikeout: boolean | null | undefined
+                      inlineCode: boolean | null | undefined
                     }
                   | null
                   | undefined
@@ -428,19 +428,19 @@ export type ActionDetailsComponentFragment = {
 
 export type ActionInstructionComponentFragment = {
   __typename?: 'Action'
-  instruction?:
+  instruction:
     | {
         __typename?: 'Paragraph'
-        chunks?:
+        chunks:
           | Array<
               | {
                   __typename?: 'TextChunk'
-                  text?: string | null | undefined
-                  highlight?: boolean | null | undefined
-                  bold?: boolean | null | undefined
-                  hyperlinkUrl?: string | null | undefined
-                  strikeout?: boolean | null | undefined
-                  inlineCode?: boolean | null | undefined
+                  text: string | null | undefined
+                  highlight: boolean | null | undefined
+                  bold: boolean | null | undefined
+                  hyperlinkUrl: string | null | undefined
+                  strikeout: boolean | null | undefined
+                  inlineCode: boolean | null | undefined
                 }
               | null
               | undefined
@@ -454,22 +454,22 @@ export type ActionInstructionComponentFragment = {
 
 export type ActionResultComponentFragment = {
   __typename?: 'Action'
-  results?:
+  results:
     | Array<
-        | { __typename?: 'Command'; text?: string | null | undefined }
-        | { __typename?: 'CommandOutput'; text?: string | null | undefined }
+        | { __typename?: 'Command'; text: string | null | undefined }
+        | { __typename?: 'CommandOutput'; text: string | null | undefined }
         | {
             __typename?: 'Paragraph'
-            chunks?:
+            chunks:
               | Array<
                   | {
                       __typename?: 'TextChunk'
-                      text?: string | null | undefined
-                      highlight?: boolean | null | undefined
-                      bold?: boolean | null | undefined
-                      hyperlinkUrl?: string | null | undefined
-                      strikeout?: boolean | null | undefined
-                      inlineCode?: boolean | null | undefined
+                      text: string | null | undefined
+                      highlight: boolean | null | undefined
+                      bold: boolean | null | undefined
+                      hyperlinkUrl: string | null | undefined
+                      strikeout: boolean | null | undefined
+                      inlineCode: boolean | null | undefined
                     }
                   | null
                   | undefined
@@ -486,15 +486,15 @@ export type ActionResultComponentFragment = {
 
 export type CarouselComponentFragment = {
   __typename?: 'CarouselImage'
-  images?:
+  images:
     | Array<
         | {
             __typename?: 'Image'
-            caption?: string | null | undefined
-            url?: string | null | undefined
-            alt?: string | null | undefined
-            width?: number | null | undefined
-            height?: number | null | undefined
+            caption: string | null | undefined
+            url: string | null | undefined
+            alt: string | null | undefined
+            width: number | null | undefined
+            height: number | null | undefined
           }
         | null
         | undefined
@@ -505,15 +505,15 @@ export type CarouselComponentFragment = {
 
 export type DescriptionComponentFragment = {
   __typename?: 'CarouselImage'
-  images?:
+  images:
     | Array<
         | {
             __typename?: 'Image'
-            caption?: string | null | undefined
-            url?: string | null | undefined
-            alt?: string | null | undefined
-            width?: number | null | undefined
-            height?: number | null | undefined
+            caption: string | null | undefined
+            url: string | null | undefined
+            alt: string | null | undefined
+            width: number | null | undefined
+            height: number | null | undefined
           }
         | null
         | undefined
@@ -524,22 +524,22 @@ export type DescriptionComponentFragment = {
 
 export type ImageItemComponentFragment = {
   __typename?: 'Image'
-  url?: string | null | undefined
-  alt?: string | null | undefined
-  width?: number | null | undefined
-  height?: number | null | undefined
+  url: string | null | undefined
+  alt: string | null | undefined
+  width: number | null | undefined
+  height: number | null | undefined
 }
 
 export type ImageScrollComponentFragment = {
   __typename?: 'CarouselImage'
-  images?:
+  images:
     | Array<
         | {
             __typename?: 'Image'
-            url?: string | null | undefined
-            alt?: string | null | undefined
-            width?: number | null | undefined
-            height?: number | null | undefined
+            url: string | null | undefined
+            alt: string | null | undefined
+            width: number | null | undefined
+            height: number | null | undefined
           }
         | null
         | undefined
@@ -550,31 +550,31 @@ export type ImageScrollComponentFragment = {
 
 export type CommandComponentFragment = {
   __typename?: 'Command'
-  text?: string | null | undefined
+  text: string | null | undefined
 }
 
 export type CommandComponent2Fragment = {
   __typename?: 'Command'
-  text?: string | null | undefined
+  text: string | null | undefined
 }
 
 export type CommandOutputComponentFragment = {
   __typename?: 'CommandOutput'
-  text?: string | null | undefined
+  text: string | null | undefined
 }
 
 export type ParagraphComponentFragment = {
   __typename?: 'Paragraph'
-  chunks?:
+  chunks:
     | Array<
         | {
             __typename?: 'TextChunk'
-            text?: string | null | undefined
-            highlight?: boolean | null | undefined
-            bold?: boolean | null | undefined
-            hyperlinkUrl?: string | null | undefined
-            strikeout?: boolean | null | undefined
-            inlineCode?: boolean | null | undefined
+            text: string | null | undefined
+            highlight: boolean | null | undefined
+            bold: boolean | null | undefined
+            hyperlinkUrl: string | null | undefined
+            strikeout: boolean | null | undefined
+            inlineCode: boolean | null | undefined
           }
         | null
         | undefined
@@ -585,19 +585,19 @@ export type ParagraphComponentFragment = {
 
 export type TextChunkComponentFragment = {
   __typename?: 'TextChunk'
-  text?: string | null | undefined
-  highlight?: boolean | null | undefined
-  bold?: boolean | null | undefined
-  hyperlinkUrl?: string | null | undefined
-  strikeout?: boolean | null | undefined
-  inlineCode?: boolean | null | undefined
+  text: string | null | undefined
+  highlight: boolean | null | undefined
+  bold: boolean | null | undefined
+  hyperlinkUrl: string | null | undefined
+  strikeout: boolean | null | undefined
+  inlineCode: boolean | null | undefined
 }
 
 export type VideoComponentFragment = {
   __typename?: 'Video'
-  platform?: VideoPlatform | null | undefined
-  url?: string | null | undefined
-  caption?: string | null | undefined
+  platform: VideoPlatform | null | undefined
+  url: string | null | undefined
+  caption: string | null | undefined
 }
 
 export const TextChunkComponentFragmentDoc = gql`
@@ -897,8 +897,8 @@ export type DirectiveResolverFn<
 export type ResolversTypes = ResolversObject<{
   Action: ResolverTypeWrapper<
     Omit<Action, 'details' | 'results'> & {
-      details?: Maybe<Array<Maybe<ResolversTypes['PlainElement']>>>
-      results?: Maybe<Array<Maybe<ResolversTypes['PlainElement']>>>
+      details: Maybe<Array<Maybe<ResolversTypes['PlainElement']>>>
+      results: Maybe<Array<Maybe<ResolversTypes['PlainElement']>>>
     }
   >
   Author: ResolverTypeWrapper<Author>
@@ -910,7 +910,7 @@ export type ResolversTypes = ResolversObject<{
   DirectoryStructure: ResolverTypeWrapper<DirectoryStructure>
   Foldable: ResolverTypeWrapper<
     Omit<Foldable, 'elements'> & {
-      elements?: Maybe<Array<Maybe<ResolversTypes['PlainElement']>>>
+      elements: Maybe<Array<Maybe<ResolversTypes['PlainElement']>>>
     }
   >
   ID: ResolverTypeWrapper<Scalars['ID']>
@@ -919,7 +919,7 @@ export type ResolversTypes = ResolversObject<{
   Note: ResolverTypeWrapper<Note>
   Page: ResolverTypeWrapper<
     Omit<Page, 'pageElements'> & {
-      pageElements?: Maybe<Array<Maybe<ResolversTypes['PageElement']>>>
+      pageElements: Maybe<Array<Maybe<ResolversTypes['PageElement']>>>
     }
   >
   PageElement:
@@ -947,7 +947,7 @@ export type ResolversTypes = ResolversObject<{
   TextChunkSplitOperation: ResolverTypeWrapper<TextChunkSplitOperation>
   TextChunkWithOperation: ResolverTypeWrapper<
     Omit<TextChunkWithOperation, 'operation'> & {
-      operation?: Maybe<ResolversTypes['TextChunkOperation']>
+      operation: Maybe<ResolversTypes['TextChunkOperation']>
     }
   >
   Tutorial: ResolverTypeWrapper<Tutorial>
@@ -958,8 +958,8 @@ export type ResolversTypes = ResolversObject<{
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = ResolversObject<{
   Action: Omit<Action, 'details' | 'results'> & {
-    details?: Maybe<Array<Maybe<ResolversParentTypes['PlainElement']>>>
-    results?: Maybe<Array<Maybe<ResolversParentTypes['PlainElement']>>>
+    details: Maybe<Array<Maybe<ResolversParentTypes['PlainElement']>>>
+    results: Maybe<Array<Maybe<ResolversParentTypes['PlainElement']>>>
   }
   Author: Author
   Boolean: Scalars['Boolean']
@@ -969,14 +969,14 @@ export type ResolversParentTypes = ResolversObject<{
   DecorateTextChunksInput: DecorateTextChunksInput
   DirectoryStructure: DirectoryStructure
   Foldable: Omit<Foldable, 'elements'> & {
-    elements?: Maybe<Array<Maybe<ResolversParentTypes['PlainElement']>>>
+    elements: Maybe<Array<Maybe<ResolversParentTypes['PlainElement']>>>
   }
   ID: Scalars['ID']
   Image: Image
   Int: Scalars['Int']
   Note: Note
   Page: Omit<Page, 'pageElements'> & {
-    pageElements?: Maybe<Array<Maybe<ResolversParentTypes['PageElement']>>>
+    pageElements: Maybe<Array<Maybe<ResolversParentTypes['PageElement']>>>
   }
   PageElement:
     | ResolversParentTypes['Action']
@@ -1002,7 +1002,7 @@ export type ResolversParentTypes = ResolversObject<{
     | ResolversParentTypes['TextChunkSplitOperation']
   TextChunkSplitOperation: TextChunkSplitOperation
   TextChunkWithOperation: Omit<TextChunkWithOperation, 'operation'> & {
-    operation?: Maybe<ResolversParentTypes['TextChunkOperation']>
+    operation: Maybe<ResolversParentTypes['TextChunkOperation']>
   }
   Tutorial: Tutorial
   Video: Video
@@ -1012,17 +1012,17 @@ export type ActionResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['Action'] = ResolversParentTypes['Action']
 > = ResolversObject<{
-  details?: Resolver<
+  details: Resolver<
     Maybe<Array<Maybe<ResolversTypes['PlainElement']>>>,
     ParentType,
     ContextType
   >
-  instruction?: Resolver<
+  instruction: Resolver<
     Maybe<ResolversTypes['Paragraph']>,
     ParentType,
     ContextType
   >
-  results?: Resolver<
+  results: Resolver<
     Maybe<Array<Maybe<ResolversTypes['PlainElement']>>>,
     ParentType,
     ContextType
@@ -1034,7 +1034,7 @@ export type AuthorResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['Author'] = ResolversParentTypes['Author']
 > = ResolversObject<{
-  id?: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>
+  id: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }>
 
@@ -1042,7 +1042,7 @@ export type CarouselImageResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['CarouselImage'] = ResolversParentTypes['CarouselImage']
 > = ResolversObject<{
-  images?: Resolver<
+  images: Resolver<
     Maybe<Array<Maybe<ResolversTypes['Image']>>>,
     ParentType,
     ContextType
@@ -1054,7 +1054,7 @@ export type CommandResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['Command'] = ResolversParentTypes['Command']
 > = ResolversObject<{
-  text?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
+  text: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }>
 
@@ -1062,7 +1062,7 @@ export type CommandOutputResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['CommandOutput'] = ResolversParentTypes['CommandOutput']
 > = ResolversObject<{
-  text?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
+  text: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }>
 
@@ -1070,7 +1070,7 @@ export type DecorateTextChunksInputResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['DecorateTextChunksInput'] = ResolversParentTypes['DecorateTextChunksInput']
 > = ResolversObject<{
-  chunks?: Resolver<
+  chunks: Resolver<
     Array<Maybe<ResolversTypes['TextChunkWithOperation']>>,
     ParentType,
     ContextType
@@ -1082,7 +1082,7 @@ export type DirectoryStructureResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['DirectoryStructure'] = ResolversParentTypes['DirectoryStructure']
 > = ResolversObject<{
-  contents?: Resolver<
+  contents: Resolver<
     Maybe<Array<Maybe<ResolversTypes['String']>>>,
     ParentType,
     ContextType
@@ -1094,12 +1094,12 @@ export type FoldableResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['Foldable'] = ResolversParentTypes['Foldable']
 > = ResolversObject<{
-  elements?: Resolver<
+  elements: Resolver<
     Maybe<Array<Maybe<ResolversTypes['PlainElement']>>>,
     ParentType,
     ContextType
   >
-  shortDescription?: Resolver<
+  shortDescription: Resolver<
     Maybe<ResolversTypes['String']>,
     ParentType,
     ContextType
@@ -1111,11 +1111,11 @@ export type ImageResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['Image'] = ResolversParentTypes['Image']
 > = ResolversObject<{
-  alt?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  caption?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  height?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>
-  url?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  width?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>
+  alt: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
+  caption: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
+  height: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>
+  url: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
+  width: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }>
 
@@ -1123,7 +1123,7 @@ export type NoteResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['Note'] = ResolversParentTypes['Note']
 > = ResolversObject<{
-  body?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
+  body: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }>
 
@@ -1131,29 +1131,25 @@ export type PageResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['Page'] = ResolversParentTypes['Page']
 > = ResolversObject<{
-  id?: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>
-  nextPageNum?: Resolver<
+  id: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>
+  nextPageNum: Resolver<
     Maybe<ResolversTypes['String']>,
     ParentType,
     ContextType
   >
-  pageElements?: Resolver<
+  pageElements: Resolver<
     Maybe<Array<Maybe<ResolversTypes['PageElement']>>>,
     ParentType,
     ContextType
   >
-  pageNum?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  prevPageNum?: Resolver<
+  pageNum: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
+  prevPageNum: Resolver<
     Maybe<ResolversTypes['String']>,
     ParentType,
     ContextType
   >
-  progress?: Resolver<
-    Maybe<ResolversTypes['Progress']>,
-    ParentType,
-    ContextType
-  >
-  title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
+  progress: Resolver<Maybe<ResolversTypes['Progress']>, ParentType, ContextType>
+  title: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }>
 
@@ -1179,7 +1175,7 @@ export type ParagraphResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['Paragraph'] = ResolversParentTypes['Paragraph']
 > = ResolversObject<{
-  chunks?: Resolver<
+  chunks: Resolver<
     Maybe<Array<Maybe<ResolversTypes['TextChunk']>>>,
     ParentType,
     ContextType
@@ -1202,12 +1198,12 @@ export type ProgressResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['Progress'] = ResolversParentTypes['Progress']
 > = ResolversObject<{
-  currentPageNum?: Resolver<
+  currentPageNum: Resolver<
     Maybe<ResolversTypes['Int']>,
     ParentType,
     ContextType
   >
-  numPages?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>
+  numPages: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }>
 
@@ -1215,8 +1211,8 @@ export type QueryResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']
 > = ResolversObject<{
-  action?: Resolver<Maybe<ResolversTypes['Action']>, ParentType, ContextType>
-  carousel?: Resolver<
+  action: Resolver<Maybe<ResolversTypes['Action']>, ParentType, ContextType>
+  carousel: Resolver<
     Maybe<ResolversTypes['CarouselImage']>,
     ParentType,
     ContextType
@@ -1227,28 +1223,20 @@ export type TextChunkResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['TextChunk'] = ResolversParentTypes['TextChunk']
 > = ResolversObject<{
-  bold?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>
-  highlight?: Resolver<
-    Maybe<ResolversTypes['Boolean']>,
-    ParentType,
-    ContextType
-  >
-  hyperlinkUrl?: Resolver<
+  bold: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>
+  highlight: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>
+  hyperlinkUrl: Resolver<
     Maybe<ResolversTypes['String']>,
     ParentType,
     ContextType
   >
-  inlineCode?: Resolver<
+  inlineCode: Resolver<
     Maybe<ResolversTypes['Boolean']>,
     ParentType,
     ContextType
   >
-  strikeout?: Resolver<
-    Maybe<ResolversTypes['Boolean']>,
-    ParentType,
-    ContextType
-  >
-  text?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
+  strikeout: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>
+  text: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }>
 
@@ -1256,23 +1244,15 @@ export type TextChunkModifyOperationResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['TextChunkModifyOperation'] = ResolversParentTypes['TextChunkModifyOperation']
 > = ResolversObject<{
-  bold?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>
-  highlight?: Resolver<
-    Maybe<ResolversTypes['Boolean']>,
-    ParentType,
-    ContextType
-  >
-  hyperlinkUrl?: Resolver<
+  bold: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>
+  highlight: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>
+  hyperlinkUrl: Resolver<
     Maybe<ResolversTypes['String']>,
     ParentType,
     ContextType
   >
-  strikeout?: Resolver<
-    Maybe<ResolversTypes['Boolean']>,
-    ParentType,
-    ContextType
-  >
-  text?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
+  strikeout: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>
+  text: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }>
 
@@ -1291,13 +1271,13 @@ export type TextChunkSplitOperationResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['TextChunkSplitOperation'] = ResolversParentTypes['TextChunkSplitOperation']
 > = ResolversObject<{
-  splitAt?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
-  splitFirstHalfOperation?: Resolver<
+  splitAt: Resolver<ResolversTypes['Int'], ParentType, ContextType>
+  splitFirstHalfOperation: Resolver<
     Maybe<ResolversTypes['TextChunkModifyOperation']>,
     ParentType,
     ContextType
   >
-  splitSecondHalfOperation?: Resolver<
+  splitSecondHalfOperation: Resolver<
     Maybe<ResolversTypes['TextChunkModifyOperation']>,
     ParentType,
     ContextType
@@ -1309,8 +1289,8 @@ export type TextChunkWithOperationResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['TextChunkWithOperation'] = ResolversParentTypes['TextChunkWithOperation']
 > = ResolversObject<{
-  chunk?: Resolver<ResolversTypes['TextChunk'], ParentType, ContextType>
-  operation?: Resolver<
+  chunk: Resolver<ResolversTypes['TextChunk'], ParentType, ContextType>
+  operation: Resolver<
     Maybe<ResolversTypes['TextChunkOperation']>,
     ParentType,
     ContextType
@@ -1322,14 +1302,14 @@ export type TutorialResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['Tutorial'] = ResolversParentTypes['Tutorial']
 > = ResolversObject<{
-  author?: Resolver<Maybe<ResolversTypes['Author']>, ParentType, ContextType>
-  id?: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>
-  pages?: Resolver<
+  author: Resolver<Maybe<ResolversTypes['Author']>, ParentType, ContextType>
+  id: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>
+  pages: Resolver<
     Maybe<Array<Maybe<ResolversTypes['Page']>>>,
     ParentType,
     ContextType
   >
-  title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
+  title: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }>
 
@@ -1337,38 +1317,38 @@ export type VideoResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['Video'] = ResolversParentTypes['Video']
 > = ResolversObject<{
-  caption?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  platform?: Resolver<
+  caption: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
+  platform: Resolver<
     Maybe<ResolversTypes['VideoPlatform']>,
     ParentType,
     ContextType
   >
-  url?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
+  url: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }>
 
 export type Resolvers<ContextType = any> = ResolversObject<{
-  Action?: ActionResolvers<ContextType>
-  Author?: AuthorResolvers<ContextType>
-  CarouselImage?: CarouselImageResolvers<ContextType>
-  Command?: CommandResolvers<ContextType>
-  CommandOutput?: CommandOutputResolvers<ContextType>
-  DecorateTextChunksInput?: DecorateTextChunksInputResolvers<ContextType>
-  DirectoryStructure?: DirectoryStructureResolvers<ContextType>
-  Foldable?: FoldableResolvers<ContextType>
-  Image?: ImageResolvers<ContextType>
-  Note?: NoteResolvers<ContextType>
-  Page?: PageResolvers<ContextType>
-  PageElement?: PageElementResolvers<ContextType>
-  Paragraph?: ParagraphResolvers<ContextType>
-  PlainElement?: PlainElementResolvers<ContextType>
-  Progress?: ProgressResolvers<ContextType>
-  Query?: QueryResolvers<ContextType>
-  TextChunk?: TextChunkResolvers<ContextType>
-  TextChunkModifyOperation?: TextChunkModifyOperationResolvers<ContextType>
-  TextChunkOperation?: TextChunkOperationResolvers<ContextType>
-  TextChunkSplitOperation?: TextChunkSplitOperationResolvers<ContextType>
-  TextChunkWithOperation?: TextChunkWithOperationResolvers<ContextType>
-  Tutorial?: TutorialResolvers<ContextType>
-  Video?: VideoResolvers<ContextType>
+  Action: ActionResolvers<ContextType>
+  Author: AuthorResolvers<ContextType>
+  CarouselImage: CarouselImageResolvers<ContextType>
+  Command: CommandResolvers<ContextType>
+  CommandOutput: CommandOutputResolvers<ContextType>
+  DecorateTextChunksInput: DecorateTextChunksInputResolvers<ContextType>
+  DirectoryStructure: DirectoryStructureResolvers<ContextType>
+  Foldable: FoldableResolvers<ContextType>
+  Image: ImageResolvers<ContextType>
+  Note: NoteResolvers<ContextType>
+  Page: PageResolvers<ContextType>
+  PageElement: PageElementResolvers<ContextType>
+  Paragraph: ParagraphResolvers<ContextType>
+  PlainElement: PlainElementResolvers<ContextType>
+  Progress: ProgressResolvers<ContextType>
+  Query: QueryResolvers<ContextType>
+  TextChunk: TextChunkResolvers<ContextType>
+  TextChunkModifyOperation: TextChunkModifyOperationResolvers<ContextType>
+  TextChunkOperation: TextChunkOperationResolvers<ContextType>
+  TextChunkSplitOperation: TextChunkSplitOperationResolvers<ContextType>
+  TextChunkWithOperation: TextChunkWithOperationResolvers<ContextType>
+  Tutorial: TutorialResolvers<ContextType>
+  Video: VideoResolvers<ContextType>
 }>

@@ -15,6 +15,11 @@ export const createParagraph = (text: string): ParagraphComponentFragment => {
       {
         __typename: 'TextChunk',
         text: text,
+        highlight: null,
+        bold: null,
+        hyperlinkUrl: null,
+        strikeout: null,
+        inlineCode: null,
       },
     ],
   }
