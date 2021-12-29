@@ -26,6 +26,8 @@ export const CarouselComponent = ({
     to: 0,
   })
   const numItems = numContentfulImageItems(fragment)
+  console.log('numItems:', numItems)
+  console.log('current transition to:', currentTransition.to)
   const gotoNextItem = () => {
     const nextItem = currentTransition.to + 1
     if (nextItem < numItems) {

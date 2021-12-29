@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { gql } from '@apollo/client'
 import { css } from '@emotion/react'
+import { useEffect, useRef } from 'react'
 import { DescriptionComponentFragment } from '../../lib/generated/graphql'
 import { CarouselTransition, ImageItemWidth } from './definitions'
 import { ImageItemComponent } from './ImageItemComponent'
@@ -30,7 +31,15 @@ interface DescriptionComponentProps {
 
 export const DescriptionComponent = ({
   fragment,
+  transition,
 }: DescriptionComponentProps): JSX.Element => {
+  const ref = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    if (ref.current) {
+      ref.current.scrollLeft = ImageItemWidth * transition.to
+    }
+  })
+  console.log('numContentfulImageItems: ', numContentfulImageItems(fragment))
   if (!fragment.images || numContentfulImageItems(fragment) === 0) {
     return <></>
   } else {
@@ -44,6 +53,7 @@ export const DescriptionComponent = ({
           /* padding: 8px; */
           border: solid 1px #414141;
         `}
+        ref={ref}
       >
         {fragment.images.map((image, index) =>
           image ? <InnerComponent key={index} caption={image.caption} /> : <></>
