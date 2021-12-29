@@ -10,6 +10,7 @@ import {
   isEmptyPlainElement,
   PlainElementComponent,
 } from '../PlainElementComponent'
+import { VideoComponent } from '../video/VideoComponent'
 
 interface ActionResultComponentProps {
   fragment: ActionResultComponentFragment
@@ -70,10 +71,14 @@ ActionResultComponent.fragment = gql`
       ... on CommandOutput {
         ...CommandOutputComponent
       }
+      ... on Video {
+        ...VideoComponent
+      }
     }
   }
 
   ${ParagraphComponent.fragment}
   ${CommandComponent.fragment}
   ${CommandOutputComponent.fragment}
+  ${VideoComponent.fragment}
 `

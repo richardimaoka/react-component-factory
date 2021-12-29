@@ -9,6 +9,7 @@ import {
   isEmptyPlainElement,
   PlainElementComponent,
 } from '../PlainElementComponent'
+import { VideoComponent } from '../video/VideoComponent'
 
 interface ActionDetailsComponentProps {
   fragment: ActionDetailsComponentFragment
@@ -29,6 +30,7 @@ export const isEmptyActionDetails = (
     return isEveryChunkEmpty
   }
 }
+
 export const ActionDetailsComponent = ({
   fragment,
 }: ActionDetailsComponentProps): JSX.Element => {
@@ -68,10 +70,14 @@ ActionDetailsComponent.fragment = gql`
       ... on CommandOutput {
         ...CommandOutputComponent
       }
+      ... on Video {
+        ...VideoComponent
+      }
     }
   }
 
   ${ParagraphComponent.fragment}
   ${CommandComponent.fragment}
   ${CommandOutputComponent.fragment}
+  ${VideoComponent.fragment}
 `

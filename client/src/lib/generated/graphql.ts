@@ -111,7 +111,7 @@ export type Paragraph = {
 }
 
 /** PlainElement does not allow nesting itself */
-export type PlainElement = Command | CommandOutput | Paragraph
+export type PlainElement = Command | CommandOutput | Paragraph | Video
 
 export type Progress = {
   __typename?: 'Progress'
@@ -227,10 +227,18 @@ type PlainElementComponent_Paragraph_Fragment = {
     | undefined
 }
 
+type PlainElementComponent_Video_Fragment = {
+  __typename?: 'Video'
+  platform: VideoPlatform | null | undefined
+  url: string | null | undefined
+  caption: string | null | undefined
+}
+
 export type PlainElementComponentFragment =
   | PlainElementComponent_Command_Fragment
   | PlainElementComponent_CommandOutput_Fragment
   | PlainElementComponent_Paragraph_Fragment
+  | PlainElementComponent_Video_Fragment
 
 export type ActionComponentFragment = {
   __typename?: 'Action'
@@ -279,6 +287,12 @@ export type ActionComponentFragment = {
               | null
               | undefined
           }
+        | {
+            __typename?: 'Video'
+            platform: VideoPlatform | null | undefined
+            url: string | null | undefined
+            caption: string | null | undefined
+          }
         | null
         | undefined
       >
@@ -306,6 +320,12 @@ export type ActionComponentFragment = {
                 >
               | null
               | undefined
+          }
+        | {
+            __typename?: 'Video'
+            platform: VideoPlatform | null | undefined
+            url: string | null | undefined
+            caption: string | null | undefined
           }
         | null
         | undefined
@@ -338,6 +358,12 @@ export type ActionDetailsComponentFragment = {
                 >
               | null
               | undefined
+          }
+        | {
+            __typename?: 'Video'
+            platform: VideoPlatform | null | undefined
+            url: string | null | undefined
+            caption: string | null | undefined
           }
         | null
         | undefined
@@ -396,6 +422,12 @@ export type ActionResultComponentFragment = {
                 >
               | null
               | undefined
+          }
+        | {
+            __typename?: 'Video'
+            platform: VideoPlatform | null | undefined
+            url: string | null | undefined
+            caption: string | null | undefined
           }
         | null
         | undefined
@@ -548,6 +580,13 @@ export const CommandOutputComponentFragmentDoc = gql`
     text
   }
 `
+export const VideoComponentFragmentDoc = gql`
+  fragment VideoComponent on Video {
+    platform
+    url
+    caption
+  }
+`
 export const PlainElementComponentFragmentDoc = gql`
   fragment PlainElementComponent on PlainElement {
     ... on Paragraph {
@@ -559,10 +598,14 @@ export const PlainElementComponentFragmentDoc = gql`
     ... on CommandOutput {
       ...CommandOutputComponent
     }
+    ... on Video {
+      ...VideoComponent
+    }
   }
   ${ParagraphComponentFragmentDoc}
   ${CommandComponentFragmentDoc}
   ${CommandOutputComponentFragmentDoc}
+  ${VideoComponentFragmentDoc}
 `
 export const ActionInstructionComponentFragmentDoc = gql`
   fragment ActionInstructionComponent on Action {
@@ -584,11 +627,15 @@ export const ActionDetailsComponentFragmentDoc = gql`
       ... on CommandOutput {
         ...CommandOutputComponent
       }
+      ... on Video {
+        ...VideoComponent
+      }
     }
   }
   ${ParagraphComponentFragmentDoc}
   ${CommandComponentFragmentDoc}
   ${CommandOutputComponentFragmentDoc}
+  ${VideoComponentFragmentDoc}
 `
 export const ActionResultComponentFragmentDoc = gql`
   fragment ActionResultComponent on Action {
@@ -602,11 +649,15 @@ export const ActionResultComponentFragmentDoc = gql`
       ... on CommandOutput {
         ...CommandOutputComponent
       }
+      ... on Video {
+        ...VideoComponent
+      }
     }
   }
   ${ParagraphComponentFragmentDoc}
   ${CommandComponentFragmentDoc}
   ${CommandOutputComponentFragmentDoc}
+  ${VideoComponentFragmentDoc}
 `
 export const ActionComponentFragmentDoc = gql`
   fragment ActionComponent on Action {
@@ -654,13 +705,6 @@ export const CarouselComponentFragmentDoc = gql`
 export const CommandComponent2FragmentDoc = gql`
   fragment CommandComponent2 on Command {
     text
-  }
-`
-export const VideoComponentFragmentDoc = gql`
-  fragment VideoComponent on Video {
-    platform
-    url
-    caption
   }
 `
 export const MainDocument = gql`
@@ -856,6 +900,7 @@ export type ResolversTypes = ResolversObject<{
     | ResolversTypes['Command']
     | ResolversTypes['CommandOutput']
     | ResolversTypes['Paragraph']
+    | ResolversTypes['Video']
   Progress: ResolverTypeWrapper<Progress>
   Query: ResolverTypeWrapper<{}>
   String: ResolverTypeWrapper<Scalars['String']>
@@ -912,6 +957,7 @@ export type ResolversParentTypes = ResolversObject<{
     | ResolversParentTypes['Command']
     | ResolversParentTypes['CommandOutput']
     | ResolversParentTypes['Paragraph']
+    | ResolversParentTypes['Video']
   Progress: Progress
   Query: {}
   String: Scalars['String']
@@ -1108,7 +1154,7 @@ export type PlainElementResolvers<
   ParentType extends ResolversParentTypes['PlainElement'] = ResolversParentTypes['PlainElement']
 > = ResolversObject<{
   __resolveType: TypeResolveFn<
-    'Command' | 'CommandOutput' | 'Paragraph',
+    'Command' | 'CommandOutput' | 'Paragraph' | 'Video',
     ParentType,
     ContextType
   >

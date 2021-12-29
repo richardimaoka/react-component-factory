@@ -11,6 +11,7 @@ import {
   isEmptyParagraph,
   ParagraphComponent,
 } from './paragraph/ParagraphComponent'
+import { isEmptyVideo, VideoComponent } from './video/VideoComponent'
 
 interface PlainElementComponentProps {
   fragment: PlainElementComponentFragment
@@ -30,6 +31,8 @@ export const isEmptyPlainElement = (
         return isEmptyCommandOutput(fragment)
       case 'Paragraph':
         return isEmptyParagraph(fragment)
+      case 'Video':
+        return isEmptyVideo(fragment)
       default:
         return switchExhaustivenessCheck(typename)
     }
@@ -50,6 +53,8 @@ export const PlainElementComponent = ({
         return <CommandOutputComponent fragment={fragment} />
       case 'Paragraph':
         return <ParagraphComponent fragment={fragment} />
+      case 'Video':
+        return <VideoComponent fragment={fragment} />
       default:
         return switchExhaustivenessCheck(typename)
     }
@@ -67,9 +72,13 @@ PlainElementComponent.fragment = gql`
     ... on CommandOutput {
       ...CommandOutputComponent
     }
+    ... on Video {
+      ...VideoComponent
+    }
   }
 
   ${ParagraphComponent.fragment}
   ${CommandComponent.fragment}
   ${CommandOutputComponent.fragment}
+  ${VideoComponent.fragment}
 `
