@@ -1,6 +1,7 @@
 type Query {
   action: Action
   carousel: CarouselImage
+  video: Video
 }
 
 type Author {

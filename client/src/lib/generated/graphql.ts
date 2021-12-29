@@ -123,6 +123,7 @@ export type Query = {
   __typename?: 'Query'
   action: Maybe<Action>
   carousel: Maybe<CarouselImage>
+  video: Maybe<Video>
 }
 
 export type TextChunk = {
@@ -185,93 +186,12 @@ export type MainQueryVariables = Exact<{ [key: string]: never }>
 
 export type MainQuery = {
   __typename?: 'Query'
-  action:
+  video:
     | {
-        __typename?: 'Action'
-        instruction:
-          | {
-              __typename?: 'Paragraph'
-              chunks:
-                | Array<
-                    | {
-                        __typename?: 'TextChunk'
-                        text: string | null | undefined
-                        highlight: boolean | null | undefined
-                        bold: boolean | null | undefined
-                        hyperlinkUrl: string | null | undefined
-                        strikeout: boolean | null | undefined
-                        inlineCode: boolean | null | undefined
-                      }
-                    | null
-                    | undefined
-                  >
-                | null
-                | undefined
-            }
-          | null
-          | undefined
-        details:
-          | Array<
-              | { __typename?: 'Command'; text: string | null | undefined }
-              | {
-                  __typename?: 'CommandOutput'
-                  text: string | null | undefined
-                }
-              | {
-                  __typename?: 'Paragraph'
-                  chunks:
-                    | Array<
-                        | {
-                            __typename?: 'TextChunk'
-                            text: string | null | undefined
-                            highlight: boolean | null | undefined
-                            bold: boolean | null | undefined
-                            hyperlinkUrl: string | null | undefined
-                            strikeout: boolean | null | undefined
-                            inlineCode: boolean | null | undefined
-                          }
-                        | null
-                        | undefined
-                      >
-                    | null
-                    | undefined
-                }
-              | null
-              | undefined
-            >
-          | null
-          | undefined
-        results:
-          | Array<
-              | { __typename?: 'Command'; text: string | null | undefined }
-              | {
-                  __typename?: 'CommandOutput'
-                  text: string | null | undefined
-                }
-              | {
-                  __typename?: 'Paragraph'
-                  chunks:
-                    | Array<
-                        | {
-                            __typename?: 'TextChunk'
-                            text: string | null | undefined
-                            highlight: boolean | null | undefined
-                            bold: boolean | null | undefined
-                            hyperlinkUrl: string | null | undefined
-                            strikeout: boolean | null | undefined
-                            inlineCode: boolean | null | undefined
-                          }
-                        | null
-                        | undefined
-                      >
-                    | null
-                    | undefined
-                }
-              | null
-              | undefined
-            >
-          | null
-          | undefined
+        __typename?: 'Video'
+        platform: VideoPlatform | null | undefined
+        url: string | null | undefined
+        caption: string | null | undefined
       }
     | null
     | undefined
@@ -745,11 +665,11 @@ export const VideoComponentFragmentDoc = gql`
 `
 export const MainDocument = gql`
   query Main {
-    action {
-      ...ActionComponent
+    video {
+      ...VideoComponent
     }
   }
-  ${ActionComponentFragmentDoc}
+  ${VideoComponentFragmentDoc}
 `
 
 /**
@@ -1217,6 +1137,7 @@ export type QueryResolvers<
     ParentType,
     ContextType
   >
+  video: Resolver<Maybe<ResolversTypes['Video']>, ParentType, ContextType>
 }>
 
 export type TextChunkResolvers<
