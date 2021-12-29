@@ -4,7 +4,7 @@ import { css } from '@emotion/react'
 import { useEffect, useRef } from 'react'
 import { CarouselImageScrollComponentFragment } from '../../lib/generated/graphql'
 import { CarouselTransition, ImageItemWidth } from './definitions'
-import { ImageItemComponent } from './CarouselImageItemComponent'
+import { CarouselImageItemComponent } from './CarouselImageItemComponent'
 
 interface CarouselImageScrollComponentProps {
   fragment: CarouselImageScrollComponentFragment
@@ -47,7 +47,11 @@ export const CarouselImageScrollComponent = ({
         ref={ref}
       >
         {fragment.images.map((image, index) =>
-          image ? <ImageItemComponent key={index} fragment={image} /> : <></>
+          image ? (
+            <CarouselImageItemComponent key={index} fragment={image} />
+          ) : (
+            <></>
+          )
         )}
       </div>
     )
@@ -57,8 +61,8 @@ export const CarouselImageScrollComponent = ({
 CarouselImageScrollComponent.fragment = gql`
   fragment CarouselImageScrollComponent on CarouselImage {
     images {
-      ...ImageItemComponent
+      ...CarouselImageItemComponent
     }
   }
-  ${ImageItemComponent.fragment}
+  ${CarouselImageItemComponent.fragment}
 `

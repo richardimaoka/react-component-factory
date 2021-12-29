@@ -1,17 +1,17 @@
 /** @jsxImportSource @emotion/react */
 import { gql } from '@apollo/client'
 import { css } from '@emotion/react'
-import { ImageItemComponentFragment } from '../../lib/generated/graphql'
+import { CarouselImageItemComponentFragment } from '../../lib/generated/graphql'
 import { switchExhaustivenessCheck } from '../../switchExhaustivenessCheck'
 import { ImageItemHeight, ImageItemWidth } from './definitions'
 import backgroundImg from './images/background.png'
 import failedImg from './images/failed.png'
-interface ImageItemComponentProps {
-  fragment: ImageItemComponentFragment
+interface CarouselImageItemComponentProps {
+  fragment: CarouselImageItemComponentFragment
 }
 
 const calculateDirection = (
-  fragment: ImageItemComponentFragment
+  fragment: CarouselImageItemComponentFragment
 ): 'horizontal' | 'vertical' => {
   if (!fragment.width || !fragment.height) {
     return 'horizontal' //default is horizontal
@@ -42,9 +42,9 @@ const InnerComponent = ({
   }
 }
 
-export const ImageItemComponent = ({
+export const CarouselImageItemComponent = ({
   fragment,
-}: ImageItemComponentProps): JSX.Element => {
+}: CarouselImageItemComponentProps): JSX.Element => {
   return (
     <div
       css={css`
@@ -77,8 +77,8 @@ export const ImageItemComponent = ({
   )
 }
 
-ImageItemComponent.fragment = gql`
-  fragment ImageItemComponent on Image {
+CarouselImageItemComponent.fragment = gql`
+  fragment CarouselImageItemComponent on Image {
     url
     alt
     width

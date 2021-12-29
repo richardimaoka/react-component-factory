@@ -4,7 +4,7 @@ import { css } from '@emotion/react'
 import { useEffect, useRef } from 'react'
 import { CarouselDescriptionComponentFragment } from '../../lib/generated/graphql'
 import { CarouselTransition, ImageItemWidth } from './definitions'
-import { ImageItemComponent } from './CarouselImageItemComponent'
+import { CarouselImageItemComponent } from './CarouselImageItemComponent'
 import { numImageItems } from './CarouselImageScrollComponent'
 
 interface InnerComponentProps {
@@ -73,9 +73,9 @@ CarouselDescriptionComponent.fragment = gql`
   fragment CarouselDescriptionComponent on CarouselImage {
     images {
       caption
-      ...ImageItemComponent
+      ...CarouselImageItemComponent
     }
   }
 
-  ${ImageItemComponent.fragment}
+  ${CarouselImageItemComponent.fragment}
 `
