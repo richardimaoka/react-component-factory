@@ -111,7 +111,12 @@ export type Paragraph = {
 }
 
 /** PlainElement does not allow nesting itself */
-export type PlainElement = Command | CommandOutput | Paragraph | Video
+export type PlainElement =
+  | CarouselImage
+  | Command
+  | CommandOutput
+  | Paragraph
+  | Video
 
 export type Progress = {
   __typename?: 'Progress'
@@ -197,6 +202,25 @@ export type MainQuery = {
     | undefined
 }
 
+type PlainElementComponent_CarouselImage_Fragment = {
+  __typename?: 'CarouselImage'
+  images:
+    | Array<
+        | {
+            __typename?: 'Image'
+            caption: string | null | undefined
+            url: string | null | undefined
+            alt: string | null | undefined
+            width: number | null | undefined
+            height: number | null | undefined
+          }
+        | null
+        | undefined
+      >
+    | null
+    | undefined
+}
+
 type PlainElementComponent_Command_Fragment = {
   __typename?: 'Command'
   text: string | null | undefined
@@ -235,6 +259,7 @@ type PlainElementComponent_Video_Fragment = {
 }
 
 export type PlainElementComponentFragment =
+  | PlainElementComponent_CarouselImage_Fragment
   | PlainElementComponent_Command_Fragment
   | PlainElementComponent_CommandOutput_Fragment
   | PlainElementComponent_Paragraph_Fragment
@@ -266,6 +291,24 @@ export type ActionComponentFragment = {
     | undefined
   details:
     | Array<
+        | {
+            __typename?: 'CarouselImage'
+            images:
+              | Array<
+                  | {
+                      __typename?: 'Image'
+                      caption: string | null | undefined
+                      url: string | null | undefined
+                      alt: string | null | undefined
+                      width: number | null | undefined
+                      height: number | null | undefined
+                    }
+                  | null
+                  | undefined
+                >
+              | null
+              | undefined
+          }
         | { __typename?: 'Command'; text: string | null | undefined }
         | { __typename?: 'CommandOutput'; text: string | null | undefined }
         | {
@@ -300,6 +343,24 @@ export type ActionComponentFragment = {
     | undefined
   results:
     | Array<
+        | {
+            __typename?: 'CarouselImage'
+            images:
+              | Array<
+                  | {
+                      __typename?: 'Image'
+                      caption: string | null | undefined
+                      url: string | null | undefined
+                      alt: string | null | undefined
+                      width: number | null | undefined
+                      height: number | null | undefined
+                    }
+                  | null
+                  | undefined
+                >
+              | null
+              | undefined
+          }
         | { __typename?: 'Command'; text: string | null | undefined }
         | { __typename?: 'CommandOutput'; text: string | null | undefined }
         | {
@@ -338,6 +399,24 @@ export type ActionDetailsComponentFragment = {
   __typename?: 'Action'
   details:
     | Array<
+        | {
+            __typename?: 'CarouselImage'
+            images:
+              | Array<
+                  | {
+                      __typename?: 'Image'
+                      caption: string | null | undefined
+                      url: string | null | undefined
+                      alt: string | null | undefined
+                      width: number | null | undefined
+                      height: number | null | undefined
+                    }
+                  | null
+                  | undefined
+                >
+              | null
+              | undefined
+          }
         | { __typename?: 'Command'; text: string | null | undefined }
         | { __typename?: 'CommandOutput'; text: string | null | undefined }
         | {
@@ -402,6 +481,24 @@ export type ActionResultComponentFragment = {
   __typename?: 'Action'
   results:
     | Array<
+        | {
+            __typename?: 'CarouselImage'
+            images:
+              | Array<
+                  | {
+                      __typename?: 'Image'
+                      caption: string | null | undefined
+                      url: string | null | undefined
+                      alt: string | null | undefined
+                      width: number | null | undefined
+                      height: number | null | undefined
+                    }
+                  | null
+                  | undefined
+                >
+              | null
+              | undefined
+          }
         | { __typename?: 'Command'; text: string | null | undefined }
         | { __typename?: 'CommandOutput'; text: string | null | undefined }
         | {
@@ -587,88 +684,6 @@ export const VideoComponentFragmentDoc = gql`
     caption
   }
 `
-export const PlainElementComponentFragmentDoc = gql`
-  fragment PlainElementComponent on PlainElement {
-    ... on Paragraph {
-      ...ParagraphComponent
-    }
-    ... on Command {
-      ...CommandComponent
-    }
-    ... on CommandOutput {
-      ...CommandOutputComponent
-    }
-    ... on Video {
-      ...VideoComponent
-    }
-  }
-  ${ParagraphComponentFragmentDoc}
-  ${CommandComponentFragmentDoc}
-  ${CommandOutputComponentFragmentDoc}
-  ${VideoComponentFragmentDoc}
-`
-export const ActionInstructionComponentFragmentDoc = gql`
-  fragment ActionInstructionComponent on Action {
-    instruction {
-      ...ParagraphComponent
-    }
-  }
-  ${ParagraphComponentFragmentDoc}
-`
-export const ActionDetailsComponentFragmentDoc = gql`
-  fragment ActionDetailsComponent on Action {
-    details {
-      ... on Paragraph {
-        ...ParagraphComponent
-      }
-      ... on Command {
-        ...CommandComponent
-      }
-      ... on CommandOutput {
-        ...CommandOutputComponent
-      }
-      ... on Video {
-        ...VideoComponent
-      }
-    }
-  }
-  ${ParagraphComponentFragmentDoc}
-  ${CommandComponentFragmentDoc}
-  ${CommandOutputComponentFragmentDoc}
-  ${VideoComponentFragmentDoc}
-`
-export const ActionResultComponentFragmentDoc = gql`
-  fragment ActionResultComponent on Action {
-    results {
-      ... on Paragraph {
-        ...ParagraphComponent
-      }
-      ... on Command {
-        ...CommandComponent
-      }
-      ... on CommandOutput {
-        ...CommandOutputComponent
-      }
-      ... on Video {
-        ...VideoComponent
-      }
-    }
-  }
-  ${ParagraphComponentFragmentDoc}
-  ${CommandComponentFragmentDoc}
-  ${CommandOutputComponentFragmentDoc}
-  ${VideoComponentFragmentDoc}
-`
-export const ActionComponentFragmentDoc = gql`
-  fragment ActionComponent on Action {
-    ...ActionInstructionComponent
-    ...ActionDetailsComponent
-    ...ActionResultComponent
-  }
-  ${ActionInstructionComponentFragmentDoc}
-  ${ActionDetailsComponentFragmentDoc}
-  ${ActionResultComponentFragmentDoc}
-`
 export const CarouselImageItemComponentFragmentDoc = gql`
   fragment CarouselImageItemComponent on Image {
     url
@@ -701,6 +716,100 @@ export const CarouselComponentFragmentDoc = gql`
   }
   ${CarouselImageScrollComponentFragmentDoc}
   ${CarouselDescriptionComponentFragmentDoc}
+`
+export const PlainElementComponentFragmentDoc = gql`
+  fragment PlainElementComponent on PlainElement {
+    ... on Paragraph {
+      ...ParagraphComponent
+    }
+    ... on Command {
+      ...CommandComponent
+    }
+    ... on CommandOutput {
+      ...CommandOutputComponent
+    }
+    ... on Video {
+      ...VideoComponent
+    }
+    ... on CarouselImage {
+      ...CarouselComponent
+    }
+  }
+  ${ParagraphComponentFragmentDoc}
+  ${CommandComponentFragmentDoc}
+  ${CommandOutputComponentFragmentDoc}
+  ${VideoComponentFragmentDoc}
+  ${CarouselComponentFragmentDoc}
+`
+export const ActionInstructionComponentFragmentDoc = gql`
+  fragment ActionInstructionComponent on Action {
+    instruction {
+      ...ParagraphComponent
+    }
+  }
+  ${ParagraphComponentFragmentDoc}
+`
+export const ActionDetailsComponentFragmentDoc = gql`
+  fragment ActionDetailsComponent on Action {
+    details {
+      ... on Paragraph {
+        ...ParagraphComponent
+      }
+      ... on Command {
+        ...CommandComponent
+      }
+      ... on CommandOutput {
+        ...CommandOutputComponent
+      }
+      ... on Video {
+        ...VideoComponent
+      }
+      ... on CarouselImage {
+        ...CarouselComponent
+      }
+    }
+  }
+  ${ParagraphComponentFragmentDoc}
+  ${CommandComponentFragmentDoc}
+  ${CommandOutputComponentFragmentDoc}
+  ${VideoComponentFragmentDoc}
+  ${CarouselComponentFragmentDoc}
+`
+export const ActionResultComponentFragmentDoc = gql`
+  fragment ActionResultComponent on Action {
+    results {
+      ... on Paragraph {
+        ...ParagraphComponent
+      }
+      ... on Command {
+        ...CommandComponent
+      }
+      ... on CommandOutput {
+        ...CommandOutputComponent
+      }
+      ... on Video {
+        ...VideoComponent
+      }
+      ... on CarouselImage {
+        ...CarouselComponent
+      }
+    }
+  }
+  ${ParagraphComponentFragmentDoc}
+  ${CommandComponentFragmentDoc}
+  ${CommandOutputComponentFragmentDoc}
+  ${VideoComponentFragmentDoc}
+  ${CarouselComponentFragmentDoc}
+`
+export const ActionComponentFragmentDoc = gql`
+  fragment ActionComponent on Action {
+    ...ActionInstructionComponent
+    ...ActionDetailsComponent
+    ...ActionResultComponent
+  }
+  ${ActionInstructionComponentFragmentDoc}
+  ${ActionDetailsComponentFragmentDoc}
+  ${ActionResultComponentFragmentDoc}
 `
 export const CommandComponent2FragmentDoc = gql`
   fragment CommandComponent2 on Command {
@@ -897,6 +1006,7 @@ export type ResolversTypes = ResolversObject<{
     | ResolversTypes['Video']
   Paragraph: ResolverTypeWrapper<Paragraph>
   PlainElement:
+    | ResolversTypes['CarouselImage']
     | ResolversTypes['Command']
     | ResolversTypes['CommandOutput']
     | ResolversTypes['Paragraph']
@@ -954,6 +1064,7 @@ export type ResolversParentTypes = ResolversObject<{
     | ResolversParentTypes['Video']
   Paragraph: Paragraph
   PlainElement:
+    | ResolversParentTypes['CarouselImage']
     | ResolversParentTypes['Command']
     | ResolversParentTypes['CommandOutput']
     | ResolversParentTypes['Paragraph']
@@ -1154,7 +1265,7 @@ export type PlainElementResolvers<
   ParentType extends ResolversParentTypes['PlainElement'] = ResolversParentTypes['PlainElement']
 > = ResolversObject<{
   __resolveType: TypeResolveFn<
-    'Command' | 'CommandOutput' | 'Paragraph' | 'Video',
+    'CarouselImage' | 'Command' | 'CommandOutput' | 'Paragraph' | 'Video',
     ParentType,
     ContextType
   >

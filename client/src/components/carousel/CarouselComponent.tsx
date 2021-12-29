@@ -14,8 +14,15 @@ import {
   CarouselImageScrollComponent,
   numImageItems,
 } from './CarouselImageScrollComponent'
+
 export interface CarouselComponentProps {
   fragment: CarouselComponentFragment
+}
+
+export const isEmptyCarouselComponent = (
+  fragment: CarouselComponentFragment
+): boolean => {
+  return !fragment.images && numImageItems(fragment) === 0
 }
 
 export const CarouselComponent = ({

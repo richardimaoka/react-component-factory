@@ -2,6 +2,7 @@
 import { gql } from '@apollo/client'
 import { css } from '@emotion/react'
 import { ActionDetailsComponentFragment } from '../../lib/generated/graphql'
+import { CarouselComponent } from '../carousel/CarouselComponent'
 import { CommandComponent } from '../command/CommandComponent'
 import { CommandOutputComponent } from '../command/CommandOutputComponent'
 import { ParagraphComponent } from '../paragraph/ParagraphComponent'
@@ -73,6 +74,9 @@ ActionDetailsComponent.fragment = gql`
       ... on Video {
         ...VideoComponent
       }
+      ... on CarouselImage {
+        ...CarouselComponent
+      }
     }
   }
 
@@ -80,4 +84,5 @@ ActionDetailsComponent.fragment = gql`
   ${CommandComponent.fragment}
   ${CommandOutputComponent.fragment}
   ${VideoComponent.fragment}
+  ${CarouselComponent.fragment}
 `
