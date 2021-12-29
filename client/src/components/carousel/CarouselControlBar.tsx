@@ -1,15 +1,15 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 
-interface ControlBarPrevButtonProps {
+interface CarouselControlBarPrevButtonProps {
   prevButtonCallback: () => void
   grayOut: boolean
 }
 
-const ControlBarPrevButton = ({
+const CarouselControlBarPrevButton = ({
   prevButtonCallback,
   grayOut,
-}: ControlBarPrevButtonProps): JSX.Element => {
+}: CarouselControlBarPrevButtonProps): JSX.Element => {
   const buttonColor = grayOut ? '#505050' : '#FFFFFF'
   return (
     <button
@@ -37,15 +37,15 @@ const ControlBarPrevButton = ({
   )
 }
 
-interface ControlBarNextButtonProps {
+interface CarouselControlBarNextButtonProps {
   nextButtonCallback: () => void
   grayOut: boolean
 }
 
-const ControlBarNextButton = ({
+const CarouselControlBarNextButton = ({
   nextButtonCallback,
   grayOut,
-}: ControlBarNextButtonProps): JSX.Element => {
+}: CarouselControlBarNextButtonProps): JSX.Element => {
   const buttonColor = grayOut ? '#505050' : '#FFFFFF'
   return (
     <button
@@ -73,19 +73,19 @@ const ControlBarNextButton = ({
   )
 }
 
-interface ControlBarProps {
+interface CarouselControlBarProps {
   nextButtonCallback: () => void
   prevButtonCallback: () => void
   nextButtonGrayOut: boolean
   prevButtonGrayOut: boolean
 }
 
-export const ControlBar = ({
+export const CarouselControlBar = ({
   nextButtonCallback,
   prevButtonCallback,
   nextButtonGrayOut,
   prevButtonGrayOut,
-}: ControlBarProps): JSX.Element => (
+}: CarouselControlBarProps): JSX.Element => (
   <div
     css={css`
       background-color: #414141;
@@ -98,11 +98,11 @@ export const ControlBar = ({
       justify-content: space-between;
     `}
   >
-    <ControlBarPrevButton
+    <CarouselControlBarPrevButton
       prevButtonCallback={prevButtonCallback}
       grayOut={prevButtonGrayOut}
     />
-    <ControlBarNextButton
+    <CarouselControlBarNextButton
       nextButtonCallback={nextButtonCallback}
       grayOut={nextButtonGrayOut}
     />
