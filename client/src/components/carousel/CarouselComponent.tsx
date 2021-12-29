@@ -10,7 +10,10 @@ import {
   ImageItemWidth,
 } from './definitions'
 import { CarouselDescriptionComponent } from './CarouselDescriptionComponent'
-import { ImageScrollComponent, numImageItems } from './ImageScrollComponent'
+import {
+  ImageScrollComponent,
+  numImageItems,
+} from './CarouselImageScrollComponent'
 export interface CarouselComponentProps {
   fragment: CarouselComponentFragment
 }

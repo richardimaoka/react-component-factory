@@ -4,7 +4,7 @@ import { css } from '@emotion/react'
 import { useEffect, useRef } from 'react'
 import { ImageScrollComponentFragment } from '../../lib/generated/graphql'
 import { CarouselTransition, ImageItemWidth } from './definitions'
-import { ImageItemComponent } from './ImageItemComponent'
+import { ImageItemComponent } from './CarouselImageItemComponent'
 
 interface ImageScrollComponentProps {
   fragment: ImageScrollComponentFragment

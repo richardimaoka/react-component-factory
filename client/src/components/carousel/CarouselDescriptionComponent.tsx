@@ -4,8 +4,8 @@ import { css } from '@emotion/react'
 import { useEffect, useRef } from 'react'
 import { CarouselDescriptionComponentFragment } from '../../lib/generated/graphql'
 import { CarouselTransition, ImageItemWidth } from './definitions'
-import { ImageItemComponent } from './ImageItemComponent'
-import { numImageItems } from './ImageScrollComponent'
+import { ImageItemComponent } from './CarouselImageItemComponent'
+import { numImageItems } from './CarouselImageScrollComponent'
 
 interface InnerComponentProps {
   caption: string | null | undefined
