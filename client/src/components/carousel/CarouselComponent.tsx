@@ -11,7 +11,7 @@ import {
 } from './definitions'
 import { CarouselDescriptionComponent } from './CarouselDescriptionComponent'
 import {
-  ImageScrollComponent,
+  CarouselImageScrollComponent,
   numImageItems,
 } from './CarouselImageScrollComponent'
 export interface CarouselComponentProps {
@@ -46,7 +46,7 @@ export const CarouselComponent = ({
         height: ${ImageItemHeight}px;
       `}
     >
-      <ImageScrollComponent
+      <CarouselImageScrollComponent
         fragment={fragment}
         transition={currentTransition}
       />
@@ -66,9 +66,9 @@ export const CarouselComponent = ({
 
 CarouselComponent.fragment = gql`
   fragment CarouselComponent on CarouselImage {
-    ...ImageScrollComponent
+    ...CarouselImageScrollComponent
     ...CarouselDescriptionComponent
   }
-  ${ImageScrollComponent.fragment}
+  ${CarouselImageScrollComponent.fragment}
   ${CarouselDescriptionComponent.fragment}
 `

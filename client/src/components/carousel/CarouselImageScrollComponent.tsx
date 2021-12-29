@@ -2,17 +2,17 @@
 import { gql } from '@apollo/client'
 import { css } from '@emotion/react'
 import { useEffect, useRef } from 'react'
-import { ImageScrollComponentFragment } from '../../lib/generated/graphql'
+import { CarouselImageScrollComponentFragment } from '../../lib/generated/graphql'
 import { CarouselTransition, ImageItemWidth } from './definitions'
 import { ImageItemComponent } from './CarouselImageItemComponent'
 
-interface ImageScrollComponentProps {
-  fragment: ImageScrollComponentFragment
+interface CarouselImageScrollComponentProps {
+  fragment: CarouselImageScrollComponentFragment
   transition: CarouselTransition
 }
 
 export const numImageItems = (
-  fragment: ImageScrollComponentFragment
+  fragment: CarouselImageScrollComponentFragment
 ): number => {
   if (!fragment.images) {
     return 0
@@ -21,10 +21,10 @@ export const numImageItems = (
   }
 }
 
-export const ImageScrollComponent = ({
+export const CarouselImageScrollComponent = ({
   fragment,
   transition,
-}: ImageScrollComponentProps): JSX.Element => {
+}: CarouselImageScrollComponentProps): JSX.Element => {
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -54,8 +54,8 @@ export const ImageScrollComponent = ({
   }
 }
 
-ImageScrollComponent.fragment = gql`
-  fragment ImageScrollComponent on CarouselImage {
+CarouselImageScrollComponent.fragment = gql`
+  fragment CarouselImageScrollComponent on CarouselImage {
     images {
       ...ImageItemComponent
     }
