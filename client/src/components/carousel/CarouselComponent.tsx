@@ -3,7 +3,7 @@ import { gql } from '@apollo/client'
 import { css } from '@emotion/react'
 import { useState } from 'react'
 import { CarouselComponentFragment } from '../../lib/generated/graphql'
-import { CarouselControlBar } from './CarouselControlBar'
+import { ControlBar } from './ControlBar'
 import { DescriptionComponent } from './DescriptionComponent'
 import {
   ImageScrollComponent,
@@ -52,7 +52,7 @@ export const CarouselComponent = ({
         fragment={fragment}
         transition={currentTransition}
       />
-      <CarouselControlBar
+      <ControlBar
         prevButtonCallback={gotoPrevItem}
         nextButtonCallback={gotoNextItem}
       />

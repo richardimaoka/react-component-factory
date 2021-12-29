@@ -1,13 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 
-interface CarouselControlPrevButtonProps {
+interface ControlBarPrevButtonProps {
   prevButtonCallback: () => void
 }
 
-const CarouselControlPrevButton = ({
+const ControlBarPrevButton = ({
   prevButtonCallback,
-}: CarouselControlPrevButtonProps): JSX.Element => (
+}: ControlBarPrevButtonProps): JSX.Element => (
   <button
     css={css`
       width: 30px;
@@ -32,13 +32,13 @@ const CarouselControlPrevButton = ({
   </button>
 )
 
-interface CarouselControlNextButtonProps {
+interface ControlBarNextButtonProps {
   nextButtonCallback: () => void
 }
 
-const CarouselControlNextButton = ({
+const ControlBarNextButton = ({
   nextButtonCallback,
-}: CarouselControlNextButtonProps): JSX.Element => (
+}: ControlBarNextButtonProps): JSX.Element => (
   <button
     css={css`
       width: 30px;
@@ -63,15 +63,15 @@ const CarouselControlNextButton = ({
   </button>
 )
 
-interface CarouselControlBarProps {
+interface ControlBarProps {
   nextButtonCallback: () => void
   prevButtonCallback: () => void
 }
 
-export const CarouselControlBar = ({
+export const ControlBar = ({
   nextButtonCallback,
   prevButtonCallback,
-}: CarouselControlBarProps): JSX.Element => (
+}: ControlBarProps): JSX.Element => (
   <div
     css={css`
       background-color: #414141;
@@ -84,7 +84,7 @@ export const CarouselControlBar = ({
       justify-content: space-between;
     `}
   >
-    <CarouselControlPrevButton prevButtonCallback={prevButtonCallback} />
-    <CarouselControlNextButton nextButtonCallback={nextButtonCallback} />
+    <ControlBarPrevButton prevButtonCallback={prevButtonCallback} />
+    <ControlBarNextButton nextButtonCallback={nextButtonCallback} />
   </div>
 )
