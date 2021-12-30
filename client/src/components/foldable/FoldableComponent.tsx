@@ -7,6 +7,10 @@ import { CarouselComponent } from '../carousel/CarouselComponent'
 import { CommandComponent } from '../command/CommandComponent'
 import { CommandOutputComponent } from '../command/CommandOutputComponent'
 import { ParagraphComponent } from '../paragraph/ParagraphComponent'
+import {
+  isEmptyPlainElement,
+  PlainElementComponent,
+} from '../PlainElementComponent'
 import { VideoComponent } from '../video/VideoComponent'
 import { FoldedIcon } from './FoldedIcon'
 import { UnfoldedIcon } from './UnfoldedIcon'
@@ -47,6 +51,54 @@ const FoldableDescriptionBar = ({
   )
 }
 
+export const isEmptyFoldable = (
+  fragment: FoldableComponentFragment
+): boolean => {
+  if (!fragment.elements) {
+    return true
+  } else {
+    const isAnyElementContentful = fragment.elements
+      .map(isEmptyPlainElement)
+      .includes(false) //see if any `isEmptyTextChunk == false`
+
+    const isEveryElementEmpty = !isAnyElementContentful
+
+    return isEveryElementEmpty
+  }
+}
+
+interface InnerComponentProps {
+  fragment: FoldableComponentFragment
+  folded: boolean
+}
+
+const InnerComponent = ({
+  fragment,
+  folded,
+}: InnerComponentProps): JSX.Element => {
+  if (!fragment.elements || isEmptyFoldable(fragment)) {
+    return <></>
+  } else if (folded) {
+    return <></>
+  } else {
+    return (
+      <div
+        css={css`
+          padding: 8px;
+        `}
+      >
+        {fragment.elements.map((element, index) =>
+          element ? (
+            <PlainElementComponent key={index} fragment={element} />
+          ) : (
+            <></>
+          )
+        )}
+      </div>
+    )
+  }
+}
+
 interface FoldableComponentProps {
   fragment: FoldableComponentFragment
 }
@@ -70,6 +122,7 @@ export const FoldableComponent = ({
         transitionToFold={transitionToFold}
         transitionToUnfold={transitionToUnfold}
       />
+      <InnerComponent fragment={fragment} folded={folded} />
     </div>
   )
 }
