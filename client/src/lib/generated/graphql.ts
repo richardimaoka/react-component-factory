@@ -638,6 +638,18 @@ export type FileComponentFragment = {
   content: string | null | undefined
 }
 
+export type FileNameTabBarFragment = {
+  __typename?: 'FileMultiple'
+  files:
+    | Array<
+        | { __typename?: 'File'; fileName: string | null | undefined }
+        | null
+        | undefined
+      >
+    | null
+    | undefined
+}
+
 export type FoldableComponentFragment = {
   __typename?: 'Foldable'
   shortDescription: string | null | undefined
@@ -903,6 +915,13 @@ export const FileComponentFragmentDoc = gql`
   fragment FileComponent on File {
     fileName
     content
+  }
+`
+export const FileNameTabBarFragmentDoc = gql`
+  fragment FileNameTabBar on FileMultiple {
+    files {
+      fileName
+    }
   }
 `
 export const FoldableComponentFragmentDoc = gql`
