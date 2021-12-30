@@ -3,6 +3,7 @@ type Query {
   carousel: CarouselImage
   video: Video
   foldable: Foldable
+  file: File
 }
 
 type Author {
@@ -138,3 +139,19 @@ type TextChunkWithOperation {
 type DecorateTextChunksInput {
   chunks: [TextChunkWithOperation]!
 }
+
+type File {
+  fileName: String
+  content: String
+}
+
+type FileMultiple {
+  files: [File]
+}
+
+type Directory {
+  directoryName: String
+  children: [FileNode]
+}
+
+union FileNode = File | Directory

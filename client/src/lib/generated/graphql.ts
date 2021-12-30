@@ -55,10 +55,29 @@ export type DecorateTextChunksInput = {
   chunks: Array<Maybe<TextChunkWithOperation>>
 }
 
+export type Directory = {
+  __typename?: 'Directory'
+  children: Maybe<Array<Maybe<FileNode>>>
+  directoryName: Maybe<Scalars['String']>
+}
+
 export type DirectoryStructure = {
   __typename?: 'DirectoryStructure'
   contents: Maybe<Array<Maybe<Scalars['String']>>>
 }
+
+export type File = {
+  __typename?: 'File'
+  content: Maybe<Scalars['String']>
+  fileName: Maybe<Scalars['String']>
+}
+
+export type FileMultiple = {
+  __typename?: 'FileMultiple'
+  files: Maybe<Array<Maybe<File>>>
+}
+
+export type FileNode = Directory | File
 
 export type Foldable = {
   __typename?: 'Foldable'
@@ -128,6 +147,7 @@ export type Query = {
   __typename?: 'Query'
   action: Maybe<Action>
   carousel: Maybe<CarouselImage>
+  file: Maybe<File>
   foldable: Maybe<Foldable>
   video: Maybe<Video>
 }
@@ -1118,7 +1138,15 @@ export type ResolversTypes = ResolversObject<{
   Command: ResolverTypeWrapper<Command>
   CommandOutput: ResolverTypeWrapper<CommandOutput>
   DecorateTextChunksInput: ResolverTypeWrapper<DecorateTextChunksInput>
+  Directory: ResolverTypeWrapper<
+    Omit<Directory, 'children'> & {
+      children: Maybe<Array<Maybe<ResolversTypes['FileNode']>>>
+    }
+  >
   DirectoryStructure: ResolverTypeWrapper<DirectoryStructure>
+  File: ResolverTypeWrapper<File>
+  FileMultiple: ResolverTypeWrapper<FileMultiple>
+  FileNode: ResolversTypes['Directory'] | ResolversTypes['File']
   Foldable: ResolverTypeWrapper<
     Omit<Foldable, 'elements'> & {
       elements: Maybe<Array<Maybe<ResolversTypes['PlainElement']>>>
@@ -1180,7 +1208,13 @@ export type ResolversParentTypes = ResolversObject<{
   Command: Command
   CommandOutput: CommandOutput
   DecorateTextChunksInput: DecorateTextChunksInput
+  Directory: Omit<Directory, 'children'> & {
+    children: Maybe<Array<Maybe<ResolversParentTypes['FileNode']>>>
+  }
   DirectoryStructure: DirectoryStructure
+  File: File
+  FileMultiple: FileMultiple
+  FileNode: ResolversParentTypes['Directory'] | ResolversParentTypes['File']
   Foldable: Omit<Foldable, 'elements'> & {
     elements: Maybe<Array<Maybe<ResolversParentTypes['PlainElement']>>>
   }
@@ -1293,6 +1327,23 @@ export type DecorateTextChunksInputResolvers<
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }>
 
+export type DirectoryResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['Directory'] = ResolversParentTypes['Directory']
+> = ResolversObject<{
+  children: Resolver<
+    Maybe<Array<Maybe<ResolversTypes['FileNode']>>>,
+    ParentType,
+    ContextType
+  >
+  directoryName: Resolver<
+    Maybe<ResolversTypes['String']>,
+    ParentType,
+    ContextType
+  >
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
+}>
+
 export type DirectoryStructureResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['DirectoryStructure'] = ResolversParentTypes['DirectoryStructure']
@@ -1303,6 +1354,34 @@ export type DirectoryStructureResolvers<
     ContextType
   >
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
+}>
+
+export type FileResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['File'] = ResolversParentTypes['File']
+> = ResolversObject<{
+  content: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
+  fileName: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
+}>
+
+export type FileMultipleResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['FileMultiple'] = ResolversParentTypes['FileMultiple']
+> = ResolversObject<{
+  files: Resolver<
+    Maybe<Array<Maybe<ResolversTypes['File']>>>,
+    ParentType,
+    ContextType
+  >
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
+}>
+
+export type FileNodeResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['FileNode'] = ResolversParentTypes['FileNode']
+> = ResolversObject<{
+  __resolveType: TypeResolveFn<'Directory' | 'File', ParentType, ContextType>
 }>
 
 export type FoldableResolvers<
@@ -1432,6 +1511,7 @@ export type QueryResolvers<
     ParentType,
     ContextType
   >
+  file: Resolver<Maybe<ResolversTypes['File']>, ParentType, ContextType>
   foldable: Resolver<Maybe<ResolversTypes['Foldable']>, ParentType, ContextType>
   video: Resolver<Maybe<ResolversTypes['Video']>, ParentType, ContextType>
 }>
@@ -1551,7 +1631,11 @@ export type Resolvers<ContextType = any> = ResolversObject<{
   Command: CommandResolvers<ContextType>
   CommandOutput: CommandOutputResolvers<ContextType>
   DecorateTextChunksInput: DecorateTextChunksInputResolvers<ContextType>
+  Directory: DirectoryResolvers<ContextType>
   DirectoryStructure: DirectoryStructureResolvers<ContextType>
+  File: FileResolvers<ContextType>
+  FileMultiple: FileMultipleResolvers<ContextType>
+  FileNode: FileNodeResolvers<ContextType>
   Foldable: FoldableResolvers<ContextType>
   Image: ImageResolvers<ContextType>
   Note: NoteResolvers<ContextType>
