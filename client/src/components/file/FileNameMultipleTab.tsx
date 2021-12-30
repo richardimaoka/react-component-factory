@@ -2,17 +2,17 @@
 import { gql } from '@apollo/client'
 import { css } from '@emotion/react'
 import { FileNameTab } from './FileNameTab'
-import { FileNameTabBarFragment } from '../../lib/generated/graphql'
+import { FileNameMultipleTabFragment } from '../../lib/generated/graphql'
 
-interface FileNameTabBarProps {
-  fragment: FileNameTabBarFragment
+interface FileNameMultipleTabProps {
+  fragment: FileNameMultipleTabFragment
   selectFileIndex: number
 }
 
-export const FileNameTabBar = ({
+export const FileNameMultipleTab = ({
   fragment,
   selectFileIndex,
-}: FileNameTabBarProps): JSX.Element => {
+}: FileNameMultipleTabProps): JSX.Element => {
   return (
     <div
       css={css`
@@ -37,8 +37,8 @@ export const FileNameTabBar = ({
   )
 }
 
-FileNameTabBar.fragment = gql`
-  fragment FileNameTabBar on FileMultiple {
+FileNameMultipleTab.fragment = gql`
+  fragment FileNameMultipleTab on FileMultiple {
     files {
       fileName
     }

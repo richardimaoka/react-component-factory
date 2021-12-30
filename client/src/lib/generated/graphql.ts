@@ -639,7 +639,7 @@ export type FileComponentFragment = {
   content: string | null | undefined
 }
 
-export type FileNameTabBarFragment = {
+export type FileNameMultipleTabFragment = {
   __typename?: 'FileMultiple'
   files:
     | Array<
@@ -918,8 +918,8 @@ export const FileComponentFragmentDoc = gql`
     content
   }
 `
-export const FileNameTabBarFragmentDoc = gql`
-  fragment FileNameTabBar on FileMultiple {
+export const FileNameMultipleTabFragmentDoc = gql`
+  fragment FileNameMultipleTab on FileMultiple {
     files {
       fileName
     }
