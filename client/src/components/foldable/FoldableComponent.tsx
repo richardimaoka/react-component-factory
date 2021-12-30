@@ -86,15 +86,19 @@ const InnerComponent = ({
         css={css`
           padding: 8px;
           border: solid 1px #aed5f3;
+
+          > div {
+            margin-bottom: 20px;
+          }
+
+          > div:last-child {
+            margin-bottom: 0px;
+          }
         `}
       >
         {fragment.elements.map((element, index) =>
           element ? (
-            <div
-              css={css`
-                margin-bottom: 20px;
-              `}
-            >
+            <div>
               <PlainElementComponent key={index} fragment={element} />
             </div>
           ) : (
