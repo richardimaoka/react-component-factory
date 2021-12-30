@@ -2,7 +2,7 @@
 import { css } from '@emotion/react'
 
 interface FileNameTabProps {
-  filename: string
+  filename: string | null | undefined
   selected: boolean
 }
 
@@ -29,10 +29,10 @@ export const FileNameTab = ({
           padding-right: 8px;
           padding-left: 8px;
           background-color: #2d2d2d;
-          color: #ccc;
+          color: ${filename ? '#ccc' : '#7e7e7e'};
         `}
       >
-        {filename}
+        {filename ? filename : 'unknown'}
       </div>
     </div>
   )

@@ -13,28 +13,47 @@ export const FileNameMultipleTab = ({
   fragment,
   selectFileIndex,
 }: FileNameMultipleTabProps): JSX.Element => {
-  return (
-    <div
-      css={css`
-        display: flex;
-        align-items: flex-start;
-      `}
-    >
-      {fragment.files.map((file, index) =>
-        !file ? (
-          <></>
-        ) : (
-          <FileNameTab
-            key={index}
-            filename={file.fileName}
-            selected={true}
-            // fileIndex={index}
-            // selectedFileIndex={selectFileIndex}
-          />
-        )
-      )}
-    </div>
-  )
+  if (!fragment.files) {
+    return <></>
+  } else {
+    return (
+      <div
+        css={css`
+          display: flex;
+          align-items: flex-start;
+
+          > button:first-child {
+            margin-left: 0px;
+          }
+          > button {
+            margin-left: 4px;
+          }
+        `}
+      >
+        {fragment.files.map((file, index) =>
+          !file ? (
+            <></>
+          ) : (
+            <button
+              css={css`
+                display: flex;
+                background-color: transparent;
+                padding: 0px;
+                border-style: none;
+                font-size: 16px;
+              `}
+            >
+              <FileNameTab
+                key={index}
+                filename={file.fileName}
+                selected={index === selectFileIndex}
+              />
+            </button>
+          )
+        )}
+      </div>
+    )
+  }
 }
 
 FileNameMultipleTab.fragment = gql`
