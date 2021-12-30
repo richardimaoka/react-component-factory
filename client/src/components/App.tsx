@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-
 import {
   ApolloClient,
   ApolloProvider,
@@ -8,16 +7,16 @@ import {
 } from '@apollo/client'
 import { css } from '@emotion/react'
 import { useMainQuery } from '../lib/generated/graphql'
-import { FoldableComponent } from './foldable/FoldableComponent'
+import { FileComponent } from './file/FileComponent'
 
 gql`
   query Main {
-    foldable {
-      ...FoldableComponent
+    file {
+      ...FileComponent
     }
   }
 
-  ${FoldableComponent.fragment}
+  ${FileComponent.fragment}
 `
 
 export const MainContainer = (): JSX.Element => {
@@ -33,7 +32,7 @@ export const MainContainer = (): JSX.Element => {
     console.log('GraphQL Error! returned data is undefined or null')
     return <div>{`GraphQL Error! returned data is undefined or null`}</div>
   } else {
-    return data.foldable ? (
+    return data.file ? (
       <main>
         <div
           css={css`
@@ -47,7 +46,7 @@ export const MainContainer = (): JSX.Element => {
               padding: 8px;
             `}
           >
-            <FoldableComponent fragment={data.foldable} />
+            <FileComponent fragment={data.file} />
           </div>
         </div>
       </main>

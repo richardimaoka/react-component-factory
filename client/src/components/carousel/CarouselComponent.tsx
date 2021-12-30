@@ -4,16 +4,12 @@ import { css } from '@emotion/react'
 import { useState } from 'react'
 import { CarouselComponentFragment } from '../../lib/generated/graphql'
 import { CarouselControlBar } from './CarouselControlBar'
-import {
-  CarouselTransition,
-  ImageItemHeight,
-  ImageItemWidth,
-} from './definitions'
 import { CarouselDescriptionComponent } from './CarouselDescriptionComponent'
 import {
   CarouselImageScrollComponent,
   numImageItems,
 } from './CarouselImageScrollComponent'
+import { CarouselTransition, ImageItemWidth } from './definitions'
 
 export interface CarouselComponentProps {
   fragment: CarouselComponentFragment
