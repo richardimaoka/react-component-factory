@@ -3,7 +3,7 @@ import { gql } from '@apollo/client'
 import { css } from '@emotion/react'
 import { useEffect, useRef } from 'react'
 import { FileComponentFragment } from '../../lib/generated/graphql'
-
+import Prism from 'prismjs'
 interface FileComponentProps {
   fragment: FileComponentFragment
 }
@@ -12,7 +12,7 @@ export const FileComponent = ({ fragment }: FileComponentProps) => {
   const codeElement = useRef<HTMLElement>(null)
   useEffect(() => {
     if (codeElement.current) {
-      // Prism.highlightElement(codeElement.current)
+      Prism.highlightElement(codeElement.current)
     }
   })
   return (
