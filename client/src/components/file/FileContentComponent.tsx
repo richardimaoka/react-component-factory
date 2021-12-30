@@ -20,6 +20,7 @@ export const FileContentComponent = ({
   return (
     <div
       css={css`
+        position: relative;
         padding: 8px;
         background-color: #2d2d2d;
       `}
@@ -29,6 +30,18 @@ export const FileContentComponent = ({
           {fileContent}
         </code>
       </pre>
+      <button
+        css={css`
+          position: absolute;
+          right: 8px;
+          top: 4px;
+          background-color: #2d2d2d;
+          border: solid 1px #888888;
+          color: #ffffff;
+        `}
+      >
+        copy
+      </button>
     </div>
   )
 }
