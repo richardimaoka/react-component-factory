@@ -5,8 +5,8 @@ export const FoldedIcon = (): JSX.Element => {
   return (
     <div>
       <svg
-        width="24px"
-        height="24px"
+        width="21px"
+        height="21px"
         css={css`
           fill: rgb(83, 100, 113);
         `}

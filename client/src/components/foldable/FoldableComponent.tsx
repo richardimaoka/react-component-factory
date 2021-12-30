@@ -24,33 +24,27 @@ const FoldableDescriptionBar = ({
   transitionToFold,
   transitionToUnfold,
 }: FoldableDescriptionBarProps): JSX.Element => {
-  if (folded) {
-    return (
+  return (
+    <div
+      css={css`
+        background-color: #aed5f3;
+        display: flex;
+        padding: 8px;
+      `}
+      onClick={folded ? transitionToUnfold : transitionToFold}
+    >
+      {folded ? <FoldedIcon /> : <UnfoldedIcon />}
       <div
         css={css`
-          background-color: #aed5f3;
-          display: flex;
+          padding-left: 4px;
+          margin-top: auto;
+          margin-bottom: auto;
         `}
-        onClick={transitionToUnfold}
       >
-        <FoldedIcon />
         {shortDescription}
       </div>
-    )
-  } else {
-    return (
-      <div
-        css={css`
-          background-color: #aed5f3;
-          display: flex;
-        `}
-        onClick={transitionToFold}
-      >
-        <UnfoldedIcon />
-        {shortDescription}
-      </div>
-    )
-  }
+    </div>
+  )
 }
 
 interface FoldableComponentProps {
