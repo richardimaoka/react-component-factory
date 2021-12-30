@@ -7,16 +7,16 @@ import {
 } from '@apollo/client'
 import { css } from '@emotion/react'
 import { useMainQuery } from '../lib/generated/graphql'
-import { FileComponent } from './file/FileComponent'
+import { FileMultipleComponent } from './file/FileMultipleComponent'
 
 gql`
   query Main {
-    file {
-      ...FileComponent
+    filemultiple {
+      ...FileMultipleComponent
     }
   }
 
-  ${FileComponent.fragment}
+  ${FileMultipleComponent.fragment}
 `
 
 export const MainContainer = (): JSX.Element => {
@@ -32,7 +32,7 @@ export const MainContainer = (): JSX.Element => {
     console.log('GraphQL Error! returned data is undefined or null')
     return <div>{`GraphQL Error! returned data is undefined or null`}</div>
   } else {
-    return data.file ? (
+    return data.filemultiple ? (
       <main>
         <div
           css={css`
@@ -46,7 +46,7 @@ export const MainContainer = (): JSX.Element => {
               padding: 8px;
             `}
           >
-            <FileComponent fragment={data.file} />
+            <FileMultipleComponent fragment={data.filemultiple} />
           </div>
         </div>
       </main>
