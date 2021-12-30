@@ -37,7 +37,15 @@ const FoldableDescriptionBar = ({
       `}
       onClick={folded ? transitionToUnfold : transitionToFold}
     >
-      {folded ? <FoldedIcon /> : <UnfoldedIcon />}
+      <button
+        css={css`
+          border-style: none;
+          background-color: transparent;
+          padding: 0px;
+        `}
+      >
+        {folded ? <FoldedIcon /> : <UnfoldedIcon />}
+      </button>
       <div
         css={css`
           padding-left: 4px;
