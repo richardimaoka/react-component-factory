@@ -18,7 +18,7 @@ export interface CarouselComponentProps {
 export const isEmptyCarouselComponent = (
   fragment: CarouselComponentFragment
 ): boolean => {
-  return !fragment.images && numImageItems(fragment) === 0
+  return numImageItems(fragment) === 0
 }
 
 export const CarouselComponent = ({
