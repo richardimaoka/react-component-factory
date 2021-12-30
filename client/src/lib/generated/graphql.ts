@@ -148,6 +148,7 @@ export type Query = {
   action: Maybe<Action>
   carousel: Maybe<CarouselImage>
   file: Maybe<File>
+  filemultiple: Maybe<FileMultiple>
   foldable: Maybe<Foldable>
   video: Maybe<Video>
 }
@@ -1489,6 +1490,11 @@ export type QueryResolvers<
     ContextType
   >
   file: Resolver<Maybe<ResolversTypes['File']>, ParentType, ContextType>
+  filemultiple: Resolver<
+    Maybe<ResolversTypes['FileMultiple']>,
+    ParentType,
+    ContextType
+  >
   foldable: Resolver<Maybe<ResolversTypes['Foldable']>, ParentType, ContextType>
   video: Resolver<Maybe<ResolversTypes['Video']>, ParentType, ContextType>
 }>

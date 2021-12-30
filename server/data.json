@@ -1,5 +1,15 @@
 {
-  "__typename": "File",
-  "fileName": "index.js",
-  "content": "import { createStore } from 'redux'\n\n/**\n * This is a reducer - a function that takes a current state value and an\n * action object describing \"what happened\", and returns a new state value.\n * A reducer's function signature is: (state, action) => newState\n *\n * The Redux state should contain only plain JS objects, arrays, and primitives.\n * The root state value is usually an object.  It's important that you should\n * not mutate the state object, but return a new object if the state changes.\n *\n * You can use any conditional logic you want in a reducer. In this example,\n * we use a switch statement, but it's not required.\n */\nfunction counterReducer(state = { value: 0 }, action) {\n  switch (action.type) {\n    case 'counter/incremented':\n      return { value: state.value + 1 }\n    case 'counter/decremented':\n      return { value: state.value - 1 }\n    default:\n      return state\n  }\n}"
+  "__typename": "FileMultiple",
+  "files": [
+    {
+      "__typename": "File",
+      "fileName": "index.js",
+      "content": "import { createStore } from 'redux'\n\n/**\n * This is a reducer - a function that takes a current state value and an\n * action object describing \"what happened\", and returns a new state value.\n * A reducer's function signature is: (state, action) => newState\n *\n * The Redux state should contain only plain JS objects, arrays, and primitives.\n * The root state value is usually an object.  It's important that you should\n * not mutate the state object, but return a new object if the state changes.\n *\n * You can use any conditional logic you want in a reducer. In this example,\n * we use a switch statement, but it's not required.\n */\nfunction counterReducer(state = { value: 0 }, action) {\n  switch (action.type) {\n    case 'counter/incremented':\n      return { value: state.value + 1 }\n    case 'counter/decremented':\n      return { value: state.value - 1 }\n    default:\n      return state\n  }\n}"
+    },
+    {
+      "__typename": "File",
+      "fileName": "counter.js",
+      "content": "function Counter() {\n  // State: a counter value\n  const [counter, setCounter] = useState(0)\n\n  // Action: code that causes an update to the state when something happens\n  const increment = () => {\n    setCounter(prevCounter => prevCounter + 1)\n\n  }\n\n  // View: the UI definition\n  return (\n\n   <div>\n\n     Value: {counter} <button onClick={increment}>Increment</button>\n\n   </div>\n  )\n}"
+    }
+  ]
 }

@@ -4,6 +4,7 @@ type Query {
   video: Video
   foldable: Foldable
   file: File
+  filemultiple: FileMultiple
 }
 
 type Author {
