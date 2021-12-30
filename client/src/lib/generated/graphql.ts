@@ -128,6 +128,7 @@ export type Query = {
   __typename?: 'Query'
   action: Maybe<Action>
   carousel: Maybe<CarouselImage>
+  foldable: Maybe<Foldable>
   video: Maybe<Video>
 }
 
@@ -191,12 +192,65 @@ export type MainQueryVariables = Exact<{ [key: string]: never }>
 
 export type MainQuery = {
   __typename?: 'Query'
-  video:
+  foldable:
     | {
-        __typename?: 'Video'
-        platform: VideoPlatform | null | undefined
-        url: string | null | undefined
-        caption: string | null | undefined
+        __typename?: 'Foldable'
+        shortDescription: string | null | undefined
+        elements:
+          | Array<
+              | {
+                  __typename?: 'CarouselImage'
+                  images:
+                    | Array<
+                        | {
+                            __typename?: 'Image'
+                            caption: string | null | undefined
+                            url: string | null | undefined
+                            alt: string | null | undefined
+                            width: number | null | undefined
+                            height: number | null | undefined
+                          }
+                        | null
+                        | undefined
+                      >
+                    | null
+                    | undefined
+                }
+              | { __typename?: 'Command'; text: string | null | undefined }
+              | {
+                  __typename?: 'CommandOutput'
+                  text: string | null | undefined
+                }
+              | {
+                  __typename?: 'Paragraph'
+                  chunks:
+                    | Array<
+                        | {
+                            __typename?: 'TextChunk'
+                            text: string | null | undefined
+                            highlight: boolean | null | undefined
+                            bold: boolean | null | undefined
+                            hyperlinkUrl: string | null | undefined
+                            strikeout: boolean | null | undefined
+                            inlineCode: boolean | null | undefined
+                          }
+                        | null
+                        | undefined
+                      >
+                    | null
+                    | undefined
+                }
+              | {
+                  __typename?: 'Video'
+                  platform: VideoPlatform | null | undefined
+                  url: string | null | undefined
+                  caption: string | null | undefined
+                }
+              | null
+              | undefined
+            >
+          | null
+          | undefined
       }
     | null
     | undefined
@@ -902,11 +956,11 @@ export const FoldableComponentFragmentDoc = gql`
 `
 export const MainDocument = gql`
   query Main {
-    video {
-      ...VideoComponent
+    foldable {
+      ...FoldableComponent
     }
   }
-  ${VideoComponentFragmentDoc}
+  ${FoldableComponentFragmentDoc}
 `
 
 /**
@@ -1378,6 +1432,7 @@ export type QueryResolvers<
     ParentType,
     ContextType
   >
+  foldable: Resolver<Maybe<ResolversTypes['Foldable']>, ParentType, ContextType>
   video: Resolver<Maybe<ResolversTypes['Video']>, ParentType, ContextType>
 }>
 

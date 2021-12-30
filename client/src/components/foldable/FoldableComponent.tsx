@@ -13,7 +13,7 @@ import { UnfoldedIcon } from './UnfoldedIcon'
 
 interface FoldableDescriptionBarProps {
   folded: boolean
-  shortDescription: string
+  shortDescription: string | null | undefined
   transitionToFold: () => void
   transitionToUnfold: () => void
 }

@@ -2,6 +2,7 @@ type Query {
   action: Action
   carousel: CarouselImage
   video: Video
+  foldable: Foldable
 }
 
 type Author {

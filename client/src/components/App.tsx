@@ -8,15 +8,16 @@ import {
 } from '@apollo/client'
 import { css } from '@emotion/react'
 import { useMainQuery } from '../lib/generated/graphql'
-import { VideoComponent } from './video/VideoComponent'
+import { FoldableComponent } from './foldable/FoldableComponent'
 
 gql`
   query Main {
-    video {
-      ...VideoComponent
+    foldable {
+      ...FoldableComponent
     }
   }
-  ${VideoComponent.fragment}
+
+  ${FoldableComponent.fragment}
 `
 
 export const MainContainer = (): JSX.Element => {
@@ -32,7 +33,7 @@ export const MainContainer = (): JSX.Element => {
     console.log('GraphQL Error! returned data is undefined or null')
     return <div>{`GraphQL Error! returned data is undefined or null`}</div>
   } else {
-    return data.video ? (
+    return data.foldable ? (
       <main>
         <div
           css={css`
@@ -46,7 +47,7 @@ export const MainContainer = (): JSX.Element => {
               padding: 8px;
             `}
           >
-            <VideoComponent fragment={data.video} />
+            <FoldableComponent fragment={data.foldable} />
           </div>
         </div>
       </main>
