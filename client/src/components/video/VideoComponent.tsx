@@ -41,12 +41,19 @@ export const VideoComponent = ({
   return (
     <div
       css={css`
-        width: ${VideoWidth}px;
-        background-color: #414141;
+        display: flex;
+        justify-content: center;
       `}
     >
-      <InnerComponent fragment={fragment} />
-      <VideoDescriptionComponent caption={fragment.caption} />
+      <div
+        css={css`
+          width: ${VideoWidth}px;
+          background-color: #414141;
+        `}
+      >
+        <InnerComponent fragment={fragment} />
+        <VideoDescriptionComponent caption={fragment.caption} />
+      </div>
     </div>
   )
 }
