@@ -49,24 +49,30 @@ export const CarouselComponent = ({
   return (
     <div
       css={css`
-        width: ${ImageItemWidth}px;
-        height: ${ImageItemHeight}px;
+        display: flex;
+        justify-content: center;
       `}
     >
-      <CarouselImageScrollComponent
-        fragment={fragment}
-        transition={currentTransition}
-      />
-      <CarouselControlBar
-        prevButtonCallback={gotoPrevItem}
-        nextButtonCallback={gotoNextItem}
-        prevButtonGrayOut={currentTransition.to === 0}
-        nextButtonGrayOut={currentTransition.to === numItems - 1}
-      />
-      <CarouselDescriptionComponent
-        fragment={fragment}
-        transition={currentTransition}
-      />
+      <div
+        css={css`
+          width: ${ImageItemWidth}px;
+        `}
+      >
+        <CarouselImageScrollComponent
+          fragment={fragment}
+          transition={currentTransition}
+        />
+        <CarouselControlBar
+          prevButtonCallback={gotoPrevItem}
+          nextButtonCallback={gotoNextItem}
+          prevButtonGrayOut={currentTransition.to === 0}
+          nextButtonGrayOut={currentTransition.to === numItems - 1}
+        />
+        <CarouselDescriptionComponent
+          fragment={fragment}
+          transition={currentTransition}
+        />
+      </div>
     </div>
   )
 }
