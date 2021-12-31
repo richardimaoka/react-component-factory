@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { FileMultipleComponentFragment } from '../../lib/generated/graphql'
 import { FileComponent } from './FileComponent'
 import { FileContentComponent } from './FileContentComponent'
-import { FileNameMultipleTab } from './FileNameMultipleTab'
+import { FileMultipleNameTab } from './FileMultipleNameTab'
 
 interface FileMultipleComponentProps {
   fragment: FileMultipleComponentFragment
@@ -22,7 +22,7 @@ export const FileMultipleComponent = ({
     } else {
       return (
         <div>
-          <FileNameMultipleTab
+          <FileMultipleNameTab
             fragment={fragment}
             selectFileIndex={selectFileIndex}
             selectFileCallback={(fileIndex) => setFileIndex(fileIndex)}
@@ -42,8 +42,8 @@ FileMultipleComponent.fragment = gql`
     files {
       ...FileComponent
     }
-    ...FileNameMultipleTab
+    ...FileMultipleNameTab
   }
   ${FileComponent.fragment}
-  ${FileNameMultipleTab.fragment}
+  ${FileMultipleNameTab.fragment}
 `

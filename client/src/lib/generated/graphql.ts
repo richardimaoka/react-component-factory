@@ -665,7 +665,7 @@ export type FileMultipleComponentFragment = {
     | undefined
 }
 
-export type FileNameMultipleTabFragment = {
+export type FileMultipleNameTabFragment = {
   __typename?: 'FileMultiple'
   files:
     | Array<
@@ -944,8 +944,8 @@ export const FileComponentFragmentDoc = gql`
     content
   }
 `
-export const FileNameMultipleTabFragmentDoc = gql`
-  fragment FileNameMultipleTab on FileMultiple {
+export const FileMultipleNameTabFragmentDoc = gql`
+  fragment FileMultipleNameTab on FileMultiple {
     files {
       fileName
     }
@@ -956,10 +956,10 @@ export const FileMultipleComponentFragmentDoc = gql`
     files {
       ...FileComponent
     }
-    ...FileNameMultipleTab
+    ...FileMultipleNameTab
   }
   ${FileComponentFragmentDoc}
-  ${FileNameMultipleTabFragmentDoc}
+  ${FileMultipleNameTabFragmentDoc}
 `
 export const FoldableComponentFragmentDoc = gql`
   fragment FoldableComponent on Foldable {
