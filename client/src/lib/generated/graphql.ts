@@ -226,6 +226,21 @@ export type MainQuery = {
           | {
               __typename?: 'Directory'
               directoryName: string | null | undefined
+              nodes:
+                | Array<
+                    | {
+                        __typename?: 'Directory'
+                        directoryName: string | null | undefined
+                      }
+                    | {
+                        __typename?: 'File'
+                        fileName: string | null | undefined
+                      }
+                    | null
+                    | undefined
+                  >
+                | null
+                | undefined
             }
           | null
           | undefined
@@ -681,7 +696,22 @@ export type FileMultipleNameTabFragment = {
 export type FileTreeComponentFragment = {
   __typename?: 'FileTree'
   rootDirectory:
-    | { __typename?: 'Directory'; directoryName: string | null | undefined }
+    | {
+        __typename?: 'Directory'
+        directoryName: string | null | undefined
+        nodes:
+          | Array<
+              | {
+                  __typename?: 'Directory'
+                  directoryName: string | null | undefined
+                }
+              | { __typename?: 'File'; fileName: string | null | undefined }
+              | null
+              | undefined
+            >
+          | null
+          | undefined
+      }
     | null
     | undefined
 }
@@ -974,6 +1004,14 @@ export const FileTreeComponentFragmentDoc = gql`
   fragment FileTreeComponent on FileTree {
     rootDirectory {
       directoryName
+      nodes {
+        ... on File {
+          fileName
+        }
+        ... on Directory {
+          directoryName
+        }
+      }
     }
   }
 `
