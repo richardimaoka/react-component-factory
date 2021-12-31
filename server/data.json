@@ -2,23 +2,23 @@
   "__typename": "FileTree",
   "rootDirectory": {
     "__typename": "Directory",
-    "children": [
+    "nodes": [
       {
         "__typename": "Directory",
         "directoryName": "client",
-        "children": [
+        "nodes": [
           {
             "__typename": "Directory",
             "directoryName": "src",
-            "children": [
+            "nodes": [
               {
                 "__typename": "Directory",
                 "directoryName": "components",
-                "children": [
+                "nodes": [
                   {
                     "__typename": "Directory",
                     "directoryName": "action",
-                    "children": [
+                    "nodes": [
                       {
                         "__typename": "File",
                         "fileName": "ActionComponent.tsx"
@@ -48,11 +48,11 @@
                   {
                     "__typename": "Directory",
                     "directoryName": "carousel",
-                    "children": [
+                    "nodes": [
                       {
                         "__typename": "Directory",
                         "directoryName": "images",
-                        "children": [
+                        "nodes": [
                           {
                             "__typename": "File",
                             "fileName": "background.png"
@@ -88,17 +88,17 @@
                   {
                     "__typename": "Directory",
                     "directoryName": "command",
-                    "children": []
+                    "nodes": []
                   },
                   {
                     "__typename": "Directory",
                     "directoryName": "file",
-                    "children": []
+                    "nodes": []
                   },
                   {
                     "__typename": "Directory",
                     "directoryName": "file",
-                    "children": []
+                    "nodes": []
                   }
                 ]
               }

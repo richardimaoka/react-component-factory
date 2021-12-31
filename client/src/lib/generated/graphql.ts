@@ -57,8 +57,8 @@ export type DecorateTextChunksInput = {
 
 export type Directory = {
   __typename?: 'Directory'
-  children: Maybe<Array<Maybe<FileNode>>>
   directoryName: Maybe<Scalars['String']>
+  nodes: Maybe<Array<Maybe<FileNode>>>
 }
 
 export type DirectoryStructure = {
@@ -1169,8 +1169,8 @@ export type ResolversTypes = ResolversObject<{
   CommandOutput: ResolverTypeWrapper<CommandOutput>
   DecorateTextChunksInput: ResolverTypeWrapper<DecorateTextChunksInput>
   Directory: ResolverTypeWrapper<
-    Omit<Directory, 'children'> & {
-      children: Maybe<Array<Maybe<ResolversTypes['FileNode']>>>
+    Omit<Directory, 'nodes'> & {
+      nodes: Maybe<Array<Maybe<ResolversTypes['FileNode']>>>
     }
   >
   DirectoryStructure: ResolverTypeWrapper<DirectoryStructure>
@@ -1239,8 +1239,8 @@ export type ResolversParentTypes = ResolversObject<{
   Command: Command
   CommandOutput: CommandOutput
   DecorateTextChunksInput: DecorateTextChunksInput
-  Directory: Omit<Directory, 'children'> & {
-    children: Maybe<Array<Maybe<ResolversParentTypes['FileNode']>>>
+  Directory: Omit<Directory, 'nodes'> & {
+    nodes: Maybe<Array<Maybe<ResolversParentTypes['FileNode']>>>
   }
   DirectoryStructure: DirectoryStructure
   File: File
@@ -1363,13 +1363,13 @@ export type DirectoryResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['Directory'] = ResolversParentTypes['Directory']
 > = ResolversObject<{
-  children: Resolver<
-    Maybe<Array<Maybe<ResolversTypes['FileNode']>>>,
+  directoryName: Resolver<
+    Maybe<ResolversTypes['String']>,
     ParentType,
     ContextType
   >
-  directoryName: Resolver<
-    Maybe<ResolversTypes['String']>,
+  nodes: Resolver<
+    Maybe<Array<Maybe<ResolversTypes['FileNode']>>>,
     ParentType,
     ContextType
   >
