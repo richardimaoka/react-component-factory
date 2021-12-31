@@ -2,63 +2,7 @@
 import { gql } from '@apollo/client'
 import { css } from '@emotion/react'
 import { FileTreeComponentFragment } from '../../lib/generated/graphql'
-
-const InnerComponent = ({ node }: { node: Node }): JSX.Element => {
-  if (!node || !node.__typename) {
-    return <></>
-  } else {
-    switch (node.__typename) {
-      case 'File':
-        return <FileNodeComponent fileName={node.fileName} />
-      case 'Directory':
-        return (
-          <DirectoryNodeComponent
-            directoryName={node.directoryName}
-            nodes={node.nodes}
-          />
-        )
-    }
-  }
-}
-
-type Node =
-  | DirectoryNodeComponentProps
-  | FileNodeComponentProps
-  | null
-  | undefined
-
-interface DirectoryNodeComponentProps {
-  __typename?: 'Directory'
-  directoryName: string | null | undefined
-  nodes?: Array<Node> | null
-}
-
-const DirectoryNodeComponent = ({
-  directoryName,
-  nodes,
-}: DirectoryNodeComponentProps): JSX.Element => {
-  if (!nodes) {
-    return <div>{directoryName}</div>
-  } else {
-    return (
-      <div>
-        <div>{directoryName}</div>
-        {nodes.map((node, index) =>
-          !node ? <></> : <InnerComponent key={index} node={node} />
-        )}
-      </div>
-    )
-  }
-}
-
-interface FileNodeComponentProps {
-  __typename?: 'File'
-  fileName: string | null | undefined
-}
-
-const FileNodeComponent = ({ fileName }: FileNodeComponentProps) => {
-  return <div>{fileName}</div>
-}
+import { DirectoryNodeComponent } from './FileTreeNodeComponent'
 
 interface FileTreeComponentProps {
   fragment: FileTreeComponentFragment
