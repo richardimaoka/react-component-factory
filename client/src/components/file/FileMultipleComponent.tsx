@@ -25,6 +25,7 @@ export const FileMultipleComponent = ({
           <FileNameMultipleTab
             fragment={fragment}
             selectFileIndex={selectFileIndex}
+            selectFileCallback={(fileIndex) => setFileIndex(fileIndex)}
           />
           <FileContentComponent fileContent={selectFile.content} />
         </div>

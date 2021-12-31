@@ -7,11 +7,13 @@ import { FileNameMultipleTabFragment } from '../../lib/generated/graphql'
 interface FileNameMultipleTabProps {
   fragment: FileNameMultipleTabFragment
   selectFileIndex: number
+  selectFileCallback: (fileIndex: number) => void
 }
 
 export const FileNameMultipleTab = ({
   fragment,
   selectFileIndex,
+  selectFileCallback,
 }: FileNameMultipleTabProps): JSX.Element => {
   if (!fragment.files) {
     return <></>
@@ -42,6 +44,7 @@ export const FileNameMultipleTab = ({
                 border-style: none;
                 font-size: 16px;
               `}
+              onClick={() => selectFileCallback(index)}
             >
               <FileNameTab
                 key={index}
