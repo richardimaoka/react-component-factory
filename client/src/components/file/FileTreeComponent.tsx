@@ -30,7 +30,7 @@ type Node =
 interface DirectoryNodeComponentProps {
   __typename?: 'Directory'
   directoryName: string | null | undefined
-  nodes?: Array<Node>
+  nodes?: Array<Node> | null
 }
 
 const DirectoryNodeComponent = ({
@@ -100,33 +100,33 @@ FileTreeComponent.fragment = gql`
         }
         ... on Directory {
           directoryName
-          #   nodes {
-          #     # 3rd  depth
-          #     ... on File {
-          #       fileName
-          #     }
-          #     ... on Directory {
-          #       directoryName
-          #       nodes {
-          #         # 4th depth
-          #         ... on File {
-          #           fileName
-          #         }
-          #         ... on Directory {
-          #           directoryName
-          #           nodes {
-          #             # 5th depth
-          #             ... on File {
-          #               fileName
-          #             }
-          #             ... on Directory {
-          #               directoryName
-          #             }
-          #           }
-          #         }
-          #       }
-          #     }
-          #   }
+          nodes {
+            # 3rd  depth
+            ... on File {
+              fileName
+            }
+            ... on Directory {
+              directoryName
+              nodes {
+                # 4th depth
+                ... on File {
+                  fileName
+                }
+                ... on Directory {
+                  directoryName
+                  nodes {
+                    # 5th depth
+                    ... on File {
+                      fileName
+                    }
+                    ... on Directory {
+                      directoryName
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }
