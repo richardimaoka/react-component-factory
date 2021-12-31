@@ -5,6 +5,7 @@ type Query {
   foldable: Foldable
   file: File
   filemultiple: FileMultiple
+  filetree: FileTree
 }
 
 type Author {
@@ -153,6 +154,10 @@ type FileMultiple {
 type Directory {
   directoryName: String
   children: [FileNode]
+}
+
+type FileTree {
+  rootDirectory: Directory
 }
 
 union FileNode = File | Directory

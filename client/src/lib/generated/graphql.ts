@@ -79,6 +79,11 @@ export type FileMultiple = {
 
 export type FileNode = Directory | File
 
+export type FileTree = {
+  __typename?: 'FileTree'
+  rootDirectory: Maybe<Directory>
+}
+
 export type Foldable = {
   __typename?: 'Foldable'
   elements: Maybe<Array<Maybe<PlainElement>>>
@@ -149,6 +154,7 @@ export type Query = {
   carousel: Maybe<CarouselImage>
   file: Maybe<File>
   filemultiple: Maybe<FileMultiple>
+  filetree: Maybe<FileTree>
   foldable: Maybe<Foldable>
   video: Maybe<Video>
 }
@@ -1161,6 +1167,7 @@ export type ResolversTypes = ResolversObject<{
   File: ResolverTypeWrapper<File>
   FileMultiple: ResolverTypeWrapper<FileMultiple>
   FileNode: ResolversTypes['Directory'] | ResolversTypes['File']
+  FileTree: ResolverTypeWrapper<FileTree>
   Foldable: ResolverTypeWrapper<
     Omit<Foldable, 'elements'> & {
       elements: Maybe<Array<Maybe<ResolversTypes['PlainElement']>>>
@@ -1229,6 +1236,7 @@ export type ResolversParentTypes = ResolversObject<{
   File: File
   FileMultiple: FileMultiple
   FileNode: ResolversParentTypes['Directory'] | ResolversParentTypes['File']
+  FileTree: FileTree
   Foldable: Omit<Foldable, 'elements'> & {
     elements: Maybe<Array<Maybe<ResolversParentTypes['PlainElement']>>>
   }
@@ -1398,6 +1406,18 @@ export type FileNodeResolvers<
   __resolveType: TypeResolveFn<'Directory' | 'File', ParentType, ContextType>
 }>
 
+export type FileTreeResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['FileTree'] = ResolversParentTypes['FileTree']
+> = ResolversObject<{
+  rootDirectory: Resolver<
+    Maybe<ResolversTypes['Directory']>,
+    ParentType,
+    ContextType
+  >
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
+}>
+
 export type FoldableResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['Foldable'] = ResolversParentTypes['Foldable']
@@ -1531,6 +1551,7 @@ export type QueryResolvers<
     ParentType,
     ContextType
   >
+  filetree: Resolver<Maybe<ResolversTypes['FileTree']>, ParentType, ContextType>
   foldable: Resolver<Maybe<ResolversTypes['Foldable']>, ParentType, ContextType>
   video: Resolver<Maybe<ResolversTypes['Video']>, ParentType, ContextType>
 }>
@@ -1655,6 +1676,7 @@ export type Resolvers<ContextType = any> = ResolversObject<{
   File: FileResolvers<ContextType>
   FileMultiple: FileMultipleResolvers<ContextType>
   FileNode: FileNodeResolvers<ContextType>
+  FileTree: FileTreeResolvers<ContextType>
   Foldable: FoldableResolvers<ContextType>
   Image: ImageResolvers<ContextType>
   Note: NoteResolvers<ContextType>
