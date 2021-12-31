@@ -219,19 +219,14 @@ export type MainQueryVariables = Exact<{ [key: string]: never }>
 
 export type MainQuery = {
   __typename?: 'Query'
-  filemultiple:
+  filetree:
     | {
-        __typename?: 'FileMultiple'
-        files:
-          | Array<
-              | {
-                  __typename?: 'File'
-                  fileName: string | null | undefined
-                  content: string | null | undefined
-                }
-              | null
-              | undefined
-            >
+        __typename?: 'FileTree'
+        rootDirectory:
+          | {
+              __typename?: 'Directory'
+              directoryName: string | null | undefined
+            }
           | null
           | undefined
       }
@@ -683,6 +678,14 @@ export type FileMultipleNameTabFragment = {
     | undefined
 }
 
+export type FileTreeComponentFragment = {
+  __typename?: 'FileTree'
+  rootDirectory:
+    | { __typename?: 'Directory'; directoryName: string | null | undefined }
+    | null
+    | undefined
+}
+
 export type FoldableComponentFragment = {
   __typename?: 'Foldable'
   shortDescription: string | null | undefined
@@ -967,6 +970,13 @@ export const FileMultipleComponentFragmentDoc = gql`
   ${FileComponentFragmentDoc}
   ${FileMultipleNameTabFragmentDoc}
 `
+export const FileTreeComponentFragmentDoc = gql`
+  fragment FileTreeComponent on FileTree {
+    rootDirectory {
+      directoryName
+    }
+  }
+`
 export const FoldableComponentFragmentDoc = gql`
   fragment FoldableComponent on Foldable {
     shortDescription
@@ -996,11 +1006,11 @@ export const FoldableComponentFragmentDoc = gql`
 `
 export const MainDocument = gql`
   query Main {
-    filemultiple {
-      ...FileMultipleComponent
+    filetree {
+      ...FileTreeComponent
     }
   }
-  ${FileMultipleComponentFragmentDoc}
+  ${FileTreeComponentFragmentDoc}
 `
 
 /**
