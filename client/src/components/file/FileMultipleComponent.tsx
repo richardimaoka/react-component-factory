@@ -27,7 +27,10 @@ export const FileMultipleComponent = ({
             selectFileIndex={selectFileIndex}
             selectFileCallback={(fileIndex) => setFileIndex(fileIndex)}
           />
-          <FileContentComponent fileContent={selectFile.content} />
+          <FileContentComponent
+            fileContent={selectFile.content}
+            heightSpecification={{ specify: 'height', height: 600 }}
+          />
         </div>
       )
     }

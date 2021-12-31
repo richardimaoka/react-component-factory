@@ -5,10 +5,12 @@ import Prism from 'prismjs'
 
 interface FileContentComponentProps {
   fileContent: string
+  heightSpecification?: { specify: 'height' | 'max-height'; height: number }
 }
 
-export const FileContentComponent = ({
+const InnerComponent = ({
   fileContent,
+  heightSpecification,
 }: FileContentComponentProps): JSX.Element => {
   const codeElement = useRef<HTMLElement>(null)
   useEffect(() => {
@@ -17,6 +19,56 @@ export const FileContentComponent = ({
     }
   })
 
+  if (!heightSpecification) {
+    return (
+      <pre>
+        <code ref={codeElement} className={'lang-js'}>
+          {fileContent}
+        </code>
+      </pre>
+    )
+  } else {
+    switch (heightSpecification.specify) {
+      case 'height':
+        return (
+          <pre>
+            <code
+              css={css`
+                height: ${heightSpecification.height}px;
+                overflow-y: auto;
+                display: block;
+              `}
+              ref={codeElement}
+              className={'lang-js'}
+            >
+              {fileContent}
+            </code>
+          </pre>
+        )
+      case 'max-height':
+        return (
+          <pre>
+            <code
+              css={css`
+                max-height: ${heightSpecification.height}px;
+                overflow-y: auto;
+                display: block;
+              `}
+              ref={codeElement}
+              className={'lang-js'}
+            >
+              {fileContent}
+            </code>
+          </pre>
+        )
+    }
+  }
+}
+
+export const FileContentComponent = ({
+  fileContent,
+  heightSpecification,
+}: FileContentComponentProps): JSX.Element => {
   return (
     <div
       css={css`
@@ -25,11 +77,10 @@ export const FileContentComponent = ({
         background-color: #2d2d2d;
       `}
     >
-      <pre>
-        <code ref={codeElement} className={'lang-js'}>
-          {fileContent}
-        </code>
-      </pre>
+      <InnerComponent
+        fileContent={fileContent}
+        heightSpecification={heightSpecification}
+      />
       <button
         css={css`
           position: absolute;
