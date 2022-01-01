@@ -22,12 +22,19 @@ export const FileTreeComponent = ({
       ? fragment.rootDirectory.directoryName
       : 'noname'
 
-    console.log(fragment)
     return (
-      <DirectoryNodeComponent
-        directoryName={directoryName}
-        nodes={fragment.rootDirectory.nodes}
-      />
+      <div
+        css={css`
+          padding: 4px;
+          background-color: #2d2d2d;
+          color: #ffffff;
+        `}
+      >
+        <DirectoryNodeComponent
+          directoryName={directoryName}
+          nodes={fragment.rootDirectory.nodes}
+        />
+      </div>
     )
   }
 }
