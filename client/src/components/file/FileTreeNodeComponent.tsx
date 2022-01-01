@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { FileIcon } from './FileIcon'
+import { DirectoryIcon } from './DirectoryIcon'
 
 type FileTreeNode =
   | DirectoryNodeComponentProps
@@ -37,11 +38,27 @@ export const DirectoryNodeComponent = ({
   nodes,
 }: DirectoryNodeComponentProps): JSX.Element => {
   if (!nodes) {
-    return <div>{directoryName}</div>
+    return (
+      <div
+        css={css`
+          display: flex;
+        `}
+      >
+        <DirectoryIcon />
+        <div>{directoryName}</div>
+      </div>
+    )
   } else {
     return (
       <div>
-        <div>{directoryName}</div>
+        <div
+          css={css`
+            display: flex;
+          `}
+        >
+          <DirectoryIcon />
+          <div>{directoryName}</div>
+        </div>
         {nodes.map((node, index) =>
           !node ? <></> : <InnerComponent key={index} node={node} />
         )}
