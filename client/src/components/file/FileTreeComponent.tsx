@@ -72,6 +72,60 @@ FileTreeComponent.fragment = gql`
                     }
                     ... on Directory {
                       directoryName
+                      nodes {
+                        #6th depth
+                        ... on File {
+                          fileName
+                        }
+                        ... on Directory {
+                          directoryName
+                          nodes {
+                            #6th depth
+                            ... on File {
+                              fileName
+                            }
+                            ... on Directory {
+                              directoryName
+                              nodes {
+                                #7th depth
+                                ... on File {
+                                  fileName
+                                }
+                                ... on Directory {
+                                  directoryName
+                                  nodes {
+                                    #8th depth
+                                    ... on File {
+                                      fileName
+                                    }
+                                    ... on Directory {
+                                      directoryName
+                                      nodes {
+                                        #9th depth
+                                        ... on File {
+                                          fileName
+                                        }
+                                        ... on Directory {
+                                          directoryName
+                                          nodes {
+                                            #10th depth
+                                            ... on File {
+                                              fileName
+                                            }
+                                            ... on Directory {
+                                              directoryName
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
                     }
                   }
                 }

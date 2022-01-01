@@ -72,7 +72,9 @@ interface FileNodeComponentProps {
   fileName: string | null | undefined
 }
 
-export const FileNodeComponent = ({ fileName }: FileNodeComponentProps) => {
+export const FileNodeComponent = ({
+  fileName,
+}: FileNodeComponentProps): JSX.Element => {
   return (
     <div
       css={css`

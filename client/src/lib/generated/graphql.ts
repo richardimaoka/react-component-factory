@@ -252,6 +252,132 @@ export type MainQuery = {
                                                         | string
                                                         | null
                                                         | undefined
+                                                      nodes:
+                                                        | Array<
+                                                            | {
+                                                                __typename?: 'Directory'
+                                                                directoryName:
+                                                                  | string
+                                                                  | null
+                                                                  | undefined
+                                                                nodes:
+                                                                  | Array<
+                                                                      | {
+                                                                          __typename?: 'Directory'
+                                                                          directoryName:
+                                                                            | string
+                                                                            | null
+                                                                            | undefined
+                                                                          nodes:
+                                                                            | Array<
+                                                                                | {
+                                                                                    __typename?: 'Directory'
+                                                                                    directoryName:
+                                                                                      | string
+                                                                                      | null
+                                                                                      | undefined
+                                                                                    nodes:
+                                                                                      | Array<
+                                                                                          | {
+                                                                                              __typename?: 'Directory'
+                                                                                              directoryName:
+                                                                                                | string
+                                                                                                | null
+                                                                                                | undefined
+                                                                                              nodes:
+                                                                                                | Array<
+                                                                                                    | {
+                                                                                                        __typename?: 'Directory'
+                                                                                                        directoryName:
+                                                                                                          | string
+                                                                                                          | null
+                                                                                                          | undefined
+                                                                                                        nodes:
+                                                                                                          | Array<
+                                                                                                              | {
+                                                                                                                  __typename?: 'Directory'
+                                                                                                                  directoryName:
+                                                                                                                    | string
+                                                                                                                    | null
+                                                                                                                    | undefined
+                                                                                                                }
+                                                                                                              | {
+                                                                                                                  __typename?: 'File'
+                                                                                                                  fileName:
+                                                                                                                    | string
+                                                                                                                    | null
+                                                                                                                    | undefined
+                                                                                                                }
+                                                                                                              | null
+                                                                                                              | undefined
+                                                                                                            >
+                                                                                                          | null
+                                                                                                          | undefined
+                                                                                                      }
+                                                                                                    | {
+                                                                                                        __typename?: 'File'
+                                                                                                        fileName:
+                                                                                                          | string
+                                                                                                          | null
+                                                                                                          | undefined
+                                                                                                      }
+                                                                                                    | null
+                                                                                                    | undefined
+                                                                                                  >
+                                                                                                | null
+                                                                                                | undefined
+                                                                                            }
+                                                                                          | {
+                                                                                              __typename?: 'File'
+                                                                                              fileName:
+                                                                                                | string
+                                                                                                | null
+                                                                                                | undefined
+                                                                                            }
+                                                                                          | null
+                                                                                          | undefined
+                                                                                        >
+                                                                                      | null
+                                                                                      | undefined
+                                                                                  }
+                                                                                | {
+                                                                                    __typename?: 'File'
+                                                                                    fileName:
+                                                                                      | string
+                                                                                      | null
+                                                                                      | undefined
+                                                                                  }
+                                                                                | null
+                                                                                | undefined
+                                                                              >
+                                                                            | null
+                                                                            | undefined
+                                                                        }
+                                                                      | {
+                                                                          __typename?: 'File'
+                                                                          fileName:
+                                                                            | string
+                                                                            | null
+                                                                            | undefined
+                                                                        }
+                                                                      | null
+                                                                      | undefined
+                                                                    >
+                                                                  | null
+                                                                  | undefined
+                                                              }
+                                                            | {
+                                                                __typename?: 'File'
+                                                                fileName:
+                                                                  | string
+                                                                  | null
+                                                                  | undefined
+                                                              }
+                                                            | null
+                                                            | undefined
+                                                          >
+                                                        | null
+                                                        | undefined
                                                     }
                                                   | {
                                                       __typename?: 'File'
@@ -776,6 +902,132 @@ export type FileTreeComponentFragment = {
                                                   | string
                                                   | null
                                                   | undefined
+                                                nodes:
+                                                  | Array<
+                                                      | {
+                                                          __typename?: 'Directory'
+                                                          directoryName:
+                                                            | string
+                                                            | null
+                                                            | undefined
+                                                          nodes:
+                                                            | Array<
+                                                                | {
+                                                                    __typename?: 'Directory'
+                                                                    directoryName:
+                                                                      | string
+                                                                      | null
+                                                                      | undefined
+                                                                    nodes:
+                                                                      | Array<
+                                                                          | {
+                                                                              __typename?: 'Directory'
+                                                                              directoryName:
+                                                                                | string
+                                                                                | null
+                                                                                | undefined
+                                                                              nodes:
+                                                                                | Array<
+                                                                                    | {
+                                                                                        __typename?: 'Directory'
+                                                                                        directoryName:
+                                                                                          | string
+                                                                                          | null
+                                                                                          | undefined
+                                                                                        nodes:
+                                                                                          | Array<
+                                                                                              | {
+                                                                                                  __typename?: 'Directory'
+                                                                                                  directoryName:
+                                                                                                    | string
+                                                                                                    | null
+                                                                                                    | undefined
+                                                                                                  nodes:
+                                                                                                    | Array<
+                                                                                                        | {
+                                                                                                            __typename?: 'Directory'
+                                                                                                            directoryName:
+                                                                                                              | string
+                                                                                                              | null
+                                                                                                              | undefined
+                                                                                                          }
+                                                                                                        | {
+                                                                                                            __typename?: 'File'
+                                                                                                            fileName:
+                                                                                                              | string
+                                                                                                              | null
+                                                                                                              | undefined
+                                                                                                          }
+                                                                                                        | null
+                                                                                                        | undefined
+                                                                                                      >
+                                                                                                    | null
+                                                                                                    | undefined
+                                                                                                }
+                                                                                              | {
+                                                                                                  __typename?: 'File'
+                                                                                                  fileName:
+                                                                                                    | string
+                                                                                                    | null
+                                                                                                    | undefined
+                                                                                                }
+                                                                                              | null
+                                                                                              | undefined
+                                                                                            >
+                                                                                          | null
+                                                                                          | undefined
+                                                                                      }
+                                                                                    | {
+                                                                                        __typename?: 'File'
+                                                                                        fileName:
+                                                                                          | string
+                                                                                          | null
+                                                                                          | undefined
+                                                                                      }
+                                                                                    | null
+                                                                                    | undefined
+                                                                                  >
+                                                                                | null
+                                                                                | undefined
+                                                                            }
+                                                                          | {
+                                                                              __typename?: 'File'
+                                                                              fileName:
+                                                                                | string
+                                                                                | null
+                                                                                | undefined
+                                                                            }
+                                                                          | null
+                                                                          | undefined
+                                                                        >
+                                                                      | null
+                                                                      | undefined
+                                                                  }
+                                                                | {
+                                                                    __typename?: 'File'
+                                                                    fileName:
+                                                                      | string
+                                                                      | null
+                                                                      | undefined
+                                                                  }
+                                                                | null
+                                                                | undefined
+                                                              >
+                                                            | null
+                                                            | undefined
+                                                        }
+                                                      | {
+                                                          __typename?: 'File'
+                                                          fileName:
+                                                            | string
+                                                            | null
+                                                            | undefined
+                                                        }
+                                                      | null
+                                                      | undefined
+                                                    >
+                                                  | null
+                                                  | undefined
                                               }
                                             | {
                                                 __typename?: 'File'
@@ -1133,6 +1385,54 @@ export const FileTreeComponentFragmentDoc = gql`
                     }
                     ... on Directory {
                       directoryName
+                      nodes {
+                        ... on File {
+                          fileName
+                        }
+                        ... on Directory {
+                          directoryName
+                          nodes {
+                            ... on File {
+                              fileName
+                            }
+                            ... on Directory {
+                              directoryName
+                              nodes {
+                                ... on File {
+                                  fileName
+                                }
+                                ... on Directory {
+                                  directoryName
+                                  nodes {
+                                    ... on File {
+                                      fileName
+                                    }
+                                    ... on Directory {
+                                      directoryName
+                                      nodes {
+                                        ... on File {
+                                          fileName
+                                        }
+                                        ... on Directory {
+                                          directoryName
+                                          nodes {
+                                            ... on File {
+                                              fileName
+                                            }
+                                            ... on Directory {
+                                              directoryName
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
                     }
                   }
                 }
