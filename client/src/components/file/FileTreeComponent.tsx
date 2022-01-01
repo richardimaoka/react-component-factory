@@ -2,7 +2,7 @@
 import { gql } from '@apollo/client'
 import { css } from '@emotion/react'
 import { FileTreeComponentFragment } from '../../lib/generated/graphql'
-import { DirectoryNodeComponent } from './FileTreeNodeComponent'
+import { FileTreeNodeComponent } from './FileTreeNodeComponent'
 
 interface FileTreeComponentProps {
   fragment: FileTreeComponentFragment
@@ -30,10 +30,9 @@ export const FileTreeComponent = ({
           color: #ffffff;
         `}
       >
-        <DirectoryNodeComponent
-          directoryName={directoryName}
-          nodes={fragment.rootDirectory.nodes}
-        />
+        {fragment.rootDirectory.nodes.map((node, index) =>
+          !node ? <></> : <FileTreeNodeComponent key={index} node={node} />
+        )}
       </div>
     )
   }

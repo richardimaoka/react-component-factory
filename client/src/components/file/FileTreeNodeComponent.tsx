@@ -9,7 +9,13 @@ type FileTreeNode =
   | null
   | undefined
 
-const InnerComponent = ({ node }: { node: FileTreeNode }): JSX.Element => {
+interface FileTreeNodeComponentProps {
+  node: FileTreeNode
+}
+
+export const FileTreeNodeComponent = ({
+  node,
+}: FileTreeNodeComponentProps): JSX.Element => {
   if (!node || !node.__typename) {
     return <></>
   } else {
@@ -33,7 +39,7 @@ interface DirectoryNodeComponentProps {
   nodes?: Array<FileTreeNode> | null
 }
 
-export const DirectoryNodeComponent = ({
+const DirectoryNodeComponent = ({
   directoryName,
   nodes,
 }: DirectoryNodeComponentProps): JSX.Element => {
@@ -60,7 +66,7 @@ export const DirectoryNodeComponent = ({
           <div>{directoryName}</div>
         </div>
         {nodes.map((node, index) =>
-          !node ? <></> : <InnerComponent key={index} node={node} />
+          !node ? <></> : <FileTreeNodeComponent key={index} node={node} />
         )}
       </div>
     )
@@ -72,7 +78,7 @@ interface FileNodeComponentProps {
   fileName: string | null | undefined
 }
 
-export const FileNodeComponent = ({
+const FileNodeComponent = ({
   fileName,
 }: FileNodeComponentProps): JSX.Element => {
   return (
