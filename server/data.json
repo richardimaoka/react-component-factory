@@ -94,11 +94,6 @@
                     "__typename": "Directory",
                     "directoryName": "file",
                     "nodes": []
-                  },
-                  {
-                    "__typename": "Directory",
-                    "directoryName": "file",
-                    "nodes": []
                   }
                 ]
               }

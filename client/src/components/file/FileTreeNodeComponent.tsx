@@ -1,3 +1,7 @@
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react'
+import { FileIcon } from './FileIcon'
+
 type FileTreeNode =
   | DirectoryNodeComponentProps
   | FileNodeComponentProps
@@ -52,5 +56,14 @@ interface FileNodeComponentProps {
 }
 
 export const FileNodeComponent = ({ fileName }: FileNodeComponentProps) => {
-  return <div>{fileName}</div>
+  return (
+    <div
+      css={css`
+        display: flex;
+      `}
+    >
+      <FileIcon />
+      <div>{fileName}</div>
+    </div>
+  )
 }

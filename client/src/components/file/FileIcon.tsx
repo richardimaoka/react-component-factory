@@ -1,14 +1,14 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
+import { css } from '@emotion/react'
 
 export const FileIcon = (): JSX.Element => {
   return (
     <div>
       <svg
-        width="24px"
-        height="24px"
+        width="16px"
+        height="16px"
         css={css`
-          fill: rgb(83, 100, 113);
+          fill: #ffffff;
         `}
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 40 40"
@@ -20,5 +20,5 @@ export const FileIcon = (): JSX.Element => {
         </g>
       </svg>
     </div>
-  );
-};
+  )
+}
