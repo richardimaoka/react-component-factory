@@ -15,7 +15,13 @@ export const FileTreeComponent = ({
     return <></>
   } else {
     return (
-      <div>
+      <div
+        css={css`
+          background-color: #2d2d2d;
+          color: #ffffff;
+          padding: 8px;
+        `}
+      >
         {fragment.treeNodes.map((node) =>
           !node ? <></> : <FileTreeNodeComponent fragment={node} />
         )}
