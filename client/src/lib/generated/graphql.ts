@@ -55,12 +55,6 @@ export type DecorateTextChunksInput = {
   chunks: Array<Maybe<TextChunkWithOperation>>
 }
 
-export type Directory = {
-  __typename?: 'Directory'
-  directoryName: Maybe<Scalars['String']>
-  nodes: Maybe<Array<Maybe<FileNode>>>
-}
-
 export type DirectoryStructure = {
   __typename?: 'DirectoryStructure'
   contents: Maybe<Array<Maybe<Scalars['String']>>>
@@ -77,11 +71,21 @@ export type FileMultiple = {
   files: Maybe<Array<Maybe<File>>>
 }
 
-export type FileNode = Directory | File
-
 export type FileTree = {
   __typename?: 'FileTree'
-  rootDirectory: Maybe<Directory>
+  treeNodes: Maybe<Array<Maybe<FileTreeNode>>>
+}
+
+export type FileTreeNode = {
+  __typename?: 'FileTreeNode'
+  depth: Maybe<Scalars['Int']>
+  name: Maybe<Scalars['String']>
+  nodeType: Maybe<FileTreeNodeType>
+}
+
+export enum FileTreeNodeType {
+  Directorynode = 'DIRECTORYNODE',
+  Filenode = 'FILENODE',
 }
 
 export type Foldable = {
@@ -222,206 +226,17 @@ export type MainQuery = {
   filetree:
     | {
         __typename?: 'FileTree'
-        rootDirectory:
-          | {
-              __typename?: 'Directory'
-              directoryName: string | null | undefined
-              nodes:
-                | Array<
-                    | {
-                        __typename?: 'Directory'
-                        directoryName: string | null | undefined
-                        nodes:
-                          | Array<
-                              | {
-                                  __typename?: 'Directory'
-                                  directoryName: string | null | undefined
-                                  nodes:
-                                    | Array<
-                                        | {
-                                            __typename?: 'Directory'
-                                            directoryName:
-                                              | string
-                                              | null
-                                              | undefined
-                                            nodes:
-                                              | Array<
-                                                  | {
-                                                      __typename?: 'Directory'
-                                                      directoryName:
-                                                        | string
-                                                        | null
-                                                        | undefined
-                                                      nodes:
-                                                        | Array<
-                                                            | {
-                                                                __typename?: 'Directory'
-                                                                directoryName:
-                                                                  | string
-                                                                  | null
-                                                                  | undefined
-                                                                nodes:
-                                                                  | Array<
-                                                                      | {
-                                                                          __typename?: 'Directory'
-                                                                          directoryName:
-                                                                            | string
-                                                                            | null
-                                                                            | undefined
-                                                                          nodes:
-                                                                            | Array<
-                                                                                | {
-                                                                                    __typename?: 'Directory'
-                                                                                    directoryName:
-                                                                                      | string
-                                                                                      | null
-                                                                                      | undefined
-                                                                                    nodes:
-                                                                                      | Array<
-                                                                                          | {
-                                                                                              __typename?: 'Directory'
-                                                                                              directoryName:
-                                                                                                | string
-                                                                                                | null
-                                                                                                | undefined
-                                                                                              nodes:
-                                                                                                | Array<
-                                                                                                    | {
-                                                                                                        __typename?: 'Directory'
-                                                                                                        directoryName:
-                                                                                                          | string
-                                                                                                          | null
-                                                                                                          | undefined
-                                                                                                        nodes:
-                                                                                                          | Array<
-                                                                                                              | {
-                                                                                                                  __typename?: 'Directory'
-                                                                                                                  directoryName:
-                                                                                                                    | string
-                                                                                                                    | null
-                                                                                                                    | undefined
-                                                                                                                }
-                                                                                                              | {
-                                                                                                                  __typename?: 'File'
-                                                                                                                  fileName:
-                                                                                                                    | string
-                                                                                                                    | null
-                                                                                                                    | undefined
-                                                                                                                }
-                                                                                                              | null
-                                                                                                              | undefined
-                                                                                                            >
-                                                                                                          | null
-                                                                                                          | undefined
-                                                                                                      }
-                                                                                                    | {
-                                                                                                        __typename?: 'File'
-                                                                                                        fileName:
-                                                                                                          | string
-                                                                                                          | null
-                                                                                                          | undefined
-                                                                                                      }
-                                                                                                    | null
-                                                                                                    | undefined
-                                                                                                  >
-                                                                                                | null
-                                                                                                | undefined
-                                                                                            }
-                                                                                          | {
-                                                                                              __typename?: 'File'
-                                                                                              fileName:
-                                                                                                | string
-                                                                                                | null
-                                                                                                | undefined
-                                                                                            }
-                                                                                          | null
-                                                                                          | undefined
-                                                                                        >
-                                                                                      | null
-                                                                                      | undefined
-                                                                                  }
-                                                                                | {
-                                                                                    __typename?: 'File'
-                                                                                    fileName:
-                                                                                      | string
-                                                                                      | null
-                                                                                      | undefined
-                                                                                  }
-                                                                                | null
-                                                                                | undefined
-                                                                              >
-                                                                            | null
-                                                                            | undefined
-                                                                        }
-                                                                      | {
-                                                                          __typename?: 'File'
-                                                                          fileName:
-                                                                            | string
-                                                                            | null
-                                                                            | undefined
-                                                                        }
-                                                                      | null
-                                                                      | undefined
-                                                                    >
-                                                                  | null
-                                                                  | undefined
-                                                              }
-                                                            | {
-                                                                __typename?: 'File'
-                                                                fileName:
-                                                                  | string
-                                                                  | null
-                                                                  | undefined
-                                                              }
-                                                            | null
-                                                            | undefined
-                                                          >
-                                                        | null
-                                                        | undefined
-                                                    }
-                                                  | {
-                                                      __typename?: 'File'
-                                                      fileName:
-                                                        | string
-                                                        | null
-                                                        | undefined
-                                                    }
-                                                  | null
-                                                  | undefined
-                                                >
-                                              | null
-                                              | undefined
-                                          }
-                                        | {
-                                            __typename?: 'File'
-                                            fileName: string | null | undefined
-                                          }
-                                        | null
-                                        | undefined
-                                      >
-                                    | null
-                                    | undefined
-                                }
-                              | {
-                                  __typename?: 'File'
-                                  fileName: string | null | undefined
-                                }
-                              | null
-                              | undefined
-                            >
-                          | null
-                          | undefined
-                      }
-                    | {
-                        __typename?: 'File'
-                        fileName: string | null | undefined
-                      }
-                    | null
-                    | undefined
-                  >
-                | null
-                | undefined
-            }
+        treeNodes:
+          | Array<
+              | {
+                  __typename?: 'FileTreeNode'
+                  nodeType: FileTreeNodeType | null | undefined
+                  name: string | null | undefined
+                  depth: number | null | undefined
+                }
+              | null
+              | undefined
+            >
           | null
           | undefined
       }
@@ -875,202 +690,26 @@ export type FileMultipleNameTabFragment = {
 
 export type FileTreeComponentFragment = {
   __typename?: 'FileTree'
-  rootDirectory:
-    | {
-        __typename?: 'Directory'
-        directoryName: string | null | undefined
-        nodes:
-          | Array<
-              | {
-                  __typename?: 'Directory'
-                  directoryName: string | null | undefined
-                  nodes:
-                    | Array<
-                        | {
-                            __typename?: 'Directory'
-                            directoryName: string | null | undefined
-                            nodes:
-                              | Array<
-                                  | {
-                                      __typename?: 'Directory'
-                                      directoryName: string | null | undefined
-                                      nodes:
-                                        | Array<
-                                            | {
-                                                __typename?: 'Directory'
-                                                directoryName:
-                                                  | string
-                                                  | null
-                                                  | undefined
-                                                nodes:
-                                                  | Array<
-                                                      | {
-                                                          __typename?: 'Directory'
-                                                          directoryName:
-                                                            | string
-                                                            | null
-                                                            | undefined
-                                                          nodes:
-                                                            | Array<
-                                                                | {
-                                                                    __typename?: 'Directory'
-                                                                    directoryName:
-                                                                      | string
-                                                                      | null
-                                                                      | undefined
-                                                                    nodes:
-                                                                      | Array<
-                                                                          | {
-                                                                              __typename?: 'Directory'
-                                                                              directoryName:
-                                                                                | string
-                                                                                | null
-                                                                                | undefined
-                                                                              nodes:
-                                                                                | Array<
-                                                                                    | {
-                                                                                        __typename?: 'Directory'
-                                                                                        directoryName:
-                                                                                          | string
-                                                                                          | null
-                                                                                          | undefined
-                                                                                        nodes:
-                                                                                          | Array<
-                                                                                              | {
-                                                                                                  __typename?: 'Directory'
-                                                                                                  directoryName:
-                                                                                                    | string
-                                                                                                    | null
-                                                                                                    | undefined
-                                                                                                  nodes:
-                                                                                                    | Array<
-                                                                                                        | {
-                                                                                                            __typename?: 'Directory'
-                                                                                                            directoryName:
-                                                                                                              | string
-                                                                                                              | null
-                                                                                                              | undefined
-                                                                                                          }
-                                                                                                        | {
-                                                                                                            __typename?: 'File'
-                                                                                                            fileName:
-                                                                                                              | string
-                                                                                                              | null
-                                                                                                              | undefined
-                                                                                                          }
-                                                                                                        | null
-                                                                                                        | undefined
-                                                                                                      >
-                                                                                                    | null
-                                                                                                    | undefined
-                                                                                                }
-                                                                                              | {
-                                                                                                  __typename?: 'File'
-                                                                                                  fileName:
-                                                                                                    | string
-                                                                                                    | null
-                                                                                                    | undefined
-                                                                                                }
-                                                                                              | null
-                                                                                              | undefined
-                                                                                            >
-                                                                                          | null
-                                                                                          | undefined
-                                                                                      }
-                                                                                    | {
-                                                                                        __typename?: 'File'
-                                                                                        fileName:
-                                                                                          | string
-                                                                                          | null
-                                                                                          | undefined
-                                                                                      }
-                                                                                    | null
-                                                                                    | undefined
-                                                                                  >
-                                                                                | null
-                                                                                | undefined
-                                                                            }
-                                                                          | {
-                                                                              __typename?: 'File'
-                                                                              fileName:
-                                                                                | string
-                                                                                | null
-                                                                                | undefined
-                                                                            }
-                                                                          | null
-                                                                          | undefined
-                                                                        >
-                                                                      | null
-                                                                      | undefined
-                                                                  }
-                                                                | {
-                                                                    __typename?: 'File'
-                                                                    fileName:
-                                                                      | string
-                                                                      | null
-                                                                      | undefined
-                                                                  }
-                                                                | null
-                                                                | undefined
-                                                              >
-                                                            | null
-                                                            | undefined
-                                                        }
-                                                      | {
-                                                          __typename?: 'File'
-                                                          fileName:
-                                                            | string
-                                                            | null
-                                                            | undefined
-                                                        }
-                                                      | null
-                                                      | undefined
-                                                    >
-                                                  | null
-                                                  | undefined
-                                              }
-                                            | {
-                                                __typename?: 'File'
-                                                fileName:
-                                                  | string
-                                                  | null
-                                                  | undefined
-                                              }
-                                            | null
-                                            | undefined
-                                          >
-                                        | null
-                                        | undefined
-                                    }
-                                  | {
-                                      __typename?: 'File'
-                                      fileName: string | null | undefined
-                                    }
-                                  | null
-                                  | undefined
-                                >
-                              | null
-                              | undefined
-                          }
-                        | {
-                            __typename?: 'File'
-                            fileName: string | null | undefined
-                          }
-                        | null
-                        | undefined
-                      >
-                    | null
-                    | undefined
-                }
-              | { __typename?: 'File'; fileName: string | null | undefined }
-              | null
-              | undefined
-            >
-          | null
-          | undefined
-      }
+  treeNodes:
+    | Array<
+        | {
+            __typename?: 'FileTreeNode'
+            nodeType: FileTreeNodeType | null | undefined
+            name: string | null | undefined
+            depth: number | null | undefined
+          }
+        | null
+        | undefined
+      >
     | null
     | undefined
+}
+
+export type FileTreeNodeComponentFragment = {
+  __typename?: 'FileTreeNode'
+  nodeType: FileTreeNodeType | null | undefined
+  name: string | null | undefined
+  depth: number | null | undefined
 }
 
 export type FoldableComponentFragment = {
@@ -1357,92 +996,20 @@ export const FileMultipleComponentFragmentDoc = gql`
   ${FileComponentFragmentDoc}
   ${FileMultipleNameTabFragmentDoc}
 `
+export const FileTreeNodeComponentFragmentDoc = gql`
+  fragment FileTreeNodeComponent on FileTreeNode {
+    nodeType
+    name
+    depth
+  }
+`
 export const FileTreeComponentFragmentDoc = gql`
   fragment FileTreeComponent on FileTree {
-    rootDirectory {
-      directoryName
-      nodes {
-        ... on File {
-          fileName
-        }
-        ... on Directory {
-          directoryName
-          nodes {
-            ... on File {
-              fileName
-            }
-            ... on Directory {
-              directoryName
-              nodes {
-                ... on File {
-                  fileName
-                }
-                ... on Directory {
-                  directoryName
-                  nodes {
-                    ... on File {
-                      fileName
-                    }
-                    ... on Directory {
-                      directoryName
-                      nodes {
-                        ... on File {
-                          fileName
-                        }
-                        ... on Directory {
-                          directoryName
-                          nodes {
-                            ... on File {
-                              fileName
-                            }
-                            ... on Directory {
-                              directoryName
-                              nodes {
-                                ... on File {
-                                  fileName
-                                }
-                                ... on Directory {
-                                  directoryName
-                                  nodes {
-                                    ... on File {
-                                      fileName
-                                    }
-                                    ... on Directory {
-                                      directoryName
-                                      nodes {
-                                        ... on File {
-                                          fileName
-                                        }
-                                        ... on Directory {
-                                          directoryName
-                                          nodes {
-                                            ... on File {
-                                              fileName
-                                            }
-                                            ... on Directory {
-                                              directoryName
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
+    treeNodes {
+      ...FileTreeNodeComponent
     }
   }
+  ${FileTreeNodeComponentFragmentDoc}
 `
 export const FoldableComponentFragmentDoc = gql`
   fragment FoldableComponent on Foldable {
@@ -1635,16 +1202,12 @@ export type ResolversTypes = ResolversObject<{
   Command: ResolverTypeWrapper<Command>
   CommandOutput: ResolverTypeWrapper<CommandOutput>
   DecorateTextChunksInput: ResolverTypeWrapper<DecorateTextChunksInput>
-  Directory: ResolverTypeWrapper<
-    Omit<Directory, 'nodes'> & {
-      nodes: Maybe<Array<Maybe<ResolversTypes['FileNode']>>>
-    }
-  >
   DirectoryStructure: ResolverTypeWrapper<DirectoryStructure>
   File: ResolverTypeWrapper<File>
   FileMultiple: ResolverTypeWrapper<FileMultiple>
-  FileNode: ResolversTypes['Directory'] | ResolversTypes['File']
   FileTree: ResolverTypeWrapper<FileTree>
+  FileTreeNode: ResolverTypeWrapper<FileTreeNode>
+  FileTreeNodeType: FileTreeNodeType
   Foldable: ResolverTypeWrapper<
     Omit<Foldable, 'elements'> & {
       elements: Maybe<Array<Maybe<ResolversTypes['PlainElement']>>>
@@ -1706,14 +1269,11 @@ export type ResolversParentTypes = ResolversObject<{
   Command: Command
   CommandOutput: CommandOutput
   DecorateTextChunksInput: DecorateTextChunksInput
-  Directory: Omit<Directory, 'nodes'> & {
-    nodes: Maybe<Array<Maybe<ResolversParentTypes['FileNode']>>>
-  }
   DirectoryStructure: DirectoryStructure
   File: File
   FileMultiple: FileMultiple
-  FileNode: ResolversParentTypes['Directory'] | ResolversParentTypes['File']
   FileTree: FileTree
+  FileTreeNode: FileTreeNode
   Foldable: Omit<Foldable, 'elements'> & {
     elements: Maybe<Array<Maybe<ResolversParentTypes['PlainElement']>>>
   }
@@ -1826,23 +1386,6 @@ export type DecorateTextChunksInputResolvers<
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }>
 
-export type DirectoryResolvers<
-  ContextType = any,
-  ParentType extends ResolversParentTypes['Directory'] = ResolversParentTypes['Directory']
-> = ResolversObject<{
-  directoryName: Resolver<
-    Maybe<ResolversTypes['String']>,
-    ParentType,
-    ContextType
-  >
-  nodes: Resolver<
-    Maybe<Array<Maybe<ResolversTypes['FileNode']>>>,
-    ParentType,
-    ContextType
-  >
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
-}>
-
 export type DirectoryStructureResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['DirectoryStructure'] = ResolversParentTypes['DirectoryStructure']
@@ -1876,19 +1419,26 @@ export type FileMultipleResolvers<
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }>
 
-export type FileNodeResolvers<
-  ContextType = any,
-  ParentType extends ResolversParentTypes['FileNode'] = ResolversParentTypes['FileNode']
-> = ResolversObject<{
-  __resolveType: TypeResolveFn<'Directory' | 'File', ParentType, ContextType>
-}>
-
 export type FileTreeResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['FileTree'] = ResolversParentTypes['FileTree']
 > = ResolversObject<{
-  rootDirectory: Resolver<
-    Maybe<ResolversTypes['Directory']>,
+  treeNodes: Resolver<
+    Maybe<Array<Maybe<ResolversTypes['FileTreeNode']>>>,
+    ParentType,
+    ContextType
+  >
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
+}>
+
+export type FileTreeNodeResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['FileTreeNode'] = ResolversParentTypes['FileTreeNode']
+> = ResolversObject<{
+  depth: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>
+  name: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
+  nodeType: Resolver<
+    Maybe<ResolversTypes['FileTreeNodeType']>,
     ParentType,
     ContextType
   >
@@ -2148,12 +1698,11 @@ export type Resolvers<ContextType = any> = ResolversObject<{
   Command: CommandResolvers<ContextType>
   CommandOutput: CommandOutputResolvers<ContextType>
   DecorateTextChunksInput: DecorateTextChunksInputResolvers<ContextType>
-  Directory: DirectoryResolvers<ContextType>
   DirectoryStructure: DirectoryStructureResolvers<ContextType>
   File: FileResolvers<ContextType>
   FileMultiple: FileMultipleResolvers<ContextType>
-  FileNode: FileNodeResolvers<ContextType>
   FileTree: FileTreeResolvers<ContextType>
+  FileTreeNode: FileTreeNodeResolvers<ContextType>
   Foldable: FoldableResolvers<ContextType>
   Image: ImageResolvers<ContextType>
   Note: NoteResolvers<ContextType>
