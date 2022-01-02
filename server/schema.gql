@@ -151,13 +151,17 @@ type FileMultiple {
   files: [File]
 }
 
-type Directory {
-  directoryName: String
-  nodes: [FileNode]
+enum FileTreeNodeType {
+  FILENODE
+  DIRECTORYNODE
+}
+
+type FileTreeNode {
+  nodeType: FileTreeNodeType
+  name: String
+  depth: Int
 }
 
 type FileTree {
-  rootDirectory: Directory
+  treeNodes: [FileTreeNode]
 }
-
-union FileNode = File | Directory

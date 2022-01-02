@@ -1,114 +1,137 @@
 {
   "__typename": "FileTree",
-  "rootDirectory": {
-    "__typename": "Directory",
-    "nodes": [
-      {
-        "__typename": "Directory",
-        "directoryName": "client",
-        "nodes": [
-          {
-            "__typename": "Directory",
-            "directoryName": "src",
-            "nodes": [
-              {
-                "__typename": "Directory",
-                "directoryName": "components",
-                "nodes": [
-                  {
-                    "__typename": "Directory",
-                    "directoryName": "action",
-                    "nodes": [
-                      {
-                        "__typename": "File",
-                        "fileName": "ActionComponent.tsx"
-                      },
-                      {
-                        "__typename": "File",
-                        "fileName": "ActionDetailsComponent.tsx"
-                      },
-                      {
-                        "__typename": "File",
-                        "fileName": "ActionInstructionComponent.tsx"
-                      },
-                      {
-                        "__typename": "File",
-                        "fileName": "ActionLabel.tsx"
-                      },
-                      {
-                        "__typename": "File",
-                        "fileName": "ActionResultComponent.tsx"
-                      },
-                      {
-                        "__typename": "File",
-                        "fileName": "ActionResultLabel.tsx"
-                      }
-                    ]
-                  },
-                  {
-                    "__typename": "Directory",
-                    "directoryName": "carousel",
-                    "nodes": [
-                      {
-                        "__typename": "Directory",
-                        "directoryName": "images",
-                        "nodes": [
-                          {
-                            "__typename": "File",
-                            "fileName": "background.png"
-                          },
-                          {
-                            "__typename": "File",
-                            "fileName": "failed.png"
-                          }
-                        ]
-                      },
-                      {
-                        "__typename": "File",
-                        "fileName": "CarouselComponent.tsx"
-                      },
-                      {
-                        "__typename": "File",
-                        "fileName": "CarouselControlBar.tsx"
-                      },
-                      {
-                        "__typename": "File",
-                        "fileName": "CarouselDescriptionComponent.tsx"
-                      },
-                      {
-                        "__typename": "File",
-                        "fileName": "CarouselImageItemComoponent.tsx"
-                      },
-                      {
-                        "__typename": "File",
-                        "fileName": "CarouselImageScrollComponent.tsx"
-                      }
-                    ]
-                  },
-                  {
-                    "__typename": "Directory",
-                    "directoryName": "command",
-                    "nodes": []
-                  },
-                  {
-                    "__typename": "Directory",
-                    "directoryName": "file",
-                    "nodes": []
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "__typename": "File",
-        "fileName": "index.js"
-      },
-      {
-        "__typename": "File",
-        "fileName": "counter.js"
-      }
-    ]
-  }
+  "treeNodes": [
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "DIRECTORYNODE",
+      "depth": 1,
+      "name": "src"
+    },
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "DIRECTORYNODE",
+      "depth": 2,
+      "name": "components"
+    },
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "DIRECTORYNODE",
+      "depth": 3,
+      "name": "action"
+    },
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "FILENODE",
+      "depth": 4,
+      "name": "ActionComponent.tsx"
+    },
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "FILENODE",
+      "depth": 4,
+      "name": "ActionDetailsComponent.tsx"
+    },
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "FILENODE",
+      "depth": 4,
+      "name": "ActionInstructionComponent.tsx"
+    },
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "FILENODE",
+      "depth": 4,
+      "name": "ActionLabel.tsx"
+    },
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "FILENODE",
+      "depth": 4,
+      "name": "ActionResultComponent.tsx"
+    },
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "FILENODE",
+      "depth": 4,
+      "name": "ActionResultLabel.tsx"
+    },
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "DIRECTORYNODE",
+      "depth": 3,
+      "name": "carousel"
+    },
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "DIRECTORYNODE",
+      "depth": 4,
+      "name": "images"
+    },
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "FILENODE",
+      "depth": 5,
+      "name": "background.png"
+    },
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "FILENODE",
+      "depth": 5,
+      "name": "failed.png"
+    },
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "FILENODE",
+      "depth": 4,
+      "name": "CarouselComponent.tsx"
+    },
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "FILENODE",
+      "depth": 4,
+      "name": "CarouselControlBar.tsx"
+    },
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "FILENODE",
+      "depth": 4,
+      "name": "CarouselDescriptionComponent.tsx"
+    },
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "FILENODE",
+      "depth": 4,
+      "name": "CarouselImageItemComoponent.tsx"
+    },
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "FILENODE",
+      "depth": 4,
+      "name": "CarouselImageScrollComponent.tsx"
+    },
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "DIRECTORYNODE",
+      "depth": 3,
+      "name": "command"
+    },
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "DIRECTORYNODE",
+      "depth": 3,
+      "name": "file"
+    },
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "FILENODE",
+      "depth": 1,
+      "name": "incex.js"
+    },
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "FILENODE",
+      "depth": 1,
+      "name": "counter.js"
+    }
+  ]
 }
