@@ -8,6 +8,7 @@ import {
 import { css } from '@emotion/react'
 import { useMainQuery } from '../lib/generated/graphql'
 import { FileTreeComponent } from './file/FileTreeComponent'
+import { HeaderContainer } from './header/HeaderContainer'
 
 gql`
   query Main {
@@ -33,23 +34,28 @@ export const MainContainer = (): JSX.Element => {
     return <div>{`GraphQL Error! returned data is undefined or null`}</div>
   } else {
     return data.filetree ? (
-      <main>
-        <div
-          css={css`
-            display: flex;
-            justify-content: center;
-          `}
-        >
+      <>
+        <HeaderContainer
+          fragment={{ title: 'This is the title of the tutorial' }}
+        />
+        <main>
           <div
             css={css`
-              width: 752px;
-              padding: 8px;
+              display: flex;
+              justify-content: center;
             `}
           >
-            <FileTreeComponent fragment={data.filetree} />
+            <div
+              css={css`
+                width: 752px;
+                padding: 8px;
+              `}
+            >
+              <FileTreeComponent fragment={data.filetree} />
+            </div>
           </div>
-        </div>
-      </main>
+        </main>
+      </>
     ) : (
       <></>
     )
