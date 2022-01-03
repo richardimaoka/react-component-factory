@@ -769,6 +769,11 @@ export type FoldableComponentFragment = {
     | undefined
 }
 
+export type HeaderContainerFragment = {
+  __typename?: 'Tutorial'
+  title: string | null | undefined
+}
+
 export type ParagraphComponentFragment = {
   __typename?: 'Paragraph'
   chunks:
@@ -1037,6 +1042,11 @@ export const FoldableComponentFragmentDoc = gql`
   ${CommandOutputComponentFragmentDoc}
   ${VideoComponentFragmentDoc}
   ${CarouselComponentFragmentDoc}
+`
+export const HeaderContainerFragmentDoc = gql`
+  fragment HeaderContainer on Tutorial {
+    title
+  }
 `
 export const MainDocument = gql`
   query Main {
