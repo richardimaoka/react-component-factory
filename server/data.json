@@ -1,11 +1,14 @@
 {
+  "__typename": "Tutorial",
   "id": "sample-tutorial",
   "author": {
+    "__typename": "Author",
     "id": "richardimaoka"
   },
   "title": "An introduction to Apollo server",
   "pages": [
     {
+      "__typename": "Page",
       "pageNum": "1",
       "nextPageNum": "2",
       "title": "aaaaaaadfadesk",

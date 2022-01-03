@@ -7,17 +7,16 @@ import {
 } from '@apollo/client'
 import { css } from '@emotion/react'
 import { useMainQuery } from '../lib/generated/graphql'
-import { FileTreeComponent } from './file/FileTreeComponent'
 import { TutorialPage } from './tutorial/TutorialPage'
 
 gql`
   query Main {
-    filetree {
-      ...FileTreeComponent
+    tutorial {
+      ...TutorialPage
     }
   }
 
-  ${FileTreeComponent.fragment}
+  ${TutorialPage.fragment}
 `
 
 export const MainContainer = (): JSX.Element => {
@@ -33,9 +32,10 @@ export const MainContainer = (): JSX.Element => {
     console.log('GraphQL Error! returned data is undefined or null')
     return <div>{`GraphQL Error! returned data is undefined or null`}</div>
   } else {
-    return data.filetree ? (
+    console.log('rendering')
+    return data.tutorial ? (
       <>
-        <TutorialPage />
+        <TutorialPage fragment={data.tutorial} />
       </>
     ) : (
       <></>

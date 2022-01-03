@@ -8,7 +8,7 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    filetree: async () => {
+    tutorial: async () => {
       try {
         const dataString = await fs.promises.readFile("data.json", "utf-8");
         console.log("data.json------------");

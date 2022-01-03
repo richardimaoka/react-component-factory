@@ -217,16 +217,24 @@ export type MainQueryVariables = Exact<{ [key: string]: never }>
 
 export type MainQuery = {
   __typename?: 'Query'
-  filetree:
+  tutorial:
     | {
-        __typename?: 'FileTree'
-        treeNodes:
+        __typename?: 'Tutorial'
+        id: string | null | undefined
+        title: string | null | undefined
+        author:
+          | { __typename?: 'Author'; id: string | null | undefined }
+          | null
+          | undefined
+        pages:
           | Array<
               | {
-                  __typename?: 'FileTreeNode'
-                  nodeType: FileTreeNodeType | null | undefined
-                  name: string | null | undefined
-                  depth: number | null | undefined
+                  __typename?: 'Page'
+                  id: string | null | undefined
+                  pageNum: string | null | undefined
+                  nextPageNum: string | null | undefined
+                  prevPageNum: string | null | undefined
+                  title: string | null | undefined
                 }
               | null
               | undefined
@@ -798,6 +806,31 @@ export type TextChunkComponentFragment = {
   inlineCode: boolean | null | undefined
 }
 
+export type TutorialPageFragment = {
+  __typename?: 'Tutorial'
+  id: string | null | undefined
+  title: string | null | undefined
+  author:
+    | { __typename?: 'Author'; id: string | null | undefined }
+    | null
+    | undefined
+  pages:
+    | Array<
+        | {
+            __typename?: 'Page'
+            id: string | null | undefined
+            pageNum: string | null | undefined
+            nextPageNum: string | null | undefined
+            prevPageNum: string | null | undefined
+            title: string | null | undefined
+          }
+        | null
+        | undefined
+      >
+    | null
+    | undefined
+}
+
 export type VideoComponentFragment = {
   __typename?: 'Video'
   platform: VideoPlatform | null | undefined
@@ -1042,13 +1075,31 @@ export const HeaderContainerFragmentDoc = gql`
     title
   }
 `
-export const MainDocument = gql`
-  query Main {
-    filetree {
-      ...FileTreeComponent
+export const TutorialPageFragmentDoc = gql`
+  fragment TutorialPage on Tutorial {
+    ...HeaderContainer
+    id
+    author {
+      id
+    }
+    title
+    pages {
+      id
+      pageNum
+      nextPageNum
+      prevPageNum
+      title
     }
   }
-  ${FileTreeComponentFragmentDoc}
+  ${HeaderContainerFragmentDoc}
+`
+export const MainDocument = gql`
+  query Main {
+    tutorial {
+      ...TutorialPage
+    }
+  }
+  ${TutorialPageFragmentDoc}
 `
 
 /**
