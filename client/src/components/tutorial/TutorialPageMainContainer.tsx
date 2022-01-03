@@ -1,7 +1,14 @@
-/** @jsxImportSource @emotion/react */
+/** @jsxImportSource @emotion/react */ jjimport { gql } from '@apollo/client'
 import { css } from '@emotion/react'
+import { TutorialPageMainContainerFragment } from '../../lib/generated/graphql'
 
-export const TutorialPageMainContainer = (): JSX.Element => {
+interface TutorialPageMainContainerProps {
+  fragment: TutorialPageMainContainerFragment
+}
+
+export const TutorialPageMainContainer = ({
+  fragment,
+}: TutorialPageMainContainerProps): JSX.Element => {
   return (
     <main>
       <div
@@ -20,3 +27,13 @@ export const TutorialPageMainContainer = (): JSX.Element => {
     </main>
   )
 }
+
+TutorialPageMainContainer.freagment = gql`
+  fragment TutorialPageMainContainer on Page {
+    id
+    pageNum
+    nextPageNum
+    prevPageNum
+    title
+  }
+`

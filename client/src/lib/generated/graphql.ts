@@ -831,6 +831,15 @@ export type TutorialPageFragment = {
     | undefined
 }
 
+export type TutorialPageMainContainerFragment = {
+  __typename?: 'Page'
+  id: string | null | undefined
+  pageNum: string | null | undefined
+  nextPageNum: string | null | undefined
+  prevPageNum: string | null | undefined
+  title: string | null | undefined
+}
+
 export type VideoComponentFragment = {
   __typename?: 'Video'
   platform: VideoPlatform | null | undefined
@@ -1075,6 +1084,15 @@ export const HeaderContainerFragmentDoc = gql`
     title
   }
 `
+export const TutorialPageMainContainerFragmentDoc = gql`
+  fragment TutorialPageMainContainer on Page {
+    id
+    pageNum
+    nextPageNum
+    prevPageNum
+    title
+  }
+`
 export const TutorialPageFragmentDoc = gql`
   fragment TutorialPage on Tutorial {
     ...HeaderContainer
@@ -1084,14 +1102,11 @@ export const TutorialPageFragmentDoc = gql`
     }
     title
     pages {
-      id
-      pageNum
-      nextPageNum
-      prevPageNum
-      title
+      ...TutorialPageMainContainer
     }
   }
   ${HeaderContainerFragmentDoc}
+  ${TutorialPageMainContainerFragmentDoc}
 `
 export const MainDocument = gql`
   query Main {

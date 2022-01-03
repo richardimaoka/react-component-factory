@@ -1,19 +1,42 @@
-/** @jsxImportSource @emotion/react */
 import { gql } from '@apollo/client'
-import { css } from '@emotion/react'
 import { TutorialPageFragment } from '../../lib/generated/graphql'
 import { HeaderContainer } from '../header/HeaderContainer'
 import { TutorialPageMainContainer } from './TutorialPageMainContainer'
 
-interface TutorialPageProps {
+interface InnerComponentProps {
   fragment: TutorialPageFragment
+  pageNum: string
 }
 
-export const TutorialPage = ({ fragment }: TutorialPageProps) => {
+const InnerComponent = ({
+  fragment,
+  pageNum,
+}: InnerComponentProps): JSX.Element => {
+  if (!fragment.pages) {
+    return <></>
+  } else {
+    const page = fragment.pages.find((page) => page && page.pageNum === pageNum)
+    if (!page) {
+      return <></>
+    } else {
+      return <TutorialPageMainContainer fragment={page} />
+    }
+  }
+}
+
+interface TutorialPageProps {
+  fragment: TutorialPageFragment
+  pageNum: string
+}
+
+export const TutorialPage = ({
+  fragment,
+  pageNum,
+}: TutorialPageProps): JSX.Element => {
   return (
     <>
       <HeaderContainer fragment={fragment} />
-      <TutorialPageMainContainer />
+      <InnerComponent fragment={fragment} pageNum={pageNum} />
     </>
   )
 }
@@ -27,13 +50,10 @@ TutorialPage.fragment = gql`
     }
     title
     pages {
-      id
-      pageNum
-      nextPageNum
-      prevPageNum
-      title
+      ...TutorialPageMainContainer
     }
   }
 
+  ${TutorialPageMainContainer.freagment}
   ${HeaderContainer.fragment}
 `
