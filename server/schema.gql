@@ -6,6 +6,7 @@ type Query {
   file: File
   filemultiple: FileMultiple
   filetree: FileTree
+  tutorial: Tutorial
 }
 
 type Author {
@@ -25,7 +26,6 @@ type Page {
   nextPageNum: String
   prevPageNum: String
   title: String
-  progress: Progress
   pageElements: [PageElement]
 }
 
@@ -78,11 +78,6 @@ type Command {
 
 type CommandOutput {
   text: String
-}
-
-type Progress {
-  numPages: Int
-  currentPageNum: Int
 }
 
 type Paragraph {

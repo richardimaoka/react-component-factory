@@ -115,7 +115,6 @@ export type Page = {
   pageElements: Maybe<Array<Maybe<PageElement>>>
   pageNum: Maybe<Scalars['String']>
   prevPageNum: Maybe<Scalars['String']>
-  progress: Maybe<Progress>
   title: Maybe<Scalars['String']>
 }
 
@@ -146,12 +145,6 @@ export type PlainElement =
   | Paragraph
   | Video
 
-export type Progress = {
-  __typename?: 'Progress'
-  currentPageNum: Maybe<Scalars['Int']>
-  numPages: Maybe<Scalars['Int']>
-}
-
 export type Query = {
   __typename?: 'Query'
   action: Maybe<Action>
@@ -160,6 +153,7 @@ export type Query = {
   filemultiple: Maybe<FileMultiple>
   filetree: Maybe<FileTree>
   foldable: Maybe<Foldable>
+  tutorial: Maybe<Tutorial>
   video: Maybe<Video>
 }
 
@@ -1248,7 +1242,6 @@ export type ResolversTypes = ResolversObject<{
     | ResolversTypes['CommandOutput']
     | ResolversTypes['Paragraph']
     | ResolversTypes['Video']
-  Progress: ResolverTypeWrapper<Progress>
   Query: ResolverTypeWrapper<{}>
   String: ResolverTypeWrapper<Scalars['String']>
   TextChunk: ResolverTypeWrapper<TextChunk>
@@ -1310,7 +1303,6 @@ export type ResolversParentTypes = ResolversObject<{
     | ResolversParentTypes['CommandOutput']
     | ResolversParentTypes['Paragraph']
     | ResolversParentTypes['Video']
-  Progress: Progress
   Query: {}
   String: Scalars['String']
   TextChunk: TextChunk
@@ -1513,7 +1505,6 @@ export type PageResolvers<
     ParentType,
     ContextType
   >
-  progress: Resolver<Maybe<ResolversTypes['Progress']>, ParentType, ContextType>
   title: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }>
@@ -1559,19 +1550,6 @@ export type PlainElementResolvers<
   >
 }>
 
-export type ProgressResolvers<
-  ContextType = any,
-  ParentType extends ResolversParentTypes['Progress'] = ResolversParentTypes['Progress']
-> = ResolversObject<{
-  currentPageNum: Resolver<
-    Maybe<ResolversTypes['Int']>,
-    ParentType,
-    ContextType
-  >
-  numPages: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
-}>
-
 export type QueryResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']
@@ -1590,6 +1568,7 @@ export type QueryResolvers<
   >
   filetree: Resolver<Maybe<ResolversTypes['FileTree']>, ParentType, ContextType>
   foldable: Resolver<Maybe<ResolversTypes['Foldable']>, ParentType, ContextType>
+  tutorial: Resolver<Maybe<ResolversTypes['Tutorial']>, ParentType, ContextType>
   video: Resolver<Maybe<ResolversTypes['Video']>, ParentType, ContextType>
 }>
 
@@ -1720,7 +1699,6 @@ export type Resolvers<ContextType = any> = ResolversObject<{
   PageElement: PageElementResolvers<ContextType>
   Paragraph: ParagraphResolvers<ContextType>
   PlainElement: PlainElementResolvers<ContextType>
-  Progress: ProgressResolvers<ContextType>
   Query: QueryResolvers<ContextType>
   TextChunk: TextChunkResolvers<ContextType>
   TextChunkModifyOperation: TextChunkModifyOperationResolvers<ContextType>

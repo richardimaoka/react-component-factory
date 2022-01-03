@@ -1,0 +1,137 @@
+{
+  "__typename": "FileTree",
+  "treeNodes": [
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "DIRECTORYNODE",
+      "depth": 1,
+      "name": "src"
+    },
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "DIRECTORYNODE",
+      "depth": 2,
+      "name": "components"
+    },
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "DIRECTORYNODE",
+      "depth": 3,
+      "name": "action"
+    },
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "FILENODE",
+      "depth": 4,
+      "name": "ActionComponent.tsx"
+    },
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "FILENODE",
+      "depth": 4,
+      "name": "ActionDetailsComponent.tsx"
+    },
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "FILENODE",
+      "depth": 4,
+      "name": "ActionInstructionComponent.tsx"
+    },
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "FILENODE",
+      "depth": 4,
+      "name": "ActionLabel.tsx"
+    },
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "FILENODE",
+      "depth": 4,
+      "name": "ActionResultComponent.tsx"
+    },
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "FILENODE",
+      "depth": 4,
+      "name": "ActionResultLabel.tsx"
+    },
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "DIRECTORYNODE",
+      "depth": 3,
+      "name": "carousel"
+    },
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "DIRECTORYNODE",
+      "depth": 4,
+      "name": "images"
+    },
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "FILENODE",
+      "depth": 5,
+      "name": "background.png"
+    },
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "FILENODE",
+      "depth": 5,
+      "name": "failed.png"
+    },
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "FILENODE",
+      "depth": 4,
+      "name": "CarouselComponent.tsx"
+    },
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "FILENODE",
+      "depth": 4,
+      "name": "CarouselControlBar.tsx"
+    },
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "FILENODE",
+      "depth": 4,
+      "name": "CarouselDescriptionComponent.tsx"
+    },
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "FILENODE",
+      "depth": 4,
+      "name": "CarouselImageItemComoponent.tsx"
+    },
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "FILENODE",
+      "depth": 4,
+      "name": "CarouselImageScrollComponent.tsx"
+    },
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "DIRECTORYNODE",
+      "depth": 3,
+      "name": "command"
+    },
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "DIRECTORYNODE",
+      "depth": 3,
+      "name": "file"
+    },
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "FILENODE",
+      "depth": 1,
+      "name": "incex.js"
+    },
+    {
+      "__typename": "FileTreeNode",
+      "nodeType": "FILENODE",
+      "depth": 1,
+      "name": "counter.js"
+    }
+  ]
+}
