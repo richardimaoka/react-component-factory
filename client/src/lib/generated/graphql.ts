@@ -128,7 +128,6 @@ export type PageElement =
   | Command
   | CommandOutput
   | Foldable
-  | Image
   | Paragraph
   | Video
 
@@ -235,6 +234,333 @@ export type MainQuery = {
                   nextPageNum: string | null | undefined
                   prevPageNum: string | null | undefined
                   title: string | null | undefined
+                  pageElements:
+                    | Array<
+                        | {
+                            __typename?: 'Action'
+                            instruction:
+                              | {
+                                  __typename?: 'Paragraph'
+                                  chunks:
+                                    | Array<
+                                        | {
+                                            __typename?: 'TextChunk'
+                                            text: string | null | undefined
+                                            highlight:
+                                              | boolean
+                                              | null
+                                              | undefined
+                                            bold: boolean | null | undefined
+                                            hyperlinkUrl:
+                                              | string
+                                              | null
+                                              | undefined
+                                            strikeout:
+                                              | boolean
+                                              | null
+                                              | undefined
+                                            inlineCode:
+                                              | boolean
+                                              | null
+                                              | undefined
+                                          }
+                                        | null
+                                        | undefined
+                                      >
+                                    | null
+                                    | undefined
+                                }
+                              | null
+                              | undefined
+                            details:
+                              | Array<
+                                  | {
+                                      __typename?: 'CarouselImage'
+                                      images:
+                                        | Array<
+                                            | {
+                                                __typename?: 'Image'
+                                                caption:
+                                                  | string
+                                                  | null
+                                                  | undefined
+                                                url: string | null | undefined
+                                                alt: string | null | undefined
+                                                width: number | null | undefined
+                                                height:
+                                                  | number
+                                                  | null
+                                                  | undefined
+                                              }
+                                            | null
+                                            | undefined
+                                          >
+                                        | null
+                                        | undefined
+                                    }
+                                  | {
+                                      __typename?: 'Command'
+                                      text: string | null | undefined
+                                    }
+                                  | {
+                                      __typename?: 'CommandOutput'
+                                      text: string | null | undefined
+                                    }
+                                  | {
+                                      __typename?: 'Paragraph'
+                                      chunks:
+                                        | Array<
+                                            | {
+                                                __typename?: 'TextChunk'
+                                                text: string | null | undefined
+                                                highlight:
+                                                  | boolean
+                                                  | null
+                                                  | undefined
+                                                bold: boolean | null | undefined
+                                                hyperlinkUrl:
+                                                  | string
+                                                  | null
+                                                  | undefined
+                                                strikeout:
+                                                  | boolean
+                                                  | null
+                                                  | undefined
+                                                inlineCode:
+                                                  | boolean
+                                                  | null
+                                                  | undefined
+                                              }
+                                            | null
+                                            | undefined
+                                          >
+                                        | null
+                                        | undefined
+                                    }
+                                  | {
+                                      __typename?: 'Video'
+                                      platform: VideoPlatform | null | undefined
+                                      url: string | null | undefined
+                                      caption: string | null | undefined
+                                    }
+                                  | null
+                                  | undefined
+                                >
+                              | null
+                              | undefined
+                            results:
+                              | Array<
+                                  | {
+                                      __typename?: 'CarouselImage'
+                                      images:
+                                        | Array<
+                                            | {
+                                                __typename?: 'Image'
+                                                caption:
+                                                  | string
+                                                  | null
+                                                  | undefined
+                                                url: string | null | undefined
+                                                alt: string | null | undefined
+                                                width: number | null | undefined
+                                                height:
+                                                  | number
+                                                  | null
+                                                  | undefined
+                                              }
+                                            | null
+                                            | undefined
+                                          >
+                                        | null
+                                        | undefined
+                                    }
+                                  | {
+                                      __typename?: 'Command'
+                                      text: string | null | undefined
+                                    }
+                                  | {
+                                      __typename?: 'CommandOutput'
+                                      text: string | null | undefined
+                                    }
+                                  | {
+                                      __typename?: 'Paragraph'
+                                      chunks:
+                                        | Array<
+                                            | {
+                                                __typename?: 'TextChunk'
+                                                text: string | null | undefined
+                                                highlight:
+                                                  | boolean
+                                                  | null
+                                                  | undefined
+                                                bold: boolean | null | undefined
+                                                hyperlinkUrl:
+                                                  | string
+                                                  | null
+                                                  | undefined
+                                                strikeout:
+                                                  | boolean
+                                                  | null
+                                                  | undefined
+                                                inlineCode:
+                                                  | boolean
+                                                  | null
+                                                  | undefined
+                                              }
+                                            | null
+                                            | undefined
+                                          >
+                                        | null
+                                        | undefined
+                                    }
+                                  | {
+                                      __typename?: 'Video'
+                                      platform: VideoPlatform | null | undefined
+                                      url: string | null | undefined
+                                      caption: string | null | undefined
+                                    }
+                                  | null
+                                  | undefined
+                                >
+                              | null
+                              | undefined
+                          }
+                        | {
+                            __typename?: 'CarouselImage'
+                            images:
+                              | Array<
+                                  | {
+                                      __typename?: 'Image'
+                                      caption: string | null | undefined
+                                      url: string | null | undefined
+                                      alt: string | null | undefined
+                                      width: number | null | undefined
+                                      height: number | null | undefined
+                                    }
+                                  | null
+                                  | undefined
+                                >
+                              | null
+                              | undefined
+                          }
+                        | {
+                            __typename?: 'Command'
+                            text: string | null | undefined
+                          }
+                        | {
+                            __typename?: 'CommandOutput'
+                            text: string | null | undefined
+                          }
+                        | {
+                            __typename?: 'Foldable'
+                            shortDescription: string | null | undefined
+                            elements:
+                              | Array<
+                                  | {
+                                      __typename?: 'CarouselImage'
+                                      images:
+                                        | Array<
+                                            | {
+                                                __typename?: 'Image'
+                                                caption:
+                                                  | string
+                                                  | null
+                                                  | undefined
+                                                url: string | null | undefined
+                                                alt: string | null | undefined
+                                                width: number | null | undefined
+                                                height:
+                                                  | number
+                                                  | null
+                                                  | undefined
+                                              }
+                                            | null
+                                            | undefined
+                                          >
+                                        | null
+                                        | undefined
+                                    }
+                                  | {
+                                      __typename?: 'Command'
+                                      text: string | null | undefined
+                                    }
+                                  | {
+                                      __typename?: 'CommandOutput'
+                                      text: string | null | undefined
+                                    }
+                                  | {
+                                      __typename?: 'Paragraph'
+                                      chunks:
+                                        | Array<
+                                            | {
+                                                __typename?: 'TextChunk'
+                                                text: string | null | undefined
+                                                highlight:
+                                                  | boolean
+                                                  | null
+                                                  | undefined
+                                                bold: boolean | null | undefined
+                                                hyperlinkUrl:
+                                                  | string
+                                                  | null
+                                                  | undefined
+                                                strikeout:
+                                                  | boolean
+                                                  | null
+                                                  | undefined
+                                                inlineCode:
+                                                  | boolean
+                                                  | null
+                                                  | undefined
+                                              }
+                                            | null
+                                            | undefined
+                                          >
+                                        | null
+                                        | undefined
+                                    }
+                                  | {
+                                      __typename?: 'Video'
+                                      platform: VideoPlatform | null | undefined
+                                      url: string | null | undefined
+                                      caption: string | null | undefined
+                                    }
+                                  | null
+                                  | undefined
+                                >
+                              | null
+                              | undefined
+                          }
+                        | {
+                            __typename?: 'Paragraph'
+                            chunks:
+                              | Array<
+                                  | {
+                                      __typename?: 'TextChunk'
+                                      text: string | null | undefined
+                                      highlight: boolean | null | undefined
+                                      bold: boolean | null | undefined
+                                      hyperlinkUrl: string | null | undefined
+                                      strikeout: boolean | null | undefined
+                                      inlineCode: boolean | null | undefined
+                                    }
+                                  | null
+                                  | undefined
+                                >
+                              | null
+                              | undefined
+                          }
+                        | {
+                            __typename?: 'Video'
+                            platform: VideoPlatform | null | undefined
+                            url: string | null | undefined
+                            caption: string | null | undefined
+                          }
+                        | null
+                        | undefined
+                      >
+                    | null
+                    | undefined
                 }
               | null
               | undefined
@@ -823,6 +1149,273 @@ export type TutorialPageFragment = {
             nextPageNum: string | null | undefined
             prevPageNum: string | null | undefined
             title: string | null | undefined
+            pageElements:
+              | Array<
+                  | {
+                      __typename?: 'Action'
+                      instruction:
+                        | {
+                            __typename?: 'Paragraph'
+                            chunks:
+                              | Array<
+                                  | {
+                                      __typename?: 'TextChunk'
+                                      text: string | null | undefined
+                                      highlight: boolean | null | undefined
+                                      bold: boolean | null | undefined
+                                      hyperlinkUrl: string | null | undefined
+                                      strikeout: boolean | null | undefined
+                                      inlineCode: boolean | null | undefined
+                                    }
+                                  | null
+                                  | undefined
+                                >
+                              | null
+                              | undefined
+                          }
+                        | null
+                        | undefined
+                      details:
+                        | Array<
+                            | {
+                                __typename?: 'CarouselImage'
+                                images:
+                                  | Array<
+                                      | {
+                                          __typename?: 'Image'
+                                          caption: string | null | undefined
+                                          url: string | null | undefined
+                                          alt: string | null | undefined
+                                          width: number | null | undefined
+                                          height: number | null | undefined
+                                        }
+                                      | null
+                                      | undefined
+                                    >
+                                  | null
+                                  | undefined
+                              }
+                            | {
+                                __typename?: 'Command'
+                                text: string | null | undefined
+                              }
+                            | {
+                                __typename?: 'CommandOutput'
+                                text: string | null | undefined
+                              }
+                            | {
+                                __typename?: 'Paragraph'
+                                chunks:
+                                  | Array<
+                                      | {
+                                          __typename?: 'TextChunk'
+                                          text: string | null | undefined
+                                          highlight: boolean | null | undefined
+                                          bold: boolean | null | undefined
+                                          hyperlinkUrl:
+                                            | string
+                                            | null
+                                            | undefined
+                                          strikeout: boolean | null | undefined
+                                          inlineCode: boolean | null | undefined
+                                        }
+                                      | null
+                                      | undefined
+                                    >
+                                  | null
+                                  | undefined
+                              }
+                            | {
+                                __typename?: 'Video'
+                                platform: VideoPlatform | null | undefined
+                                url: string | null | undefined
+                                caption: string | null | undefined
+                              }
+                            | null
+                            | undefined
+                          >
+                        | null
+                        | undefined
+                      results:
+                        | Array<
+                            | {
+                                __typename?: 'CarouselImage'
+                                images:
+                                  | Array<
+                                      | {
+                                          __typename?: 'Image'
+                                          caption: string | null | undefined
+                                          url: string | null | undefined
+                                          alt: string | null | undefined
+                                          width: number | null | undefined
+                                          height: number | null | undefined
+                                        }
+                                      | null
+                                      | undefined
+                                    >
+                                  | null
+                                  | undefined
+                              }
+                            | {
+                                __typename?: 'Command'
+                                text: string | null | undefined
+                              }
+                            | {
+                                __typename?: 'CommandOutput'
+                                text: string | null | undefined
+                              }
+                            | {
+                                __typename?: 'Paragraph'
+                                chunks:
+                                  | Array<
+                                      | {
+                                          __typename?: 'TextChunk'
+                                          text: string | null | undefined
+                                          highlight: boolean | null | undefined
+                                          bold: boolean | null | undefined
+                                          hyperlinkUrl:
+                                            | string
+                                            | null
+                                            | undefined
+                                          strikeout: boolean | null | undefined
+                                          inlineCode: boolean | null | undefined
+                                        }
+                                      | null
+                                      | undefined
+                                    >
+                                  | null
+                                  | undefined
+                              }
+                            | {
+                                __typename?: 'Video'
+                                platform: VideoPlatform | null | undefined
+                                url: string | null | undefined
+                                caption: string | null | undefined
+                              }
+                            | null
+                            | undefined
+                          >
+                        | null
+                        | undefined
+                    }
+                  | {
+                      __typename?: 'CarouselImage'
+                      images:
+                        | Array<
+                            | {
+                                __typename?: 'Image'
+                                caption: string | null | undefined
+                                url: string | null | undefined
+                                alt: string | null | undefined
+                                width: number | null | undefined
+                                height: number | null | undefined
+                              }
+                            | null
+                            | undefined
+                          >
+                        | null
+                        | undefined
+                    }
+                  | { __typename?: 'Command'; text: string | null | undefined }
+                  | {
+                      __typename?: 'CommandOutput'
+                      text: string | null | undefined
+                    }
+                  | {
+                      __typename?: 'Foldable'
+                      shortDescription: string | null | undefined
+                      elements:
+                        | Array<
+                            | {
+                                __typename?: 'CarouselImage'
+                                images:
+                                  | Array<
+                                      | {
+                                          __typename?: 'Image'
+                                          caption: string | null | undefined
+                                          url: string | null | undefined
+                                          alt: string | null | undefined
+                                          width: number | null | undefined
+                                          height: number | null | undefined
+                                        }
+                                      | null
+                                      | undefined
+                                    >
+                                  | null
+                                  | undefined
+                              }
+                            | {
+                                __typename?: 'Command'
+                                text: string | null | undefined
+                              }
+                            | {
+                                __typename?: 'CommandOutput'
+                                text: string | null | undefined
+                              }
+                            | {
+                                __typename?: 'Paragraph'
+                                chunks:
+                                  | Array<
+                                      | {
+                                          __typename?: 'TextChunk'
+                                          text: string | null | undefined
+                                          highlight: boolean | null | undefined
+                                          bold: boolean | null | undefined
+                                          hyperlinkUrl:
+                                            | string
+                                            | null
+                                            | undefined
+                                          strikeout: boolean | null | undefined
+                                          inlineCode: boolean | null | undefined
+                                        }
+                                      | null
+                                      | undefined
+                                    >
+                                  | null
+                                  | undefined
+                              }
+                            | {
+                                __typename?: 'Video'
+                                platform: VideoPlatform | null | undefined
+                                url: string | null | undefined
+                                caption: string | null | undefined
+                              }
+                            | null
+                            | undefined
+                          >
+                        | null
+                        | undefined
+                    }
+                  | {
+                      __typename?: 'Paragraph'
+                      chunks:
+                        | Array<
+                            | {
+                                __typename?: 'TextChunk'
+                                text: string | null | undefined
+                                highlight: boolean | null | undefined
+                                bold: boolean | null | undefined
+                                hyperlinkUrl: string | null | undefined
+                                strikeout: boolean | null | undefined
+                                inlineCode: boolean | null | undefined
+                              }
+                            | null
+                            | undefined
+                          >
+                        | null
+                        | undefined
+                    }
+                  | {
+                      __typename?: 'Video'
+                      platform: VideoPlatform | null | undefined
+                      url: string | null | undefined
+                      caption: string | null | undefined
+                    }
+                  | null
+                  | undefined
+                >
+              | null
+              | undefined
           }
         | null
         | undefined
@@ -831,6 +1424,258 @@ export type TutorialPageFragment = {
     | undefined
 }
 
+type PageElementComponent_Action_Fragment = {
+  __typename?: 'Action'
+  instruction:
+    | {
+        __typename?: 'Paragraph'
+        chunks:
+          | Array<
+              | {
+                  __typename?: 'TextChunk'
+                  text: string | null | undefined
+                  highlight: boolean | null | undefined
+                  bold: boolean | null | undefined
+                  hyperlinkUrl: string | null | undefined
+                  strikeout: boolean | null | undefined
+                  inlineCode: boolean | null | undefined
+                }
+              | null
+              | undefined
+            >
+          | null
+          | undefined
+      }
+    | null
+    | undefined
+  details:
+    | Array<
+        | {
+            __typename?: 'CarouselImage'
+            images:
+              | Array<
+                  | {
+                      __typename?: 'Image'
+                      caption: string | null | undefined
+                      url: string | null | undefined
+                      alt: string | null | undefined
+                      width: number | null | undefined
+                      height: number | null | undefined
+                    }
+                  | null
+                  | undefined
+                >
+              | null
+              | undefined
+          }
+        | { __typename?: 'Command'; text: string | null | undefined }
+        | { __typename?: 'CommandOutput'; text: string | null | undefined }
+        | {
+            __typename?: 'Paragraph'
+            chunks:
+              | Array<
+                  | {
+                      __typename?: 'TextChunk'
+                      text: string | null | undefined
+                      highlight: boolean | null | undefined
+                      bold: boolean | null | undefined
+                      hyperlinkUrl: string | null | undefined
+                      strikeout: boolean | null | undefined
+                      inlineCode: boolean | null | undefined
+                    }
+                  | null
+                  | undefined
+                >
+              | null
+              | undefined
+          }
+        | {
+            __typename?: 'Video'
+            platform: VideoPlatform | null | undefined
+            url: string | null | undefined
+            caption: string | null | undefined
+          }
+        | null
+        | undefined
+      >
+    | null
+    | undefined
+  results:
+    | Array<
+        | {
+            __typename?: 'CarouselImage'
+            images:
+              | Array<
+                  | {
+                      __typename?: 'Image'
+                      caption: string | null | undefined
+                      url: string | null | undefined
+                      alt: string | null | undefined
+                      width: number | null | undefined
+                      height: number | null | undefined
+                    }
+                  | null
+                  | undefined
+                >
+              | null
+              | undefined
+          }
+        | { __typename?: 'Command'; text: string | null | undefined }
+        | { __typename?: 'CommandOutput'; text: string | null | undefined }
+        | {
+            __typename?: 'Paragraph'
+            chunks:
+              | Array<
+                  | {
+                      __typename?: 'TextChunk'
+                      text: string | null | undefined
+                      highlight: boolean | null | undefined
+                      bold: boolean | null | undefined
+                      hyperlinkUrl: string | null | undefined
+                      strikeout: boolean | null | undefined
+                      inlineCode: boolean | null | undefined
+                    }
+                  | null
+                  | undefined
+                >
+              | null
+              | undefined
+          }
+        | {
+            __typename?: 'Video'
+            platform: VideoPlatform | null | undefined
+            url: string | null | undefined
+            caption: string | null | undefined
+          }
+        | null
+        | undefined
+      >
+    | null
+    | undefined
+}
+
+type PageElementComponent_CarouselImage_Fragment = {
+  __typename?: 'CarouselImage'
+  images:
+    | Array<
+        | {
+            __typename?: 'Image'
+            caption: string | null | undefined
+            url: string | null | undefined
+            alt: string | null | undefined
+            width: number | null | undefined
+            height: number | null | undefined
+          }
+        | null
+        | undefined
+      >
+    | null
+    | undefined
+}
+
+type PageElementComponent_Command_Fragment = {
+  __typename?: 'Command'
+  text: string | null | undefined
+}
+
+type PageElementComponent_CommandOutput_Fragment = {
+  __typename?: 'CommandOutput'
+  text: string | null | undefined
+}
+
+type PageElementComponent_Foldable_Fragment = {
+  __typename?: 'Foldable'
+  shortDescription: string | null | undefined
+  elements:
+    | Array<
+        | {
+            __typename?: 'CarouselImage'
+            images:
+              | Array<
+                  | {
+                      __typename?: 'Image'
+                      caption: string | null | undefined
+                      url: string | null | undefined
+                      alt: string | null | undefined
+                      width: number | null | undefined
+                      height: number | null | undefined
+                    }
+                  | null
+                  | undefined
+                >
+              | null
+              | undefined
+          }
+        | { __typename?: 'Command'; text: string | null | undefined }
+        | { __typename?: 'CommandOutput'; text: string | null | undefined }
+        | {
+            __typename?: 'Paragraph'
+            chunks:
+              | Array<
+                  | {
+                      __typename?: 'TextChunk'
+                      text: string | null | undefined
+                      highlight: boolean | null | undefined
+                      bold: boolean | null | undefined
+                      hyperlinkUrl: string | null | undefined
+                      strikeout: boolean | null | undefined
+                      inlineCode: boolean | null | undefined
+                    }
+                  | null
+                  | undefined
+                >
+              | null
+              | undefined
+          }
+        | {
+            __typename?: 'Video'
+            platform: VideoPlatform | null | undefined
+            url: string | null | undefined
+            caption: string | null | undefined
+          }
+        | null
+        | undefined
+      >
+    | null
+    | undefined
+}
+
+type PageElementComponent_Paragraph_Fragment = {
+  __typename?: 'Paragraph'
+  chunks:
+    | Array<
+        | {
+            __typename?: 'TextChunk'
+            text: string | null | undefined
+            highlight: boolean | null | undefined
+            bold: boolean | null | undefined
+            hyperlinkUrl: string | null | undefined
+            strikeout: boolean | null | undefined
+            inlineCode: boolean | null | undefined
+          }
+        | null
+        | undefined
+      >
+    | null
+    | undefined
+}
+
+type PageElementComponent_Video_Fragment = {
+  __typename?: 'Video'
+  platform: VideoPlatform | null | undefined
+  url: string | null | undefined
+  caption: string | null | undefined
+}
+
+export type PageElementComponentFragment =
+  | PageElementComponent_Action_Fragment
+  | PageElementComponent_CarouselImage_Fragment
+  | PageElementComponent_Command_Fragment
+  | PageElementComponent_CommandOutput_Fragment
+  | PageElementComponent_Foldable_Fragment
+  | PageElementComponent_Paragraph_Fragment
+  | PageElementComponent_Video_Fragment
+
 export type TutorialPageMainContainerFragment = {
   __typename?: 'Page'
   id: string | null | undefined
@@ -838,6 +1683,252 @@ export type TutorialPageMainContainerFragment = {
   nextPageNum: string | null | undefined
   prevPageNum: string | null | undefined
   title: string | null | undefined
+  pageElements:
+    | Array<
+        | {
+            __typename?: 'Action'
+            instruction:
+              | {
+                  __typename?: 'Paragraph'
+                  chunks:
+                    | Array<
+                        | {
+                            __typename?: 'TextChunk'
+                            text: string | null | undefined
+                            highlight: boolean | null | undefined
+                            bold: boolean | null | undefined
+                            hyperlinkUrl: string | null | undefined
+                            strikeout: boolean | null | undefined
+                            inlineCode: boolean | null | undefined
+                          }
+                        | null
+                        | undefined
+                      >
+                    | null
+                    | undefined
+                }
+              | null
+              | undefined
+            details:
+              | Array<
+                  | {
+                      __typename?: 'CarouselImage'
+                      images:
+                        | Array<
+                            | {
+                                __typename?: 'Image'
+                                caption: string | null | undefined
+                                url: string | null | undefined
+                                alt: string | null | undefined
+                                width: number | null | undefined
+                                height: number | null | undefined
+                              }
+                            | null
+                            | undefined
+                          >
+                        | null
+                        | undefined
+                    }
+                  | { __typename?: 'Command'; text: string | null | undefined }
+                  | {
+                      __typename?: 'CommandOutput'
+                      text: string | null | undefined
+                    }
+                  | {
+                      __typename?: 'Paragraph'
+                      chunks:
+                        | Array<
+                            | {
+                                __typename?: 'TextChunk'
+                                text: string | null | undefined
+                                highlight: boolean | null | undefined
+                                bold: boolean | null | undefined
+                                hyperlinkUrl: string | null | undefined
+                                strikeout: boolean | null | undefined
+                                inlineCode: boolean | null | undefined
+                              }
+                            | null
+                            | undefined
+                          >
+                        | null
+                        | undefined
+                    }
+                  | {
+                      __typename?: 'Video'
+                      platform: VideoPlatform | null | undefined
+                      url: string | null | undefined
+                      caption: string | null | undefined
+                    }
+                  | null
+                  | undefined
+                >
+              | null
+              | undefined
+            results:
+              | Array<
+                  | {
+                      __typename?: 'CarouselImage'
+                      images:
+                        | Array<
+                            | {
+                                __typename?: 'Image'
+                                caption: string | null | undefined
+                                url: string | null | undefined
+                                alt: string | null | undefined
+                                width: number | null | undefined
+                                height: number | null | undefined
+                              }
+                            | null
+                            | undefined
+                          >
+                        | null
+                        | undefined
+                    }
+                  | { __typename?: 'Command'; text: string | null | undefined }
+                  | {
+                      __typename?: 'CommandOutput'
+                      text: string | null | undefined
+                    }
+                  | {
+                      __typename?: 'Paragraph'
+                      chunks:
+                        | Array<
+                            | {
+                                __typename?: 'TextChunk'
+                                text: string | null | undefined
+                                highlight: boolean | null | undefined
+                                bold: boolean | null | undefined
+                                hyperlinkUrl: string | null | undefined
+                                strikeout: boolean | null | undefined
+                                inlineCode: boolean | null | undefined
+                              }
+                            | null
+                            | undefined
+                          >
+                        | null
+                        | undefined
+                    }
+                  | {
+                      __typename?: 'Video'
+                      platform: VideoPlatform | null | undefined
+                      url: string | null | undefined
+                      caption: string | null | undefined
+                    }
+                  | null
+                  | undefined
+                >
+              | null
+              | undefined
+          }
+        | {
+            __typename?: 'CarouselImage'
+            images:
+              | Array<
+                  | {
+                      __typename?: 'Image'
+                      caption: string | null | undefined
+                      url: string | null | undefined
+                      alt: string | null | undefined
+                      width: number | null | undefined
+                      height: number | null | undefined
+                    }
+                  | null
+                  | undefined
+                >
+              | null
+              | undefined
+          }
+        | { __typename?: 'Command'; text: string | null | undefined }
+        | { __typename?: 'CommandOutput'; text: string | null | undefined }
+        | {
+            __typename?: 'Foldable'
+            shortDescription: string | null | undefined
+            elements:
+              | Array<
+                  | {
+                      __typename?: 'CarouselImage'
+                      images:
+                        | Array<
+                            | {
+                                __typename?: 'Image'
+                                caption: string | null | undefined
+                                url: string | null | undefined
+                                alt: string | null | undefined
+                                width: number | null | undefined
+                                height: number | null | undefined
+                              }
+                            | null
+                            | undefined
+                          >
+                        | null
+                        | undefined
+                    }
+                  | { __typename?: 'Command'; text: string | null | undefined }
+                  | {
+                      __typename?: 'CommandOutput'
+                      text: string | null | undefined
+                    }
+                  | {
+                      __typename?: 'Paragraph'
+                      chunks:
+                        | Array<
+                            | {
+                                __typename?: 'TextChunk'
+                                text: string | null | undefined
+                                highlight: boolean | null | undefined
+                                bold: boolean | null | undefined
+                                hyperlinkUrl: string | null | undefined
+                                strikeout: boolean | null | undefined
+                                inlineCode: boolean | null | undefined
+                              }
+                            | null
+                            | undefined
+                          >
+                        | null
+                        | undefined
+                    }
+                  | {
+                      __typename?: 'Video'
+                      platform: VideoPlatform | null | undefined
+                      url: string | null | undefined
+                      caption: string | null | undefined
+                    }
+                  | null
+                  | undefined
+                >
+              | null
+              | undefined
+          }
+        | {
+            __typename?: 'Paragraph'
+            chunks:
+              | Array<
+                  | {
+                      __typename?: 'TextChunk'
+                      text: string | null | undefined
+                      highlight: boolean | null | undefined
+                      bold: boolean | null | undefined
+                      hyperlinkUrl: string | null | undefined
+                      strikeout: boolean | null | undefined
+                      inlineCode: boolean | null | undefined
+                    }
+                  | null
+                  | undefined
+                >
+              | null
+              | undefined
+          }
+        | {
+            __typename?: 'Video'
+            platform: VideoPlatform | null | undefined
+            url: string | null | undefined
+            caption: string | null | undefined
+          }
+        | null
+        | undefined
+      >
+    | null
+    | undefined
 }
 
 export type VideoComponentFragment = {
@@ -939,6 +2030,54 @@ export const PlainElementComponentFragmentDoc = gql`
   ${VideoComponentFragmentDoc}
   ${CarouselComponentFragmentDoc}
 `
+export const CommandComponent2FragmentDoc = gql`
+  fragment CommandComponent2 on Command {
+    text
+  }
+`
+export const FileComponentFragmentDoc = gql`
+  fragment FileComponent on File {
+    fileName
+    content
+  }
+`
+export const FileMultipleNameTabFragmentDoc = gql`
+  fragment FileMultipleNameTab on FileMultiple {
+    files {
+      fileName
+    }
+  }
+`
+export const FileMultipleComponentFragmentDoc = gql`
+  fragment FileMultipleComponent on FileMultiple {
+    files {
+      ...FileComponent
+    }
+    ...FileMultipleNameTab
+  }
+  ${FileComponentFragmentDoc}
+  ${FileMultipleNameTabFragmentDoc}
+`
+export const FileTreeNodeComponentFragmentDoc = gql`
+  fragment FileTreeNodeComponent on FileTreeNode {
+    nodeType
+    name
+    depth
+  }
+`
+export const FileTreeComponentFragmentDoc = gql`
+  fragment FileTreeComponent on FileTree {
+    treeNodes {
+      ...FileTreeNodeComponent
+    }
+  }
+  ${FileTreeNodeComponentFragmentDoc}
+`
+export const HeaderContainerFragmentDoc = gql`
+  fragment HeaderContainer on Tutorial {
+    title
+  }
+`
 export const ActionInstructionComponentFragmentDoc = gql`
   fragment ActionInstructionComponent on Action {
     instruction {
@@ -1009,49 +2148,6 @@ export const ActionComponentFragmentDoc = gql`
   ${ActionDetailsComponentFragmentDoc}
   ${ActionResultComponentFragmentDoc}
 `
-export const CommandComponent2FragmentDoc = gql`
-  fragment CommandComponent2 on Command {
-    text
-  }
-`
-export const FileComponentFragmentDoc = gql`
-  fragment FileComponent on File {
-    fileName
-    content
-  }
-`
-export const FileMultipleNameTabFragmentDoc = gql`
-  fragment FileMultipleNameTab on FileMultiple {
-    files {
-      fileName
-    }
-  }
-`
-export const FileMultipleComponentFragmentDoc = gql`
-  fragment FileMultipleComponent on FileMultiple {
-    files {
-      ...FileComponent
-    }
-    ...FileMultipleNameTab
-  }
-  ${FileComponentFragmentDoc}
-  ${FileMultipleNameTabFragmentDoc}
-`
-export const FileTreeNodeComponentFragmentDoc = gql`
-  fragment FileTreeNodeComponent on FileTreeNode {
-    nodeType
-    name
-    depth
-  }
-`
-export const FileTreeComponentFragmentDoc = gql`
-  fragment FileTreeComponent on FileTree {
-    treeNodes {
-      ...FileTreeNodeComponent
-    }
-  }
-  ${FileTreeNodeComponentFragmentDoc}
-`
 export const FoldableComponentFragmentDoc = gql`
   fragment FoldableComponent on Foldable {
     shortDescription
@@ -1079,11 +2175,6 @@ export const FoldableComponentFragmentDoc = gql`
   ${VideoComponentFragmentDoc}
   ${CarouselComponentFragmentDoc}
 `
-export const HeaderContainerFragmentDoc = gql`
-  fragment HeaderContainer on Tutorial {
-    title
-  }
-`
 export const TutorialPageMainContainerFragmentDoc = gql`
   fragment TutorialPageMainContainer on Page {
     id
@@ -1091,7 +2182,37 @@ export const TutorialPageMainContainerFragmentDoc = gql`
     nextPageNum
     prevPageNum
     title
+    pageElements {
+      ... on Paragraph {
+        ...ParagraphComponent
+      }
+      ... on Command {
+        ...CommandComponent
+      }
+      ... on CommandOutput {
+        ...CommandOutputComponent
+      }
+      ... on Video {
+        ...VideoComponent
+      }
+      ... on CarouselImage {
+        ...CarouselComponent
+      }
+      ... on Action {
+        ...ActionComponent
+      }
+      ... on Foldable {
+        ...FoldableComponent
+      }
+    }
   }
+  ${ParagraphComponentFragmentDoc}
+  ${CommandComponentFragmentDoc}
+  ${CommandOutputComponentFragmentDoc}
+  ${VideoComponentFragmentDoc}
+  ${CarouselComponentFragmentDoc}
+  ${ActionComponentFragmentDoc}
+  ${FoldableComponentFragmentDoc}
 `
 export const TutorialPageFragmentDoc = gql`
   fragment TutorialPage on Tutorial {
@@ -1107,6 +2228,38 @@ export const TutorialPageFragmentDoc = gql`
   }
   ${HeaderContainerFragmentDoc}
   ${TutorialPageMainContainerFragmentDoc}
+`
+export const PageElementComponentFragmentDoc = gql`
+  fragment PageElementComponent on PageElement {
+    ... on Paragraph {
+      ...ParagraphComponent
+    }
+    ... on Command {
+      ...CommandComponent
+    }
+    ... on CommandOutput {
+      ...CommandOutputComponent
+    }
+    ... on Video {
+      ...VideoComponent
+    }
+    ... on CarouselImage {
+      ...CarouselComponent
+    }
+    ... on Action {
+      ...ActionComponent
+    }
+    ... on Foldable {
+      ...FoldableComponent
+    }
+  }
+  ${ParagraphComponentFragmentDoc}
+  ${CommandComponentFragmentDoc}
+  ${CommandOutputComponentFragmentDoc}
+  ${VideoComponentFragmentDoc}
+  ${CarouselComponentFragmentDoc}
+  ${ActionComponentFragmentDoc}
+  ${FoldableComponentFragmentDoc}
 `
 export const MainDocument = gql`
   query Main {
@@ -1298,7 +2451,6 @@ export type ResolversTypes = ResolversObject<{
     | ResolversTypes['Command']
     | ResolversTypes['CommandOutput']
     | ResolversTypes['Foldable']
-    | ResolversTypes['Image']
     | ResolversTypes['Paragraph']
     | ResolversTypes['Video']
   Paragraph: ResolverTypeWrapper<Paragraph>
@@ -1359,7 +2511,6 @@ export type ResolversParentTypes = ResolversObject<{
     | ResolversParentTypes['Command']
     | ResolversParentTypes['CommandOutput']
     | ResolversParentTypes['Foldable']
-    | ResolversParentTypes['Image']
     | ResolversParentTypes['Paragraph']
     | ResolversParentTypes['Video']
   Paragraph: Paragraph
@@ -1585,7 +2736,6 @@ export type PageElementResolvers<
     | 'Command'
     | 'CommandOutput'
     | 'Foldable'
-    | 'Image'
     | 'Paragraph'
     | 'Video',
     ParentType,

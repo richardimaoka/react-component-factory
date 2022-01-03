@@ -45,8 +45,8 @@ union PageElement =
   | CommandOutput
   | Video
   | CarouselImage
-  | Image
-  | Action
+  | # | Image
+  Action
   | Foldable
 
 enum VideoPlatform {
