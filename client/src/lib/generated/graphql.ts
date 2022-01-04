@@ -572,69 +572,6 @@ export type MainQuery = {
     | undefined
 }
 
-type PlainElementComponent_CarouselImage_Fragment = {
-  __typename?: 'CarouselImage'
-  images:
-    | Array<
-        | {
-            __typename?: 'Image'
-            caption: string | null | undefined
-            url: string | null | undefined
-            alt: string | null | undefined
-            width: number | null | undefined
-            height: number | null | undefined
-          }
-        | null
-        | undefined
-      >
-    | null
-    | undefined
-}
-
-type PlainElementComponent_Command_Fragment = {
-  __typename?: 'Command'
-  text: string | null | undefined
-}
-
-type PlainElementComponent_CommandOutput_Fragment = {
-  __typename?: 'CommandOutput'
-  text: string | null | undefined
-}
-
-type PlainElementComponent_Paragraph_Fragment = {
-  __typename?: 'Paragraph'
-  chunks:
-    | Array<
-        | {
-            __typename?: 'TextChunk'
-            text: string | null | undefined
-            highlight: boolean | null | undefined
-            bold: boolean | null | undefined
-            hyperlinkUrl: string | null | undefined
-            strikeout: boolean | null | undefined
-            inlineCode: boolean | null | undefined
-          }
-        | null
-        | undefined
-      >
-    | null
-    | undefined
-}
-
-type PlainElementComponent_Video_Fragment = {
-  __typename?: 'Video'
-  platform: VideoPlatform | null | undefined
-  url: string | null | undefined
-  caption: string | null | undefined
-}
-
-export type PlainElementComponentFragment =
-  | PlainElementComponent_CarouselImage_Fragment
-  | PlainElementComponent_Command_Fragment
-  | PlainElementComponent_CommandOutput_Fragment
-  | PlainElementComponent_Paragraph_Fragment
-  | PlainElementComponent_Video_Fragment
-
 export type ActionComponentFragment = {
   __typename?: 'Action'
   instruction:
@@ -981,6 +918,69 @@ export type CommandOutputComponentFragment = {
   __typename?: 'CommandOutput'
   text: string | null | undefined
 }
+
+type PlainElementComponent_CarouselImage_Fragment = {
+  __typename?: 'CarouselImage'
+  images:
+    | Array<
+        | {
+            __typename?: 'Image'
+            caption: string | null | undefined
+            url: string | null | undefined
+            alt: string | null | undefined
+            width: number | null | undefined
+            height: number | null | undefined
+          }
+        | null
+        | undefined
+      >
+    | null
+    | undefined
+}
+
+type PlainElementComponent_Command_Fragment = {
+  __typename?: 'Command'
+  text: string | null | undefined
+}
+
+type PlainElementComponent_CommandOutput_Fragment = {
+  __typename?: 'CommandOutput'
+  text: string | null | undefined
+}
+
+type PlainElementComponent_Paragraph_Fragment = {
+  __typename?: 'Paragraph'
+  chunks:
+    | Array<
+        | {
+            __typename?: 'TextChunk'
+            text: string | null | undefined
+            highlight: boolean | null | undefined
+            bold: boolean | null | undefined
+            hyperlinkUrl: string | null | undefined
+            strikeout: boolean | null | undefined
+            inlineCode: boolean | null | undefined
+          }
+        | null
+        | undefined
+      >
+    | null
+    | undefined
+}
+
+type PlainElementComponent_Video_Fragment = {
+  __typename?: 'Video'
+  platform: VideoPlatform | null | undefined
+  url: string | null | undefined
+  caption: string | null | undefined
+}
+
+export type PlainElementComponentFragment =
+  | PlainElementComponent_CarouselImage_Fragment
+  | PlainElementComponent_Command_Fragment
+  | PlainElementComponent_CommandOutput_Fragment
+  | PlainElementComponent_Paragraph_Fragment
+  | PlainElementComponent_Video_Fragment
 
 export type FileComponentFragment = {
   __typename?: 'File'
@@ -1938,6 +1938,11 @@ export type VideoComponentFragment = {
   caption: string | null | undefined
 }
 
+export const CommandComponent2FragmentDoc = gql`
+  fragment CommandComponent2 on Command {
+    text
+  }
+`
 export const TextChunkComponentFragmentDoc = gql`
   fragment TextChunkComponent on TextChunk {
     text
@@ -2029,11 +2034,6 @@ export const PlainElementComponentFragmentDoc = gql`
   ${CommandOutputComponentFragmentDoc}
   ${VideoComponentFragmentDoc}
   ${CarouselComponentFragmentDoc}
-`
-export const CommandComponent2FragmentDoc = gql`
-  fragment CommandComponent2 on Command {
-    text
-  }
 `
 export const FileComponentFragmentDoc = gql`
   fragment FileComponent on File {

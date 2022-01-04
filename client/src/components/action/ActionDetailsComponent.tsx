@@ -9,7 +9,7 @@ import { ParagraphComponent } from '../paragraph/ParagraphComponent'
 import {
   isEmptyPlainElement,
   PlainElementComponent,
-} from '../PlainElementComponent'
+} from '../elements/PlainElementComponent'
 import { VideoComponent } from '../video/VideoComponent'
 
 interface ActionDetailsComponentProps {

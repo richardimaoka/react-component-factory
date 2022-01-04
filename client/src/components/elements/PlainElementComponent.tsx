@@ -1,21 +1,21 @@
 /** @jsxImportSource @emotion/react */
 import { gql } from '@apollo/client'
-import { PlainElementComponentFragment } from '../lib/generated/graphql'
-import { switchExhaustivenessCheck } from '../switchExhaustivenessCheck'
+import { PlainElementComponentFragment } from '../../lib/generated/graphql'
+import { switchExhaustivenessCheck } from '../../switchExhaustivenessCheck'
 import {
   CarouselComponent,
   isEmptyCarouselComponent,
-} from './carousel/CarouselComponent'
-import { CommandComponent, isEmptyCommand } from './command/CommandComponent'
+} from '../carousel/CarouselComponent'
+import { CommandComponent, isEmptyCommand } from '../command/CommandComponent'
 import {
   CommandOutputComponent,
   isEmptyCommandOutput,
-} from './command/CommandOutputComponent'
+} from '../command/CommandOutputComponent'
 import {
   isEmptyParagraph,
   ParagraphComponent,
-} from './paragraph/ParagraphComponent'
-import { isEmptyVideo, VideoComponent } from './video/VideoComponent'
+} from '../paragraph/ParagraphComponent'
+import { isEmptyVideo, VideoComponent } from '../video/VideoComponent'
 
 interface PlainElementComponentProps {
   fragment: PlainElementComponentFragment
