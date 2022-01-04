@@ -45,10 +45,10 @@ union PageElement =
   | CommandOutput
   | Video
   | CarouselImage
-  | # | Image
-  Action
+  | Action
   | Foldable
 
+# | Image
 enum VideoPlatform {
   YOUTUBE
   VIMEO

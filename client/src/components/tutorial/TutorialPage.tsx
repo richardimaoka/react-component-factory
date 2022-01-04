@@ -5,38 +5,45 @@ import { TutorialPageMainContainer } from './TutorialPageMainContainer'
 
 interface InnerComponentProps {
   fragment: TutorialPageFragment
-  pageNum: string
+  currentPageNum: string
 }
 
 const InnerComponent = ({
   fragment,
-  pageNum,
+  currentPageNum,
 }: InnerComponentProps): JSX.Element => {
   if (!fragment.pages) {
     return <></>
   } else {
-    const page = fragment.pages.find((page) => page && page.pageNum === pageNum)
+    const page = fragment.pages.find(
+      (page) => page && page.pageNum === currentPageNum
+    )
     if (!page) {
       return <></>
     } else {
-      return <TutorialPageMainContainer fragment={page} />
+      return (
+        <TutorialPageMainContainer
+          fragment={page}
+          currentPageNum={currentPageNum}
+        />
+      )
     }
   }
 }
 
 interface TutorialPageProps {
   fragment: TutorialPageFragment
-  pageNum: string
+  currentPageNum: string
 }
 
 export const TutorialPage = ({
   fragment,
-  pageNum,
+  currentPageNum,
 }: TutorialPageProps): JSX.Element => {
   return (
     <>
       <HeaderContainer fragment={fragment} />
-      <InnerComponent fragment={fragment} pageNum={pageNum} />
+      <InnerComponent fragment={fragment} currentPageNum={currentPageNum} />
     </>
   )
 }

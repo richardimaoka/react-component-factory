@@ -12,6 +12,7 @@ import { CommandComponent } from '../command/CommandComponent'
 import { CommandOutputComponent } from '../command/CommandOutputComponent'
 import { FoldableComponent } from '../foldable/FoldableComponent'
 import { ParagraphComponent } from '../paragraph/ParagraphComponent'
+import { TutorialPageProgressBar } from '../tutorial/TutorialPageProgressBar'
 import { VideoComponent } from '../video/VideoComponent'
 
 interface PageElementComponentProps {
@@ -82,19 +83,27 @@ PageElementComponent.fragment = gql`
 
 interface InnerComponentProps {
   fragment: TutorialPageMainContainerFragment
+  currentPageNum: string
 }
 
 export const InnerComponent = ({
   fragment,
+  currentPageNum,
 }: InnerComponentProps): JSX.Element => {
   if (!fragment.pageElements || fragment.pageElements.length === 0) {
     return <></>
   } else {
     return (
       <div>
-        {fragment.pageElements.map((element) =>
-          element ? <PageElementComponent fragment={element} /> : <></>
-        )}
+        <TutorialPageProgressBar
+          numPages={fragment.pageElements.length}
+          currentPageNum={currentPageNum}
+        />
+        <div>
+          {fragment.pageElements.map((element) =>
+            element ? <PageElementComponent fragment={element} /> : <></>
+          )}
+        </div>
       </div>
     )
   }
@@ -102,10 +111,12 @@ export const InnerComponent = ({
 
 interface TutorialPageMainContainerProps {
   fragment: TutorialPageMainContainerFragment
+  currentPageNum: string
 }
 
 export const TutorialPageMainContainer = ({
   fragment,
+  currentPageNum,
 }: TutorialPageMainContainerProps): JSX.Element => {
   return (
     <main>
@@ -121,7 +132,7 @@ export const TutorialPageMainContainer = ({
             padding: 8px;
           `}
         >
-          <InnerComponent fragment={fragment} />
+          <InnerComponent fragment={fragment} currentPageNum={currentPageNum} />
         </div>
       </div>
     </main>
