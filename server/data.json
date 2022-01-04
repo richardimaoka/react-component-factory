@@ -12,7 +12,53 @@
       "pageNum": "1",
       "nextPageNum": "2",
       "title": "aaaaaaadfadesk",
-      "pageElements": []
+      "pageElements": [
+        {
+          "__typename": "Action",
+          "instruction": {
+            "__typename": "Paragraph",
+            "chunks": [
+              {
+                "__typename": "TextChunk"
+              }
+            ]
+          },
+
+          "details": [
+            {
+              "__typename": "Command",
+              "text": "mkdir /your/project/path"
+            },
+            {
+              "__typename": "Command",
+              "text": "cd /your/project/path"
+            },
+            {
+              "__typename": "Paragraph",
+              "chunks": [
+                {
+                  "__typename": "TextChunk",
+                  "text": "次にこれらのコマンドを実行してください"
+                }
+              ]
+            },
+            {
+              "__typename": "Command",
+              "text": "npm --init"
+            },
+            {
+              "__typename": "Command",
+              "text": "npm install cypress --save-dev"
+            }
+          ],
+          "results": [
+            {
+              "__typename": "CommandOutput",
+              "text": "This is the output This is the output This is the output This is the output This is the output This is the output This is the output This is the output This is the output This is the output\nThis is the output This is the output This is the output This is the output This is the output"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

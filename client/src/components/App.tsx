@@ -35,7 +35,7 @@ export const MainContainer = (): JSX.Element => {
     console.log('rendering')
     return data.tutorial ? (
       <>
-        <TutorialPage fragment={data.tutorial} pageNum={'0'} />
+        <TutorialPage fragment={data.tutorial} pageNum={'1'} />
       </>
     ) : (
       <></>
