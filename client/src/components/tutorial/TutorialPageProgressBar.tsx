@@ -15,6 +15,7 @@ export const TutorialPageProgressBar = ({
     <div
       css={css`
         display: flex;
+        margin-bottom: 10px;
         div:first-of-type {
           margin-left: 0px;
         }

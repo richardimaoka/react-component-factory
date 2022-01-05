@@ -30,6 +30,13 @@ export const InnerComponent = ({
           numPages={fragment.pageElements.length}
           currentPageNum={currentPageNum}
         />
+        <h2
+          css={css`
+            margin: 0px;
+          `}
+        >
+          {fragment.title}
+        </h2>
         <div>
           {fragment.pageElements.map((element) =>
             element ? <PageElementComponent fragment={element} /> : <></>

@@ -51,7 +51,10 @@ export const ParagraphComponent = ({
       <p
         css={css`
           color: #0a0a0a;
-          margin: 0px;
+          margin-top: 0px;
+          margin-right: 0px;
+          margin-left: 0px;
+          margin-bottom: 20px;
         `}
         contentEditable={false}
       >

@@ -11,6 +11,42 @@
       "__typename": "Page",
       "pageNum": "1",
       "nextPageNum": "2",
+      "title": "開発環境セットアップ - VS Code + Dev Container",
+      "pageElements": [
+        {
+          "__typename": "Paragraph",
+          "chunks": [
+            {
+              "__typename": "TextChunk",
+              "text": "このチュートリアルを進めるためには開発環境のセットアップが必要です。開発環境のセットアップ方法にはいくつもの選択肢がありますが、私達はVS CodeのDev Container機能の利用を勧めています。"
+            }
+          ]
+        },
+        {
+          "__typename": "Paragraph",
+          "chunks": [
+            {
+              "__typename": "TextChunk",
+              "text": "VS CodeのDev Container機能を使えば「他人の開発環境では動いた問題」を避けやすくなるので、開発環境セットアップで行き詰まって、肝心のチュートリアルの内容を学べなくなる心配が減ります。"
+            }
+          ]
+        },
+        {
+          "__typename": "Paragraph",
+          "chunks": [
+            {
+              "__typename": "TextChunk",
+              "text": "お気に入りのIDEがVS Code以外の人もいるでしょうが、このチュートリアルを進める間だけは学習用だと割り切って、VS Codeを使ってみてください。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "__typename": "Page",
+      "pageNum": "2",
+      "nextPageNum": "3",
+      "prevPageNum": "1",
       "title": "aaaaaaadfadesk",
       "pageElements": [
         {
