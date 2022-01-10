@@ -112,6 +112,10 @@ type Note {
   body: String
 }
 
+type Subtitle {
+  text: String
+}
+
 type TextChunkModifyOperation {
   bold: Boolean
   highlight: Boolean

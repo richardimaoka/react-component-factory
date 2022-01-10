@@ -156,6 +156,11 @@ export type Query = {
   video: Maybe<Video>
 }
 
+export type Subtitle = {
+  __typename?: 'Subtitle'
+  text: Maybe<Scalars['String']>
+}
+
 export type TextChunk = {
   __typename?: 'TextChunk'
   bold: Maybe<Scalars['Boolean']>
@@ -1384,6 +1389,11 @@ export type TextChunkComponentFragment = {
   inlineCode: boolean | null | undefined
 }
 
+export type SubtitleComponentFragment = {
+  __typename?: 'Subtitle'
+  text: string | null | undefined
+}
+
 export type TutorialPageFragment = {
   __typename?: 'Tutorial'
   id: string | null | undefined
@@ -2202,6 +2212,11 @@ export const FileTreeComponentFragmentDoc = gql`
   }
   ${FileTreeNodeComponentFragmentDoc}
 `
+export const SubtitleComponentFragmentDoc = gql`
+  fragment SubtitleComponent on Subtitle {
+    text
+  }
+`
 export const HeaderContainerFragmentDoc = gql`
   fragment HeaderContainer on Tutorial {
     title
@@ -2462,6 +2477,7 @@ export type ResolversTypes = ResolversObject<{
     | ResolversTypes['Video']
   Query: ResolverTypeWrapper<{}>
   String: ResolverTypeWrapper<Scalars['String']>
+  Subtitle: ResolverTypeWrapper<Subtitle>
   TextChunk: ResolverTypeWrapper<TextChunk>
   TextChunkModifyOperation: ResolverTypeWrapper<TextChunkModifyOperation>
   TextChunkOperation:
@@ -2522,6 +2538,7 @@ export type ResolversParentTypes = ResolversObject<{
     | ResolversParentTypes['Video']
   Query: {}
   String: Scalars['String']
+  Subtitle: Subtitle
   TextChunk: TextChunk
   TextChunkModifyOperation: TextChunkModifyOperation
   TextChunkOperation:
@@ -2788,6 +2805,14 @@ export type QueryResolvers<
   video: Resolver<Maybe<ResolversTypes['Video']>, ParentType, ContextType>
 }>
 
+export type SubtitleResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['Subtitle'] = ResolversParentTypes['Subtitle']
+> = ResolversObject<{
+  text: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
+}>
+
 export type TextChunkResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['TextChunk'] = ResolversParentTypes['TextChunk']
@@ -2916,6 +2941,7 @@ export type Resolvers<ContextType = any> = ResolversObject<{
   Paragraph: ParagraphResolvers<ContextType>
   PlainElement: PlainElementResolvers<ContextType>
   Query: QueryResolvers<ContextType>
+  Subtitle: SubtitleResolvers<ContextType>
   TextChunk: TextChunkResolvers<ContextType>
   TextChunkModifyOperation: TextChunkModifyOperationResolvers<ContextType>
   TextChunkOperation: TextChunkOperationResolvers<ContextType>
