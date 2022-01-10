@@ -18,7 +18,7 @@
           "chunks": [
             {
               "__typename": "TextChunk",
-              "text": "このチュートリアルを進めるためには開発環境のセットアップが必要です。開発環境のセットアップ方法にはいくつもの選択肢がありますが、私達はVS CodeのDev Container機能の利用を勧めています。"
+              "text": "このチュートリアルを進めるためには開発環境のセットアップが必要です。開発環境のセットアップ方法にはいくつもの選択肢がありますが、私達はVS CodeのDev Container機能の利用をお勧めしています。"
             }
           ]
         },
@@ -27,7 +27,7 @@
           "chunks": [
             {
               "__typename": "TextChunk",
-              "text": "VS CodeのDev Container機能を使えば「他人の開発環境では動いた問題」を避けやすくなるので、開発環境セットアップで行き詰まって、肝心のチュートリアルの内容を学べなくなる心配が減ります。"
+              "text": "VS CodeのDev Container機能を使えば「他人の開発環境では動作したソースコードが、自分の開発環境では動作しない問題」を避けやすくなるので、肝心のチュートリアルの内容を学ぶ前段階での障害が減ります。"
             }
           ]
         },
@@ -36,7 +36,46 @@
           "chunks": [
             {
               "__typename": "TextChunk",
-              "text": "お気に入りのIDEがVS Code以外の人もいるでしょうが、このチュートリアルを進める間だけは学習用だと割り切って、VS Codeを使ってみてください。"
+              "text": "お気に入りの開発環境がVS Codeではない人もいるでしょうが、このチュートリアルを進める間だけは学習用だと割り切ってVS Codeを使ってみてください。"
+            }
+          ]
+        },
+        {
+          "__typename": "CarouselImage",
+          "images": [
+            {
+              "__typename": "Image",
+              "url": "https://res.cloudinary.com/richardimaoka/image/upload/v1641376087/apollo-server/2022-01-05_18h48_00_hbvmwt.png",
+              "caption": "VS Codeを立ち上げたら、Ctrl + Pキーでコマンド入力バーを出して`REmote Containers: Clone Repository in Container Volume...`を選択します",
+              "width": 871,
+              "height": 557
+            },
+            {
+              "__typename": "Image",
+              "caption": "2nd picture. There must be very long long loooong long long long description",
+              "width": 640,
+              "height": 360
+            },
+            {
+              "__typename": "Image",
+              "url": "https://res.cloudinary.com/richardimaoka/image/upload/v1640637728/carousel/3_taktbm.png",
+              "caption": "3rd picture. There must be very long long loooong long long long description. There must be very long long loooong long long long description.There must be very long long loooong long long long description. There must be very long long loooong long long long description.",
+              "width": 640,
+              "height": 360
+            },
+            {
+              "__typename": "Image",
+              "url": "https://res.cloudinary.com/richardimaoka/image/upload/v1640637728/carousel/4_mnahrc.png",
+              "caption": "4th picture",
+              "width": 640,
+              "height": 360
+            },
+            {
+              "__typename": "Image",
+              "url": "https://res.cloudinary.com/richardimaoka/image/upload/v1640645059/carousel/5_lxnoc7.png",
+              "caption": "5th picture",
+              "width": 400,
+              "height": 700
             }
           ]
         }
