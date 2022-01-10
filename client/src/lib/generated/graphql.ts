@@ -129,6 +129,7 @@ export type PageElement =
   | CommandOutput
   | Foldable
   | Paragraph
+  | Subtitle
   | Video
 
 export type Paragraph = {
@@ -554,6 +555,10 @@ export type MainQuery = {
                                 >
                               | null
                               | undefined
+                          }
+                        | {
+                            __typename?: 'Subtitle'
+                            text: string | null | undefined
                           }
                         | {
                             __typename?: 'Video'
@@ -1160,6 +1165,11 @@ type PageElementComponent_Paragraph_Fragment = {
     | undefined
 }
 
+type PageElementComponent_Subtitle_Fragment = {
+  __typename?: 'Subtitle'
+  text: string | null | undefined
+}
+
 type PageElementComponent_Video_Fragment = {
   __typename?: 'Video'
   platform: VideoPlatform | null | undefined
@@ -1174,6 +1184,7 @@ export type PageElementComponentFragment =
   | PageElementComponent_CommandOutput_Fragment
   | PageElementComponent_Foldable_Fragment
   | PageElementComponent_Paragraph_Fragment
+  | PageElementComponent_Subtitle_Fragment
   | PageElementComponent_Video_Fragment
 
 type PlainElementComponent_CarouselImage_Fragment = {
@@ -1667,6 +1678,7 @@ export type TutorialPageFragment = {
                         | null
                         | undefined
                     }
+                  | { __typename?: 'Subtitle'; text: string | null | undefined }
                   | {
                       __typename?: 'Video'
                       platform: VideoPlatform | null | undefined
@@ -1928,6 +1940,7 @@ export type TutorialPageMainContainerFragment = {
               | null
               | undefined
           }
+        | { __typename?: 'Subtitle'; text: string | null | undefined }
         | {
             __typename?: 'Video'
             platform: VideoPlatform | null | undefined
@@ -2091,6 +2104,11 @@ export const ActionComponentFragmentDoc = gql`
   ${ActionDetailsComponentFragmentDoc}
   ${ActionResultComponentFragmentDoc}
 `
+export const SubtitleComponentFragmentDoc = gql`
+  fragment SubtitleComponent on Subtitle {
+    text
+  }
+`
 export const FoldableComponentFragmentDoc = gql`
   fragment FoldableComponent on Foldable {
     shortDescription
@@ -2138,6 +2156,9 @@ export const PageElementComponentFragmentDoc = gql`
     ... on Action {
       ...ActionComponent
     }
+    ... on Subtitle {
+      ...SubtitleComponent
+    }
     ... on Foldable {
       ...FoldableComponent
     }
@@ -2148,6 +2169,7 @@ export const PageElementComponentFragmentDoc = gql`
   ${VideoComponentFragmentDoc}
   ${CarouselComponentFragmentDoc}
   ${ActionComponentFragmentDoc}
+  ${SubtitleComponentFragmentDoc}
   ${FoldableComponentFragmentDoc}
 `
 export const PlainElementComponentFragmentDoc = gql`
@@ -2212,11 +2234,6 @@ export const FileTreeComponentFragmentDoc = gql`
   }
   ${FileTreeNodeComponentFragmentDoc}
 `
-export const SubtitleComponentFragmentDoc = gql`
-  fragment SubtitleComponent on Subtitle {
-    text
-  }
-`
 export const HeaderContainerFragmentDoc = gql`
   fragment HeaderContainer on Tutorial {
     title
@@ -2248,6 +2265,9 @@ export const TutorialPageMainContainerFragmentDoc = gql`
       ... on Action {
         ...ActionComponent
       }
+      ... on Subtitle {
+        ...SubtitleComponent
+      }
       ... on Foldable {
         ...FoldableComponent
       }
@@ -2259,6 +2279,7 @@ export const TutorialPageMainContainerFragmentDoc = gql`
   ${VideoComponentFragmentDoc}
   ${CarouselComponentFragmentDoc}
   ${ActionComponentFragmentDoc}
+  ${SubtitleComponentFragmentDoc}
   ${FoldableComponentFragmentDoc}
 `
 export const TutorialPageFragmentDoc = gql`
@@ -2467,6 +2488,7 @@ export type ResolversTypes = ResolversObject<{
     | ResolversTypes['CommandOutput']
     | ResolversTypes['Foldable']
     | ResolversTypes['Paragraph']
+    | ResolversTypes['Subtitle']
     | ResolversTypes['Video']
   Paragraph: ResolverTypeWrapper<Paragraph>
   PlainElement:
@@ -2528,6 +2550,7 @@ export type ResolversParentTypes = ResolversObject<{
     | ResolversParentTypes['CommandOutput']
     | ResolversParentTypes['Foldable']
     | ResolversParentTypes['Paragraph']
+    | ResolversParentTypes['Subtitle']
     | ResolversParentTypes['Video']
   Paragraph: Paragraph
   PlainElement:
@@ -2754,6 +2777,7 @@ export type PageElementResolvers<
     | 'CommandOutput'
     | 'Foldable'
     | 'Paragraph'
+    | 'Subtitle'
     | 'Video',
     ParentType,
     ContextType

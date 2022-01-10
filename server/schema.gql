@@ -47,6 +47,7 @@ union PageElement =
   | CarouselImage
   | Action
   | Foldable
+  | Subtitle
 
 # | Image
 enum VideoPlatform {

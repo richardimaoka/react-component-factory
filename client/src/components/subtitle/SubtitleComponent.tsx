@@ -7,10 +7,16 @@ interface SubtitleComponentProps {
   fragment: SubtitleComponentFragment
 }
 
+export const isEmptySubtitle = (
+  fragment: SubtitleComponentFragment
+): boolean => {
+  return !fragment.text || fragment.text.length === 0
+}
+
 export const SubtitleComponent = ({
   fragment,
 }: SubtitleComponentProps): JSX.Element => {
-  if (!fragment.text) {
+  if (!fragment.text || fragment.text.length === 0) {
     return <></>
   } else {
     return <h3>{fragment.text}</h3>

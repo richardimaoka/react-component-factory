@@ -24,7 +24,7 @@ export const isEmptyActionDetails = (
   } else {
     const isAnyElementContentful = fragment.details
       .map(isEmptyPlainElement)
-      .includes(false) //see if any `isEmptyTextChunk == false`
+      .includes(false) //see if any `isEmptyPlainElement === false`
 
     const isEveryChunkEmpty = !isAnyElementContentful
 

@@ -9,6 +9,7 @@ import { CommandOutputComponent } from '../command/CommandOutputComponent'
 import { FoldableComponent } from '../foldable/FoldableComponent'
 import { ParagraphComponent } from '../paragraph/ParagraphComponent'
 import { VideoComponent } from '../video/VideoComponent'
+import { SubtitleComponent } from '../subtitle/SubtitleComponent'
 
 interface PageElementComponentProps {
   fragment: PageElementComponentFragment
@@ -36,6 +37,8 @@ export const PageElementComponent = ({
         return <ActionComponent fragment={fragment} />
       case 'Foldable':
         return <FoldableComponent fragment={fragment} />
+      case 'Subtitle':
+        return <SubtitleComponent fragment={fragment} />
       default:
         return switchExhaustivenessCheck(typename)
     }
@@ -62,6 +65,9 @@ PageElementComponent.fragment = gql`
     ... on Action {
       ...ActionComponent
     }
+    ... on Subtitle {
+      ...SubtitleComponent
+    }
     ... on Foldable {
       ...FoldableComponent
     }
@@ -73,5 +79,6 @@ PageElementComponent.fragment = gql`
   ${VideoComponent.fragment}
   ${CarouselComponent.fragment}
   ${ActionComponent.fragment}
+  ${SubtitleComponent.fragment}
   ${FoldableComponent.fragment}
 `

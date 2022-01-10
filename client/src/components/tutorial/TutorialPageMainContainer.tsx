@@ -9,6 +9,7 @@ import { CommandOutputComponent } from '../command/CommandOutputComponent'
 import { PageElementComponent } from '../elements/PageElementComponent'
 import { FoldableComponent } from '../foldable/FoldableComponent'
 import { ParagraphComponent } from '../paragraph/ParagraphComponent'
+import { SubtitleComponent } from '../subtitle/SubtitleComponent'
 import { TutorialPageProgressBar } from '../tutorial/TutorialPageProgressBar'
 import { VideoComponent } from '../video/VideoComponent'
 
@@ -103,6 +104,9 @@ TutorialPageMainContainer.freagment = gql`
       ... on Action {
         ...ActionComponent
       }
+      ... on Subtitle {
+        ...SubtitleComponent
+      }
       ... on Foldable {
         ...FoldableComponent
       }
@@ -115,5 +119,6 @@ TutorialPageMainContainer.freagment = gql`
   ${VideoComponent.fragment}
   ${CarouselComponent.fragment}
   ${ActionComponent.fragment}
+  ${SubtitleComponent.fragment}
   ${FoldableComponent.fragment}
 `
