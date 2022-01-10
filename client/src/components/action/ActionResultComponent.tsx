@@ -12,6 +12,7 @@ import {
   PlainElementComponent,
 } from '../elements/PlainElementComponent'
 import { VideoComponent } from '../video/VideoComponent'
+import { SubtitleComponent } from '../subtitle/SubtitleComponent'
 
 interface ActionResultComponentProps {
   fragment: ActionResultComponentFragment
@@ -78,6 +79,9 @@ ActionResultComponent.fragment = gql`
       ... on CarouselImage {
         ...CarouselComponent
       }
+      ... on Subtitle {
+        ...SubtitleComponent
+      }
     }
   }
 
@@ -86,4 +90,5 @@ ActionResultComponent.fragment = gql`
   ${CommandOutputComponent.fragment}
   ${VideoComponent.fragment}
   ${CarouselComponent.fragment}
+  ${SubtitleComponent.fragment}
 `

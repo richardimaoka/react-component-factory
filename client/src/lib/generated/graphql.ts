@@ -143,6 +143,7 @@ export type PlainElement =
   | Command
   | CommandOutput
   | Paragraph
+  | Subtitle
   | Video
 
 export type Query = {
@@ -344,6 +345,10 @@ export type MainQuery = {
                                         | undefined
                                     }
                                   | {
+                                      __typename?: 'Subtitle'
+                                      text: string | null | undefined
+                                    }
+                                  | {
                                       __typename?: 'Video'
                                       platform: VideoPlatform | null | undefined
                                       url: string | null | undefined
@@ -418,6 +423,10 @@ export type MainQuery = {
                                           >
                                         | null
                                         | undefined
+                                    }
+                                  | {
+                                      __typename?: 'Subtitle'
+                                      text: string | null | undefined
                                     }
                                   | {
                                       __typename?: 'Video'
@@ -524,6 +533,10 @@ export type MainQuery = {
                                           >
                                         | null
                                         | undefined
+                                    }
+                                  | {
+                                      __typename?: 'Subtitle'
+                                      text: string | null | undefined
                                     }
                                   | {
                                       __typename?: 'Video'
@@ -647,6 +660,7 @@ export type ActionComponentFragment = {
               | null
               | undefined
           }
+        | { __typename?: 'Subtitle'; text: string | null | undefined }
         | {
             __typename?: 'Video'
             platform: VideoPlatform | null | undefined
@@ -699,6 +713,7 @@ export type ActionComponentFragment = {
               | null
               | undefined
           }
+        | { __typename?: 'Subtitle'; text: string | null | undefined }
         | {
             __typename?: 'Video'
             platform: VideoPlatform | null | undefined
@@ -755,6 +770,7 @@ export type ActionDetailsComponentFragment = {
               | null
               | undefined
           }
+        | { __typename?: 'Subtitle'; text: string | null | undefined }
         | {
             __typename?: 'Video'
             platform: VideoPlatform | null | undefined
@@ -837,6 +853,7 @@ export type ActionResultComponentFragment = {
               | null
               | undefined
           }
+        | { __typename?: 'Subtitle'; text: string | null | undefined }
         | {
             __typename?: 'Video'
             platform: VideoPlatform | null | undefined
@@ -994,6 +1011,7 @@ type PageElementComponent_Action_Fragment = {
               | null
               | undefined
           }
+        | { __typename?: 'Subtitle'; text: string | null | undefined }
         | {
             __typename?: 'Video'
             platform: VideoPlatform | null | undefined
@@ -1046,6 +1064,7 @@ type PageElementComponent_Action_Fragment = {
               | null
               | undefined
           }
+        | { __typename?: 'Subtitle'; text: string | null | undefined }
         | {
             __typename?: 'Video'
             platform: VideoPlatform | null | undefined
@@ -1132,6 +1151,7 @@ type PageElementComponent_Foldable_Fragment = {
               | null
               | undefined
           }
+        | { __typename?: 'Subtitle'; text: string | null | undefined }
         | {
             __typename?: 'Video'
             platform: VideoPlatform | null | undefined
@@ -1236,6 +1256,11 @@ type PlainElementComponent_Paragraph_Fragment = {
     | undefined
 }
 
+type PlainElementComponent_Subtitle_Fragment = {
+  __typename?: 'Subtitle'
+  text: string | null | undefined
+}
+
 type PlainElementComponent_Video_Fragment = {
   __typename?: 'Video'
   platform: VideoPlatform | null | undefined
@@ -1248,6 +1273,7 @@ export type PlainElementComponentFragment =
   | PlainElementComponent_Command_Fragment
   | PlainElementComponent_CommandOutput_Fragment
   | PlainElementComponent_Paragraph_Fragment
+  | PlainElementComponent_Subtitle_Fragment
   | PlainElementComponent_Video_Fragment
 
 export type FileComponentFragment = {
@@ -1352,6 +1378,7 @@ export type FoldableComponentFragment = {
               | null
               | undefined
           }
+        | { __typename?: 'Subtitle'; text: string | null | undefined }
         | {
             __typename?: 'Video'
             platform: VideoPlatform | null | undefined
@@ -1499,6 +1526,10 @@ export type TutorialPageFragment = {
                                   | undefined
                               }
                             | {
+                                __typename?: 'Subtitle'
+                                text: string | null | undefined
+                              }
+                            | {
                                 __typename?: 'Video'
                                 platform: VideoPlatform | null | undefined
                                 url: string | null | undefined
@@ -1558,6 +1589,10 @@ export type TutorialPageFragment = {
                                     >
                                   | null
                                   | undefined
+                              }
+                            | {
+                                __typename?: 'Subtitle'
+                                text: string | null | undefined
                               }
                             | {
                                 __typename?: 'Video'
@@ -1646,6 +1681,10 @@ export type TutorialPageFragment = {
                                     >
                                   | null
                                   | undefined
+                              }
+                            | {
+                                __typename?: 'Subtitle'
+                                text: string | null | undefined
                               }
                             | {
                                 __typename?: 'Video'
@@ -1775,6 +1814,7 @@ export type TutorialPageMainContainerFragment = {
                         | null
                         | undefined
                     }
+                  | { __typename?: 'Subtitle'; text: string | null | undefined }
                   | {
                       __typename?: 'Video'
                       platform: VideoPlatform | null | undefined
@@ -1830,6 +1870,7 @@ export type TutorialPageMainContainerFragment = {
                         | null
                         | undefined
                     }
+                  | { __typename?: 'Subtitle'; text: string | null | undefined }
                   | {
                       __typename?: 'Video'
                       platform: VideoPlatform | null | undefined
@@ -1909,6 +1950,7 @@ export type TutorialPageMainContainerFragment = {
                         | null
                         | undefined
                     }
+                  | { __typename?: 'Subtitle'; text: string | null | undefined }
                   | {
                       __typename?: 'Video'
                       platform: VideoPlatform | null | undefined
@@ -2042,6 +2084,11 @@ export const ActionInstructionComponentFragmentDoc = gql`
   }
   ${ParagraphComponentFragmentDoc}
 `
+export const SubtitleComponentFragmentDoc = gql`
+  fragment SubtitleComponent on Subtitle {
+    text
+  }
+`
 export const ActionDetailsComponentFragmentDoc = gql`
   fragment ActionDetailsComponent on Action {
     details {
@@ -2060,6 +2107,9 @@ export const ActionDetailsComponentFragmentDoc = gql`
       ... on CarouselImage {
         ...CarouselComponent
       }
+      ... on Subtitle {
+        ...SubtitleComponent
+      }
     }
   }
   ${ParagraphComponentFragmentDoc}
@@ -2067,6 +2117,7 @@ export const ActionDetailsComponentFragmentDoc = gql`
   ${CommandOutputComponentFragmentDoc}
   ${VideoComponentFragmentDoc}
   ${CarouselComponentFragmentDoc}
+  ${SubtitleComponentFragmentDoc}
 `
 export const ActionResultComponentFragmentDoc = gql`
   fragment ActionResultComponent on Action {
@@ -2086,6 +2137,9 @@ export const ActionResultComponentFragmentDoc = gql`
       ... on CarouselImage {
         ...CarouselComponent
       }
+      ... on Subtitle {
+        ...SubtitleComponent
+      }
     }
   }
   ${ParagraphComponentFragmentDoc}
@@ -2093,6 +2147,7 @@ export const ActionResultComponentFragmentDoc = gql`
   ${CommandOutputComponentFragmentDoc}
   ${VideoComponentFragmentDoc}
   ${CarouselComponentFragmentDoc}
+  ${SubtitleComponentFragmentDoc}
 `
 export const ActionComponentFragmentDoc = gql`
   fragment ActionComponent on Action {
@@ -2103,11 +2158,6 @@ export const ActionComponentFragmentDoc = gql`
   ${ActionInstructionComponentFragmentDoc}
   ${ActionDetailsComponentFragmentDoc}
   ${ActionResultComponentFragmentDoc}
-`
-export const SubtitleComponentFragmentDoc = gql`
-  fragment SubtitleComponent on Subtitle {
-    text
-  }
 `
 export const FoldableComponentFragmentDoc = gql`
   fragment FoldableComponent on Foldable {
@@ -2128,6 +2178,9 @@ export const FoldableComponentFragmentDoc = gql`
       ... on CarouselImage {
         ...CarouselComponent
       }
+      ... on Subtitle {
+        ...SubtitleComponent
+      }
     }
   }
   ${ParagraphComponentFragmentDoc}
@@ -2135,6 +2188,7 @@ export const FoldableComponentFragmentDoc = gql`
   ${CommandOutputComponentFragmentDoc}
   ${VideoComponentFragmentDoc}
   ${CarouselComponentFragmentDoc}
+  ${SubtitleComponentFragmentDoc}
 `
 export const PageElementComponentFragmentDoc = gql`
   fragment PageElementComponent on PageElement {
@@ -2189,12 +2243,16 @@ export const PlainElementComponentFragmentDoc = gql`
     ... on CarouselImage {
       ...CarouselComponent
     }
+    ... on Subtitle {
+      ...SubtitleComponent
+    }
   }
   ${ParagraphComponentFragmentDoc}
   ${CommandComponentFragmentDoc}
   ${CommandOutputComponentFragmentDoc}
   ${VideoComponentFragmentDoc}
   ${CarouselComponentFragmentDoc}
+  ${SubtitleComponentFragmentDoc}
 `
 export const FileComponentFragmentDoc = gql`
   fragment FileComponent on File {
@@ -2496,6 +2554,7 @@ export type ResolversTypes = ResolversObject<{
     | ResolversTypes['Command']
     | ResolversTypes['CommandOutput']
     | ResolversTypes['Paragraph']
+    | ResolversTypes['Subtitle']
     | ResolversTypes['Video']
   Query: ResolverTypeWrapper<{}>
   String: ResolverTypeWrapper<Scalars['String']>
@@ -2558,6 +2617,7 @@ export type ResolversParentTypes = ResolversObject<{
     | ResolversParentTypes['Command']
     | ResolversParentTypes['CommandOutput']
     | ResolversParentTypes['Paragraph']
+    | ResolversParentTypes['Subtitle']
     | ResolversParentTypes['Video']
   Query: {}
   String: Scalars['String']
@@ -2801,7 +2861,12 @@ export type PlainElementResolvers<
   ParentType extends ResolversParentTypes['PlainElement'] = ResolversParentTypes['PlainElement']
 > = ResolversObject<{
   __resolveType: TypeResolveFn<
-    'CarouselImage' | 'Command' | 'CommandOutput' | 'Paragraph' | 'Video',
+    | 'CarouselImage'
+    | 'Command'
+    | 'CommandOutput'
+    | 'Paragraph'
+    | 'Subtitle'
+    | 'Video',
     ParentType,
     ContextType
   >

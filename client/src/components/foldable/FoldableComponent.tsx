@@ -13,6 +13,7 @@ import {
 } from '../elements/PlainElementComponent'
 import { VideoComponent } from '../video/VideoComponent'
 import { FoldableDescriptionBar } from './FoldableDescriptionBar'
+import { SubtitleComponent } from '../subtitle/SubtitleComponent'
 
 export const isEmptyFoldable = (
   fragment: FoldableComponentFragment
@@ -120,6 +121,9 @@ FoldableComponent.fragment = gql`
       ... on CarouselImage {
         ...CarouselComponent
       }
+      ... on Subtitle {
+        ...SubtitleComponent
+      }
     }
   }
 
@@ -128,4 +132,5 @@ FoldableComponent.fragment = gql`
   ${CommandOutputComponent.fragment}
   ${VideoComponent.fragment}
   ${CarouselComponent.fragment}
+  ${SubtitleComponent.fragment}
 `

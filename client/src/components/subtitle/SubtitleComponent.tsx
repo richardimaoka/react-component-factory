@@ -7,7 +7,7 @@ interface SubtitleComponentProps {
   fragment: SubtitleComponentFragment
 }
 
-export const isEmptySubtitle = (
+export const isEmptySubtitleComponent = (
   fragment: SubtitleComponentFragment
 ): boolean => {
   return !fragment.text || fragment.text.length === 0

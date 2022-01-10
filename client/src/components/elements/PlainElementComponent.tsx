@@ -15,6 +15,10 @@ import {
   isEmptyParagraph,
   ParagraphComponent,
 } from '../paragraph/ParagraphComponent'
+import {
+  isEmptySubtitleComponent,
+  SubtitleComponent,
+} from '../subtitle/SubtitleComponent'
 import { isEmptyVideo, VideoComponent } from '../video/VideoComponent'
 
 interface PlainElementComponentProps {
@@ -39,6 +43,8 @@ export const isEmptyPlainElement = (
         return isEmptyVideo(fragment)
       case 'CarouselImage':
         return isEmptyCarouselComponent(fragment)
+      case 'Subtitle':
+        return isEmptySubtitleComponent(fragment)
       default:
         return switchExhaustivenessCheck(typename)
     }
@@ -63,6 +69,8 @@ export const PlainElementComponent = ({
         return <VideoComponent fragment={fragment} />
       case 'CarouselImage':
         return <CarouselComponent fragment={fragment} />
+      case 'Subtitle':
+        return <SubtitleComponent fragment={fragment} />
       default:
         return switchExhaustivenessCheck(typename)
     }
@@ -86,6 +94,9 @@ PlainElementComponent.fragment = gql`
     ... on CarouselImage {
       ...CarouselComponent
     }
+    ... on Subtitle {
+      ...SubtitleComponent
+    }
   }
 
   ${ParagraphComponent.fragment}
@@ -93,4 +104,5 @@ PlainElementComponent.fragment = gql`
   ${CommandOutputComponent.fragment}
   ${VideoComponent.fragment}
   ${CarouselComponent.fragment}
+  ${SubtitleComponent.fragment}
 `
