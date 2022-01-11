@@ -13,6 +13,33 @@
         "id": { "type": "string" }
       }
     },
+    "Tutorial": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "author": { "$ref": "#/$defs/Author" },
+        "title": { "type": "string" },
+        "pages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Page"
+          }
+        }
+      }
+    },
+    "Page": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "pageNum": { "type": "string" },
+        "nextPageNum": { "type": "string" },
+        "prevPageNum": { "type": "string" },
+        "title": { "type": "string" },
+        "pageElemens": {
+          "type": "array"
+        }
+      }
+    },
     "VideoPlatform": {
       "type": "string",
       "enum": ["YOUTUBE", "VIMEO"]
