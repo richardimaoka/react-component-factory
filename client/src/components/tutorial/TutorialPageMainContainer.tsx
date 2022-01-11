@@ -11,6 +11,7 @@ import { FoldableComponent } from '../foldable/FoldableComponent'
 import { ParagraphComponent } from '../paragraph/ParagraphComponent'
 import { SubtitleComponent } from '../subtitle/SubtitleComponent'
 import { TutorialPageProgressBar } from '../tutorial/TutorialPageProgressBar'
+import { TutorialPageTransitionComponent } from '../tutorial/TutorialPageTransitionComponent'
 import { VideoComponent } from '../video/VideoComponent'
 
 interface InnerComponentProps {
@@ -72,6 +73,7 @@ export const TutorialPageMainContainer = ({
           `}
         >
           <InnerComponent fragment={fragment} currentPageNum={currentPageNum} />
+          <TutorialPageTransitionComponent fragment={fragment} />
         </div>
       </div>
     </main>

@@ -1996,6 +1996,12 @@ export type TutorialPageMainContainerFragment = {
     | undefined
 }
 
+export type TutorialPageTransitionComponentFragment = {
+  __typename?: 'Page'
+  nextPageNum: string | null | undefined
+  prevPageNum: string | null | undefined
+}
+
 export type VideoComponentFragment = {
   __typename?: 'Video'
   platform: VideoPlatform | null | undefined
@@ -2354,6 +2360,12 @@ export const TutorialPageFragmentDoc = gql`
   }
   ${HeaderContainerFragmentDoc}
   ${TutorialPageMainContainerFragmentDoc}
+`
+export const TutorialPageTransitionComponentFragmentDoc = gql`
+  fragment TutorialPageTransitionComponent on Page {
+    nextPageNum
+    prevPageNum
+  }
 `
 export const MainDocument = gql`
   query Main {
