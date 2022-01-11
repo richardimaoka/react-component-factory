@@ -7,6 +7,32 @@
     }
   },
   "$defs": {
+    "Author": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" }
+      }
+    },
+    "VideoPlatform": {
+      "type": "string",
+      "enum": ["YOUTUBE", "VIMEO"]
+    },
+    "Video": {
+      "properties": {
+        "platform": { "$ref": "#/$defs/VideoPlatform" },
+        "url": { "type": "string" },
+        "caption": { "type": "string" }
+      }
+    },
+    "Image": {
+      "properties": {
+        "url": { "type": "string" },
+        "alt": { "type": "string" },
+        "caption": { "type": "string" },
+        "width": { "type": "integer" },
+        "height": { "type": "integer" }
+      }
+    },
     "TextChunk": {
       "type": "object",
       "properties": {
