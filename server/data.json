@@ -1,4 +1,5 @@
 {
+  "$schema": "./json-schema.json",
   "__typename": "Tutorial",
   "id": "sample-tutorial",
   "author": {
@@ -154,6 +155,7 @@
           }
         }
       ]
-    }
+    },
+    {}
   ]
 }
