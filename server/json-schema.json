@@ -18,19 +18,54 @@
       "enum": ["YOUTUBE", "VIMEO"]
     },
     "Video": {
+      "type": "object",
       "properties": {
         "platform": { "$ref": "#/$defs/VideoPlatform" },
         "url": { "type": "string" },
         "caption": { "type": "string" }
       }
     },
+    "CarouselImage": {
+      "type": "object",
+      "images": {
+        "type": "array",
+        "items": {
+          "$ref": "#/$defs/Image"
+        }
+      }
+    },
     "Image": {
+      "type": "object",
       "properties": {
         "url": { "type": "string" },
         "alt": { "type": "string" },
         "caption": { "type": "string" },
         "width": { "type": "integer" },
         "height": { "type": "integer" }
+      }
+    },
+    "Command": {
+      "type": "object",
+      "properties": {
+        "text": { "type": "string" }
+      }
+    },
+    "CommandOutput": {
+      "type": "object",
+      "properties": {
+        "text": { "type": "string" }
+      }
+    },
+    "Paragraph": {
+      "type": "object",
+      "properties": {
+        "chunks": { "type": "array", "items": { "$ref": "#/$defs/TextChunk" } }
+      }
+    },
+    "Action": {
+      "type": "object",
+      "properties": {
+        "instruction": { "$ref": "#/$defs/Paragraph" }
       }
     },
     "TextChunk": {
@@ -42,6 +77,74 @@
         "hyperlinkUrl": { "type": "string" },
         "strikeout": { "type": "boolean" },
         "inlineCode": { "type": "boolean" }
+      }
+    },
+    "Foldable": {
+      "type": "object",
+      "properties": {
+        "shortDescription": { "type": "string" },
+        "elements": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Paragraph" }
+        }
+      }
+    },
+    "DirectoryStructure": {
+      "type": "object",
+      "properties": {
+        "contents": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "Note": {
+      "type": "object",
+      "properties": {
+        "body": { "type": "string" }
+      }
+    },
+    "Subtitle": {
+      "type": "object",
+      "properties": {
+        "text": { "type": "string" }
+      }
+    },
+    "File": {
+      "type": "object",
+      "properties": {
+        "fileName": { "type": "string" },
+        "content": { "type": "string" }
+      }
+    },
+    "FileMultiple": {
+      "type": "object",
+      "properties": {
+        "files": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/File" }
+        }
+      }
+    },
+    "FileTreeNodeType": {
+      "type": "string",
+      "enum": ["FILENODE", "DIRECTORYNODE"]
+    },
+    "FileTreeNode": {
+      "type": "object",
+      "properties": {
+        "nodeType": { "$ref": "#/$defs/FileTreeNodeType" },
+        "name": { "type": "string" },
+        "depth": { "type": "integer" }
+      }
+    },
+    "FileTree": {
+      "type": "object",
+      "properties": {
+        "treeNodes": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/FileTreeNode" }
+        }
       }
     }
   }
