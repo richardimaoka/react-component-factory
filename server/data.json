@@ -78,6 +78,14 @@
               "height": 700
             }
           ]
+        },
+        {
+          "__typename": "Subtitle",
+          "text": "VS Code + Dockerインストールの確認"
+        },
+        {
+          "__typename": "Subtitle",
+          "text": "VS Code + Remote Container extentionのインストール"
         }
       ]
     },
