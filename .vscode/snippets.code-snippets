@@ -30,5 +30,26 @@
       "  } ",
       "}"
     ]
+  },
+  "react component": {
+    "prefix": "react component",
+    "body": [
+      "import { gql } from '@apollo/client'",
+      "import { ${TM_FILENAME_BASE}Fragment } from '../../lib/generated/graphql",
+      "",
+      "interface ${TM_FILENAME_BASE}Props {",
+      "  fragment: ${TM_FILENAME_BASE}Fragment",
+      "}",
+      "",
+      "export const ${TM_FILENAME_BASE} = ({fragment}: ${TM_FILENAME_BASE}Fragment): JSX.Element => {",
+      "  return <></>",
+      "}",
+      "",
+      "${TM_FILENAME_BASE}.fragment = gql`",
+      "  fragment ${TM_FILENAME_BASE} on XXX {",
+      "",
+      "  }",
+      "`"
+    ]
   }
 }
