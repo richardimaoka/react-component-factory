@@ -1,3 +1,22 @@
 {
-  "properties": {}
+  "$id": "https://github.com/richardimaoka/react-component-factory/server/json-schema.json",
+  "type": "object",
+  "properties": {
+    "field1": {
+      "$ref": "#/$defs/TextChunk"
+    }
+  },
+  "$defs": {
+    "TextChunk": {
+      "type": "object",
+      "properties": {
+        "text": { "type": "string" },
+        "highlight": { "type": "boolean" },
+        "bold": { "type": "boolean" },
+        "hyperlinkUrl": { "type": "string" },
+        "strikeout": { "type": "boolean" },
+        "inlineCode": { "type": "boolean" }
+      }
+    }
+  }
 }
