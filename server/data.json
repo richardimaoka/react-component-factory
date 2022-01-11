@@ -140,6 +140,18 @@
               "text": "This is the output This is the output This is the output This is the output This is the output This is the output This is the output This is the output This is the output This is the output\nThis is the output This is the output This is the output This is the output This is the output"
             }
           ]
+        },
+        {
+          "__typename": "Action",
+          "instruction": {
+            "__typename": "Paragraph",
+            "chunks": [
+              {
+                "__typename": "TextChunk",
+                "text": ""
+              }
+            ]
+          }
         }
       ]
     }
